@@ -1,6 +1,15 @@
 :root {
   color-scheme: dark;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Token mapping for the shared cose-chrome.css overlay (chrome-only variant --
+     it reads these but never sets them, per its own header comment). */
+  --bg: #0f1410;
+  --card: #131a14;
+  --fg: #e8ede5;
+  --line: #263028;
+  --muted: #8b9a85;
+  --accent: #7fd4a0;
 }
 
 * { box-sizing: border-box; }
@@ -8,7 +17,7 @@ html, body, #root { height: 100%; margin: 0; }
 
 .app { display: flex; flex-direction: column; height: 100%; background: #0f1410; color: #e8ede5; }
 
-.app-header { padding: 0.75rem 1.25rem; border-bottom: 1px solid #263028; }
+.app-header { padding: 0.75rem 1.25rem 0.75rem 175px; border-bottom: 1px solid #263028; min-height: 34px; }
 .app-header h1 { margin: 0 0 0.25rem; font-size: 1.25rem; }
 .app-header p { margin: 0; font-size: 0.85rem; color: #a9b7a2; }
 .app-header a { color: #7fd4a0; }
