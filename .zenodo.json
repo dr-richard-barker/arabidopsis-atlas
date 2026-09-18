@@ -1,0 +1,35 @@
+{
+  "title": "Arabidopsis Atlas: a FAIR, literature-grounded interactive structural and expression atlas of Arabidopsis thaliana",
+  "description": "<p>An interactive, organ-selectable 3D atlas of <em>Arabidopsis thaliana</em>, built as a scientifically-grounded counterpart to the procedurally-generated rice-atlas viewer. Organ geometry cites peer-reviewed developmental-biology literature rather than being invented; a spaceflight-response layer, absent from the original, is computed directly from real NASA Open Science Data Repository (OSDR) count matrices for root (OSD-120) and whole-seedling (OSD-314) studies; developmental gene expression is linked to the real Klepikova/TraVA atlas rather than redistributed. Every number the viewer and accompanying manuscript display traces to a script-produced file in this repository, checked against this project's own pre-publication evidence gate before release.</p>",
+  "upload_type": "software",
+  "access_right": "open",
+  "license": "CC-BY-4.0",
+  "keywords": [
+    "Arabidopsis thaliana",
+    "digital atlas",
+    "FAIR data",
+    "gene expression",
+    "spaceflight biology",
+    "NASA GeneLab",
+    "NASA OSDR",
+    "3D visualization",
+    "reproducible research"
+  ],
+  "creators": [
+    {
+      "name": "Barker, Richard",
+      "affiliation": "University of Wisconsin-Madison",
+      "orcid": "0000-0001-5681-9857"
+    }
+  ],
+  "related_identifiers": [
+    {"relation": "references", "identifier": "10.1111/tpj.13312", "resource_type": "publication-article"},
+    {"relation": "references", "identifier": "10.1016/j.devcel.2022.01.008", "resource_type": "publication-article"},
+    {"relation": "references", "identifier": "10.7554/eLife.63262", "resource_type": "publication-article"},
+    {"relation": "isSupplementTo", "identifier": "https://github.com/dr-richard-barker/arabidopsis-atlas", "resource_type": "software"},
+    {"relation": "isDerivedFrom", "identifier": "https://github.com/dr-richard-barker/rice-atlas", "resource_type": "software"}
+  ],
+  "communities": [],
+  "version": "0.1.0",
+  "language": "eng"
+}

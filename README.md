@@ -21,8 +21,9 @@ organ-by-organ 3D plant you can explore) and rebuilds the rest from real sources
   organ.
 - **Developmental gene expression** per organ from the Klepikova/TraVA atlas
   (Klepikova et al. 2016, *Plant J*, doi:10.1111/tpj.13312).
-- **Spaceflight response** per organ from real NASA GeneLab/OSDR studies, where flight
-  data exists for that tissue — the angle rice-atlas has nothing comparable to.
+- **Spaceflight response** from real NASA GeneLab/OSDR count data — organ-specific for
+  Root (OSD-120), whole-seedling for the rest (OSD-314, shown as such, not attributed to
+  any one organ) — the angle rice-atlas has nothing comparable to.
 - **FAIR metadata** (this README, `LICENSE`, `CITATION.cff`, `.zenodo.json`) and an
   independent ABAI review (`.abai/attest.json`) before anything here is called "assessed."
 
