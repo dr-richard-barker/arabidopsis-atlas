@@ -13,3 +13,4 @@ manuscript/latex/*.fls
 manuscript/latex/*.toc
 data/raw/*.large
 .abai/
+node_modules/

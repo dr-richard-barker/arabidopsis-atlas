@@ -32,13 +32,25 @@ This repository is under active construction. Rather than claim a finished produ
 it exists, here's exactly where it stands:
 
 - [x] Repo scaffold, licensing, citation metadata
-- [ ] Real data sourcing and provenance ledger (`data/`) — in progress
-- [ ] Structural generator + organ metadata (`scripts/`)
-- [ ] Interactive 3D viewer (`app/`)
+- [x] Real data sourcing and provenance ledger (`data/`) — root (OSD-120) and whole-seedling
+      (OSD-314) spaceflight response computed from real OSDR counts; TraVA linked out to
+      rather than redistributed (see `data/README.md` for why)
+- [x] Organ metadata + procedural structural generator (`app/src/organs.ts`,
+      `app/src/geometry.ts`) — 5 organs, each geometry note disclosing exactly what is and
+      isn't measured
+- [x] Interactive 3D viewer (`app/`) — organ-selectable, real per-gene spaceflight data
+      shown for Root; verified running locally
 - [ ] GitHub Pages deployment (`docs/`)
 - [ ] LaTeX manuscript, compiling to PDF and Word (`manuscript/`)
 - [ ] ABAI review gate (`.abai/attest.json`)
 - [ ] Zenodo deposit (manual step, done last)
+
+## Running it locally
+
+```
+npm install
+npm run dev
+```
 
 ## License
 

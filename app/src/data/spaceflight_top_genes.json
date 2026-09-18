@@ -1,0 +1,150 @@
+{
+  "OSD-120": {
+    "organism_part": "root",
+    "comparison": "Spaceflight vs. ground control (Day 13 root, GLDS/OSD-120)",
+    "n_genes_total": 32833,
+    "top_upregulated": [
+      {
+        "gene_id": "AT2G01422",
+        "log2fc": 4.751
+      },
+      {
+        "gene_id": "AT2G05510",
+        "log2fc": 4.645
+      },
+      {
+        "gene_id": "AT5G19890",
+        "log2fc": 3.911
+      },
+      {
+        "gene_id": "AT2G26400",
+        "log2fc": 2.714
+      },
+      {
+        "gene_id": "AT2G34317",
+        "log2fc": 2.557
+      },
+      {
+        "gene_id": "AT2G30670",
+        "log2fc": 2.504
+      },
+      {
+        "gene_id": "AT2G43920",
+        "log2fc": 2.465
+      },
+      {
+        "gene_id": "AT4G11650",
+        "log2fc": 2.411
+      }
+    ],
+    "top_downregulated": [
+      {
+        "gene_id": "AT5G13930",
+        "log2fc": -5.27
+      },
+      {
+        "gene_id": "AT5G09570",
+        "log2fc": -4.253
+      },
+      {
+        "gene_id": "AT3G51240",
+        "log2fc": -3.024
+      },
+      {
+        "gene_id": "AT5G33355",
+        "log2fc": -2.759
+      },
+      {
+        "gene_id": "AT2G04050",
+        "log2fc": -2.587
+      },
+      {
+        "gene_id": "AT3G30720",
+        "log2fc": -2.387
+      },
+      {
+        "gene_id": "AT2G21640",
+        "log2fc": -2.384
+      },
+      {
+        "gene_id": "AT1G01060",
+        "log2fc": -2.322
+      }
+    ],
+    "source_file": "data/processed/OSD-120_root_flight_vs_ground_log2fc.csv"
+  },
+  "OSD-314": {
+    "organism_part": "whole seedling",
+    "comparison": "Microgravity (0g) vs. 1g ground control, whole seedling (OSD-314)",
+    "n_genes_total": 32833,
+    "top_upregulated": [
+      {
+        "gene_id": "AT4G28520",
+        "log2fc": 5.543
+      },
+      {
+        "gene_id": "AT5G44120",
+        "log2fc": 5.536
+      },
+      {
+        "gene_id": "AT1G73190",
+        "log2fc": 5.527
+      },
+      {
+        "gene_id": "AT5G40420",
+        "log2fc": 5.407
+      },
+      {
+        "gene_id": "ATCG00040",
+        "log2fc": 4.739
+      },
+      {
+        "gene_id": "AT4G25140",
+        "log2fc": 4.693
+      },
+      {
+        "gene_id": "AT3G54940",
+        "log2fc": 4.684
+      },
+      {
+        "gene_id": "AT2G28490",
+        "log2fc": 4.533
+      }
+    ],
+    "top_downregulated": [
+      {
+        "gene_id": "AT2G32810",
+        "log2fc": -4.873
+      },
+      {
+        "gene_id": "AT3G01345",
+        "log2fc": -4.445
+      },
+      {
+        "gene_id": "AT1G53480",
+        "log2fc": -4.437
+      },
+      {
+        "gene_id": "AT4G17090",
+        "log2fc": -4.174
+      },
+      {
+        "gene_id": "AT3G05727",
+        "log2fc": -4.08
+      },
+      {
+        "gene_id": "AT2G30750",
+        "log2fc": -3.878
+      },
+      {
+        "gene_id": "AT3G45140",
+        "log2fc": -3.76
+      },
+      {
+        "gene_id": "AT3G05730",
+        "log2fc": -3.694
+      }
+    ],
+    "source_file": "data/processed/OSD-314_seedling_microgravity_vs_1g_log2fc.csv"
+  }
+}

@@ -26,16 +26,41 @@ cite it in the viewer, the manuscript, or the README.
   subscription with a 12-month embargo. Only openly-licensed TAIR bulk downloads
   (CC-BY-4.0) are in scope, and only if actually needed beyond what TraVA/OSDR provide.
 
-## Pending (not yet pulled — do not treat as done)
+## Decisions made while building this
 
-- [ ] Download and subset the actual TraVA/Klepikova expression matrix for the organs the
-      viewer will model (pending the license confirmation above).
-- [ ] Pull actual per-gene differential-expression tables for OSD-120/38/314/522 (not just
-      study metadata) via the OSDR API, restricted to genes/tissues the viewer surfaces.
+- **TraVA/Klepikova**: no confirmed bulk-download API and no explicit machine-readable
+  license was found (see above), so the viewer links out to `travadb.org` for real
+  developmental expression instead of redistributing a matrix. This is a scope decision,
+  not a fabrication workaround -- no invented expression numbers appear anywhere.
+- **Spaceflight counts**: OSDR's per-study "files" API exposes only raw FASTQ/BAM/MultiQC
+  outputs, not ready-made differential-expression tables. Rather than run an alignment
+  pipeline from scratch, `data/raw/OSD-120_counts.csv` and `data/raw/OSD-314_counts.csv`
+  (real GeneLab-processed gene-count matrices, originally fetched from
+  `osdr.nasa.gov/osdr/data/osd/meta/{120,314}`) were reused from the already-fetched copies
+  in the sibling `arabidopsis-drem-osdr` repo (same OSDR accessions, CC0, no license issue).
+  `OSD-38` and `OSD-522` are real, confirmed-live studies (see table above) but their raw
+  counts have not been fetched/processed here -- do not cite numbers for them, only the
+  study metadata already confirmed.
+- `scripts/01_compute_spaceflight_response.py` computes a **simple CPM-normalized mean
+  log2 ratio** between real condition groups (Flight vs. Ground for OSD-120 by tissue;
+  0g vs. 1g for OSD-314 by gravity level) -- explicitly not a statistically tested DE
+  analysis (no DESeq2/edgeR, no p-values, no multiple-testing correction). Every number
+  the viewer shows traces to `data/processed/*.csv`, which trace to this script, which
+  reads only the raw counts above. See `scripts/02_export_viewer_data.py` for how the
+  compact viewer JSON (`app/src/data/spaceflight_top_genes.json`) is derived from those
+  processed tables -- nothing in the viewer's source is hand-typed.
+
+## Pending
+
+- [ ] If TraVA reuse terms are ever confirmed, consider pulling a real subset matrix
+      instead of only linking out.
+- [ ] OSD-38 / OSD-522 raw counts, if organ-specific spaceflight coverage beyond
+      root (OSD-120) and whole-seedling (OSD-314) is wanted later.
 - [ ] Extract the specific quantitative proportions used in the structural generator
       (e.g. root branching angles from Shahan et al., ovule cell-layer counts from
-      Vijayan et al.) with page/figure references, not just the paper-level citation.
-- [ ] Re-run the OSDR reuse-terms check at build time in case study metadata changes.
+      Vijayan et al.) with page/figure references -- the current generator states the
+      citation per organ but uses illustrative, not measured, parameter values
+      (see `app/src/organs.ts` geometryNote fields).
 
 ## Rule
 
