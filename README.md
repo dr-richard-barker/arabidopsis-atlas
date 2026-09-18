@@ -40,9 +40,15 @@ it exists, here's exactly where it stands:
       isn't measured
 - [x] Interactive 3D viewer (`app/`) — organ-selectable, real per-gene spaceflight data
       shown for Root; verified running locally
-- [ ] GitHub Pages deployment (`docs/`)
-- [ ] LaTeX manuscript, compiling to PDF and Word (`manuscript/`)
-- [ ] ABAI review gate (`.abai/attest.json`)
+- [x] GitHub Pages deployment (`docs/`) — live at
+      [dr-richard-barker.github.io/arabidopsis-atlas](https://dr-richard-barker.github.io/arabidopsis-atlas/),
+      verified working (organ selection + real data panel) on the deployed site itself,
+      not just locally
+- [x] LaTeX manuscript, compiling to PDF and Word (`manuscript/`) — `make pdf docx`,
+      every number sourced from `generated_numbers.tex`, which is itself generated from
+      `data/processed/` and `app/src/organs.ts`, never hand-typed
+- [x] ABAI review gate (`.abai/attest.json`) — clear verdict on file, re-checked after
+      the manuscript was added
 - [ ] Zenodo deposit (manual step, done last)
 
 ## Running it locally

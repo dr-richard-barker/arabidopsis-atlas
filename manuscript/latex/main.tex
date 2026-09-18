@@ -1,0 +1,89 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{url}
+
+% Numbers used in the prose are generated from data/processed/ and app/src/organs.ts by
+% scripts/03_manuscript_numbers.py. A value the pipeline has not produced renders as a
+% visible TODO rather than as a plausible stale figure.
+\input{generated_numbers}
+
+\title{From a procedural fork to a cited resource: building a FAIR,
+literature-grounded \textit{Arabidopsis thaliana} atlas from an uncredentialed
+rice viewer}
+
+\author{Richard J. Barker\thanks{Center of Space Exploration (CoSE).
+Correspondence: \texttt{dr.richard.barker@gmail.com}}}
+
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\texttt{rice-atlas} is an interactive 3D viewer that lets a user select any of several
+hundred organs of a procedurally-generated rice plant. Its own documentation states
+plainly that it is a conceptual educational model, not a scan of a specimen, and it cites
+no \textit{Oryza sativa} dataset, carries no FAIR metadata, and had not been reviewed. We
+report what it takes to turn that pattern into a genuinely citable scientific resource for
+a second species, \textit{Arabidopsis thaliana}, rather than simply relabelling the same
+geometry. We rebuild the organ-selectable viewer from a clean-room implementation --
+rice-atlas's own license is ambiguous (GitHub records it as \texttt{NOASSERTION}) -- and
+ground it in three places real data was available: organ geometry parameters cite
+peer-reviewed developmental-biology sources (\NumOrgansWithGeometryCitation{} of
+\NumOrgansModeled{} organs carry an explicit geometry citation); developmental gene
+expression is linked, not redistributed, to the real 79-organ Klepikova/TraVA atlas, whose
+bulk-reuse terms we could not confirm; and a spaceflight-response layer -- absent from
+rice-atlas entirely -- is computed directly from real NASA Open Science Data Repository
+(OSDR) count matrices for root tissue (OSD-120: \NumGenesOsdOneTwentyZero{} genes,
+\NumFlightSamplesOsdOneTwentyZero{} flight vs.\ \NumGroundSamplesOsdOneTwentyZero{} ground
+samples, top flight/ground log2 ratio \TopFoldChangeOsdOneTwentyZero{} for
+\texttt{\TopGeneOsdOneTwentyZero{}}) and whole seedlings under simulated and real
+microgravity (OSD-314: \NumMicrogSamplesOsdThreeFourteen{} microgravity vs.\
+\NumGroundSamplesOsdThreeFourteen{} 1g samples, top ratio \TopFoldChangeOsdThreeFourteen{} for
+\texttt{\TopGeneOsdThreeFourteen{}}). We report this as a mean-CPM ratio, explicitly not a
+statistically tested differential-expression call, and say so everywhere the numbers
+appear. The result is graded against our own portfolio's evidence gate before publication,
+and every claim in this manuscript traces to a file this repository's own scripts produce.
+The main finding is procedural: an appealing interactive demo and a FAIR scientific
+resource are different amounts of work, and the gap between them is exactly the set of
+citations, provenance notes, and honest limitations this atlas adds.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/methods}
+\input{sections/results}
+\input{sections/discussion}
+
+\section*{Data and code availability}
+All code, the real raw/processed data tables, and the viewer source are at
+\url{https://github.com/dr-richard-barker/arabidopsis-atlas}, deployed at
+\url{https://dr-richard-barker.github.io/arabidopsis-atlas/}, and archived at Zenodo
+(\textbf{TODO: DOI, pending manual deposit}). Primary spaceflight data are NASA OSDR
+studies OSD-120 \citep{OSD120} and OSD-314 \citep{OSD314}; developmental expression context is from the
+Klepikova/TraVA atlas \citep{Klepikova2016}; structural citations are
+\citet{Shahan2022} and \citet{Vijayan2021}. rice-atlas, the project's own starting point,
+is at \url{https://github.com/dr-richard-barker/rice-atlas}; none of its code is reused
+here (see Methods).
+
+\section*{Competing interests}
+The author declares no competing interests.
+
+\section*{Acknowledgements}
+We thank the investigators who deposited OSD-120 and OSD-314, and NASA's Open Science
+Data Repository and GeneLab for curating and publishing them.
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,54 @@
+\section{Methods}
+
+\subsection{Characterizing rice-atlas}
+We inspected \texttt{dr-richard-barker/rice-atlas} via the GitHub API and \texttt{gh} CLI
+(repository metadata, full file tree, Pages configuration, and commit history) rather than
+assuming its content from its name or description. This established that it is a fork
+(itself forked from a human-anatomy viewer template) with no commits from the account that
+owns it, no \texttt{data/} directory, no cited primary dataset, and a license the GitHub
+license detector could not resolve to a standard SPDX identifier.
+
+\subsection{Provenance discipline}
+Every external fact used in this repository is recorded in \texttt{data/README.md} with
+its source, verification method, and license status before being used anywhere else. Three
+literature DOIs (\citealp{Klepikova2016,Shahan2022,Vijayan2021}) were each confirmed
+against the CrossRef API (title, full author list, year, volume, pages) rather than
+trusted from a search snippet. Four NASA OSDR study accessions were confirmed live against
+the OSDR metadata API before use; two (OSD-120, OSD-314) had already-fetched raw count
+matrices available (reused, with permission implicit in common ownership, from the sibling
+repository \texttt{arabidopsis-drem-osdr}, itself sourced from the same public, CC0 OSDR
+accessions) and were used quantitatively; two (OSD-38, OSD-522) are cited as confirmed,
+relevant, real studies but are not yet quantitatively integrated, and are documented as
+pending rather than fabricated.
+
+\subsection{Spaceflight response quantification}
+For each of the two studies with available raw counts, samples were split into their real
+experimental groups by the labels already present in the count matrix's own sample names
+(OSD-120: \texttt{GC} ground control vs.\ \texttt{FLT} flight, Day 13 root tissue; OSD-314:
+\texttt{1g} vs.\ \texttt{0g}, whole seedling). Raw counts were converted to counts-per-million
+(CPM) per sample to correct for sequencing-depth differences, averaged within each group,
+and reported as $\log_2\!\big((\text{mean CPM}_{\text{treatment}}+1)/(\text{mean
+CPM}_{\text{control}}+1)\big)$. This is deliberately a simple mean-ratio summary: no
+DESeq2/edgeR model was fit, no $p$-values or multiple-testing correction were computed, and
+no covariates (genotype, light treatment) were controlled for. The implementation is
+\texttt{scripts/01\_compute\_spaceflight\_response.py}; its output feeds
+\texttt{scripts/02\_export\_viewer\_data.py}, which derives the compact per-organ summary
+shown in the viewer, so no number reaching the viewer or this manuscript is hand-typed.
+
+\subsection{Structural model}
+Organ geometry for the viewer (root system, rosette leaf, inflorescence axis, flower,
+silique) is generated procedurally in the client (\texttt{app/src/geometry.ts}) using
+Three.js primitive shapes, not sculpted or scanned. Root branching topology and the
+rosette's leaf-arrangement angle follow parameters attributed, organ by organ, to the
+literature sources in \texttt{app/src/organs.ts}; where a parameter is illustrative rather
+than measured, that organ's on-screen description says so explicitly, matching the
+disclosure standard rice-atlas itself already sets for its own geometry.
+
+\subsection{Evidence gate}
+Before this repository's first push, and again before any push touching
+publication-relevant content, we ran this portfolio's own pre-publication check (a
+blocklist sweep for previously-fabricated strings, CrossRef verification of every DOI,
+confirmation that every number traces to a producing script with no synthetic-data
+fallback, and confirmation that every cited file path and accession resolves in the actual
+repository). Only a check that was actually performed is recorded as an attestation; an
+attestation is never written to unblock a push it did not actually clear.

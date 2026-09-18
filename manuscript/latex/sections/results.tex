@@ -1,0 +1,51 @@
+\section{Results}
+
+\subsection{What rice-atlas is, on inspection}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+& rice-atlas & arabidopsis-atlas (this work) \\
+\midrule
+Primary dataset cited & none found & \NumOrgansWithGeometryCitation{}/\NumOrgansModeled{} organs cite a real structural paper \\
+Spaceflight data & none & OSD-120, OSD-314 (real OSDR counts) \\
+License (GitHub-detected) & \texttt{NOASSERTION} & MIT (this repository's own) \\
+FAIR metadata & none & \texttt{LICENSE}, \texttt{CITATION.cff}, \texttt{.zenodo.json} \\
+GitHub Pages & not deployed & deployed \\
+Independent review & none found & ABAI evidence-gate attestation on file \\
+\bottomrule
+\end{tabular}
+\caption{Attributes compared directly by inspecting both repositories, not by
+description.}
+\end{table}
+
+\subsection{Real spaceflight response, by organ}
+
+Of the five organs modelled, one (root) has a directly tissue-matched real spaceflight
+comparison: OSD-120 profiled root tissue specifically, at Day 13, under
+\NumFlightSamplesOsdOneTwentyZero{} flight and \NumGroundSamplesOsdOneTwentyZero{} ground
+control samples across \NumGenesOsdOneTwentyZero{} genes. The largest mean flight/ground
+CPM ratio in that comparison is \TopFoldChangeOsdOneTwentyZero{} $\log_2$ units, for
+\texttt{\TopGeneOsdOneTwentyZero{}}.
+
+OSD-314 profiled whole seedlings, not a single organ, across the same
+\NumGenesOsdThreeFourteen{} genes, comparing \NumMicrogSamplesOsdThreeFourteen{} real
+microgravity samples against \NumGroundSamplesOsdThreeFourteen{} 1g ground samples; its
+largest ratio is \TopFoldChangeOsdThreeFourteen{} $\log_2$ units, for
+\texttt{\TopGeneOsdThreeFourteen{}}. Because it is not organ-specific, we report it in the
+data provenance ledger rather than attach it to any single organ in the viewer, to avoid
+implying a tissue-level claim the data does not support.
+
+The remaining three organs (rosette leaf, inflorescence axis, flower/silique) have no
+organ-matched spaceflight dataset wired into this version of the atlas; the viewer states
+this plainly for each rather than substituting the whole-seedling numbers as if they were
+organ-specific.
+
+\subsection{Verification of the viewer itself}
+
+The viewer was checked interactively, not only by static code review: in both a local
+development server and the actual production build served at the live GitHub Pages URL,
+clicking each organ was confirmed to open an information panel showing the correct TraVA
+category, the correct geometry citation, and -- for root -- the real gene table described
+above, with no console errors in either environment.

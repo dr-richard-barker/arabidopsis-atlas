@@ -1,0 +1,46 @@
+\section{Discussion}
+
+The central lesson of this project was not scientific but procedural: an appealing
+interactive 3D atlas and a FAIR scientific resource are not the same amount of work, and
+the difference is not visual polish. rice-atlas already had the harder-to-build part -- a
+working, organ-selectable procedural plant viewer. What it lacked was cheaper in
+engineering terms but slower in practice: a cited dataset behind every organ, a resolvable
+license, and a record of what had and had not been checked. Recreating the visual
+experience for \textit{Arabidopsis} took a fraction of the effort spent sourcing,
+verifying, and honestly scoping the data behind it.
+
+That verification effort surfaced problems worth naming. A CrossRef check was needed
+because a plausible-looking DOI is not evidence it is correct. A live API check against
+NASA OSDR was needed because a study accession copied from memory is a guess, not a fact,
+until confirmed against the record NASA actually serves. And checking travadb.org's actual
+interface -- rather than assuming a REST-style URL pattern would work -- avoided shipping a
+broken or misleading link in a resource whose entire premise is that its links and numbers
+are trustworthy.
+
+The decision to compute only a simple mean-CPM ratio, rather than a full
+differential-expression model, was a scope choice made explicit rather than hidden: a
+half-rigorous statistical claim dressed as a rigorous one would be worse than a clearly
+labelled simple one. The same logic applied to organ coverage -- three of five organs carry
+no spaceflight layer at all, and the viewer says so, rather than reusing the one available
+whole-seedling comparison across organs it was never measured in.
+
+\subsection{Limitations}
+No single real dataset gives whole-organism 3D geometry for \textit{Arabidopsis}, just as
+none exists for rice; every organ shape here is a citation-informed illustrative
+approximation, not a reconstruction from measurement, and several structural parameters
+(rosette leaf-blade curvature, inflorescence taper, flower whorl spacing) are not yet tied
+to a specific measured value even where a general developmental-biology source is cited.
+TraVA/Klepikova expression is linked to, not integrated into, the viewer, because its bulk
+reuse terms could not be confirmed -- a more complete atlas would resolve that directly
+with the maintainers rather than work around it indefinitely. OSD-38 and OSD-522, both
+confirmed real and relevant, remain unprocessed. The spaceflight comparisons reported are
+mean ratios from two studies with their own genotype and lighting confounds, not a
+meta-analytic or statistically tested effect size, and should not be read as one.
+
+\subsection{What would make this stronger}
+Resolving TraVA's reuse terms directly, processing OSD-38 and OSD-522 to extend
+organ-matched spaceflight coverage beyond root, and replacing illustrative structural
+parameters with values measured from the cited primary sources (rather than only citing
+the source's general conclusions) would each move this resource further from "a rice-atlas
+pattern applied honestly" toward "a primary structural and functional atlas in its own
+right."

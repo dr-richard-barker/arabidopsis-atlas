@@ -1,0 +1,36 @@
+\section{Introduction}
+
+Interactive 3D anatomy viewers are an appealing format for plant biology outreach and
+education: a user rotates a whole organism, clicks an organ, and reads what it is. The
+format's origin, however, matters for whether what they read is true. \texttt{rice-atlas}
+(\url{https://github.com/dr-richard-barker/rice-atlas}) is one such viewer, built on a
+procedural functional-structural plant model and forked twice from a generic human-anatomy
+template before being relabelled for rice. Its own README is explicit that the geometry is
+conceptual, and inspecting the repository directly turns up no cited \textit{Oryza sativa}
+dataset, no license the GitHub license detector can resolve (recorded as
+\texttt{NOASSERTION}), no FAIR metadata, and no GitHub Pages deployment.
+
+None of that makes the viewer worthless -- a clearly-labelled conceptual model is a
+legitimate teaching tool. It does mean that building "the \textit{Arabidopsis} version" of
+it is an underspecified request until a decision is made about which of two very different
+projects is wanted: a relabelled geometric demo, or a resource that earns the adjectives
+this project set out with -- FAIR, reviewed, and scientifically accurate. We chose, and
+report here, a hybrid: keep the interactive organ-selectable viewer, because that is the
+part of rice-atlas actually worth learning from, but rebuild its content so that every
+organ's geometry and every data value shown traces to a real, checkable source.
+
+\textit{Arabidopsis thaliana} is a fortunate choice of second species for this exercise.
+Unlike rice, it has a 79-organ, whole-development RNA-seq atlas
+\citep{Klepikova2016}, single-cell developmental atlases for at least two organ systems
+\citep{Shahan2022,Vijayan2021}, and -- because it is the standard model organism for plant
+spaceflight biology -- a substantial NASA Open Science Data Repository (OSDR) footprint,
+including studies that profile root and whole-seedling transcriptomes under real and
+simulated microgravity. That last point gives the resulting atlas a dimension rice-atlas
+has no counterpart for at all: a spaceflight-response layer, grounded in real flight
+experiments rather than invented.
+
+We report three things: what we found rice-atlas actually to be, once inspected rather
+than taken at face value; what real data sources were available to ground an
+\textit{Arabidopsis} equivalent, and which ones we could and could not actually use;
+and what building to a pre-registered FAIR/evidence-gate standard changed about the
+result compared to simply forking the original.
