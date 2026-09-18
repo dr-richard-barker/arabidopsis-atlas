@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.DS_Store
+*.pyc
+__pycache__/
+manuscript/latex/*.aux
+manuscript/latex/*.bbl
+manuscript/latex/*.blg
+manuscript/latex/*.log
+manuscript/latex/*.out
+manuscript/latex/*.fdb_latexmk
+manuscript/latex/*.fls
+manuscript/latex/*.toc
+data/raw/*.large
+.abai/

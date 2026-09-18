@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this software or data, please cite it as below."
+title: "Arabidopsis Atlas: a FAIR, literature-grounded interactive structural and expression atlas of Arabidopsis thaliana"
+type: software
+authors:
+  - given-names: Richard
+    family-names: Barker
+    orcid: "https://orcid.org/0000-0001-5681-9857"
+    affiliation: "University of Wisconsin-Madison"
+keywords:
+  - Arabidopsis thaliana
+  - digital atlas
+  - FAIR data
+  - gene expression
+  - spaceflight
+  - NASA GeneLab
+  - OSDR
+  - 3D visualization
+license: MIT
+repository-code: "https://github.com/dr-richard-barker/arabidopsis-atlas"
+version: "0.1.0"
+date-released: "2026-09-18"
