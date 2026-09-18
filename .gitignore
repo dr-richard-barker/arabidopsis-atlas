@@ -14,3 +14,6 @@ manuscript/latex/*.toc
 data/raw/*.large
 .abai/
 node_modules/
+# Regeneratable via `npx tsx blender/export_mesh.ts <ecotype>` + refine_showcase.py;
+# the PNGs that matter for the manuscript are committed under manuscript/figures/ instead.
+blender/exports/

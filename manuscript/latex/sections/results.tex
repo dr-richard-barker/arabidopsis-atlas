@@ -78,6 +78,26 @@ for it in the dataset used; ERECTA status for Cvi-0/Tsu-0/Edi-0 is stated as an 
 default, not confirmed per-accession; and no accession-labelled reference photo was found
 for Ws, so its photo link is simply absent rather than substituted.
 
+\begin{figure}[ht]
+\centering
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{../figures/col0_showcase.png}
+\end{minipage}
+\hfill
+\begin{minipage}{0.48\textwidth}
+\centering
+\includegraphics[width=\textwidth]{../figures/ler_showcase.png}
+\end{minipage}
+\caption{Col-0 (left) and Ler (right), rendered from the same live generator
+(\texttt{app/src/geometry.ts}) used in the interactive viewer, refined offline in Blender
+5.2 (\texttt{blender/refine\_showcase.py}: a Solidify modifier and \texttt{shade\_smooth}
+applied only to leaf-blade meshes, matching rice-atlas's own actual technique) and rendered
+with EEVEE. This step is separate from the live viewer, which stays fully procedural so
+ecotype-switching keeps working; the plant shown here is the real parametric output for
+each ecotype, not a hand-modeled illustration.}
+\end{figure}
+
 \subsection{Verification of the viewer itself}
 
 The viewer was checked interactively, not only by static code review: in both a local

@@ -54,6 +54,13 @@ parametric leaf-blade surface, replacing the original primitive-shape approximat
 the same core technique rice-atlas's own source turned out to use, independently
 implemented (see the manuscript for what inspecting rice-atlas's real code taught us).
 
+A separate, offline `blender/` pipeline (`export_mesh.ts` + `refine_showcase.py`) renders
+the same live-generated geometry through Blender 5.2 for higher-quality static figures
+(a Solidify + shade-smooth pass on leaf blades only, matching rice-atlas's own actual,
+modest Blender use) — see `manuscript/figures/col0_showcase.png` /
+`ler_showcase.png`. This is a separate showcase asset, not part of the interactive
+viewer, which stays fully parametric so ecotype-switching keeps working.
+
 ## Status
 
 This repository is under active construction. Rather than claim a finished product before

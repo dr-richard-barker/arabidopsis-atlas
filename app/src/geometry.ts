@@ -84,6 +84,7 @@ function buildRosette(params: EcotypeParams): THREE.Object3D {
       }),
       leafMaterial,
     );
+    blade.name = "LeafBlade_rosette";
     // A short petiole tube connecting the rosette center to the blade base.
     const petioleLen = 0.1 + 0.1 * ageScale;
     const petiole = new THREE.Mesh(
@@ -147,6 +148,7 @@ function buildFlower(pedicelLength: number): THREE.Object3D {
       buildLeafBlade({ length: 0.09, maxWidth: 0.045, widthPeakT: 0.7, foldDepth: 0.15, lengthSegments: 4, widthSegments: 4 }),
       petalMaterial,
     );
+    petal.name = "LeafBlade_petal";
     const angle = (i / nPetals) * Math.PI * 2;
     petal.position.set(Math.cos(angle) * 0.01, Math.sin(angle) * 0.01, 0);
     petal.rotation.z = angle;
