@@ -5,9 +5,18 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { buildPlant } from "./geometry";
+import { DEFAULT_ECOTYPE, type EcotypeParams } from "./ecotypes";
 
 export interface OrganViewer {
+  setEcotype(params: EcotypeParams): void;
   dispose(): void;
+}
+
+function disposeObject(obj: THREE.Object3D) {
+  obj.traverse((child) => {
+    const mesh = child as THREE.Mesh;
+    if (mesh.geometry) mesh.geometry.dispose();
+  });
 }
 
 function findOrganId(obj: THREE.Object3D | null): string | null {
@@ -46,7 +55,7 @@ export function createOrganViewer(
   ground.position.y = -0.01;
   scene.add(ground);
 
-  const plant = buildPlant();
+  let plant = buildPlant(DEFAULT_ECOTYPE);
   scene.add(plant);
 
   const controls = new OrbitControls(camera, renderer.domElement);
@@ -117,10 +126,19 @@ export function createOrganViewer(
   ro.observe(container);
 
   return {
+    setEcotype(params: EcotypeParams) {
+      clearHighlight();
+      scene.remove(plant);
+      disposeObject(plant);
+      plant = buildPlant(params);
+      scene.add(plant);
+      onSelectOrgan(null);
+    },
     dispose() {
       cancelAnimationFrame(raf);
       ro.disconnect();
       renderer.domElement.removeEventListener("click", onClick);
+      disposeObject(plant);
       controls.dispose();
       renderer.dispose();
       renderer.domElement.remove();

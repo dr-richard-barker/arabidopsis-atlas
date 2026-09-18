@@ -53,11 +53,20 @@ microgravity (OSD-314: \NumMicrogSamplesOsdThreeFourteen{} microgravity vs.\
 \NumGroundSamplesOsdThreeFourteen{} 1g samples, top ratio \TopFoldChangeOsdThreeFourteen{} for
 \texttt{\TopGeneOsdThreeFourteen{}}). We report this as a mean-CPM ratio, explicitly not a
 statistically tested differential-expression call, and say so everywhere the numbers
-appear. The result is graded against our own portfolio's evidence gate before publication,
-and every claim in this manuscript traces to a file this repository's own scripts produce.
-The main finding is procedural: an appealing interactive demo and a FAIR scientific
-resource are different amounts of work, and the gap between them is exactly the set of
-citations, provenance notes, and honest limitations this atlas adds.
+appear. A second pass rebuilds the viewer's geometry on the same spline-swept tube
+construction rice-atlas itself actually uses (found by reading its source, not its file
+names) and wires the plant's shape to real per-ecotype trait data: \NumMagicFounderEcotypesUsed{}
+ecotypes (Col-0, Ler, Ws, Tsu-0, Edi-0) carry directly-computed rosette-shape descriptors
+from a paper's own raw published data (mean compactness \ColZeroCompactness{} for Col-0 vs.\
+\LerCompactness{} for Ler, independently confirming Ler's known compact habit by an
+entirely different method than the genetics literature that first described it), Ler's
+short pedicels and blunt siliques follow the real natural \textit{erecta} mutation, and
+Cvi-0 varies by a directly-quoted real leaf-count difference. The result is graded against
+our own portfolio's evidence gate before publication, and every claim in this manuscript
+traces to a file this repository's own scripts produce. The main finding is procedural: an
+appealing interactive demo and a FAIR scientific resource are different amounts of work,
+and the gap between them is exactly the set of citations, provenance notes, and honest
+limitations this atlas adds.
 \end{abstract}
 
 \input{sections/introduction}
@@ -72,7 +81,10 @@ All code, the real raw/processed data tables, and the viewer source are at
 (\textbf{TODO: DOI, pending manual deposit}). Primary spaceflight data are NASA OSDR
 studies OSD-120 \citep{OSD120} and OSD-314 \citep{OSD314}; developmental expression context is from the
 Klepikova/TraVA atlas \citep{Klepikova2016}; structural citations are
-\citet{Shahan2022} and \citet{Vijayan2021}. rice-atlas, the project's own starting point,
+\citet{Shahan2022} and \citet{Vijayan2021}. Ecotype trait data are from
+\citet{Camargo2014} (raw data in \texttt{data/raw/camargo2014\_rosette\_descriptors.csv}),
+\citet{Torii1996}, \citet{Bundy2012}, and \citet{Coneva2018}; reference photography is
+\citet{Namin2018}. rice-atlas, the project's own starting point,
 is at \url{https://github.com/dr-richard-barker/rice-atlas}; none of its code is reused
 here (see Methods).
 

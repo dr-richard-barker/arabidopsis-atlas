@@ -37,12 +37,34 @@ shown in the viewer, so no number reaching the viewer or this manuscript is hand
 
 \subsection{Structural model}
 Organ geometry for the viewer (root system, rosette leaf, inflorescence axis, flower,
-silique) is generated procedurally in the client (\texttt{app/src/geometry.ts}) using
-Three.js primitive shapes, not sculpted or scanned. Root branching topology and the
+silique) is generated procedurally in the client (\texttt{app/src/geometry.ts}), not
+sculpted or scanned. Roots, stems, petioles and pedicels are built as tapering tubes swept
+along Catmull-Rom splines using a double-reflection rotation-minimizing frame builder
+(\texttt{app/src/organGeometry/tube.ts}) -- independently implementing the same class of
+technique found by reading rice-atlas's own source (Results), rather than
+\texttt{THREE.TubeGeometry}'s default Frenet frames, which visibly twist on tight or
+near-planar curves. Leaf blades and petals are a parametric curved surface
+(\texttt{app/src/organGeometry/leafBlade.ts}: a width profile along a midrib plus a
+cross-width fold) rather than a distorted sphere. Root branching topology and the
 rosette's leaf-arrangement angle follow parameters attributed, organ by organ, to the
 literature sources in \texttt{app/src/organs.ts}; where a parameter is illustrative rather
 than measured, that organ's on-screen description says so explicitly, matching the
 disclosure standard rice-atlas itself already sets for its own geometry.
+
+\subsection{Ecotype trait sourcing}
+Per-ecotype shape parameters (\texttt{app/src/ecotypes.ts}) come from three independent
+real sources rather than one uniform dataset, each disclosed as such in the application
+itself: (1) rosette compactness and size for Col-0, Ler, Ws, Tsu-0 and Edi-0 are direct
+per-accession means computed by \texttt{scripts/04\_fetch\_ecotype\_traits.py} from Camargo
+et al.\ \citeyearpar{Camargo2014}'s own raw published data (their Methods S2 supplementary
+archive, not a value read off a figure); (2) Ler's short pedicels and blunt siliques follow
+the natural \textit{erecta} mutation \citep{Torii1996}, with a quantitative proxy from
+\citet{Bundy2012}, explicitly labelled in-app as a proxy from an induced allele in a
+different genetic background rather than a direct measurement of natural Ler; (3) Cvi-0's
+leaf count and thickness follow a direct quoted comparison in \citet{Coneva2018}. Every
+ecotype/trait combination without a real source found (e.g.\ Cvi-0's rosette compactness,
+since it is not one of the Camargo et al.\ dataset's 19 founder accessions) defaults to the
+Col-0 reference value and states so on screen, rather than interpolating or guessing one.
 
 \subsection{Evidence gate}
 Before this repository's first push, and again before any push touching

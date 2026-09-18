@@ -42,6 +42,42 @@ organ-matched spaceflight dataset wired into this version of the atlas; the view
 this plainly for each rather than substituting the whole-seedling numbers as if they were
 organ-specific.
 
+\subsection{Realistic geometry and real ecotype shape-morphing}
+
+Inspecting rice-atlas's actual source (not just its file names) showed that its visual
+quality comes mainly from spline-swept tube construction -- a Catmull-Rom spline plus a
+parallel-transport (rotation-minimizing) frame builder -- rather than from Blender
+sculpting, which it uses only for a thin Solidify-modifier pass on leaf blades. We
+re-implemented the same class of technique independently in the viewer itself (a
+double-reflection rotation-minimizing frame builder, \texttt{app/src/organGeometry/}),
+replacing the original primitive-shape organs with tapering, curved tube geometry and a
+parametric curved leaf-blade surface.
+
+We then wired this geometry to real per-ecotype trait data so a viewer can select a
+natural accession and see the plant's shape actually respond. \NumEcotypes{} ecotypes are
+available; \NumMagicFounderEcotypesUsed{} of them (Col-0, Ler, Ws, Tsu-0, Edi-0) have real,
+directly-computed rosette-shape descriptors from Camargo et al.\ \citeyearpar{Camargo2014}'s
+own published raw data (\NRosetteImagesPerEcotype{} images per accession): mean rosette
+Compactness is \ColZeroCompactness{} for Col-0, \LerCompactness{} for Ler, and
+\WsCompactness{} for Ws -- \MostCompactEcotype{} is the most compact and
+\LeastCompactEcotype{} the least compact of the five measured here, independently
+corroborating Ler's known compact habit with an entirely different, image-based method
+than the genetic literature that first described it. Ler's short pedicels and blunt
+siliques reflect the real, natural \textit{erecta} (\textit{er}) mutation
+\citep{Torii1996}; a quantitative proxy from \citet{Bundy2012} gives a mature wild-type
+pedicel of \PedicelWildTypeMm{}mm versus a $\sim$\PedicelErShorteningFold{}$\times$ shorter
+induced \textit{er-105} pedicel, disclosed in the application itself as a proxy from an
+induced allele in a Columbia background, not a direct field measurement of natural Ler.
+Cvi-0, absent from the MAGIC founder panel, instead varies by a real, directly-quoted
+comparison from \citet{Coneva2018}: \CviExtraLeavesVsLer{} more leaves than Ler in
+long-day conditions, with thicker leaf blades.
+
+Every gap is disclosed rather than filled with a plausible value: Cvi-0's
+rosette-compactness parameter defaults to the Col-0 value because no measurement exists
+for it in the dataset used; ERECTA status for Cvi-0/Tsu-0/Edi-0 is stated as an assumed
+default, not confirmed per-accession; and no accession-labelled reference photo was found
+for Ws, so its photo link is simply absent rather than substituted.
+
 \subsection{Verification of the viewer itself}
 
 The viewer was checked interactively, not only by static code review: in both a local

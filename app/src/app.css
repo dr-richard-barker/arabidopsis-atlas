@@ -22,6 +22,22 @@ html, body, #root { height: 100%; margin: 0; }
 .app-header p { margin: 0; font-size: 0.85rem; color: #a9b7a2; }
 .app-header a { color: #7fd4a0; }
 
+.ecotype-picker { margin-top: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+.ecotype-picker label { font-size: 0.8rem; color: #8b9a85; }
+.ecotype-picker select {
+  background: #1c241d; color: #e8ede5; border: 1px solid #263028; border-radius: 4px;
+  padding: 0.25rem 0.5rem; font-size: 0.85rem;
+}
+
+.ecotype-info { padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid #263028; }
+.ecotype-info h3 { margin: 0 0 0.25rem; font-size: 1rem; }
+.ecotype-info .source-name { font-size: 0.75rem; color: #8b9a85; margin: 0 0 0.5rem; }
+.ecotype-info dl { margin: 0; font-size: 0.78rem; }
+.ecotype-info dt { color: #8b9a85; text-transform: uppercase; letter-spacing: 0.02em; font-size: 0.68rem; margin-top: 0.5rem; }
+.ecotype-info dd { margin: 0.15rem 0 0; color: #c3cfbd; line-height: 1.4; }
+.ecotype-info .reference-photo { margin-top: 0.6rem; font-size: 0.78rem; }
+.ecotype-info .reference-photo a { color: #7fd4a0; }
+
 .app-body { flex: 1; display: flex; min-height: 0; }
 .viewer-container { flex: 1; min-width: 0; cursor: grab; }
 .sidebar {

@@ -1,0 +1,42 @@
+{
+  "col0": {
+    "sourceName": "Col-0",
+    "compactness": 0.6637,
+    "roundness": 88.22,
+    "eccentricity": 0.0577,
+    "relativeAreaVsCol0": 1.0,
+    "n": 60
+  },
+  "ler": {
+    "sourceName": "Ler-0",
+    "compactness": 0.7617,
+    "roundness": 55.6,
+    "eccentricity": 0.0755,
+    "relativeAreaVsCol0": 1.258,
+    "n": 60
+  },
+  "ws": {
+    "sourceName": "WS-0",
+    "compactness": 0.6729,
+    "roundness": 90.66,
+    "eccentricity": 0.0547,
+    "relativeAreaVsCol0": 1.56,
+    "n": 60
+  },
+  "tsu0": {
+    "sourceName": "Tsu-0",
+    "compactness": 0.6106,
+    "roundness": 112.84,
+    "eccentricity": 0.0402,
+    "relativeAreaVsCol0": 1.466,
+    "n": 60
+  },
+  "edi0": {
+    "sourceName": "EDi-0",
+    "compactness": 0.6517,
+    "roundness": 104.32,
+    "eccentricity": 0.0547,
+    "relativeAreaVsCol0": 1.775,
+    "n": 60
+  }
+}

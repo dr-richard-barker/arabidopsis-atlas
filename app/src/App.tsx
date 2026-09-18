@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { createOrganViewer } from "./viewer";
+import { createOrganViewer, type OrganViewer } from "./viewer";
 import { ORGANS, WHOLE_SEEDLING_SPACEFLIGHT, type Organ } from "./organs";
+import { ECOTYPES, DEFAULT_ECOTYPE, type EcotypeParams } from "./ecotypes";
 import "./app.css";
 
 const TRAVA_URL = "https://travadb.org";
@@ -63,15 +64,68 @@ function OrganInfo({ organ }: { organ: Organ }) {
   );
 }
 
+function EcotypePicker({ value, onChange }: { value: EcotypeParams; onChange: (e: EcotypeParams) => void }) {
+  return (
+    <div className="ecotype-picker">
+      <label htmlFor="ecotype-select">Ecotype</label>
+      <select
+        id="ecotype-select"
+        value={value.id}
+        onChange={(e) => onChange(ECOTYPES.find((eco) => eco.id === e.target.value) ?? DEFAULT_ECOTYPE)}
+      >
+        {ECOTYPES.map((eco) => (
+          <option key={eco.id} value={eco.id}>{eco.label}</option>
+        ))}
+      </select>
+    </div>
+  );
+}
+
+function EcotypeInfo({ ecotype }: { ecotype: EcotypeParams }) {
+  return (
+    <div className="ecotype-info">
+      <h3>{ecotype.label}</h3>
+      <p className="source-name">Source accession id: <code>{ecotype.sourceName}</code></p>
+      <dl>
+        <dt>Rosette compactness</dt>
+        <dd>{ecotype.provenance.compactness.value}</dd>
+        <dt>Inflorescence / pedicel</dt>
+        <dd>{ecotype.provenance.pedicel.value}</dd>
+        <dt>Leaf count / thickness</dt>
+        <dd>{ecotype.provenance.leaf.value}</dd>
+      </dl>
+      {ecotype.referencePhoto && (
+        <p className="reference-photo">
+          <a href={ecotype.referencePhoto.url} target="_blank" rel="noreferrer">
+            Real accession-labeled reference photos (Namin et al. 2018, CC BY 4.0) ↗
+          </a>
+        </p>
+      )}
+    </div>
+  );
+}
+
 export default function App() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const viewerRef = useRef<OrganViewer | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [ecotype, setEcotype] = useState<EcotypeParams>(DEFAULT_ECOTYPE);
 
   useEffect(() => {
     if (!containerRef.current) return;
     const viewer = createOrganViewer(containerRef.current, setSelectedId);
-    return () => viewer.dispose();
+    viewerRef.current = viewer;
+    return () => {
+      viewerRef.current = null;
+      viewer.dispose();
+    };
   }, []);
+
+  const handleEcotypeChange = (next: EcotypeParams) => {
+    setEcotype(next);
+    setSelectedId(null);
+    viewerRef.current?.setEcotype(next);
+  };
 
   const selected = ORGANS.find((o) => o.id === selectedId) ?? null;
 
@@ -84,10 +138,12 @@ export default function App() {
           <a href="https://github.com/dr-richard-barker/rice-atlas" target="_blank" rel="noreferrer">rice-atlas</a>
           {" "}— see the <a href="https://github.com/dr-richard-barker/arabidopsis-atlas#readme" target="_blank" rel="noreferrer">README</a> for what's actually real data here vs. simplified geometry.
         </p>
+        <EcotypePicker value={ecotype} onChange={handleEcotypeChange} />
       </header>
       <div className="app-body">
         <div className="viewer-container" ref={containerRef} />
         <aside className="sidebar">
+          <EcotypeInfo ecotype={ecotype} />
           {selected ? (
             <OrganInfo organ={selected} />
           ) : (

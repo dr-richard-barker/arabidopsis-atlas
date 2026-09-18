@@ -27,6 +27,33 @@ organ-by-organ 3D plant you can explore) and rebuilds the rest from real sources
 - **FAIR metadata** (this README, `LICENSE`, `CITATION.cff`, `.zenodo.json`) and an
   independent ABAI review (`.abai/attest.json`) before anything here is called "assessed."
 
+## Ecotype shape-morphing (v2)
+
+Pick a natural *Arabidopsis* ecotype in the viewer — **Col-0, Ler, Ws, Cvi-0, Tsu-0, or
+Edi-0** — and the plant's shape actually changes, driven by real measured trait
+differences, not invented ones. See [`data/ecotypes/README.md`](data/ecotypes/README.md)
+for full provenance; in short:
+
+- Rosette compactness/size for Col-0/Ler/Ws/Tsu-0/Edi-0 are real per-accession means
+  computed from Camargo et al. 2014's own published raw image-derived shape-descriptor
+  data (60 images per accession) — independently confirming that Ler is measurably the
+  most compact of the five.
+- Ler's short pedicels and blunt siliques reflect the real, well-characterized natural
+  *erecta* (*er*) mutation (Torii et al. 1996), with a quantitative proxy from Bundy et
+  al. 2012 — explicitly disclosed in the UI as a proxy (an induced allele in a Columbia
+  background), not a direct natural-Ler-vs-Col field measurement.
+- Cvi-0's extra leaves and thicker leaf blades reflect a real, directly-quoted comparison
+  in Coneva & Chitwood (2018).
+- Where no real measurement exists for a given ecotype/trait (Cvi-0's rosette compactness;
+  any ERECTA data for Cvi-0/Tsu-0/Edi-0; a reference photo for Ws), the app says so
+  explicitly rather than filling in a plausible-looking value.
+
+Organ geometry itself was also rebuilt this pass on spline-swept, tapering tube geometry
+(a parallel-transport frame builder, `app/src/organGeometry/tube.ts`) and a curved
+parametric leaf-blade surface, replacing the original primitive-shape approximations —
+the same core technique rice-atlas's own source turned out to use, independently
+implemented (see the manuscript for what inspecting rice-atlas's real code taught us).
+
 ## Status
 
 This repository is under active construction. Rather than claim a finished product before

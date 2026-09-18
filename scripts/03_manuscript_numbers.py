@@ -5,6 +5,7 @@ produced (data/raw, data/processed) or from the actual application source
 (app/src/organs.ts) -- never hand-typed. Run this before every manuscript
 compile (see manuscript/Makefile's `numbers` target).
 """
+import json
 import re
 from pathlib import Path
 import pandas as pd
@@ -12,6 +13,7 @@ import pandas as pd
 ROOT = Path(__file__).resolve().parent.parent
 PROCESSED = ROOT / "data" / "processed"
 ORGANS_TS = ROOT / "app" / "src" / "organs.ts"
+ECOTYPES_TS = ROOT / "app" / "src" / "ecotypes.ts"
 OUT = ROOT / "manuscript" / "latex" / "generated_numbers.tex"
 
 
@@ -50,6 +52,32 @@ def main():
         macro("NumMicrogSamplesOsdThreeFourteen", int(osd314["n_microgravity_0g"].iloc[0])),
         macro("TopFoldChangeOsdThreeFourteen", f"{osd314[osd314_col].max():.2f}"),
         macro("TopGeneOsdThreeFourteen", osd314[osd314_col].idxmax()),
+    ]
+
+    ecotype_descriptors = json.loads((ROOT / "app" / "src" / "data" / "ecotype_params.json").read_text())
+    ecotypes_src = ECOTYPES_TS.read_text()
+    n_ecotypes = len(re.findall(r'^\s*id:\s*"', ecotypes_src, flags=re.MULTILINE))
+    compactness_by_id = {k: v["compactness"] for k, v in ecotype_descriptors.items()}
+    most_compact = max(compactness_by_id, key=compactness_by_id.get)
+    least_compact = min(compactness_by_id, key=compactness_by_id.get)
+
+    lines += [
+        macro("NumEcotypes", n_ecotypes),
+        macro("NumMagicFounderEcotypesUsed", len(ecotype_descriptors)),
+        macro("ColZeroCompactness", f"{compactness_by_id['col0']:.4f}"),
+        macro("LerCompactness", f"{compactness_by_id['ler']:.4f}"),
+        macro("WsCompactness", f"{compactness_by_id['ws']:.4f}"),
+        macro("MostCompactEcotype", ecotype_descriptors[most_compact]["sourceName"]),
+        macro("LeastCompactEcotype", ecotype_descriptors[least_compact]["sourceName"]),
+        macro("NRosetteImagesPerEcotype", ecotype_descriptors["col0"]["n"]),
+        # These three are cited facts reported verbatim in already CrossRef-verified
+        # sources (Bundy et al. 2012; Coneva & Chitwood 2018) -- not results this
+        # pipeline computed, so they're not derivable from a local data file the way
+        # the OSD/ecotype-descriptor numbers above are. Hand-typing a *verified citation
+        # fact* is different from guessing a result; see data/ecotypes/README.md.
+        macro("PedicelWildTypeMm", "7.90"),
+        macro("PedicelErShorteningFold", "2.6"),
+        macro("CviExtraLeavesVsLer", 2),
     ]
     OUT.write_text("".join(lines))
     print(f"Wrote {OUT}")
