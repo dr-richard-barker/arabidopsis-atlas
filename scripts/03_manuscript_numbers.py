@@ -14,6 +14,8 @@ ROOT = Path(__file__).resolve().parent.parent
 PROCESSED = ROOT / "data" / "processed"
 ORGANS_TS = ROOT / "app" / "src" / "organs.ts"
 ECOTYPES_TS = ROOT / "app" / "src" / "ecotypes.ts"
+GROWTH_STAGES_TS = ROOT / "app" / "src" / "growthStages.ts"
+RENDER_LOG = Path("/tmp/growth_animation_render.log")
 OUT = ROOT / "manuscript" / "latex" / "generated_numbers.tex"
 
 
@@ -79,6 +81,40 @@ def main():
         macro("PedicelErShorteningFold", "2.6"),
         macro("CviExtraLeavesVsLer", 2),
     ]
+
+    growth_src = GROWTH_STAGES_TS.read_text()
+    n_growth_stages = len(re.findall(r'^\s*\{\s*stage:\s*"', growth_src, flags=re.MULTILINE))
+    lines += [
+        macro("NumRealGrowthStages", n_growth_stages),
+        # Animation spec (frame count/fps/duration/samples/resolution): fixed parameters
+        # of the render script itself (blender/render_growth_animation.py), not measured
+        # results -- same "cited fact from the repo's own code" category as the pedicel/
+        # leaf-count constants above.
+        macro("NumAnimationFrames", 576),
+        macro("AnimationFps", 24),
+        macro("AnimationDurationSeconds", 24),
+        macro("AnimationSamples", 128),
+        macro("AnimationResolution", "1920$\\times$1080"),
+    ]
+
+    # Real measured render performance -- only included once the actual render log shows
+    # completion, so this can never assert a number from a run that didn't finish or
+    # crashed partway (see the two real bugs that caused exactly that during development).
+    if RENDER_LOG.exists():
+        log_text = RENDER_LOG.read_text()
+        frame_times = re.findall(r"FRAME_DONE \d+ day=[\d.]+ elapsed=(\d+)s avg=([\d.]+)s/frame", log_text)
+        if "ALL_FRAMES_COMPLETE" in log_text and frame_times:
+            last_elapsed = int(frame_times[-1][0])
+            last_avg = float(frame_times[-1][1])
+            lines += [
+                macro("RenderTotalMinutes", f"{last_elapsed / 60:.0f}"),
+                macro("RenderAvgSecondsPerFrame", f"{last_avg:.1f}"),
+            ]
+        else:
+            print("NOTE: render log present but not yet complete -- render-time macros omitted, not guessed.")
+    else:
+        print("NOTE: render log not found -- render-time macros omitted, not guessed.")
+
     OUT.write_text("".join(lines))
     print(f"Wrote {OUT}")
     print("".join(lines))

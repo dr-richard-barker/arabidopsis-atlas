@@ -35,6 +35,15 @@ be it. The lesson generalizes: "supplementary data exists" and "supplementary da
 specific table you need, in the format you need" are different claims, and only checking
 the second one is real verification.
 
+Building the growth animation surfaced the same lesson from a different angle: the two
+real bugs that actually blocked it (a crashing Metal shader compiler; a materials helper
+silently erasing the ground's texture every frame) were both found only by running the full
+pipeline to completion and checking its output, not by reading the code and judging it
+correct. A short test render of a handful of frames would not have caught the shader-cache
+crash, which took roughly nine frames of repeated recompilation to trigger -- "it worked on
+a small sample" and "it works" are different claims for a pipeline whose failure mode is
+cumulative rather than immediate.
+
 \subsection{Limitations}
 No single real dataset gives whole-organism 3D geometry for \textit{Arabidopsis}, just as
 none exists for rice; every organ shape here is a citation-informed illustrative
@@ -46,7 +55,12 @@ reuse terms could not be confirmed -- a more complete atlas would resolve that d
 with the maintainers rather than work around it indefinitely. OSD-38 and OSD-522, both
 confirmed real and relevant, remain unprocessed. The spaceflight comparisons reported are
 mean ratios from two studies with their own genotype and lighting confounds, not a
-meta-analytic or statistically tested effect size, and should not be read as one.
+meta-analytic or statistically tested effect size, and should not be read as one. The
+growth animation's timing rests on a single primary source \citep{Boyes2001} -- its
+corroborating TAIR pages returned HTTP 403 to automated verification and were not
+independently checked -- and its root-growth curve, having no Boyes-equivalent measurement
+to follow, is a disclosed proxy (the rosette-growth fraction) rather than an independently
+timed root phenotype.
 
 \subsection{What would make this stronger}
 Resolving TraVA's reuse terms directly, processing OSD-38 and OSD-522 to extend

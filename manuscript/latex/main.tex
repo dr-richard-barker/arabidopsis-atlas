@@ -61,9 +61,16 @@ from a paper's own raw published data (mean compactness \ColZeroCompactness{} fo
 \LerCompactness{} for Ler, independently confirming Ler's known compact habit by an
 entirely different method than the genetics literature that first described it), Ler's
 short pedicels and blunt siliques follow the real natural \textit{erecta} mutation, and
-Cvi-0 varies by a directly-quoted real leaf-count difference. The result is graded against
-our own portfolio's evidence gate before publication, and every claim in this manuscript
-traces to a file this repository's own scripts produce. The main finding is procedural: an
+Cvi-0 varies by a directly-quoted real leaf-count difference. A third pass adds a
+seed-to-flowering growth animation timed to \citet{Boyes2001}'s \NumRealGrowthStages{} real
+measured developmental-stage transitions rather than an invented pace, each of
+\NumAnimationFrames{} frames an independently regenerated snapshot from the same live
+generator, not an interpolated or hand-animated mesh; we explicitly do not claim this is
+the most detailed 4D \textit{Arabidopsis} model produced to date, since the real state of
+the art is fragmented across cell-lineage imaging, whole-plant growth modelling, and
+rosette phenotyping with no single existing bar to measure against. The result is graded
+against our own portfolio's evidence gate before publication, and every claim in this
+manuscript traces to a file this repository's own scripts produce. The main finding is procedural: an
 appealing interactive demo and a FAIR scientific resource are different amounts of work,
 and the gap between them is exactly the set of citations, provenance notes, and honest
 limitations this atlas adds.
@@ -84,7 +91,10 @@ Klepikova/TraVA atlas \citep{Klepikova2016}; structural citations are
 \citet{Shahan2022} and \citet{Vijayan2021}. Ecotype trait data are from
 \citet{Camargo2014} (raw data in \texttt{data/raw/camargo2014\_rosette\_descriptors.csv}),
 \citet{Torii1996}, \citet{Bundy2012}, and \citet{Coneva2018}; reference photography is
-\citet{Namin2018}. rice-atlas, the project's own starting point,
+\citet{Namin2018}. The growth animation (\url{https://dr-richard-barker.github.io/arabidopsis-atlas/growth.html})
+is timed to \citet{Boyes2001}; prior 4D plant-modelling work discussed for context is
+\citet{Fernandez2010}, \citet{Chew2014}, \citet{Apelt2015}, and \citet{Bernotas2019}.
+rice-atlas, the project's own starting point,
 is at \url{https://github.com/dr-richard-barker/rice-atlas}; none of its code is reused
 here (see Methods).
 

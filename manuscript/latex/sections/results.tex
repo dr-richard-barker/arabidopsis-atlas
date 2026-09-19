@@ -98,6 +98,39 @@ ecotype-switching keeps working; the plant shown here is the real parametric out
 each ecotype, not a hand-modeled illustration.}
 \end{figure}
 
+\subsection{A real-data-driven growth animation}
+
+A second Pages route (\texttt{growth.html}) shows a seed-to-flowering growth animation
+timed to \citet{Boyes2001}'s real measured developmental stages rather than an invented
+pace: \NumRealGrowthStages{} real stage transitions, from seed imbibition through
+flowering complete, drive when each rosette leaf, the bolting stem, and each flower/
+silique appears. \NumAnimationFrames{} frames (\AnimationDurationSeconds{}s at
+\AnimationFps{}fps, \AnimationResolution{} px, \AnimationSamples{} Cycles samples) are each
+an independently regenerated snapshot from the same live generator behind the interactive
+viewer -- called once per frame at that frame's real day via \texttt{npx tsx
+export\_growth\_frame.ts} -- rather than a single mesh interpolated or hand-animated in
+Blender. \textbf{TODO: real total render time and measured seconds/frame, to be filled in
+from the render log once the full sequence finishes (in progress at submission time).}
+
+Getting this to actually finish rather than merely start surfaced two more real bugs,
+neither guessed: rebuilding every material from scratch each frame crashed Cycles' own
+Metal shader compiler after roughly 9 frames (confirmed from the actual crash backtrace,
+which pointed directly at \texttt{ccl::MetalKernelPipeline::compile}), fixed by building
+materials once and reusing them across frames; and a materials-assignment helper
+unconditionally cleared every mesh's material list before reassigning it, silently
+stripping the ground plane's soil material on every single frame because "the ground" -- a
+persistent object outside the per-frame loop -- matched none of the organ-name rules the
+helper checked. Root-growth timing in the animation has no Boyes-equivalent source (that
+paper covers shoot phenotypes only) and instead follows the rosette-growth fraction as a
+disclosed proxy, exactly as in the static viewer.
+
+No claim is made that this is the most detailed 4D Arabidopsis model ever produced. The
+real state of the art is genuinely fragmented across cell-lineage imaging
+\citep{Fernandez2010}, whole-plant mechanistic growth modelling \citep{Chew2014}, and
+whole-rosette 4D phenotyping \citep{Apelt2015,Bernotas2019}, each leading on a different axis
+of "detail," with no CGI Arabidopsis growth-animation precedent found at all -- there is no
+single existing bar to measure this against, so none is asserted.
+
 \subsection{Verification of the viewer itself}
 
 The viewer was checked interactively, not only by static code review: in both a local
