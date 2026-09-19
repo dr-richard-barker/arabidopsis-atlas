@@ -76,6 +76,15 @@ function buildRosette(params: EcotypeParams): THREE.Object3D {
     const bladeLength = (0.55 * ageScale) * params.rosetteRadiusScale;
     const bladeWidth = (0.35 * ageScale) * params.rosetteRadiusScale;
 
+    // Compactness (real, from Camargo et al. 2014 / Morón-García et al. 2022 rosette-shape
+    // descriptors, see ecotypes.ts) tilts leaves more upright and shortens the petiole so
+    // leaves sit closer to the rosette center; less compact ecotypes splay flatter and wider.
+    // This is also the petiole's actual length, so the tube it builds is guaranteed to
+    // span exactly from the stem center (its own local origin) to the blade base --
+    // no separate offset that could leave a gap between the two.
+    const petioleLen = (0.15 + 0.35 * ageScale) * params.rosetteRadiusScale * (1 - 0.3 * params.rosetteCompactness);
+    const tilt = 0.15 + 0.9 * params.rosetteCompactness;
+
     const blade = new THREE.Mesh(
       buildLeafBlade({
         length: bladeLength,
@@ -85,8 +94,11 @@ function buildRosette(params: EcotypeParams): THREE.Object3D {
       leafMaterial,
     );
     blade.name = "LeafBlade_rosette";
-    // A short petiole tube connecting the rosette center to the blade base.
-    const petioleLen = 0.1 + 0.1 * ageScale;
+    blade.position.z = petioleLen;
+
+    // The petiole tube itself spans (0,0,0) -- the plant's central axis, where the root
+    // and inflorescence axis also originate -- out to the blade base, so it is always
+    // physically connected to the stem by construction rather than by matching offsets.
     const petiole = new THREE.Mesh(
       buildTube(
         jitteredCurve([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.01, petioleLen)]),
@@ -98,15 +110,12 @@ function buildRosette(params: EcotypeParams): THREE.Object3D {
     );
 
     const leafGroup = new THREE.Group();
-    blade.position.z = petioleLen;
     leafGroup.add(petiole, blade);
-
-    // Compactness (real, from Camargo et al. 2014 / Morón-García et al. 2022 rosette-shape
-    // descriptors, see ecotypes.ts) tilts leaves more upright and pulls them closer to
-    // the rosette center; less compact ecotypes splay flatter and wider.
-    const radius = (0.1 + 0.3 * ageScale) * params.rosetteRadiusScale * (1 - 0.3 * params.rosetteCompactness);
-    const tilt = 0.15 + 0.9 * params.rosetteCompactness;
-    leafGroup.position.set(Math.cos(angle) * radius * 0.3, 0.02 * i, Math.sin(angle) * radius * 0.3);
+    // Only rotate (fan out around the stem + tilt up/down) -- do NOT translate the group
+    // away from (0,0,0), or the petiole's own start point leaves the stem it's meant to
+    // be attached to. A small y-lift only staggers leaf whorls visually along the stem
+    // that's already there (the root/inflorescence axis), not a second, disconnected stem.
+    leafGroup.position.set(0, 0.02 * i, 0);
     leafGroup.rotation.y = -angle;
     leafGroup.rotation.x = -tilt;
 
@@ -115,6 +124,11 @@ function buildRosette(params: EcotypeParams): THREE.Object3D {
   return tagged(group, "rosette_leaf");
 }
 
+// Shared with buildRacemeAttachments so a flower/silique pedicel always starts exactly on
+// the axis's actual surface at its attachment height, not at a fixed guessed offset that
+// drifts inside or outside the tapering stem depending on height.
+const axisRadiusAt = linearTaper(0.05, 0.02);
+
 function buildInflorescenceAxis(height: number): THREE.Object3D {
   const points = [
     new THREE.Vector3(0, 0, 0),
@@ -122,7 +136,7 @@ function buildInflorescenceAxis(height: number): THREE.Object3D {
     new THREE.Vector3(0.015, height * 0.75, -0.01),
     new THREE.Vector3(0, height, 0),
   ];
-  const geom = buildTube(jitteredCurve(points), linearTaper(0.05, 0.02), 20, { radialSegments: 8 });
+  const geom = buildTube(jitteredCurve(points), axisRadiusAt, 20, { radialSegments: 8 });
   return tagged(new THREE.Mesh(geom, stemMaterial), "inflorescence_axis");
 }
 
@@ -204,7 +218,10 @@ function buildRacemeAttachments(height: number, params: EcotypeParams): THREE.Ob
     const t = i / (nPositions - 1); // 0 = base (old), 1 = tip (new)
     const y = height * (0.35 + 0.6 * t);
     const angle = i * GOLDEN_ANGLE;
-    const radius = 0.05;
+    // Start exactly on the axis's real surface at this height (see axisRadiusAt), not a
+    // fixed guessed offset -- otherwise the pedicel floats outside, or is buried inside,
+    // the stem depending on how far up the tapering axis this attachment sits.
+    const radius = axisRadiusAt(y / height);
     const pos = new THREE.Vector3(Math.cos(angle) * radius, y, Math.sin(angle) * radius);
     const pedicelLength = 0.18 * params.pedicelLengthScale;
 
