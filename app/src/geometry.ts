@@ -35,6 +35,17 @@ function jitteredCurve(points: THREE.Vector3[]): THREE.CatmullRomCurve3 {
   return new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.5);
 }
 
+// Every mesh gets a real name (not just leaf blades), preserved through the glTF export,
+// so the Blender pipeline (blender/materials.py) can assign proper Cycles materials by
+// type instead of silently keeping whatever the importer auto-derives from the glTF's
+// baseColor -- which is how the stem/root previously rendered near-black under Cycles
+// despite looking fine in the Three.js viewer.
+function namedMesh(geometry: THREE.BufferGeometry, material: THREE.Material, name: string): THREE.Mesh {
+  const mesh = new THREE.Mesh(geometry, material);
+  mesh.name = name;
+  return mesh;
+}
+
 // growthFraction (default 1 = the ordinary, fully-grown ecotype viewer) scales root depth
 // and how many lateral roots exist yet. No Boyes-et-al.-equivalent root-growth timing
 // source was found for Arabidopsis (that paper covers shoot phenotypes only), so this uses
@@ -53,7 +64,7 @@ function buildRootSystem(params: EcotypeParams, growthFraction = 1): THREE.Objec
     new THREE.Vector3(0, -3.2, 0),
   ];
   const primaryGeom = buildTube(jitteredCurve(primaryPoints), linearTaper(0.05, 0.008), 24, { radialSegments: 8 });
-  group.add(new THREE.Mesh(primaryGeom, rootMaterial));
+  group.add(namedMesh(primaryGeom, rootMaterial, "Root_primary"));
   // Depth grows with the plant rather than the full mature root appearing on day one;
   // radius is left alone (only the group's vertical extent is scaled).
   group.scale.set(1, Math.max(0.06, growthFraction), 1);
@@ -73,7 +84,7 @@ function buildRootSystem(params: EcotypeParams, growthFraction = 1): THREE.Objec
     );
     const mid = base.clone().lerp(tip, 0.5).add(new THREE.Vector3(0, -0.05, 0));
     const lateralGeom = buildTube(jitteredCurve([base, mid, tip]), linearTaper(0.012, 0.003), 6, { radialSegments: 6 });
-    group.add(new THREE.Mesh(lateralGeom, rootMaterial));
+    group.add(namedMesh(lateralGeom, rootMaterial, "Root_lateral"));
   }
   return tagged(group, "root");
 }
@@ -116,7 +127,7 @@ function buildRosette(params: EcotypeParams, emergenceScale?: (leafIndex: number
     // The petiole tube itself spans (0,0,0) -- the plant's central axis, where the root
     // and inflorescence axis also originate -- out to the blade base, so it is always
     // physically connected to the stem by construction rather than by matching offsets.
-    const petiole = new THREE.Mesh(
+    const petiole = namedMesh(
       buildTube(
         jitteredCurve([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0.01, petioleLen)]),
         linearTaper(0.012, 0.02),
@@ -124,6 +135,7 @@ function buildRosette(params: EcotypeParams, emergenceScale?: (leafIndex: number
         { radialSegments: 6 },
       ),
       stemMaterial,
+      "Stem_petiole",
     );
 
     const leafGroup = new THREE.Group();
@@ -154,13 +166,13 @@ function buildInflorescenceAxis(height: number): THREE.Object3D {
     new THREE.Vector3(0, height, 0),
   ];
   const geom = buildTube(jitteredCurve(points), axisRadiusAt, 20, { radialSegments: 8 });
-  return tagged(new THREE.Mesh(geom, stemMaterial), "inflorescence_axis");
+  return tagged(namedMesh(geom, stemMaterial, "Stem_axis"), "inflorescence_axis");
 }
 
 function buildFlower(pedicelLength: number): THREE.Object3D {
   const group = new THREE.Group();
 
-  const pedicel = new THREE.Mesh(
+  const pedicel = namedMesh(
     buildTube(
       jitteredCurve([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, pedicelLength)]),
       linearTaper(0.012, 0.008),
@@ -168,6 +180,7 @@ function buildFlower(pedicelLength: number): THREE.Object3D {
       { radialSegments: 6 },
     ),
     stemMaterial,
+    "Stem_pedicel",
   );
   group.add(pedicel);
 
@@ -186,11 +199,12 @@ function buildFlower(pedicelLength: number): THREE.Object3D {
     petal.rotation.x = -Math.PI / 2 + 0.3;
     flowerHead.add(petal);
   }
-  const carpel = new THREE.Mesh(
+  const carpel = namedMesh(
     buildTube(jitteredCurve([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, 0.15)]), linearTaper(0.02, 0.015), 4, {
       radialSegments: 6,
     }),
     stemMaterial,
+    "Stem_carpel",
   );
   flowerHead.add(carpel);
   group.add(flowerHead);
@@ -200,7 +214,7 @@ function buildFlower(pedicelLength: number): THREE.Object3D {
 
 function buildSilique(pedicelLength: number, bluntness: number): THREE.Object3D {
   const group = new THREE.Group();
-  const pedicel = new THREE.Mesh(
+  const pedicel = namedMesh(
     buildTube(
       jitteredCurve([new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 0, pedicelLength)]),
       linearTaper(0.014, 0.01),
@@ -208,6 +222,7 @@ function buildSilique(pedicelLength: number, bluntness: number): THREE.Object3D 
       { radialSegments: 6 },
     ),
     stemMaterial,
+    "Stem_pedicel",
   );
   group.add(pedicel);
 
@@ -222,7 +237,7 @@ function buildSilique(pedicelLength: number, bluntness: number): THREE.Object3D 
     8,
     { radialSegments: 8 },
   );
-  group.add(new THREE.Mesh(podGeom, siliqueMaterial));
+  group.add(namedMesh(podGeom, siliqueMaterial, "Silique_pod"));
   return tagged(group, "silique");
 }
 

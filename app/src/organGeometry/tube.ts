@@ -114,7 +114,13 @@ export function buildTube(
       const b = i * ringSize + j + 1;
       const c = (i + 1) * ringSize + j;
       const d = (i + 1) * ringSize + j + 1;
-      indices.push(a, c, b, b, c, d);
+      // Confirmed backwards empirically (not just by inspection): Blender's own computed
+      // face normal at a known ring vertex pointed inward (~-X at a vertex sitting on the
+      // +X side of the tube's centerline) before this fix -- Cycles renders geometric
+      // winding, so DoubleSide alone (the earlier raycasting fix) hid this visually in
+      // Three.js's lighting model but not in Blender's. This winding is the actual fix;
+      // the explicit outward `normals` attribute above was correct all along.
+      indices.push(a, b, c, b, d, c);
     }
   }
 
