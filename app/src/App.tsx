@@ -137,6 +137,7 @@ export default function App() {
           Click an organ to explore it. Started from{" "}
           <a href="https://github.com/dr-richard-barker/rice-atlas" target="_blank" rel="noreferrer">rice-atlas</a>
           {" "}— see the <a href="https://github.com/dr-richard-barker/arabidopsis-atlas#readme" target="_blank" rel="noreferrer">README</a> for what's actually real data here vs. simplified geometry.
+          {" "}Also see the <a href="growth.html">seed-to-flowering growth animation →</a>
         </p>
         <EcotypePicker value={ecotype} onChange={handleEcotypeChange} />
       </header>

@@ -105,21 +105,30 @@ def apply_materials(leaf_mat, stem_mat, root_mat, petal_mat, silique_mat):
         if obj.type != "MESH":
             continue
         name = obj.name
-        obj.data.materials.clear()
         if name.startswith("LeafBlade_petal"):
+            obj.data.materials.clear()
             obj.data.materials.append(petal_mat)
         elif name.startswith("LeafBlade"):
+            obj.data.materials.clear()
             obj.data.materials.append(leaf_mat)
         elif name.startswith("Stem_"):
+            obj.data.materials.clear()
             obj.data.materials.append(stem_mat)
         elif name.startswith("Root_"):
+            obj.data.materials.clear()
             obj.data.materials.append(root_mat)
         elif name.startswith("Silique_"):
+            obj.data.materials.clear()
             obj.data.materials.append(silique_mat)
         else:
+            # Not a plant-organ mesh (e.g. the persistent ground plane, which already has
+            # its own soil material assigned once outside the per-frame loop) -- leave its
+            # existing material assignment alone rather than clearing it to nothing. This
+            # was a real bug: unconditionally clearing here wiped the ground's soil
+            # material on every frame from frame 0 onward, before this fix existed.
             unmatched.append(name)
     if unmatched:
-        print(f"WARNING apply_materials: {len(unmatched)} mesh(es) matched no naming rule: {unmatched}")
+        print(f"apply_materials: left {len(unmatched)} non-organ mesh(es) untouched: {unmatched}")
 
 
 def setup_lighting(center, radius):

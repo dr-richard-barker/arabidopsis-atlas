@@ -1,0 +1,173 @@
+{
+  "stages": [
+    {
+      "stage": "0",
+      "description": "Seed imbibition",
+      "day": 3,
+      "table": "plate"
+    },
+    {
+      "stage": "0.50",
+      "description": "Radicle emergence",
+      "day": 4.3,
+      "table": "plate"
+    },
+    {
+      "stage": "0.70",
+      "description": "Hypocotyl and cotyledon emergence",
+      "day": 5.5,
+      "table": "plate"
+    },
+    {
+      "stage": "1.00",
+      "description": "Cotyledons fully opened",
+      "day": 6,
+      "table": "plate"
+    },
+    {
+      "stage": "1.02",
+      "description": "2 rosette leaves >1mm",
+      "day": 12.5,
+      "table": "soil"
+    },
+    {
+      "stage": "1.03",
+      "description": "3 rosette leaves >1mm",
+      "day": 15.9,
+      "table": "soil"
+    },
+    {
+      "stage": "1.04",
+      "description": "4 rosette leaves >1mm",
+      "day": 16.5,
+      "table": "soil"
+    },
+    {
+      "stage": "1.05",
+      "description": "5 rosette leaves >1mm",
+      "day": 17.7,
+      "table": "soil"
+    },
+    {
+      "stage": "1.06",
+      "description": "6 rosette leaves >1mm",
+      "day": 18.4,
+      "table": "soil"
+    },
+    {
+      "stage": "1.07",
+      "description": "7 rosette leaves >1mm",
+      "day": 19.4,
+      "table": "soil"
+    },
+    {
+      "stage": "1.08",
+      "description": "8 rosette leaves >1mm",
+      "day": 20,
+      "table": "soil"
+    },
+    {
+      "stage": "1.09",
+      "description": "9 rosette leaves >1mm",
+      "day": 21.1,
+      "table": "soil"
+    },
+    {
+      "stage": "1.10",
+      "description": "10 rosette leaves >1mm",
+      "day": 21.6,
+      "table": "soil"
+    },
+    {
+      "stage": "1.11",
+      "description": "11 rosette leaves >1mm",
+      "day": 22.2,
+      "table": "soil"
+    },
+    {
+      "stage": "1.12",
+      "description": "12 rosette leaves >1mm",
+      "day": 23.3,
+      "table": "soil"
+    },
+    {
+      "stage": "1.13",
+      "description": "13 rosette leaves >1mm",
+      "day": 24.8,
+      "table": "soil"
+    },
+    {
+      "stage": "1.14",
+      "description": "14 rosette leaves >1mm",
+      "day": 25.5,
+      "table": "soil"
+    },
+    {
+      "stage": "3.20",
+      "description": "Rosette 20% of final size",
+      "day": 18.9,
+      "table": "soil"
+    },
+    {
+      "stage": "3.50",
+      "description": "Rosette 50% of final size",
+      "day": 24,
+      "table": "soil"
+    },
+    {
+      "stage": "3.70",
+      "description": "Rosette 70% of final size",
+      "day": 27.4,
+      "table": "soil"
+    },
+    {
+      "stage": "3.90",
+      "description": "Rosette growth complete",
+      "day": 29.3,
+      "table": "soil"
+    },
+    {
+      "stage": "5.10",
+      "description": "First flower buds visible",
+      "day": 26,
+      "table": "soil"
+    },
+    {
+      "stage": "6.00",
+      "description": "First flower open",
+      "day": 31.8,
+      "table": "soil"
+    },
+    {
+      "stage": "6.10",
+      "description": "10% of flowers produced have opened",
+      "day": 35.9,
+      "table": "soil"
+    },
+    {
+      "stage": "6.30",
+      "description": "30% of flowers produced have opened",
+      "day": 40.1,
+      "table": "soil"
+    },
+    {
+      "stage": "6.50",
+      "description": "50% of flowers produced have opened",
+      "day": 43.5,
+      "table": "soil"
+    },
+    {
+      "stage": "6.90",
+      "description": "Flowering complete",
+      "day": 49.4,
+      "table": "soil"
+    },
+    {
+      "stage": "8.00",
+      "description": "First silique shattered",
+      "day": 48,
+      "table": "soil"
+    }
+  ],
+  "growthDayMax": 49.4
+}

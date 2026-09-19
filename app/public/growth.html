@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arabidopsis Growth Animation</title>
+<meta name="description" content="A seed-to-flowering Arabidopsis thaliana growth animation, timed to the real developmental stages measured in Boyes et al. 2001, rendered in Blender Cycles from the same procedural generator used by the interactive atlas.">
+<link rel="stylesheet" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-chrome.css">
+<link rel="stylesheet" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-map.css">
+<style>
+  /* Hardcoded colors throughout, deliberately NOT CSS custom properties: the shared
+     cose theme.js manages its own --fg/--bg/etc. variables at runtime for its light/dark
+     toggle, and reusing those same names here meant its JS silently overwrote this page's
+     intended colors after load (diagnosed by inspecting getComputedStyle vs. matched CSS
+     rules -- the rule was present and !important but var(--fg) itself resolved to theme.js's
+     value, not this file's :root). Every selector below is also scoped under .ga- prefixed
+     classes or `.wrap`, not bare elements, so cose's own same-specificity rules (e.g. a
+     `code` color rule tuned for its own palette) can't silently outrank them either.
+     Fixed values: bg #0f1410, card #131a14, fg #e8ede5, line #263028, muted #8b9a85,
+     accent #7fd4a0. */
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: #0f1410; color: #e8ede5; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  .wrap, .wrap p, .wrap td, .wrap th, .wrap li, .wrap div { color: #e8ede5 !important; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 4.5rem 1.25rem 3rem; }
+  h1 { font-size: 1.6rem; margin: 0 0 0.5rem; }
+  .wrap .lede { color: #8b9a85 !important; font-size: 0.95rem; line-height: 1.5; max-width: 70ch; }
+  .wrap a { color: #7fd4a0 !important; }
+  video { width: 100%; border-radius: 8px; border: 1px solid #263028; background: #000; margin-top: 1.5rem; }
+  .stage-readout { margin-top: 0.75rem; padding: 0.75rem 1rem; background: #131a14; border: 1px solid #263028; border-radius: 6px; font-size: 0.9rem; min-height: 1.4em; }
+  .wrap .stage-readout .day { color: #7fd4a0 !important; font-weight: 600; }
+  .wrap .stage-readout .code { color: #8b9a85 !important; font-family: ui-monospace, monospace; font-size: 0.8rem; }
+  section { margin-top: 2.5rem; }
+  h2 { font-size: 1.1rem; border-bottom: 1px solid #263028; padding-bottom: 0.4rem; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 0.75rem; }
+  .wrap th, .wrap td { text-align: left; padding: 0.35rem 0.6rem; border-bottom: 1px solid #263028; color: #e8ede5 !important; }
+  .wrap th { color: #8b9a85 !important; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.02em; }
+  .disclosure { background: #131a14; border: 1px solid #263028; border-radius: 6px; padding: 1rem 1.25rem; font-size: 0.88rem; line-height: 1.55; }
+  .disclosure ul { margin: 0.5rem 0 0; padding-left: 1.2rem; }
+  .wrap .stage-code { background: #1c241d; color: #7fd4a0 !important; padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.85em; font-family: ui-monospace, monospace; }
+  .back-link { font-size: 0.85rem; }
+</style>
+</head>
+<body data-site-id="arabidopsis-atlas-growth" data-cose-doc="off" data-brand-logo="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png">
+<div class="wrap">
+  <p class="back-link"><a href="./">&larr; Back to the interactive atlas</a></p>
+  <h1>Arabidopsis Growth Animation</h1>
+  <p class="lede">
+    Seed to flowering, rendered in Blender Cycles from the same procedural generator the
+    interactive atlas uses — every frame is an independently regenerated, real-data-driven
+    snapshot, not a hand-animated or interpolated model. Timing follows the actual measured
+    developmental stages in <a href="https://doi.org/10.1105/tpc.010011" target="_blank" rel="noreferrer">Boyes et al. 2001</a>,
+    not an invented pace. See the disclosure below for exactly what that does and doesn't cover.
+  </p>
+
+  <video id="growth-video" controls preload="metadata" poster="growth-poster.jpg">
+    <source src="growth-animation.mp4" type="video/mp4">
+    Your browser doesn't support embedded video — <a href="growth-animation.mp4">download the file directly</a>.
+  </video>
+  <div class="stage-readout" id="stage-readout">Press play — the current real developmental stage will appear here.</div>
+
+  <section>
+    <h2>The real timeline this follows</h2>
+    <table id="stage-table">
+      <thead><tr><th>Stage</th><th>What it means</th><th>Day</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>What's real data vs. a technique choice</h2>
+    <div class="disclosure">
+      <p><strong>Real:</strong> every stage-transition day above is a measured value from
+      Boyes DC, Zayed AM, Ascenzi R, McCaskill AJ, Hoffman NE, Davis KR, Görlach J (2001),
+      "Growth Stage-Based Phenotypic Analysis of Arabidopsis," <em>The Plant Cell</em>
+      13(7):1499&ndash;1510, doi:<a href="https://doi.org/10.1105/tpc.010011" target="_blank" rel="noreferrer">10.1105/tpc.010011</a>
+      (soil-grown Col-0, 16h photoperiod, 22&deg;C/20&deg;C day/night). Leaf count, rosette
+      size, and flower/silique presence in the animation are all driven directly by those
+      real day values, not an invented curve.</p>
+      <p><strong>Disclosed technique choices, not measurements:</strong></p>
+      <ul>
+        <li>The <em>shape</em> of each organ's brief emergence (scaling in over ~1.5 days)
+        is ours — the real data is <em>when</em> an organ appears, not the exact speed it
+        expands at.</li>
+        <li>Root growth has no Boyes-equivalent timing source (that paper covers shoot
+        phenotypes only) — root depth here follows the rosette-growth fraction as a
+        disclosed proxy, not an independently measured root-growth curve.</li>
+        <li>Fine geometric detail (leaf curvature, root branching pattern) is the same
+        citation-grounded, illustrative geometry as the interactive atlas — see its
+        <a href="./#readme">README</a> for what that is and isn't based on.</li>
+      </ul>
+      <p><strong>What this is not:</strong> no claim is made that this is the most detailed
+      4D Arabidopsis model ever produced. The real state of the art is genuinely fragmented
+      across imaging-based cell-lineage reconstruction, whole-plant growth modelling, and
+      rosette phenotyping systems, each leading on a different axis of "detail" — there
+      isn't a single existing bar to measure this against, so none is claimed.</p>
+      <p><strong>Single-source dependency:</strong> these day-counts rest on one primary
+      study. TAIR's own corroborating growth-stage pages returned HTTP 403 to automated
+      verification and were not independently checked.</p>
+    </div>
+  </section>
+</div>
+<script src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/sites.js"></script>
+<script src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/theme.js"></script>
+<script>
+(async function () {
+  const res = await fetch('growth-stages.json');
+  const data = await res.json();
+  const stages = data.stages;
+  const growthDayMax = data.growthDayMax;
+
+  const tbody = document.querySelector('#stage-table tbody');
+  for (const s of stages) {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><code class="stage-code">${s.stage}</code></td><td>${s.description}</td><td>${s.day.toFixed(1)}</td>`;
+    tbody.appendChild(tr);
+  }
+
+  const video = document.getElementById('growth-video');
+  const readout = document.getElementById('stage-readout');
+  video.addEventListener('timeupdate', () => {
+    if (!video.duration) return;
+    const day = (video.currentTime / video.duration) * growthDayMax;
+    let current = stages[0];
+    for (const s of stages) { if (s.day <= day) current = s; else break; }
+    readout.innerHTML = `<span class="day">Day ${day.toFixed(1)}</span> &mdash; <span class="code">${current.stage}</span> <span class="desc">${current.description}</span>`;
+  });
+})();
+</script>
+</body>
+</html>
