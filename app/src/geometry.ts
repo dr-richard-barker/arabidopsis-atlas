@@ -11,6 +11,7 @@ import * as THREE from "three";
 import { buildTube, linearTaper, fusiformTaper } from "./organGeometry/tube";
 import { buildLeafBlade } from "./organGeometry/leafBlade";
 import { DEFAULT_ECOTYPE, type EcotypeParams } from "./ecotypes";
+import { growthStateAtDay, GROWTH_STAGES } from "./growthStages";
 
 const GOLDEN_ANGLE = 137.5 * (Math.PI / 180);
 
@@ -34,7 +35,14 @@ function jitteredCurve(points: THREE.Vector3[]): THREE.CatmullRomCurve3 {
   return new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.5);
 }
 
-function buildRootSystem(params: EcotypeParams): THREE.Object3D {
+// growthFraction (default 1 = the ordinary, fully-grown ecotype viewer) scales root depth
+// and how many lateral roots exist yet. No Boyes-et-al.-equivalent root-growth timing
+// source was found for Arabidopsis (that paper covers shoot phenotypes only), so this uses
+// the same rosette-growth fraction as a disclosed proxy -- root and shoot growth are
+// broadly correlated in seedlings, but this specific curve is illustrative, not measured;
+// see data/growth-stages/README.md. The alternative (a full 3.2-unit mature root system
+// under a 3-day-old seedling) is a real, worse, and more clearly wrong error.
+function buildRootSystem(params: EcotypeParams, growthFraction = 1): THREE.Object3D {
   const group = new THREE.Group();
 
   const primaryPoints = [
@@ -46,11 +54,14 @@ function buildRootSystem(params: EcotypeParams): THREE.Object3D {
   ];
   const primaryGeom = buildTube(jitteredCurve(primaryPoints), linearTaper(0.05, 0.008), 24, { radialSegments: 8 });
   group.add(new THREE.Mesh(primaryGeom, rootMaterial));
+  // Depth grows with the plant rather than the full mature root appearing on day one;
+  // radius is left alone (only the group's vertical extent is scaled).
+  group.scale.set(1, Math.max(0.06, growthFraction), 1);
 
   // Lateral roots: illustrative branching (see Shahan et al. 2022 citation in organs.ts),
   // count/spread scaled by the ecotype's rosette-compactness parameter as a proxy for
   // overall plant vigor -- not itself a cited root trait.
-  const nLaterals = 10;
+  const nLaterals = Math.round(10 * Math.max(0, Math.min(1, growthFraction)));
   for (let i = 0; i < nLaterals; i++) {
     const depth = 0.4 + (i / nLaterals) * 2.6;
     const len = (0.5 + Math.random() * 0.4) * (0.85 + 0.3 * params.rosetteCompactness);
@@ -67,12 +78,18 @@ function buildRootSystem(params: EcotypeParams): THREE.Object3D {
   return tagged(group, "root");
 }
 
-function buildRosette(params: EcotypeParams): THREE.Object3D {
+function buildRosette(params: EcotypeParams, emergenceScale?: (leafIndex: number, total: number) => number): THREE.Object3D {
   const group = new THREE.Group();
   const nLeaves = params.rosetteLeafCount;
   for (let i = 0; i < nLeaves; i++) {
+    // For the growth animation only: a leaf not yet "born" at this frame's real Boyes-
+    // derived day is skipped entirely rather than added at zero scale -- cleaner than a
+    // degenerate zero-size mesh, and emergenceScale is undefined (full-size, as before)
+    // for the ordinary ecotype viewer.
+    const scale = emergenceScale ? emergenceScale(i, nLeaves) : 1;
+    if (scale <= 0) continue;
     const angle = i * GOLDEN_ANGLE;
-    const ageScale = 0.35 + 0.5 * (i / nLeaves); // outer (older) leaves larger
+    const ageScale = (0.35 + 0.5 * (i / nLeaves)) * scale; // outer (older) leaves larger; scaled in while emerging
     const bladeLength = (0.55 * ageScale) * params.rosetteRadiusScale;
     const bladeWidth = (0.35 * ageScale) * params.rosetteRadiusScale;
 
@@ -210,12 +227,31 @@ function buildSilique(pedicelLength: number, bluntness: number): THREE.Object3D 
 }
 
 // A raceme: newest flowers at the top of the axis, maturing siliques below -- the real
-// developmental sequence of an Arabidopsis inflorescence.
-function buildRacemeAttachments(height: number, params: EcotypeParams): THREE.Object3D {
+// developmental sequence of an Arabidopsis inflorescence. `flowerFraction` (real, from
+// growthStages.ts) moves the flower/silique boundary and how many positions exist at all;
+// undefined means the ordinary ecotype viewer's fixed, fully-grown raceme (unchanged).
+function buildRacemeAttachments(height: number, params: EcotypeParams, flowerFraction?: number): THREE.Object3D {
   const group = new THREE.Group();
   const nPositions = 9;
+  // flowerFraction is real (growthStages.ts): 0 until the first flower has actually
+  // opened (Boyes stage 6.00), so before that this must render NOTHING -- not a silique,
+  // which biologically cannot exist before any flower has opened and matured. Once
+  // flowerFraction > 0, the raceme has grown exactly that far up the axis, and the
+  // youngest (tip-most) 30% of that grown extent are still-open flowers; the rest have
+  // matured into siliques -- that 30% split is a disclosed technique choice (no specific
+  // real flower-to-silique maturation duration was found), not a measured value.
+  if (flowerFraction !== undefined && flowerFraction <= 0) return group;
+  const grownUpTo = flowerFraction === undefined ? 1 : flowerFraction;
+  // Deliberately NOT clamped to >= 0: when flowering has JUST started (grownUpTo small),
+  // flowerZoneStart goes negative, which correctly means "everything grown so far is
+  // still an open flower, nothing has had time to mature into a silique yet" -- clamping
+  // this to 0 was a real bug that misclassified the very first attachment as a silique
+  // the moment it appeared, before any flower had existed at all.
+  const flowerZoneStart = flowerFraction === undefined ? 0.75 : grownUpTo - 0.3;
+
   for (let i = 0; i < nPositions; i++) {
     const t = i / (nPositions - 1); // 0 = base (old), 1 = tip (new)
+    if (t > grownUpTo) continue;
     const y = height * (0.35 + 0.6 * t);
     const angle = i * GOLDEN_ANGLE;
     // Start exactly on the axis's real surface at this height (see axisRadiusAt), not a
@@ -226,7 +262,7 @@ function buildRacemeAttachments(height: number, params: EcotypeParams): THREE.Ob
     const pedicelLength = 0.18 * params.pedicelLengthScale;
 
     let attachment: THREE.Object3D;
-    if (t > 0.75) {
+    if (t > flowerZoneStart) {
       attachment = buildFlower(pedicelLength);
     } else {
       attachment = buildSilique(pedicelLength, params.siliqueBluntness);
@@ -246,5 +282,43 @@ export function buildPlant(params: EcotypeParams = DEFAULT_ECOTYPE): THREE.Group
   plant.add(buildRosette(params));
   plant.add(buildInflorescenceAxis(stemHeight));
   plant.add(buildRacemeAttachments(stemHeight, params));
+  return plant;
+}
+
+// Growth-animation entry point: a single real day (post-stratification, per Boyes et al.
+// 2001 -- see growthStages.ts) produces one fully self-consistent plant snapshot. This is
+// Col-0-specific by construction (DEFAULT_ECOTYPE is Col-0, and the real timing data itself
+// only exists for Col-0), independent of the ordinary ecotype-picker viewer above.
+// Called once per animation frame with a slightly advanced `day`; regenerating from
+// scratch each time (rather than trying to morph one mesh's topology) is what lets leaf 8
+// simply not exist yet without any special-case removal logic. A short, disclosed-as-not-
+// measured emergence window (EMERGENCE_DAYS) scales each newly-present organ in smoothly
+// instead of having it pop in at full size the frame it's due.
+const EMERGENCE_DAYS = 1.5;
+
+export function buildGrowthSnapshot(day: number): THREE.Group {
+  const state = growthStateAtDay(day);
+  const params = DEFAULT_ECOTYPE;
+  const stemHeight = 2.4;
+
+  const plant = new THREE.Group();
+  plant.add(buildRootSystem(params, Math.max(0.06, state.rosetteFraction)));
+
+  const rosetteParams: EcotypeParams = { ...params, rosetteLeafCount: state.leafCount, rosetteRadiusScale: params.rosetteRadiusScale * (0.3 + 0.7 * state.rosetteFraction) };
+  plant.add(
+    buildRosette(rosetteParams, (leafIndex) => {
+      const leafStage = GROWTH_STAGES.find((s) => s.table === "soil" && s.stage === `1.${String(leafIndex + 1).padStart(2, "0")}`);
+      const birthDay = leafStage?.day ?? 0;
+      // 0 at birthDay (just past the real >1mm threshold), ramping to 1 by birthDay+EMERGENCE_DAYS.
+      return Math.max(0, Math.min(1, (day - birthDay) / EMERGENCE_DAYS));
+    }),
+  );
+
+  if (state.boltingFraction > 0) {
+    const axis = buildInflorescenceAxis(stemHeight * Math.max(0.08, state.boltingFraction));
+    plant.add(axis);
+    plant.add(buildRacemeAttachments(stemHeight * Math.max(0.08, state.boltingFraction), params, state.flowerFraction));
+  }
+
   return plant;
 }
