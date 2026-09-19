@@ -109,8 +109,9 @@ silique appears. \NumAnimationFrames{} frames (\AnimationDurationSeconds{}s at
 an independently regenerated snapshot from the same live generator behind the interactive
 viewer -- called once per frame at that frame's real day via \texttt{npx tsx
 export\_growth\_frame.ts} -- rather than a single mesh interpolated or hand-animated in
-Blender. \textbf{TODO: real total render time and measured seconds/frame, to be filled in
-from the render log once the full sequence finishes (in progress at submission time).}
+Blender. The full sequence rendered in \RenderTotalMinutes{} minutes on a single Apple M5
+Pro (20-core GPU, Metal), averaging \RenderAvgSecondsPerFrame{}s/frame across all
+\NumAnimationFrames{} frames -- measured from the actual render log, not estimated.
 
 Getting this to actually finish rather than merely start surfaced two more real bugs,
 neither guessed: rebuilding every material from scratch each frame crashed Cycles' own
