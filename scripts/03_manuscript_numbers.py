@@ -15,7 +15,7 @@ PROCESSED = ROOT / "data" / "processed"
 ORGANS_TS = ROOT / "app" / "src" / "organs.ts"
 ECOTYPES_TS = ROOT / "app" / "src" / "ecotypes.ts"
 GROWTH_STAGES_TS = ROOT / "app" / "src" / "growthStages.ts"
-RENDER_LOG = Path("/tmp/growth_animation_render.log")
+RENDER_LOG = Path("/tmp/growth_animation_v2_render.log")
 OUT = ROOT / "manuscript" / "latex" / "generated_numbers.tex"
 
 
@@ -106,13 +106,20 @@ def main():
         macro("AnimationResolution", "1920$\\times$1080"),
     ]
 
-    # Real measured render performance -- only included once the actual render log shows
-    # completion, so this can never assert a number from a run that didn't finish or
-    # crashed partway (see the two real bugs that caused exactly that during development).
+    # Real measured render performance -- only included once BOTH the render script's own
+    # completion marker is present AND all 576 frames actually exist on disk, so this can
+    # never assert a number from a run that didn't finish or crashed partway (see the real
+    # bugs that caused exactly that during development). Checking the frame count directly
+    # is real ground truth independent of which marker text happens to be in a given log --
+    # an earlier version only checked for "ALL_FRAMES_COMPLETE", a string a now-retired
+    # wrapper script added; the render script's own real, always-present marker is
+    # "ANIMATION_RENDER_COMPLETE", printed regardless of how the render was invoked.
+    FRAMES_DIR = ROOT / "blender" / "exports" / "animation_frames"
+    frames_on_disk = len(list(FRAMES_DIR.glob("frame_*.png"))) if FRAMES_DIR.exists() else 0
     if RENDER_LOG.exists():
         log_text = RENDER_LOG.read_text()
         frame_times = re.findall(r"FRAME_DONE \d+ day=[\d.]+ elapsed=(\d+)s avg=([\d.]+)s/frame", log_text)
-        if "ALL_FRAMES_COMPLETE" in log_text and frame_times:
+        if "ANIMATION_RENDER_COMPLETE" in log_text and frame_times and frames_on_disk == 576:
             last_elapsed = int(frame_times[-1][0])
             last_avg = float(frame_times[-1][1])
             lines += [

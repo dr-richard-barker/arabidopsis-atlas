@@ -109,11 +109,12 @@ silique appears. \NumAnimationFrames{} frames (\AnimationDurationSeconds{}s at
 an independently regenerated snapshot from the same live generator behind the interactive
 viewer -- called once per frame at that frame's real day via \texttt{npx tsx
 export\_growth\_frame.ts} -- rather than a single mesh interpolated or hand-animated in
-Blender. The full sequence rendered in \RenderTotalMinutes{} minutes on a single Apple M5
-Pro (20-core GPU, Metal), averaging \RenderAvgSecondsPerFrame{}s/frame across all
-\NumAnimationFrames{} frames -- measured from the actual render log, not estimated.
+Blender, on a single Apple M5 Pro (20-core GPU, Metal). This initial pass was later revised
+for camera work and photorealism (see below); real total render time and per-frame cost are
+reported there for the version actually shipped, rather than duplicated here for a pipeline
+this repository no longer runs.
 
-Getting this to actually finish rather than merely start surfaced two more real bugs,
+Getting this initial pass to actually finish rather than merely start surfaced two more real bugs,
 neither guessed: rebuilding every material from scratch each frame crashed Cycles' own
 Metal shader compiler after roughly 9 frames (confirmed from the actual crash backtrace,
 which pointed directly at \texttt{ccl::MetalKernelPipeline::compile}), fixed by building
@@ -152,8 +153,10 @@ now re-frames on each frame's own actual above-ground extent, eased across keyfr
 anchored to real Boyes stage boundaries, with physical depth of field added -- the camera
 parameter \emph{values} at each keyframe are a disclosed directorial choice, the same
 "real data drives \emph{when}, technique choice drives \emph{how}" split already used for
-organ emergence timing. \textbf{TODO: real total render time and measured seconds/frame for
-the v2 render, to be filled in once the full sequence finishes.}
+organ emergence timing. The full v2 sequence rendered in \RenderTotalMinutes{} minutes,
+averaging \RenderAvgSecondsPerFrame{}s/frame across all \NumAnimationFrames{} frames --
+measured from the actual render log, not estimated; the richer materials and depth of field
+added roughly 18\% to the v1 pipeline's \NumAnimationFrames{}-frame baseline time.
 
 \subsection{A digital-twin data-overlay layer}
 
