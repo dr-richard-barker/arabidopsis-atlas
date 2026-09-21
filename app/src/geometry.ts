@@ -11,7 +11,7 @@ import * as THREE from "three";
 import { buildTube, linearTaper, fusiformTaper } from "./organGeometry/tube";
 import { buildLeafBlade } from "./organGeometry/leafBlade";
 import { DEFAULT_ECOTYPE, type EcotypeParams } from "./ecotypes";
-import { growthStateAtDay, GROWTH_STAGES } from "./growthStages";
+import { growthStateAtDay, GROWTH_STAGES, FIRST_BUD_DAY } from "./growthStages";
 
 const GOLDEN_ANGLE = 137.5 * (Math.PI / 180);
 
@@ -33,6 +33,27 @@ const siliqueMaterial = new THREE.MeshStandardMaterial({ color: 0x8a9a4a, roughn
 
 function jitteredCurve(points: THREE.Vector3[]): THREE.CatmullRomCurve3 {
   return new THREE.CatmullRomCurve3(points, false, "catmullrom", 0.5);
+}
+
+// Deterministic per-organ jitter (fine-detail randomness like lateral-root angle or
+// silique tilt) keyed by a stable string, not Math.random(). The growth animation
+// regenerates every frame from scratch in a fresh `npx tsx` subprocess (see
+// render_growth_animation.py), so Math.random() would give organ #i a completely new
+// jittered value on every single frame even when nothing developmentally changed --
+// reading as shimmer, not growth. Hashing a stable key (organ type + index) means organ
+// #i's own jitter is identical across every frame it appears in, while still varying
+// between different organs. Not cryptographic -- just needs to be stable and well-spread.
+function seededJitter(key: string): number {
+  let h = 2166136261;
+  for (let i = 0; i < key.length; i++) {
+    h ^= key.charCodeAt(i);
+    h = Math.imul(h, 16777619);
+  }
+  h |= 0;
+  h = (h + 0x6d2b79f5) | 0;
+  let t = Math.imul(h ^ (h >>> 15), 1 | h);
+  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+  return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 }
 
 // Every mesh gets a real name (not just leaf blades), preserved through the glTF export,
@@ -72,19 +93,27 @@ function buildRootSystem(params: EcotypeParams, growthFraction = 1): THREE.Objec
   // Lateral roots: illustrative branching (see Shahan et al. 2022 citation in organs.ts),
   // count/spread scaled by the ecotype's rosette-compactness parameter as a proxy for
   // overall plant vigor -- not itself a cited root trait.
-  const nLaterals = Math.round(10 * Math.max(0, Math.min(1, growthFraction)));
+  // nLateralsMax is iterated over a continuous (not rounded) count so the newest lateral
+  // fades in via `emergence` instead of popping to full size the frame a rounded count
+  // increments -- same emergence-ramp treatment as rosette leaves get, applied here too.
+  const nLateralsMax = 10;
+  const continuousCount = nLateralsMax * Math.max(0, Math.min(1, growthFraction));
+  const nLaterals = Math.ceil(continuousCount);
   for (let i = 0; i < nLaterals; i++) {
-    const depth = 0.4 + (i / nLaterals) * 2.6;
-    const len = (0.5 + Math.random() * 0.4) * (0.85 + 0.3 * params.rosetteCompactness);
+    const emergence = Math.max(0, Math.min(1, continuousCount - i));
+    const depth = 0.4 + (i / nLateralsMax) * 2.6;
+    const len = (0.5 + seededJitter(`lateral-len-${i}`) * 0.4) * (0.85 + 0.3 * params.rosetteCompactness);
     const side = i % 2 === 0 ? 1 : -1;
-    const angle = 0.9 + Math.random() * 0.3;
+    const angle = 0.9 + seededJitter(`lateral-angle-${i}`) * 0.3;
     const base = new THREE.Vector3(0, -depth, 0);
     const tip = base.clone().add(
       new THREE.Vector3(side * Math.cos(angle) * len, -len * 0.25, side * Math.sin(angle) * len * 0.6),
     );
     const mid = base.clone().lerp(tip, 0.5).add(new THREE.Vector3(0, -0.05, 0));
     const lateralGeom = buildTube(jitteredCurve([base, mid, tip]), linearTaper(0.012, 0.003), 6, { radialSegments: 6 });
-    group.add(namedMesh(lateralGeom, rootMaterial, "Root_lateral"));
+    const lateralMesh = namedMesh(lateralGeom, rootMaterial, "Root_lateral");
+    lateralMesh.scale.setScalar(emergence);
+    group.add(lateralMesh);
   }
   return tagged(group, "root");
 }
@@ -264,9 +293,17 @@ function buildRacemeAttachments(height: number, params: EcotypeParams, flowerFra
   // the moment it appeared, before any flower had existed at all.
   const flowerZoneStart = flowerFraction === undefined ? 0.75 : grownUpTo - 0.3;
 
+  // Each raceme position scales in over a short window of `grownUpTo` sweeping past its
+  // own t, instead of popping to full size the instant `t <= grownUpTo` (the loop's
+  // original behaviour) -- the same emergence-ramp idea rosette leaves already use, applied
+  // in t-space since this function only sees the interpolated flowerFraction, not a real
+  // day. The window width is a technique choice (how fast a bud visibly opens), not data.
+  const EMERGENCE_T_WINDOW = 0.6 / (nPositions - 1);
+
   for (let i = 0; i < nPositions; i++) {
     const t = i / (nPositions - 1); // 0 = base (old), 1 = tip (new)
-    if (t > grownUpTo) continue;
+    const emergence = flowerFraction === undefined ? 1 : Math.max(0, Math.min(1, (grownUpTo - t) / EMERGENCE_T_WINDOW));
+    if (emergence <= 0) continue;
     const y = height * (0.35 + 0.6 * t);
     const angle = i * GOLDEN_ANGLE;
     // Start exactly on the axis's real surface at this height (see axisRadiusAt), not a
@@ -281,10 +318,11 @@ function buildRacemeAttachments(height: number, params: EcotypeParams, flowerFra
       attachment = buildFlower(pedicelLength);
     } else {
       attachment = buildSilique(pedicelLength, params.siliqueBluntness);
-      attachment.rotation.x = Math.PI / 2 + (Math.random() - 0.5) * 0.3;
+      attachment.rotation.x = Math.PI / 2 + (seededJitter(`silique-tilt-${i}`) - 0.5) * 0.3;
     }
     attachment.position.copy(pos);
     attachment.rotation.y += angle;
+    attachment.scale.setScalar(emergence);
     group.add(attachment);
   }
   return group;
@@ -330,9 +368,22 @@ export function buildGrowthSnapshot(day: number): THREE.Group {
   );
 
   if (state.boltingFraction > 0) {
-    const axis = buildInflorescenceAxis(stemHeight * Math.max(0.08, state.boltingFraction));
-    plant.add(axis);
-    plant.add(buildRacemeAttachments(stemHeight * Math.max(0.08, state.boltingFraction), params, state.flowerFraction));
+    const axisHeight = stemHeight * Math.max(0.08, state.boltingFraction);
+    // The 0.08 floor above exists only so buildInflorescenceAxis/buildRacemeAttachments
+    // never receive a degenerate near-zero height to build tube geometry from -- it is NOT
+    // what controls visible size. Without the ramp below, the whole bolting structure would
+    // snap straight to that 8%-height floor the instant boltingFraction first ticks above 0
+    // (a real pop-in bug, since axis+attachments used to be added directly). Wrapping both
+    // in one group and scaling the group from 0 over EMERGENCE_DAYS, anchored at the real
+    // FIRST_BUD_DAY, makes bolting begin as an imperceptible bump and grow in continuously,
+    // matching how rosette leaves already emerge; scaling the shared parent (rather than
+    // the axis alone) keeps the raceme attachments aligned to the axis throughout the ramp.
+    const boltingGroup = new THREE.Group();
+    boltingGroup.add(buildInflorescenceAxis(axisHeight));
+    boltingGroup.add(buildRacemeAttachments(axisHeight, params, state.flowerFraction));
+    const axisEmergence = Math.max(0, Math.min(1, (day - FIRST_BUD_DAY) / EMERGENCE_DAYS));
+    boltingGroup.scale.setScalar(axisEmergence);
+    plant.add(boltingGroup);
   }
 
   return plant;

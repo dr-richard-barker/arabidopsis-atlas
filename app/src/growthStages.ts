@@ -92,7 +92,7 @@ export interface GrowthState {
   flowerFraction: number;
 }
 
-const FIRST_BUD_DAY = GROWTH_STAGES.find((s) => s.stage === "5.10")!.day;
+export const FIRST_BUD_DAY = GROWTH_STAGES.find((s) => s.stage === "5.10")!.day;
 const FLOWERING_COMPLETE_DAY = GROWTH_STAGES.find((s) => s.stage === "6.90")!.day;
 
 /** Real, Boyes-2001-derived developmental state at a given day post-stratification. */

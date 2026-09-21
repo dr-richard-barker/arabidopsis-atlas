@@ -132,10 +132,68 @@ whole-rosette 4D phenotyping \citep{Apelt2015,Bernotas2019}, each leading on a d
 of "detail," with no CGI Arabidopsis growth-animation precedent found at all -- there is no
 single existing bar to measure this against, so none is asserted.
 
+\subsection{A director's pass: continuity, camera and photorealism (v2)}
+
+Assessing the v1 animation against its own actual output -- rendered frames, not just the
+code that produced them -- surfaced concrete, fixable problems rather than vague notes.
+Every organ's fine-detail jitter (lateral-root angle/length, silique pedicel tilt) used
+JavaScript's unseeded random generator; because each frame is regenerated in an independent
+subprocess, every organ received a completely new random value every single frame even
+where nothing developmentally changed, reading as shimmer rather than growth. This is fixed
+with a small deterministic hash keyed to each organ's own stable index, so an organ's jitter
+is identical across every frame it appears in while still varying between organs. The
+inflorescence axis and each individual flower/silique also previously appeared at full size
+the instant a threshold was crossed rather than growing in; both now use the same
+emergence-ramp treatment rosette leaves already had. The camera itself was a single framing
+computed once from the mature plant and reused for all 576 frames: inspecting actual output
+frames showed the day-0 seedling occupying roughly 1-2\% of frame, and the mature plant's
+inflorescence exiting the top of frame before any flower or silique was visible. The camera
+now re-frames on each frame's own actual above-ground extent, eased across keyframes
+anchored to real Boyes stage boundaries, with physical depth of field added -- the camera
+parameter \emph{values} at each keyframe are a disclosed directorial choice, the same
+"real data drives \emph{when}, technique choice drives \emph{how}" split already used for
+organ emergence timing. \textbf{TODO: real total render time and measured seconds/frame for
+the v2 render, to be filled in once the full sequence finishes.}
+
+\subsection{A digital-twin data-overlay layer}
+
+A real-data-driven visualization and integration layer was added over the existing
+organ-selectable geometry, explicitly \emph{not} a claim to reimplement existing systems
+models: AraGEM \citep{DalMolin2010} and its more recent tissue-specific descendant AraRoot,
+Chew et al.'s \citeyearpar{Chew2014} whole-plant Framework Model, and BioOS
+\citep{BioOS2026} -- a real, directly relevant, very recent (2026) Arabidopsis digital-twin
+effort -- are cited and linked as the real existing computational layer this visualization
+complements, not duplicates. NASA OSDR ingestion is generalized from the two studies already
+hardcoded to any real OSD accession, verified end-to-end against OSD-522
+\citep{OSD522} -- a study this repository's own limitations section had already flagged as
+real and relevant but unprocessed -- yielding \NumGenesOsdFiveTwoTwo{} genes and a top
+mean-CPM log2 ratio of \TopFoldChangeOsdFiveTwoTwo{} for \texttt{\TopGeneOsdFiveTwoTwo{}}
+between its real flight and ground sample groups. OSD-522's own protocol describes dissecting
+plants into root and shoot tissue for different assays, but its RNA-seq sample records
+carry no organism-part annotation in the metadata this repository could query -- so this
+comparison is reported as whole-study flight-vs-ground, explicitly not claimed as
+tissue-specific, rather than guessing which tissue the 12 sequenced samples are. A real
+architectural constraint was found,
+not assumed: NASA OSDR's API returns \texttt{Access-Control-Allow-Origin: osdr.nasa.gov} on
+every endpoint used, which a browser enforces against any other origin, so OSDR data reaches
+this atlas the same way the original two studies already did -- fetched by a script and
+committed as static data -- rather than a live in-browser request the deployed site could
+actually serve. Real per-organ context from \citet{Lee2025} -- a single-cell and spatial
+transcriptomic atlas spanning ten real developmental stages and over 400{,}000 nuclei,
+seed to silique -- is linked to, not redistributed, pending confirmation of its data's
+bulk-reuse terms (the same open item already carried for TraVA). A viewer's own uploaded
+tissue-resolved data is parsed entirely client-side, malformed rows reported rather than
+silently dropped, and matched to the nearest real day on this atlas's own Boyes-2001 axis
+with the actual day gap always shown rather than a silent interpolation.
+
 \subsection{Verification of the viewer itself}
 
 The viewer was checked interactively, not only by static code review: in both a local
 development server and the actual production build served at the live GitHub Pages URL,
 clicking each organ was confirmed to open an information panel showing the correct TraVA
 category, the correct geometry citation, and -- for root -- the real gene table described
-above, with no console errors in either environment.
+above, with no console errors in either environment. The digital-twin panel's CSV upload,
+parsing, validation, and day-proximity matching were confirmed against a hand-crafted test
+file with one deliberately malformed row (verified reported, not silently dropped), and
+every new external link (the Salk atlas tool, the GEO record, the OSDR search page) was
+confirmed to resolve live before shipping.
