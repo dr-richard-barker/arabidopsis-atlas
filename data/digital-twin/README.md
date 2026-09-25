@@ -135,6 +135,29 @@ this) uses `GC-`/`FT-` instead -- different studies really do name their sample 
 differently, so `compare` requires the real substrings as explicit input rather than
 guessing a pattern that happens to work for one study and silently mis-groups another.
 
+## Zhu et al. 2024 darkness-induced metabolome -- a terrestrial baseline for metabolic stress
+
+**Zhu, F., Wijesingha Ahchige, M., ... Fernie, A.R. (2024). "The natural variance of
+Arabidopsis secondary metabolism on extended darkness." *Nat. Sci. Data* 11, 841.**
+https://doi.org/10.1038/s41597-024-03694-2
+
+Real, processed data fetched via `scripts/07_fetch_darkness_metabolome.py`:
+- 259 Arabidopsis HapMap accessions × 95 secondary metabolites × 2 timepoints (0d baseline, 6d extended darkness)
+- Metabolite BLUP-normalized intensities (batch-corrected, QC-validated)
+- Metabolite identities: names, classes (amino acids, phenylpropanoids, flavonoids, steroids, terpenoids), retention times
+- Exported as: `data/processed/metabolome/darkness_metabolome_digital_twin.csv` (format: gene_or_label, day, value, condition)
+
+**Honest scope:** This is a visualization/integration layer, not a re-analysis of the Zhu et al. GWAS or a
+reimplementation of their metabolite annotation pipeline. The data is linked as-published; the atlas's
+digital-twin panel lets a viewer browse metabolite shifts across the 259 accessions at the slider's chosen timepoint.
+
+**Why it matters for this atlas:** OSD-522 (spaceflight transcriptomics) showed **illumination perfectly
+separates all six Arabidopsis spaceflight studies** — lit conditions positive (flight shows photosynthesis↑),
+dark conditions negative (flight shows carbon starvation effects). The Zhu et al. dataset is a complementary
+terrestrial baseline for darkness-induced secondary-metabolite shifts, measured across natural genetic variation
+in the same species. Together with OSD-522, this allows testing "What does the darkness-induced *metabolome*
+look like, and how does genetic variation shape it?" — a "pre-flight" prediction task before expensive ISS experiments.
+
 ## Rule
 
 No claim in `app/src/digitalTwin.ts`, `App.tsx`'s digital-twin panel, or
