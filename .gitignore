@@ -17,3 +17,7 @@ node_modules/
 # Regeneratable via `npx tsx blender/export_mesh.ts <ecotype>` + refine_showcase.py;
 # the PNGs that matter for the manuscript are committed under manuscript/figures/ instead.
 blender/exports/
+
+# Third-party supplementary data (hundreds of MB); re-fetch per data/raw/*/SOURCE.md
+data/raw/naake_2024_supplementary/
+data/raw/wu_2017_supplementary/

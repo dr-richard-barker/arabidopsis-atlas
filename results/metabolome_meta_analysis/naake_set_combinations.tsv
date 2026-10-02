@@ -1,0 +1,23 @@
+dataset	mode	combination	n_sets	loci	features
+S3	negative	seed 1	1	92236	14768
+S3	negative	leaf Wu	1	84350	13223
+S3	negative	seed 2	1	82289	13720
+S3	negative	seed 1 + seed 2	2	10865	4985
+S3	negative	seed 1 + leaf Wu	2	7002	3226
+S3	negative	seed 2 + leaf Wu	2	4750	2507
+S3	negative	leaf Zhu	1	4068	1
+S3	negative	seed 1 + seed 2 + leaf Wu	3	1755	1198
+S3	negative	seed 1 + leaf Zhu	2	263	214
+S3	negative	leaf Wu + leaf Zhu	2	179	168
+S3	negative	seed 2 + leaf Zhu	2	162	142
+S3	negative	seed 1 + seed 2 + leaf Zhu	3	89	79
+S3	negative	seed 1 + seed 2 + leaf Wu + leaf Zhu	4	85	73
+S3	negative	seed 2 + leaf Wu + leaf Zhu	3	54	49
+S3	negative	seed 1 + leaf Wu + leaf Zhu	3	48	41
+S2	positive	seed 1	1	147003	24551
+S2	positive	leaf Wu	1	111633	22399
+S2	positive	seed 2	1	96730	20921
+S2	positive	seed 1 + seed 2	2	13893	6934
+S2	positive	seed 1 + leaf Wu	2	10085	4860
+S2	positive	seed 2 + leaf Wu	2	7463	4058
+S2	positive	seed 1 + seed 2 + leaf Wu	3	2438	1770

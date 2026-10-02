@@ -1,0 +1,88 @@
+metabolite,m/z (theoretical),RT (database,m/z (rep. 1),RT (rep. 1),name (rep. 1),m/z (rep. 2),RT (rep. 2),name (rep. 2),H2,mode
+3-methylsulfinylpropyl GS (C11H21NO10S3),422.0249  ([M-H+]-),0.87,422.025,0.89,Cluster_26519,422.0254,0.94,Cluster_051339 ,0.8136 ,negative
+4-methylsulfinylbutyl GS  (C12H23NO10S3) ,436.0406 ([M-H+]-) ,1.58,436.041,1.46,Cluster_27139,436.0411 ,1.56,Cluster_053358,0.8322,negative
+5-methylsulfinylpentyl GS  (C13H25NO10S3) ,450.0562 ([M-H+]-),2.7,450.0568,2.57,Cluster_27723,450.0575,2.67,Cluster_055415,0.4105,negative
+6-methylsulfinylhexyl GS (C14H27NO10S3) ,464.0719 ([M-H+]-),3.42,464.0722,3.3,Cluster_28387,464.0725,3.38,Cluster_057362 ,0.1345*,negative
+7-methylsulfinylheptyl GS (C15H29NO10S3),478.0875  ([M-H+]-)  ,4.19,478.0876,4.01,Cluster_29158 ,478.088,4.15,Cluster_059324 ,0.8985,negative
+8-methylsulfinyloctyl GS (C16H31NO10S3),492.1032  ([M-H+]-),5.05,492.1032,4.86,Cluster_29750,492.1034,4.98,Cluster_061218,0.9484 ,negative
+3-hydroxypropyl GS (C10H19NO10S2),376.0372 ([M-H+]-),0.9,376.037,0.81,Cluster_24564,376.0376,0.85,Cluster_044614,0.9913,negative
+4-hydroxybutyl GS (C11H21NO10S2) ,390.0529 ([M-H+]-),1.22,390.0536,1.13,Cluster_25248,390.0537,1.2,Cluster_046712,0.7437,negative
+3-methylthiopropyl GS (C11H21NO9S3) ,406.0300  ([M-H+]-),3.46,406.0301,3.22,Cluster_25869,406.0302,3.41,Cluster_049033,0.9435,negative
+4-methylthiobutyl GS (C12H23NO9S3) ,420.0457 ([M-H+]-) ,4.3,420.0457,4.1,Cluster_26400,420.046,4.25,Cluster_051010,0.9863,negative
+5-methylthiopentyl GS (C13H25NO9S3),434.0613 ([M-H+]-),5.39,434.0616,5.16,Cluster_27077 ,434.0620 ,5.33,Cluster_053100,0.9909,negative
+6-methylthiohexyl GS (C14H27NO9S3),448.0770 ([M-H+]-),6.57,448.0778,7.00 ,Cluster_27656,448.0774,7.23,Cluster_055168 ,0.6290 ,negative
+7-methylthioheptyl GS (C15H29NO9S3),462.0926 ([M-H+]-),7.79,462.093,7.47,Cluster_28299,462.0932 ,7.69,Cluster_057117,0.937,negative
+8-methylthiooctyl GS \\ (C16H31NO9S3),476.1083 ([M-H+]-),8.99,476.1079,8.6,Cluster_29064 ,476.1081,8.83,Cluster_059059,0.5442 ,negative
+1-methoxy-3-indolylmethyl GS (C17H22N2O10S2),477.0638 ([M-H+]-),6.60 ,477.0638,6.33,Cluster_29119 ,477.0641,6.53,Cluster_059172,0.979,negative
+4-methoxy-3-indolylmethyl GS (C17H22N2O10S2) ,477.0638 ([M-H+]-),5.65 ,477.0643,5.42 ,Cluster_29124 ,477.0641,5.6,Cluster_059171,0.8484,negative
+3-benzoyloxypropyl GS (C17H23NO11S2),480.0634  ([M-H+]-),6.57,480.0632,6.29,Cluster_29269,480.0637,6.47,Cluster_059592,0.99,negative
+4-benzoyloxybutyl GS (C18H25NO11S2),494.0791 ([M-H+]-),7.39,494.0792,7.1,Cluster_29899,494.0789,7.29,Cluster_061425,0.9735,negative
+5-benzoyloxypentyl GS (C19H27NO11S2) ,508.0947 ([M-H+]-),8.49,508.0949,7.96,Cluster_30574,508.0951,8.1,Cluster_063305,0.9887,negative
+6-benzoyloxyhexyl GS (C20H29NO11S2),522.1104  ([M-H+]-),9.48,522.1108,8.88,Cluster_31267,522.1113,9.14,Cluster_065294,0.891,negative
+3-sinapoyloxypropyl GS (C21H28NO14S2),581.0873 ([M-H+]-) ,6.73,582.0951,6.49,Cluster_34455,582.0959 ,6.65,Cluster_073649,0.7872,negative
+4-sinapoyloxybutyl GS  (C22H30NO14S2) ,595.1030 ([M-H+]-),7.33 ,595.1028,7.29,Cluster_02069 ,595.1053,7.24,Cluster_005378 ,0* ,negative
+2-hydroxy-3-butenyl GS (C11H19NO10S2)  ,388.0372 ([M-H+]-) ,1.65,388.0378,1.29,Cluster_25147,388.0377,1.37 ,Cluster_046383,0.9767,negative
+3-butenyl GS (C11H19NO9S2),372.0423 ([M-H+]-),3.01,372.0426,2.65,Cluster_24449 ,372.0425,2.83 ,Cluster_044042 ,0.8785,negative
+3-butenyl GS (C11H19NO9S2),372.0423 ([M-H+]-),3.01 ,372.0428,2.78,Cluster_24450,372.0425,2.83,Cluster_044042 ,0.6574,negative
+4-pentenyl GS (C12H21NO9S2)  ,386.0580 ([M-H+]-),4.15,386.0585,3.82 ,Cluster_25059,386.0586,3.99,Cluster_046109,0.5975*,negative
+"(epi)catechin-hexose  (isomer 2, C21H24O11)  ",451.1240  ([M-H+]-),4.23,451.1248,4.8,Cluster_27769,451.1247,4.87,Cluster_055536,0.9169,negative
+"sinapoylcholine, sinapoylcholine dimer (isomer1, C16H24NO5+)","294.1467 (M+-NH2),  also: 354.1551",5.43,294.1342,5.58,Cluster_21058,294.1349,5.79,Cluster_033377,0*,negative
+"sinapoylglucose (isomer 1, C17H22O10)",385.1135 ([M-H+]-),5.63,385.1135,5.59,Cluster_25003,385.114,5.66,Cluster_045960,0.9042,negative
+"Sinapoylglucose (isomer 2, C17H22O10)",385.1135  ([M-H+]-),5.63,385.1138,5.79 ,Cluster_24995/Cluster_24996 ,385.1144,5.96,Cluster_045963,0.2938/ 0.5758,negative
+isorhamnetin deoxyhexoside hexoside (C28H32O16) ,623.1612 ([M-H+]-),6.81  ,623.1616,6.77,Cluster_36811,623.1608,6.83,Cluster_079020,0.2059,negative
+2-O-sinapoylmalate (C15H16O9)  ,"339.0716 ([M-H+]-), also: 223.0607",7.27  ,339.0718,7.18,Cluster_23114,339.0792,7.38,Cluster_039467,0.8089,negative
+isorhamnetin (deoxyhexoside)2 (C28H32O15),607.1663 ([M-H+]-),7.38,607.1668,7.35,Cluster_35959,607.1669,7.42,Cluster_077022,0.9026,negative
+quercetin deoxyhexoside (C21H20O11) ,"447.0927 ([M-H+]-), also: 895.1933",7.74,447.0605,7.69,Cluster_27567,447.0603,7.78,Cluster_054953 ,0.9117,negative
+isorhamnetin hexoside (C22H22O12),477.1033  ([M-H+]-),7.83,477.1038,7.79,Cluster_29129,477.1053 ,8.08,Cluster_059177 ,0*,negative
+kaempferol deoxyhexoside (C21H20O10),431.0978 ([M-H+]-),8.44  ,431.0981,8.39,Cluster_26897,431.0984 ,8.47,Cluster_052580,0.9651,negative
+3-methylsulfinylpropyl GS (C11H21NO10S3),461.9965  ([M+K+]+) ,0.87,461.9844,0.89,Cluster_15419,461.9857,0.94,Cluster_000443,0.8186,positive
+4-methylsulfinylbutyl GS (C12H23NO10S3),476.0168  ([M+K+]+),1.58,476.0017,1.46,Cluster_58276,476.0024,1.55,Cluster_037978,0.6643,positive
+5-methylsulfinylpentyl GS (C13H25NO10S3) ,490.0278 ([M+K+]+) ,2.71,490.0173,2.58,Cluster_59146,490.0186,2.67,Cluster_039046,0.5103,positive
+6-methylsulfinylhexyl GS (C14H27NO10S3),504.0434 ([M+K+]+),3.42,504.0328,3.29,Cluster_16906,504.0333,3.37,Cluster_132321,0.0169*,positive
+7-methylsulfinylheptyl GS (C15H29NO10S3),480.1032  ([M+H+]+) ,4.19,480.1018,4.01,Cluster_58540,480.1026,4.15,Cluster_128493 ,0.8819,positive
+8-methylsulfinyloctyl GS (C16H31NO10S3) ,494.1188 ([M+H+]+) ,5.05,494.1172,4.86,Cluster_59412,494.1257,4.65,Cluster_130736,6.29e-17*,positive
+3-hydroxypropyl GS (C10H19NO10S2),378.0529  ([M+H+]+) ,0.9,378.0618,0.57,Cluster_50604,378.0522,0.85,Cluster_110301,0*,positive
+3-methylthiopropyl GS (C11H21NO9S3),"408.0457  ([M+H+]+), also: 328.0889 ",3.56,445.9912,3.23,Cluster_14771,445.992,3.41,Cluster_035729,0.8666,positive
+4-methylthiobutyl GS (C12H23NO9S3)   ,"422.0613  ([M+H+]+), also: 342.1037 ",4.3,422.0598,4.1,Cluster_54202,422.0603 ,4.25,Cluster_118543,0.8428,positive
+5-methylthiopentyl GS (C13H25NO9S3) ,"436.0770  ([M+H+]+),  also: 356.1198 ",5.39,436.0757,5.16,Cluster_55314,436.0767,5.33,Cluster_121075,0.7557,positive
+6-methylthiohexyl GS (C14H27NO9S3),"450.0926  ([M+H+]+), also: 370.1348 ",6.57,450.0911,6.3,Cluster_56439,450.0919,6.49,Cluster_123528,0.9793,positive
+7-methylthioheptyl GS (C15H29NO9S3) ,"464.1083 ([M+H+]+), also: 384.1506 ",7.79,464.1069,7.47,Cluster_57450 ,464.0973,7.43,Cluster_037107,0.1917*,positive
+8-methylthiooctyl GS (C16H31NO9S3),"478.1239  ([M+H+]+), also: 398.1669 ",8.99,478.1223,8.61,Cluster_58426 ,478.1232,8.83,Cluster_128222,0.6952,positive
+3-indolymethyl GS (C16H20N2O9S2) ,449.0689  ([M+H+]+) ,4.73,449.0674,4.49,Cluster_56337,449.0679,4.65,Cluster_123314,0.955,positive
+3-benzoyloxypropyl GS (C17H23NO11S2),482.0791  ([M+H+]+) ,6.567,482.0775,6.29,Cluster_58658,482.0784,6.47,Cluster_128827,0.885,positive
+4-benzoyloxybutyl GS (C18H25NO11S2) ,496.0947  ([M+H+]+) ,7.39,496.0931,7.1,Cluster_59534,496.0936,7.29,Cluster_131099,0.8684,positive
+5-benzoyloxypentyl GS (C19H27NO11S2),452.1355 ,8.49,452.1341,7.96,Cluster_56580,452.135,8.2,Cluster_123871,0.7883,positive
+6-benzoyloxyhexyl GS (C20H29NO11S2),466.1512 ,9.48,466.15,8.8,Cluster_57603,466.1507,9.14,Cluster_126252,0.7555,positive
+2-hydroxy-3-butenyl GS (C11H19NO10S2),428.0088  ([M+K+]+),1.65,427.9985,1.29,Cluster_14009 ,427.9991,1.57,Cluster_034345,0.812,positive
+3-butenyl GS  (C11H19NO9S2),412.0138 ([M+K+]+) ,3.01,412.0038,2.77,Cluster_13321,412.0040 ,2.87,Cluster_032959,0.63341,positive
+4-pentenyl GS (C12H21NO9S2),426.0295  ([M+K+]+) ,4.15,426.0186,3.82,Cluster_13909,426.0193,3.99,Cluster_034212,0.9522,positive
+glutamic acid (C5H9NO4),"148.0610  ([M+H+]+),  also: 130.0499, 102.0550  ",0.64,148.054,0.64,Cluster_29091,148.0604,0.68,Cluster_063519,0.8383*,positive
+valine (C5H11NO2),118.0868 ([M+H+]+),0.66,118.0861,0.65,Cluster_26185,118.0862,0.68,Cluster_056882 ,0.9315,positive
+proline (C5H9NO2)  ,116.0712  ([M+H+]+),0.71,116.0705,0.71,Cluster_26007,116.0706,0.74,Cluster_056416,0.823,positive
+phenylalanine (C9H11NO2),"120.0813    ([M-CH2O2+H+]+), also: 166.0863 ",3.16,120.0806,3.14,Cluster_26334,120.0808,3.25,Cluster_057253,0.6407,positive
+tryptophane (C11H12N2O2),"205.0977  ([M+H+]+),  also: 188.0706,  159.0917,  144.0808,  130.0651,  118.0650 ",4.2,205.0968,4.24,Cluster_34655,205.0971,4.31,Cluster_075472,0.881,positive
+4-hexosyloxybenzoylcholine (C18H28NO8+),"386.1815  ([M+]), also: 165.0546",2.65,386.1802,2.74,Cluster_51292,386.1808,2.78,Cluster_111920,0.8159*,positive
+4-hexosyloxy-3-methoxybenzoylcholine (C19H30NO9+)  ,"416.1921  ([M+]), also: 195.0652,  151.0390 ",3.12,416.1907 ,3.17,Cluster_53803,416.1915,3.2,Cluster_117481,0.91,positive
+"3,5-dimethoxy-4-hexosyloxybenzoylcholine (C20H32NO10+)  ","446.2026  ([M+]), also: 225.0758 ",3.35,446.2011,3.41 ,Cluster_56110 ,446.2021,3.45,Cluster_122846,0.4241,positive
+8-(methylsulfinyl)octane-1-amine (C9H21NOS)  ,"192.1422  ([M+H+]+),  also: 128.1434",3.93,192.1415,4.01,Cluster_33349,192.1416,4.06,Cluster_072946,0.8316,positive
+"4-hexosyloxy-3,5-dimethoxy-cinnamoylcholine (C22H34NO10+) ","472.2177  ([M+]), also: 251.0914 ",4.18,472.2166,4.23,Cluster_58028,472.2179,4.28,Cluster_127343,0.6257,positive
+hydroxyferuloylcholine (C15H22NO5+)  ,"237.0758 ([M+-C3H9N]+), also: 296.1492 ",4.51,237.0752,4.62,Cluster_37896,237.0755,4.65,Cluster_081534,0.6398,positive
+feruloylcholine (C15H22NO4+) ,"280.1549 ([M+]), also 221.0808 ",5.33,280.1538,5.49,Cluster_42468,280.1543,5.52,Cluster_090189,0.9627,positive
+"sinapoylcholine, sinapoylcholine dimer  (isomer 1, C16H24NO5+) ","251.092 ([M+-C3H9N+), also: 310.1646 ",5.43,251.0906,5.58,Cluster_39370,251.0899,5.59,Cluster_084188,0.1678*,positive
+"sinapoylcholine,  sinapoylcholine dimer  (isomer 2, C16H24NO5+) ","251.0920  ([M+-C3H9N]+), also: 310.1646 ",n.d. ,251.0907,5.76,Cluster_39369,251.0912,5.79,Cluster_084189 ,1.17e-15*,positive
+"sinapoylglucose  (isomer 1, C17H22O10) ","409.1111 ([M+Na+]+), also: 387.1286,  207.0652",5.63,409.1095,5.59,Cluster_53141,409.1101,5.87,Cluster_116178,0.555,positive
+"sinapoylglucose  (isomer 2, C17H22O10)","409.1111  ([M+Na+]+), also: 387.1286,  207.0652 ",n.d.,409.1099,5.88,Cluster_53138,409.1101,5.87,Cluster_116178,0.371,positive
+2-O-sinapoylmalate  (C15H16O9) ,"363.0692  ([M+Na+]+), also: 175.0390, 147.0441 ",7.27,363.0678,7.18,Cluster_49400,363.0776,7.28,Cluster_107257,0.6095*,positive
+"(epi)catechin-hexose (isomer 1, C21H24O11) ","453.1397  ([M+H+]+),  also: 291.0863 ",4.23,453.1384,4.16,Cluster_56647,453.139,4.25,Cluster_124069 ,0.8227,positive
+"(epi)catechin-hexose  (isomer 2, C21H24O11)","453.1391,  also: 291.0863 ",4.85,453.1382,4.8,Cluster_56645,453.1384,4.87,Cluster_124061,0.9214,positive
+kaempferol 3-O-rhamnoside  7-O-rhamnoside (C27H30O14) ,"579.1714 ([M+H+]+), also: 433.1134, 287.0556 ",7.28,579.1697,7.21,Cluster_64812,579.1701,7.28,Cluster_144080,0.8372,positive
+quercetin 3-O-rhamnoside  7-O-rhamnoside (C27H30O15),"595.1663  ([M+H+]+),  also: 449.1084,  303.0504",6.79,595.1642,6.71,Cluster_65624,595.1654,6.78,Cluster_146144,0.9211,positive
+kaempferol 3-O-[2''-O-(rhamnosyl) glucoside] 7-O-rhamnoside (C33H40O19),"741.2242  ([M+H+]+), also: 433.1134,  579.1714,  287.0556",5.87,741.222,5.79,Cluster_71128,741.2228,5.85,Cluster_162318,0.6491,positive
+kaempferol 3-O-glucosyl-glucoside 7-O-rhamnoside (C33H40O20),"757.2191  ([M+H+]+),  also: 433.1134,  597.13, 287.0556 ",6.49,757.2172,6.53,Cluster_71606,757.2182,6.59,Cluster_163702,0.5096,positive
+quercetin 3-O-[2''-O-(rhamnosyl) glucoside] 7-O-rhamnoside (C33H40O2),"757.2191  ([M+H+]+),  also: 611.1612,  449.1084,  303.0504 ",5.57,757.2166,5.5,Cluster_71605,757.2193,5.46,Cluster_163693,0.1086*,positive
+quercetin 3-O-glucoside-7-O-rhamnoside  (C27H30O16)  ,"611.1612 ([M+H+]+), also: 303.0504 ",6.25,611.1592,6.17,Cluster_66353,611.1601,6.24,Cluster_148381 ,0.87576,positive
+isorhamnetin deoxyhexoside hexoside  (C28H32O16) ,"625.1769  ([M+H+]+),  also: 463.1235,  317.0656 ",6.81,625.1751,6.77,Cluster_66963,625.176,6.83,Cluster_150186,0.8774,positive
+isorhamnetin (deoxyhexose)2  (C28H32O15) ,"609.1820  ([M+H+]+),  also: 463.1235,  317.0661 ",7.38,609.1796,7.35,Cluster_66225,609.1808,7.41,Cluster_148131,0.9048,positive
+isorhamnetin hexoside (C22H22O12) ,"501.1009  ([M+Na+]+), also: 479.1190, 317.0661",7.83,501.0994,7.79,Cluster_59822,501.1009,7.86,Cluster_131859,0.7774,positive
+kaempferol deoxyhexoside (C21H20O10) ,"433.1134 ([M+H+]+),  also: 287.0556 ",8.44,433.1119,8.39,Cluster_55112,433.1128,8.47,Cluster_120566,0.9604,positive
+isorhamnetin deoxyhexoside  (C22H22O11) ,"463.1240  ([M+H+]+),  also: 317.0661",8.57,463.1224,8.54,Cluster_57372,463.1231,8.62,Cluster_125771 ,0.8836,positive

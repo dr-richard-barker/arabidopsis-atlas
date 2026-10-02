@@ -1,0 +1,42 @@
+zhu_id	zhu_name	wu_name	class	formula	abs_drt_min	name_match	n_d0_vs_control	n_d6_vs_control	n_d6_vs_stress	rho_d6_vs_stress	p_d6_vs_stress	n_dark_resp_vs_stress_resp	rho_d0_vs_control	p_d0_vs_control	rho_d6_vs_control	p_d6_vs_control	rho_dark_resp_vs_stress_resp	p_dark_resp_vs_stress_resp	q_d0_vs_control	q_d6_vs_control	q_d6_vs_stress	q_dark_resp_vs_stress_resp
+Met.409	Glucoalyssin	5-methylsulfinylpentyl glucosinolate	Glucosinolate	C13H25NO10S3	0.11	True	250	250	252	0.833	3.808e-66	250	0.825	2.244e-63	0.806	1.739e-58	0.101	0.1115	6.284e-62	5.218e-57	1.181e-64	0.2083
+Met.413	Glucoiberin	3-methylsulfinylpropyl-glucosinolate	Glucosinolate	C11H21NO10S3	0.04	True	207	0	0			0	0.797	9.026e-47					1.264e-45			
+Met.412	Glucohirsutin	8-Methylsulfinyloctyl glucosinolate	Glucosinolate	C16H31NO10S3	0.07	True	250	250	252	0.645	4.538e-31	250	0.669	8.063e-34	0.61	7.031e-27	0.024	0.71	7.525e-33	3.515e-26	2.344e-30	0.7936
+Met.821	Quercetin 3-O-glucoside 7-O-rhamnoside	Quercetin 3-O-glucoside 7-O-rhamnoside	Flavonoid	C27H30O16	0.1	True	250	250	252	0.694	1.616e-37	250	0.628	8.67e-29	0.678	5.755e-35	-0.098	0.1206	4.855e-28	4.317e-34	1.002e-36	0.2083
+Met.564	Kaempferol 3-O-glucoside 7-O-rhamnoside	Kaempferol 3-O-glucoside 7-O-rhamnoside	Flavonoid	C27H30O15	0.1	True	250	250	252	0.704	5.482e-39	250	0.628	8.187e-29	0.631	3.985e-29	0.016	0.8035	4.855e-28	2.391e-28	4.249e-38	0.8192
+Met.486	Guanosine	Guanosine	Nucleoside	C10H13N5O5	0.15	True	250	250	252	0.429	9.87e-13	250	0.618	1.104e-27	0.415	7.5e-12	0.075	0.2368	5.15e-27	2.25e-11	1.912e-12	0.3461
+Met.985	Uric acid	Uric acid	Amine	C5H4N4O3	0.14	True	250	250	252	0.534	5.259e-20	250	0.549	4.79e-21	0.522	6.583e-19	0.208	0.0009465	1.916e-20	2.469e-18	2.038e-19	0.008992
+Met.728	Pantothenic acid (Vitamine B5) 	Pantothenic acid (Vitamine B5)	Organic acid	C9H17NO5	0.11	True	250	250	252	0.469	3.461e-15	250	0.501	2.845e-17	0.344	2.291e-08	0.198	0.001644	9.959e-17	5.288e-08	8.254e-15	0.01041
+Met.563	Kaempferol 3-O-6-O-(rhamnosyl) glucoside 7-O-rhamnoside	Kaempferol 3-O-[2''-O-(rhamnosyl) glucoside] 7-O-rhamnoside	Flavonoid	C33H40O19	0.09	False	250	250	0			0	0.481	7.547e-16	0.535	6.579e-20			2.348e-15	2.819e-19		
+Met.136	adenine	Adenine	Nucleobase	C5H5N5	0.07	True	250	0	0			0	0.375	9.066e-10					2.539e-09			
+Met.886	Succinoadenosine	Succinoadenosine	Nucleoside derivative	C14H17N5O8	0.08	True	250	250	252	0.514	2.112e-18	250	0.357	6.196e-09	0.388	2.159e-10	0.029	0.6511	1.577e-08	5.398e-10	6.547e-18	0.7731
+Met.422	Glutamic acid, N-acetyl-	N-acetyl-glutamic acid	Amino acid	C7H11NO5	0.14	False	250	250	0			0	0.327	1.22e-07	0.113	0.07432			2.846e-07	0.1115		
+Met.321	Citric acid	Citric acid	Organic acid	C6H8O7	0.12	True	250	250	252	0.199	0.001478	250	0.322	1.856e-07	0.331	8.191e-08	-0.015	0.8192	3.998e-07	1.755e-07	0.001833	0.8192
+Met.457	Glutathione	Glutathione	Antioxidant	C10H17N3O6S	0.02	True	250	250	252	0.129	0.04105	250	0.298	1.571e-06	0.063	0.3174	0.065	0.3035	3.142e-06	0.3809	0.04714	0.3976
+Met.138	Adenosine	Adenosine	Nucleoside	C10H13N5O4	0.14	True	250	0	0			0	0.294	2.189e-06					4.086e-06			
+Met.300	beta-Nicotinamide adenine dinucleotide	beta-Nicotinamide adenine dinucleotide	Coenzyme	C21H27N7O14P2	0.27	True	250	250	252	0.22	0.0004459	250	0.291	2.854e-06	-0.004	0.9485	0.191	0.00236	4.994e-06	0.9485	0.0005759	0.01121
+Met.571	Isoleucine	Isoleucine	Amino acid	C6H13NO2	0.16	True	250	250	252	0.451	5.059e-14	250	0.276	9.436e-06	0.149	0.01824	0.115	0.06959	1.554e-05	0.02881	1.046e-13	0.1469
+Met.830	Riboflavin 	Riboflavin	Vitamin	C17H20N4O6	0.1	True	250	250	252	0.407	1.764e-11	250	0.266	1.971e-05	0.219	0.0004996	0.16	0.01132	3.066e-05	0.0008816	3.217e-11	0.03073
+Met.414	Gluconic acid	D-Galactonic acid	Organic acid	C6H12O7	0.01	False	250	250	252	0.303	9.718e-07	250	0.25	6.602e-05	0.252	5.721e-05	0.118	0.06161	9.729e-05	0.0001073	1.434e-06	0.1463
+Met.261	Aspartic acid	D-Aspartic acid	Organic acid	C4H7NO4	0.04	True	250	0	0			0	0.229	0.0002631					0.0003684			
+Met.986	Uridine	Uridine	Nucleoside	C9H12N2O6	0.23	True	250	0	0			0	0.122	0.05364					0.06827			
+Met.840	S-Adenosyl-L-Homocysteine	S-Adenosyl-L-Homocysteine	Amino acid and derivative	C14H20N6O5S	0.18	True	250	0	0			0	0.107	0.09198					0.1073			
+Met.545	Leucine	Leucine	Amino acid	C6H13NO2	0.15	True	250	250	252	0.286	3.795e-06	250	0.096	0.1304	0.064	0.312	0.077	0.2233	0.146	0.3809	5.347e-06	0.3461
+Met.694	Nicotinamide adenine dinucleotide phosphate (NADP)	Nicotinamide adenine dinucleotide phosphate	Nucleoside derivative	C21H28N7O17P3	0.12	True	245	0	0			0	0.02	0.76					0.7728			
+Met.385	Flavine adenine dinucleotide (FAD)	Flavine adenine dinucleotide	Cofactor	C27H31N9Na2O15P2	0.16	True	250	250	251	0.192	0.002296	249	0.018	0.7728	-0.101	0.1124	0.174	0.006033	0.7728	0.1606	0.002738	0.02292
+Met.836	Rutin	Rutin	Flavonoid	C27H30O16	0.55	True	250	250	252	-0.058	0.359	250	-0.033	0.6023	-0.033	0.6036	-0.064	0.3139	0.6486	0.6467	0.3837	0.3976
+Met.205	alpha-Ketoglutaric acid	alpha-Ketoglutaric acid	Organic acid	C5H6O5	0.4	True	250	250	252	-0.035	0.5853	250	-0.112	0.07809	0.053	0.4054	-0.16	0.01105	0.09506	0.4677	0.6048	0.03073
+Met.674	Naringin	Naringin	Flavonoid	C27H32O14	0.04	True	248	248	250	0.751	1.405e-46	248	-0.145	0.02192	0.724	1.461e-41	-0.275	1.133e-05	0.02922	1.461e-40	2.177e-45	0.0002153
+Met.193	Allantoic acid	Allantoic acid	Organic acid	C4H8N4O4	0	True	0	0	252	0.281	5.948e-06	0									8.017e-06	
+Met.74	3-Hydroxy-3-Methylglutaric acid	3-Hydroxy-3-methylglutaric acid	Organic acid	C6H10O5	0.04	True	0	0	251	0.63	3.314e-29	0									1.468e-28	
+Met.126	6-Hydroxynicotinic acid	6-Hydroxynicotinic acid	Organic acid	C6H5NO3	0.04	True	0	242	244	0.756	2.226e-46	0			0.757	2.791e-46				4.186e-45	2.3e-45	
+Met.421	Glutamic acid	L-Glutamic acid	Amino acid	C5H9NO4	0.04	True	0	250	252	0.344	2.11e-08	0			0.158	0.01253				0.02088	3.443e-08	
+Met.964	Tyrosine	Tyrosine	Amino acid	C9H11NO3	0.05	True	0	0	252	0.52	7.205e-19	0									2.482e-18	
+Met.503	Histidine	Histidine	Amino acid	C6H9N3O2	0.06	True	0	0	0			0										
+Met.622	Methionine	Methionine	Amino acid	C5H11NO2S	0.08	True	0	250	252	0.334	5.527e-08	0			-0.073	0.2532				0.3321	8.567e-08	
+Met.565	Kaempferol 3-O-rhamnoside 7-O-rhamnoside	Kaempferol 3-O-rhamnoside 7-O-rhamnoside	Flavonoid	C27H30O14	0.08	True	0	250	252	0.492	9.882e-17	0			0.486	3.351e-16				1.117e-15	2.785e-16	
+Met.146	Adenosine 5'-monophosphate	Adenosine 5'-monophosphate	Nucleotide	C10H14N5O7P	0.1	True	0	250	252	-0.009	0.8905	0			0.011	0.8619				0.8916	0.8905	
+Met.410	Glucobrassicin	3-indolymethyl glucosinolate	Glucosinolate	C16H20N2O9S2	0.12	True	0	250	252	0.463	8.154e-15	0			0.401	4.678e-11				1.276e-10	1.806e-14	
+Met.943	Tryptophan	L-Tryptophan	Amino acid	C11H12N2O2	0.2	True	0	250	252	0.393	1.005e-10	0			0.033	0.6012				0.6467	1.731e-10	
+Met.665	N-Acetyl-D-Phenylalanine	N-Acetyl-D-phenylalanine	Amino acid	C11H13NO3	0.2	True	0	250	252	-0.067	0.2876	0			-0.072	0.2546				0.3321	0.3184	
+Met.487	Guanosine 2':3'-Cyclic monophosphate	Guanosine 2':3'-cyclic monophosphate sodium	Nucleoside derivative	C10H12N5O7P	0.01	False	0	217	252	0.472	2.128e-15	0			0.322	1.301e-06				2.601e-06	5.497e-15	

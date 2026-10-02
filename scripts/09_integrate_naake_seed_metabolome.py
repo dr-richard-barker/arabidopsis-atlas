@@ -1,167 +1,103 @@
-"""Download and integrate Naake et al. 2024 seed metabolomics GWAS data.
+"""Export Naake et al. (2024) seed/leaf metabolite GWAS loci into tidy CSVs.
 
-Genome-wide association studies identify loci controlling specialized seed metabolites
-in Arabidopsis thaliana. Naake, Zhu, Alseekh, Scossa, et al. (2024)
-Plant Physiology 194(3):1705-1721. https://doi.org/10.1093/plphys/kiad511
+Naake T, et al. Plant Physiol 194(3):1705-1721. doi:10.1093/plphys/kiad511
+Supplement fetched per data/raw/SUPPLEMENTARY_SOURCES.md.
 
-Data sources:
-- Oxford Academic supplementary datasets: https://academic.oup.com/plphys/article/194/3/1705/7284016
-- GitHub analysis code: https://github.com/tnaake/GWAS_arabidopsis_seed
+Naake mapped mass features from seed replicate 1, seed replicate 2, leaf Wu
+(Wu et al. 2018 leaves) and leaf Zhu (Zhu et al. 2022, Plant Cell, dark-induced
+senescence; negative mode only) with one GWAS pipeline and aligned them by
+m/z/RT. Each row of Supplemental Data Sets S1-S3 is one aligned locus for one
+feature pair; a set's columns are filled when that set mapped the feature there.
 
-This script:
-1. Fetches supplementary data from the paper (requires manual download of .xlsx files from Oxford)
-2. Parses metabolite identifications, GWAS results, and accession data
-3. Exports unified CSV files for meta-analysis integration
-4. Creates metabolite × accession × tissue comparison matrix
+Outputs (data/processed/metabolome/):
+  naake_gwas_loci.csv.gz       long: dataset, mode, feature, set, locus, LOD, AGI span, row id
+  naake_annotated_qtl.csv      Supplemental Tables S3/S4 (annotated metabolites, seed vs leaf)
+  naake_annotated_metabolites.csv  Supplemental Tables S1/S2 (annotations, H2)
 """
 
+import argparse
 import sys
-import pandas as pd
 from pathlib import Path
-from collections import defaultdict
+
+import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+from gwas_loci import parse_agi_span  # noqa: E402
 
-# Output paths
-OUTPUT_DIR = Path(__file__).parent.parent / "data" / "processed" / "metabolome"
-RAW_NAAKE_DIR = Path(__file__).parent.parent / "data" / "raw" / "naake_2024_supplementary"
-RESULTS_DIR = Path(__file__).parent.parent / "results" / "metabolome_meta_analysis"
+ROOT = Path(__file__).resolve().parent.parent
+RAW = ROOT / "data" / "raw" / "naake_2024_supplementary"
+OUT = ROOT / "data" / "processed" / "metabolome"
+TABLES = RAW / "PP2023RA01091D_Supplemental_Tables.xlsx"
 
-
-def parse_naake_supplementary_excel(excel_path: Path) -> dict:
-    """
-    Parse Naake supplementary Excel files.
-
-    Expected sheets in supplementary files:
-    - Metabolite identifications (name, class, m/z, RT, etc.)
-    - Accession metadata (ID, ecotype, geographic origin)
-    - GWAS results (SNP × metabolite associations, p-values, effects)
-    - Metabolite intensities (accession × metabolite matrix)
-    """
-    data = {}
-
-    try:
-        xls = pd.ExcelFile(excel_path)
-        sheet_names = xls.sheet_names
-
-        for sheet in sheet_names:
-            df = pd.read_excel(excel_path, sheet_name=sheet)
-            data[sheet] = df
-            print(f"  Parsed sheet '{sheet}': {df.shape[0]} rows × {df.shape[1]} columns")
-
-    except Exception as e:
-        print(f"ERROR parsing {excel_path}: {e}")
-        return None
-
-    return data
+# S1 (negative) is S3 without the leaf_zhu columns -- verified identical -- so it is skipped.
+DATASETS = {
+    "S2": ("Supplemental Dataset S2_gwas_complete_met_all_trueLociLOD_pos Thomas Naake.txt", "positive"),
+    "S3": ("Supplemental Dataset S3_gwas_complete_met_all_trueLociLOD_rep12_normalized_neg Thomas Naake.txt", "negative"),
+}
+SETS = {"seed1": "seed_rep1", "seed2": "seed_rep2", "leaf2": "leaf_wu", "leaf_feng": "leaf_zhu"}
 
 
-def integrate_naake_metabolite_data(raw_dir: Path, output_dir: Path) -> None:
-    """
-    Main integration function.
+def read_sheet(sheet):
+    raw = pd.read_excel(TABLES, sheet_name=sheet, header=None)
+    hdr = next(i for i in range(1, len(raw)) if raw.iloc[i].notna().sum() >= 3)
+    df = pd.read_excel(TABLES, sheet_name=sheet, header=hdr)
+    df.columns = [str(c).replace("\xa0", " ").strip() for c in df.columns]
+    return df.dropna(how="all")
 
-    Note: This function expects Excel files to be pre-downloaded from:
-    https://academic.oup.com/plphys/article/194/3/1705/7284016
-    (Supplemental Data sections S1-S5)
-    """
-    output_dir.mkdir(parents=True, exist_ok=True)
 
-    if not raw_dir.exists():
-        print(f"""
-ERROR: Naake supplementary data not found at {raw_dir}
+def export_loci():
+    frames = []
+    for ds, (fname, mode) in DATASETS.items():
+        df = pd.read_csv(RAW / fname, sep="\t", low_memory=False)
+        df = df.reset_index(drop=True)
+        feature = df["met_rep1"].astype(str) + "|" + df["met_rep2"].astype(str)
+        for suffix, set_name in SETS.items():
+            if f"locusID_{suffix}" not in df.columns:
+                continue
+            sub = pd.DataFrame({
+                "dataset": ds,
+                "mode": mode,
+                "row": df.index,
+                "feature": feature,
+                "set": set_name,
+                "locus_id": df[f"locusID_{suffix}"],
+                "lod": pd.to_numeric(df[f"bestSNP_lod_{suffix}"], errors="coerce"),
+            }).dropna(subset=["locus_id", "lod"])
+            span = df.loc[sub["row"], f"locus_tag_{suffix}"].map(parse_agi_span).set_axis(sub.index)
+            sub = sub[span.notna()].copy()
+            sub[["chrom", "agi_start", "agi_end"]] = pd.DataFrame(span[span.notna()].tolist(), index=sub.index)
+            sub["lod"] = sub["lod"].round(3)
+            frames.append(sub)
+        print(f"  {ds} ({mode}): {len(df):,} rows")
+    loci = pd.concat(frames, ignore_index=True)
+    loci.to_csv(OUT / "naake_gwas_loci.csv.gz", index=False)
+    print(f"  -> naake_gwas_loci.csv.gz: {len(loci):,} set-locus records")
+    print(loci.groupby(["dataset", "set"]).size().rename("records").to_string())
 
-To download Naake 2024 supplementary data:
-1. Go to: https://academic.oup.com/plphys/article/194/3/1705/7284016
-2. Scroll to "Supplemental Data" section
-3. Download all .xlsx files (typically 5 files: S1-S5)
-4. Place them in: {raw_dir}/
 
-Then re-run this script.
-
-Expected files:
-- Supplemental Data S1: Accession information & heritability
-- Supplemental Data S2: Metabolite identifications (LC-MS polar/semi-polar)
-- Supplemental Data S3: GWAS results (SNP × metabolite)
-- Supplemental Data S4: Locus information & annotations
-- Supplemental Data S5: Network analysis results
-""")
-        return
-
-    print(f"Processing Naake 2024 supplementary data from {raw_dir}...\n")
-
-    # Find Excel files
-    excel_files = list(raw_dir.glob("*.xlsx"))
-    if not excel_files:
-        print(f"No .xlsx files found in {raw_dir}")
-        print("Please download supplementary files manually from Oxford Academic")
-        return
-
-    # Parse each file
-    all_data = {}
-    for excel_path in sorted(excel_files):
-        print(f"Parsing {excel_path.name}...")
-        data = parse_naake_supplementary_excel(excel_path)
-        if data:
-            all_data[excel_path.stem] = data
-
-    # Extract and export key datasets
-    if all_data:
-        print(f"\n✓ Parsed {len(all_data)} supplementary files")
-
-        # Example export (structure depends on actual sheet contents)
-        # This will be adapted once actual Excel files are downloaded
-        print(f"✓ Ready to integrate seed metabolite data with Zhu darkness & Wu environmental datasets")
-        print(f"\nNext: Manual step required —")
-        print(f"  1. Download Naake supplementary .xlsx files to {raw_dir}/")
-        print(f"  2. Re-run: python3 scripts/09_integrate_naake_seed_metabolome.py integrate")
+def export_annotated():
+    qtl = []
+    for sheet, mode in [("Table S3", "negative"), ("Table S4", "positive")]:
+        df = read_sheet(sheet).assign(mode=mode)
+        qtl.append(df)
+    qtl = pd.concat(qtl, ignore_index=True)
+    qtl.to_csv(OUT / "naake_annotated_qtl.csv", index=False)
+    mets = pd.concat([read_sheet("Table S1").assign(mode="negative"),
+                      read_sheet("Table S2").assign(mode="positive")], ignore_index=True)
+    mets.to_csv(OUT / "naake_annotated_metabolites.csv", index=False)
+    print(f"  -> naake_annotated_qtl.csv: {len(qtl)} rows; naake_annotated_metabolites.csv: {len(mets)} rows")
 
 
 def main():
-    import argparse
-
-    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    sub = parser.add_subparsers(dest="cmd", required=True)
-
-    sub.add_parser("integrate", help="Parse & integrate Naake 2024 seed metabolomics data")
-    sub.add_parser("download-help", help="Show where to download supplementary data")
-
-    args = parser.parse_args()
-
-    if args.cmd == "integrate":
-        integrate_naake_metabolite_data(RAW_NAAKE_DIR, OUTPUT_DIR)
-    elif args.cmd == "download-help":
-        print(f"""
-NAAKE ET AL. 2024 — SUPPLEMENTARY DATA DOWNLOAD
-
-Paper: Naake et al. (2024) Plant Physiology 194(3):1705-1721
-DOI: https://doi.org/10.1093/plphys/kiad511
-
-How to download:
-1. Visit: https://academic.oup.com/plphys/article/194/3/1705/7284016
-2. Scroll to "Supplemental Data" section
-3. Download all .xlsx files (S1 through S5)
-4. Create directory: {RAW_NAAKE_DIR}/
-5. Move all .xlsx files to that directory
-6. Run: python3 scripts/09_integrate_naake_seed_metabolome.py integrate
-
-Expected files:
-- Supplemental_Data_S1_*.xlsx  (Accession info & heritability)
-- Supplemental_Data_S2_*.xlsx  (Metabolite identifications, 21k features)
-- Supplemental_Data_S3_*.xlsx  (GWAS results, SNP associations)
-- Supplemental_Data_S4_*.xlsx  (Locus summary & annotations)
-- Supplemental_Data_S5_*.xlsx  (Network & pathway results)
-
-File sizes: ~10-50 MB each
-
-Once downloaded, the integration script will:
-✓ Parse metabolite identification data (name, class, m/z, RT)
-✓ Extract accession × metabolite intensity matrix
-✓ Read GWAS loci (SNP × metabolite associations, p-values)
-✓ Export unified CSV for cross-tissue comparison with:
-  - Zhu 2024 darkness metabolome (leaves)
-  - Wu 2017 environmental metabolome (mixed tissues)
-  - arabidopsis-atlas morphology & ecotype data
-""")
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("cmd", choices=["integrate"])
+    ap.parse_args()
+    if not TABLES.exists():
+        sys.exit(f"Missing {TABLES}; fetch per data/raw/SUPPLEMENTARY_SOURCES.md")
+    OUT.mkdir(parents=True, exist_ok=True)
+    print("Naake 2024 -> tidy loci")
+    export_loci()
+    export_annotated()
 
 
 if __name__ == "__main__":

@@ -1,0 +1,10 @@
+dataset	mode	set_a	set_b	shared_loci	shared_features	rho_feature_max	paper_rho_core_set
+S3	negative	seed_rep1	seed_rep2	12794	5565	0.526	0.536
+S3	negative	seed_rep1	leaf_wu	8890	4035	0.264	
+S3	negative	seed_rep1	leaf_zhu	485	368	0.225	
+S3	negative	seed_rep2	leaf_wu	6644	3371	0.294	
+S3	negative	seed_rep2	leaf_zhu	390	310	0.248	
+S3	negative	leaf_wu	leaf_zhu	366	303	0.311	
+S2	positive	seed_rep1	seed_rep2	16331	7695	0.509	0.557
+S2	positive	seed_rep1	leaf_wu	12523	5958	0.308	
+S2	positive	seed_rep2	leaf_wu	9901	5263	0.345	
