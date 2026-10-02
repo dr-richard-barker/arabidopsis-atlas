@@ -1,0 +1,8 @@
+dataset	set	distinct_loci	median_span_agi_index	genes_covered_frac
+S2	leaf_wu	314	340	0.989
+S2	seed_rep1	241	460	0.992
+S2	seed_rep2	302	332	0.984
+S3	leaf_wu	412	310	0.987
+S3	leaf_zhu	1698	60	0.557
+S3	seed_rep1	295	348	0.99
+S3	seed_rep2	424	270	0.984

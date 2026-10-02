@@ -70,7 +70,7 @@ def export_loci():
             frames.append(sub)
         print(f"  {ds} ({mode}): {len(df):,} rows")
     loci = pd.concat(frames, ignore_index=True)
-    loci.to_csv(OUT / "naake_gwas_loci.csv.gz", index=False)
+    loci.to_csv(OUT / "naake_gwas_loci.csv.gz", index=False, compression={"method": "gzip", "mtime": 0})
     print(f"  -> naake_gwas_loci.csv.gz: {len(loci):,} set-locus records")
     print(loci.groupby(["dataset", "set"]).size().rename("records").to_string())
 
@@ -85,6 +85,10 @@ def export_annotated():
     mets = pd.concat([read_sheet("Table S1").assign(mode="negative"),
                       read_sheet("Table S2").assign(mode="positive")], ignore_index=True)
     mets.to_csv(OUT / "naake_annotated_metabolites.csv", index=False)
+    genes = read_sheet("Table S13")
+    genes = genes[genes["product_type"] == "protein_coding"]["locus_tag"].astype(str).str.split(".").str[0]
+    genes.drop_duplicates().sort_values().to_frame("agi").to_csv(OUT / "tair9_protein_coding.csv", index=False)
+    print(f"  -> tair9_protein_coding.csv: {genes.nunique()} genes (Naake Table S13)")
     print(f"  -> naake_annotated_qtl.csv: {len(qtl)} rows; naake_annotated_metabolites.csv: {len(mets)} rows")
 
 

@@ -35,7 +35,7 @@ Scripts 09–10 write tidy tables to `data/processed/metabolome/` (`naake_gwas_l
 
 ## Analyses and how to read them
 
-**A. Naake locus sharing** — `naake_set_combinations.tsv`, `naake_lod_concordance.tsv`,
+**A. Naake locus sharing** — `naake_set_combinations.tsv`, `naake_lod_concordance.tsv`, `naake_locus_span_coverage.tsv`,
 `plots/naake_set_combinations.png`. Each row of Naake's Supplemental Data Sets is one aligned
 locus for one feature pair; we count which sets map it at LOD ≥ 5.3 (Naake's Fig. 1G threshold).
 Our seed-replicate Spearman (0.526 neg / 0.509 pos) is close to the paper's 0.536 / 0.557; the
@@ -64,7 +64,8 @@ be compared at the accession level.
 
 ## What is not done
 
-- No genome-wide gene-overlap test: Naake's seed and leaf-Wu loci are wide (median ~2,000 AGI
-  indices) and together cover ~99% of protein-coding genes, so such a test would be uninformative.
+- No genome-wide gene-overlap test: at LOD ≥ 5.3 Naake's seed and leaf-Wu loci (median span
+  270–460 AGI indices per distinct locus) together cover 98–99% of protein-coding genes, so such a
+  test would be uninformative (`naake_locus_span_coverage.tsv`).
 - No accession-level seed analysis (anonymous seed sample IDs).
 - Nothing here is linked to spaceflight data yet; connecting these baselines to OSD-522 is future work.

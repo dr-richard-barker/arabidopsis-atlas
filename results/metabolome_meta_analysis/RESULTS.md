@@ -24,6 +24,18 @@ LOD concordance (Spearman of per-feature max LOD, all features rather than Naake
 | S2 | positive | seed_rep1 | leaf_wu | 12523 | 5958 | 0.308 |  |
 | S2 | positive | seed_rep2 | leaf_wu | 9901 | 5263 | 0.345 |  |
 
+Locus width and genome coverage at LOD ≥ 5.3 (protein-coding genes from Naake Table S13):
+
+| dataset | set | distinct_loci | median_span_agi_index | genes_covered_frac |
+|---|---|---|---|---|
+| S2 | leaf_wu | 314 | 340 | 0.989 |
+| S2 | seed_rep1 | 241 | 460 | 0.992 |
+| S2 | seed_rep2 | 302 | 332 | 0.984 |
+| S3 | leaf_wu | 412 | 310 | 0.987 |
+| S3 | leaf_zhu | 1698 | 60 | 0.557 |
+| S3 | seed_rep1 | 295 | 348 | 0.99 |
+| S3 | seed_rep2 | 424 | 270 | 0.984 |
+
 ## B. Wu 2018 control vs stress
 
 - 113 merged genomic regions from 261 condition×mode loci (LOD > 8)

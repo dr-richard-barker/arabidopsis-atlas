@@ -11,9 +11,8 @@ Run scripts 07, 09 and 10 first. Analyses:
      Spearman across shared accessions (BH-adjusted).
   E  Accession overlap, including the six arabidopsis-atlas ecotypes.
 
-Naake seed/leafWu loci are wide (median ~2,000 AGI indices) and jointly cover ~99% of genes, so a
-genome-wide gene-overlap test would be uninformative; all locus comparisons here are per feature or
-per metabolite.
+Naake seed/leafWu loci are wide (see naake_locus_span_coverage.tsv), so a genome-wide gene-overlap
+test would be uninformative; all locus comparisons here are per feature or per metabolite.
 """
 
 import argparse
@@ -102,6 +101,31 @@ def naake_sharing(naake, out):
         out / "naake_set_combinations.tsv", sep="\t", index=False)
     conc.to_csv(out / "naake_lod_concordance.tsv", sep="\t", index=False)
     return combos, conc
+
+
+def naake_span_coverage(naake, genes, out):
+    """Why no genome-wide gene-overlap test: how wide Naake loci are and how much of the genome they cover."""
+    by_chrom = {}
+    for g in genes.agi:
+        m = re.match(r"AT([1-5])G(\d{5})", g)
+        if m:
+            by_chrom.setdefault(int(m.group(1)), []).append(int(m.group(2)))
+    by_chrom = {c: np.array(sorted(v)) for c, v in by_chrom.items()}
+    total = sum(len(v) for v in by_chrom.values())
+    rows = []
+    for (ds, st), d in naake[naake.lod >= NAAKE_LOD].groupby(["dataset", "set"]):
+        u = d.drop_duplicates(["chrom", "agi_start", "agi_end"])
+        covered = set()
+        for c, a, b in u[["chrom", "agi_start", "agi_end"]].itertuples(index=False):
+            g = by_chrom.get(int(c))
+            if g is not None:
+                covered.update((c, x) for x in g[np.searchsorted(g, a):np.searchsorted(g, b, "right")])
+        rows.append({"dataset": ds, "set": st, "distinct_loci": len(u),
+                     "median_span_agi_index": int((u.agi_end - u.agi_start).median()),
+                     "genes_covered_frac": round(len(covered) / total, 3)})
+    df = pd.DataFrame(rows)
+    df.to_csv(out / "naake_locus_span_coverage.tsv", sep="\t", index=False)
+    return df
 
 
 # ---------- B: Wu control vs stress regions ----------
@@ -351,7 +375,7 @@ def plot_replication(rep, path):
 
 # ---------- main ----------
 
-def write_summary(combos, conc, regions, mlc, rep, acc, eco, path):
+def write_summary(combos, conc, span, regions, mlc, rep, acc, eco, path):
     def n_combo(ds, sets):
         c = " + ".join(SET_LABEL[s] for s in sets)
         r = combos[(combos.dataset == ds) & (combos.combination == c)]
@@ -368,6 +392,8 @@ def write_summary(combos, conc, regions, mlc, rep, acc, eco, path):
          f"- Negative mode, seed 1 + seed 2 only: {n_combo('S3', SET_ORDER[:2])}; positive mode: {n_combo('S2', SET_ORDER[:2])}", "",
          "LOD concordance (Spearman of per-feature max LOD, all features rather than Naake's core set):", "",
          md_table(conc), "",
+         f"Locus width and genome coverage at LOD ≥ {NAAKE_LOD} (protein-coding genes from Naake Table S13):", "",
+         md_table(span), "",
          "## B. Wu 2018 control vs stress", "",
          f"- {len(regions)} merged genomic regions from {regions.loci.str.count(';').add(1).sum()} condition×mode loci (LOD > 8)",
          f"- Condition-specific regions: {spec:.1%} "
@@ -401,7 +427,7 @@ def main():
     ap.parse_args()
     need = ["naake_gwas_loci.csv.gz", "naake_annotated_qtl.csv", "naake_annotated_metabolites.csv",
             "wu_gwas_loci.csv", "wu_identified_metabolites.csv", "wu_leaf_identified_long.csv",
-            "wu_accessions.csv", "darkness_metabolome.csv"]
+            "wu_accessions.csv", "darkness_metabolome.csv", "tair9_protein_coding.csv"]
     missing = [f for f in need if not (PROC / f).exists()]
     if missing:
         sys.exit(f"Missing {missing}; run scripts 07, 09 and 10 first.")
@@ -416,6 +442,7 @@ def main():
     zhu = pd.read_csv(PROC / "darkness_metabolome.csv")
 
     print("A  Naake locus sharing"); combos, conc = naake_sharing(naake, RES)
+    span = naake_span_coverage(naake, pd.read_csv(PROC / "tair9_protein_coding.csv"), RES)
     print("B  Wu control vs stress regions"); regions = wu_regions(wu_loci, RES)
     print("C  Same-metabolite locus concordance")
     mlc = metabolite_locus_concordance(pd.read_csv(PROC / "naake_annotated_qtl.csv"),
@@ -428,7 +455,7 @@ def main():
 
     plot_combinations(combos, PLOTS / "naake_set_combinations.png")
     plot_replication(rep, PLOTS / "leaf_accession_replication.png")
-    write_summary(combos, conc, regions, mlc, rep, acc, eco, RES / "RESULTS.md")
+    write_summary(combos, conc, span, regions, mlc, rep, acc, eco, RES / "RESULTS.md")
     print((RES / "RESULTS.md").read_text())
 
 
