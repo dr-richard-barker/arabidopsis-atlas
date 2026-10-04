@@ -168,14 +168,19 @@ Chew et al.'s \citeyearpar{Chew2014} whole-plant Framework Model, and BioOS
 effort -- are cited and linked as the real existing computational layer this visualization
 complements, not duplicates. NASA OSDR ingestion is generalized from the two studies already
 hardcoded to any real OSD accession, verified end-to-end against OSD-522
-\citep{OSD522} -- a study this repository's own limitations section had already flagged as
+\citep{OSD522,Olanrewaju2023} -- a study this repository's own limitations section had already flagged as
 real and relevant but unprocessed -- yielding \NumGenesOsdFiveTwoTwo{} genes and a top
 mean-CPM log2 ratio of \TopFoldChangeOsdFiveTwoTwo{} for \texttt{\TopGeneOsdFiveTwoTwo{}}
 between its real flight and ground sample groups. OSD-522's own protocol describes dissecting
 plants into root and shoot tissue for different assays, but its RNA-seq sample records
 carry no organism-part annotation in the metadata this repository could query -- so this
 comparison is reported as whole-study flight-vs-ground, explicitly not claimed as
-tissue-specific, rather than guessing which tissue the 12 sequenced samples are. A real
+tissue-specific, rather than guessing which tissue the 12 sequenced samples are. Its
+seedlings grew for 10 days in BRIC-LED hardware under 60~$\mu$mol~m$^{-2}$~s$^{-1}$ LED light
+on a 4~h light / 2~h dark cycle \citep{OSD522}; the BRIC hardware is a closed system with no
+gas exchange between the plants and the external environment \citep{Olanrewaju2023}, its Petri
+dish fixation units hermetically sealed apart from the air space inside them
+\citep{Nicholson2021}. A real
 architectural constraint was found,
 not assumed: NASA OSDR's API returns \texttt{Access-Control-Allow-Origin: osdr.nasa.gov} on
 every endpoint used, which a browser enforces against any other origin, so OSDR data reaches
