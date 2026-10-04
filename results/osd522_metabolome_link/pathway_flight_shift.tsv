@@ -1,0 +1,11 @@
+metabolite_class	gene_set	n_genes_in_set	n_tested	median_log2fc	median_wald_stat	n_up_fdr05	n_down_fdr05	p_mannwhitney	p_permutation	q_mannwhitney	q_permutation
+Glucosinolate	Wu reference pathway genes	166	144	-0.219	-1.179	1	18	1.369e-16	0.02814	1.369e-15	0.0469
+Glucosinolate	Wu GWAS-locus genes	539	389	0.014	0.055	22	7	0.5561	0.03463	0.6952	0.04947
+Flavonoid	Wu reference pathway genes	112	85	-0.142	-0.576	2	8	0.01013	0.02597	0.01688	0.0469
+Flavonoid	Wu GWAS-locus genes	116	73	-0.07	-0.351	3	7	0.01487	0.004329	0.02124	0.02165
+Phenylpropanoid	Wu reference pathway genes	93	71	-0.092	-0.237	0	8	0.001849	0.008658	0.003698	0.02165
+Phenylpropanoid	Wu GWAS-locus genes	406	272	0.114	0.589	16	7	1.098e-05	0.004329	3.661e-05	0.02165
+Amino acid	Wu reference pathway genes	631	533	-0.064	-0.476	4	44	4.626e-15	0.008658	2.313e-14	0.02165
+Amino acid	Wu GWAS-locus genes	125	91	0.054	0.303	5	6	0.7968	0.9481	0.7968	0.9481
+Amine	Wu reference pathway genes	203	195	-0.053	-0.358	3	7	0.001145	0.05844	0.002863	0.07305
+Amine	Wu GWAS-locus genes	89	66	-0.009	-0.009	2	1	0.7642	0.3658	0.7968	0.4064

@@ -68,4 +68,4 @@ be compared at the accession level.
   270–460 AGI indices per distinct locus) together cover 98–99% of protein-coding genes, so such a
   test would be uninformative (`naake_locus_span_coverage.tsv`).
 - No accession-level seed analysis (anonymous seed sample IDs).
-- Nothing here is linked to spaceflight data yet; connecting these baselines to OSD-522 is future work.
+- The link to the OSD-522 spaceflight transcriptome is in [`../osd522_metabolome_link/`](../osd522_metabolome_link/README.md) (script 12).
