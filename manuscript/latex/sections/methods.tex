@@ -17,9 +17,9 @@ trusted from a search snippet. Four NASA OSDR study accessions were confirmed li
 the OSDR metadata API before use; two (OSD-120, OSD-314) had already-fetched raw count
 matrices available (reused, with permission implicit in common ownership, from the sibling
 repository \texttt{arabidopsis-drem-osdr}, itself sourced from the same public, CC0 OSDR
-accessions) and were used quantitatively; two (OSD-38, OSD-522) are cited as confirmed,
-relevant, real studies but are not yet quantitatively integrated, and are documented as
-pending rather than fabricated.
+accessions) and were used quantitatively. OSD-522 \citep{OSD522,Olanrewaju2023} has since
+been integrated as well (see below). OSD-38 is cited as a confirmed, relevant, real study but
+is not yet quantitatively integrated, and is documented as pending rather than fabricated.
 
 \subsection{Spaceflight response quantification}
 For each of the two studies with available raw counts, samples were split into their real
@@ -34,6 +34,18 @@ no covariates (genotype, light treatment) were controlled for. The implementatio
 \texttt{scripts/01\_compute\_spaceflight\_response.py}; its output feeds
 \texttt{scripts/02\_export\_viewer\_data.py}, which derives the compact per-organ summary
 shown in the viewer, so no number reaching the viewer or this manuscript is hand-typed.
+
+OSD-522 is analysed with statistics rather than a mean ratio. Flight and ground groups (6
+each) and tissue (all plant shoots) are read from GeneLab's processing runsheet, not from
+sample names. PyDESeq2 is fit to GeneLab's unnormalised RSEM counts for genes with at least
+10 reads in total, contrasting flight with ground, with Benjamini--Hochberg FDR
+(\texttt{scripts/12\_link\_osd522.py}). Metabolite-pathway gene sets are tested by relabelling
+the 12 samples in all 924 possible 6-vs-6 ways, which keeps gene--gene correlation. The shoot
+proteome is two TMT 6-plex experiments (membrane and soluble fractions), each 3 flight vs 3
+ground; we use the provider's flight/ground log2 ratios and adjusted ANOVA $p$-values from the
+OSDR protein reports and map UniProt accessions to AGI loci through UniProt's Araport
+cross-references (\texttt{scripts/13\_osd522\_proteome.py}). With 3 vs 3, protein-level set
+results are descriptive.
 
 \subsection{Structural model}
 Organ geometry for the viewer (root system, rosette leaf, inflorescence axis, flower,

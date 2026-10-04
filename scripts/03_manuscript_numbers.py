@@ -37,6 +37,12 @@ def main():
     osd120 = pd.read_csv(PROCESSED / "OSD-120_root_flight_vs_ground_log2fc.csv", index_col=0)
     osd314 = pd.read_csv(PROCESSED / "OSD-314_seedling_microgravity_vs_1g_log2fc.csv", index_col=0)
     osd522 = pd.read_csv(PROCESSED / "OSD-522_flight_vs_ground_log2fc.csv", index_col=0)
+    # PyDESeq2 (script 12) and provider TMT protein statistics (script 13) for OSD-522 shoots
+    osd522_de = pd.read_csv(PROCESSED / "OSD-522_deseq2.csv")
+    osd522_sig = osd522_de[osd522_de["fdr"] < 0.05]
+    osd522_prot = pd.read_csv(PROCESSED / "OSD-522_proteome_shoot.csv")
+    osd522_prot_n = osd522_prot.groupby("fraction").size()
+    osd522_prot_sig = osd522_prot[osd522_prot["adj_p"] < 0.05].groupby("fraction").size()
 
     osd120_col = "log2fc_flight_vs_ground"
     osd314_col = "log2fc_microgravity_0g_vs_ground_1g"
@@ -63,6 +69,14 @@ def main():
         macro("NumGenesOsdFiveTwoTwo", f"{len(osd522):,}"),
         macro("TopFoldChangeOsdFiveTwoTwo", f"{osd522[osd522_col].max():.2f}"),
         macro("TopGeneOsdFiveTwoTwo", osd522[osd522_col].idxmax()),
+        macro("NumGenesTestedOsdFiveTwoTwo", f"{len(osd522_de):,}"),
+        macro("NumDeGenesOsdFiveTwoTwo", f"{len(osd522_sig):,}"),
+        macro("NumDeUpOsdFiveTwoTwo", f"{(osd522_sig['log2fc'] > 0).sum():,}"),
+        macro("NumDeDownOsdFiveTwoTwo", f"{(osd522_sig['log2fc'] < 0).sum():,}"),
+        macro("NumMemProteinsOsdFiveTwoTwo", f"{osd522_prot_n['MEM']:,}"),
+        macro("NumSolProteinsOsdFiveTwoTwo", f"{osd522_prot_n['SOL']:,}"),
+        macro("NumMemProteinsSigOsdFiveTwoTwo", f"{osd522_prot_sig['MEM']:,}"),
+        macro("NumSolProteinsSigOsdFiveTwoTwo", f"{osd522_prot_sig['SOL']:,}"),
     ]
 
     ecotype_descriptors = json.loads((ROOT / "app" / "src" / "data" / "ecotype_params.json").read_text())
