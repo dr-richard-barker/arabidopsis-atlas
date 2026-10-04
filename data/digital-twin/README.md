@@ -163,10 +163,10 @@ harvest as Zhu et al. state it (Methods, read from PMC11297995): 35 days after g
 0 d darkness sample and 41 for the 6 d sample, so every row sits at day 35 or 41 on the slider;
 `condition` is `<accession> / <timepoint>`. The plants grew under short days in a greenhouse,
 while the slider counts days after stratification for long-day Col-0 (Boyes 2001), so the slider
-position matches calendar age only: a 35-day short-day plant is not at the flowering stage the
-atlas shows for day 35. The upload list shows the 8 rows nearest the slider, i.e. an arbitrary
-handful of the ~17,000 rows at each age; use the rosette-leaf panel above for per-accession
-comparisons. Zhu et al. report 0 d and 6 d BLUPs for different metabolite subsets (63 and 74
+position matches calendar age only: by day 35 the atlas shows a flowering plant (Boyes 6.00,
+first flower open, day 31.8), and Zhu et al. report no developmental stage for theirs. The upload
+list shows the 8 rows nearest the slider, i.e. an arbitrary handful of the 16,317 (day 35) or
+19,166 (day 41) rows; use the rosette-leaf panel above for per-accession comparisons. Zhu et al. report 0 d and 6 d BLUPs for different metabolite subsets (63 and 74
 metabolites), so not every metabolite has both timepoints.
 
 The upload parser (`parseOverlayCsv`) follows RFC 4180: a field may be wrapped in double quotes
