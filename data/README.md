@@ -15,6 +15,11 @@ cite it in the viewer, the manuscript, or the README.
 | NASA OSDR OSD-38 | *A. thaliana* seedling proteomics (iTRAQ) + RNA-seq, spaceflight vs. ground control | Confirmed live via `osdr.nasa.gov/osdr/data/osd/meta/38` on 2026-09-18 | CC0, citation requested |
 | NASA OSDR OSD-314 | *A. thaliana* seedling RNA-seq, SpaceX-4/SpaceX-11, light × gravity gradient (1G/µG/0.34G) | Confirmed live via `osdr.nasa.gov/osdr/data/osd/meta/314` on 2026-09-18 | CC0, citation requested |
 | NASA OSDR OSD-522 | *A. thaliana* root+shoot proteomics + transcriptomics, ISS BRIC-LED | Confirmed live via `osdr.nasa.gov/osdr/data/osd/meta/522` on 2026-09-18 | CC0, citation requested |
+| OSD-522 GeneLab RSEM counts + runsheet; shoot TMT protein reports (SOL, MEM) | Inputs to scripts 12-13 | Fetched from the OSDR file API 2026-10-03/04; study DOI 10.26030/6z0a-kg61 confirmed via DataCite (Col-0, 10-day seedlings, BRIC-LED, per OSDR meta record) | CC0, citation requested |
+| Naake et al. 2024 supplement (Europe PMC PMC10904349) | Seed/leaf metabolite GWAS loci, annotated QTL, TAIR9 gene list | DOI 10.1093/plphys/kiad511 confirmed via CrossRef; fetch + SHA-256 in `raw/SUPPLEMENTARY_SOURCES.md` | Open access article; supplement not redistributed (git-ignored), derived tables only |
+| Wu et al. 2018 supplement (Elsevier CDN mmc1-11) | Leaf metabolite levels (control/stress), GWAS loci, reference pathway genes | DOI 10.1016/j.molp.2017.08.012 confirmed via CrossRef; fetch + SHA-256 in `raw/SUPPLEMENTARY_SOURCES.md` | Not open access; supplement not redistributed (git-ignored), derived tables only |
+| Zhu et al. 2024 Figshare BLUPs + identities | Leaf darkness metabolome, 259 accessions | DOI 10.1038/s41597-024-03694-2 confirmed via CrossRef; Figshare 24407896 / 24407812 | CC BY 4.0 (Sci Data) |
+| UniProt REST (Araport cross-references) | UniProt accession -> AGI mapping for OSD-522 proteins | Live queries 2026-10-04, release 2026_03, cached in `processed/OSD-522_uniprot_agi.csv` | CC BY 4.0 |
 
 ## Explicitly not used
 

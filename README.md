@@ -1,5 +1,9 @@
 # Arabidopsis Atlas
 
+**Live:** [3D atlas](https://dr-richard-barker.github.io/arabidopsis-atlas/) ·
+[Metabolome × spaceflight showcase](https://dr-richard-barker.github.io/arabidopsis-atlas/metabolome.html) ·
+[growth animation](https://dr-richard-barker.github.io/arabidopsis-atlas/growth.html)
+
 An interactive, organ-selectable 3D atlas of *Arabidopsis thaliana*, built so that every
 piece of it — geometry, gene expression, spaceflight response — traces to a real, cited
 source. No placeholder data, no invented numbers.
@@ -61,6 +65,54 @@ modest Blender use) — see `manuscript/figures/col0_showcase.png` /
 `ler_showcase.png`. This is a separate showcase asset, not part of the interactive
 viewer, which stays fully parametric so ecotype-switching keeps working.
 
+## Metabolome × spaceflight (v3)
+
+NASA OSDR holds no plant metabolomics, so this layer links what natural-variation metabolome
+studies know on the ground to what was measured in flight:
+
+- **Three terrestrial panels.** Naake et al. 2024 (seed metabolite GWAS, with leaf sets
+  re-mapped on one pipeline), Wu et al. 2018 (leaf metabolites under control and stress, with
+  GWAS loci), and Zhu et al. 2024 (leaf metabolites before and after six days of darkness).
+  Script 11 compares their loci per feature and per metabolite, and tests whether accession
+  rankings replicate between the two leaf experiments.
+- **OSD-522 link.** For Col-0 shoots flown on the ISS (BRIC-LED), script 12 runs PyDESeq2 on
+  GeneLab's counts and tests Wu's metabolite-class pathway genes with a sample-label
+  permutation test; script 13 adds the shoot TMT proteome (soluble and membrane fractions).
+- **In the atlas.** Select the rosette leaf: the panel shows each class's flight transcript
+  and protein shift, and where the chosen ecotype sits in the terrestrial panels (script 14).
+- **Showcase page.** [`metabolome.html`](https://dr-richard-barker.github.io/arabidopsis-atlas/metabolome.html),
+  rendered by script 15 from the results files, so every number on it traces to an output.
+
+Headline findings, with numbers in
+[`results/metabolome_meta_analysis/RESULTS.md`](results/metabolome_meta_analysis/RESULTS.md),
+[`results/osd522_metabolome_link/RESULTS.md`](results/osd522_metabolome_link/RESULTS.md) and
+[`PROTEOME.md`](results/osd522_metabolome_link/PROTEOME.md):
+same-metabolite leaf loci overlap seed loci far more than chance; baseline accession rankings
+replicate between independent leaf experiments; glucosinolate, flavonoid, phenylpropanoid and
+amino-acid pathway transcripts all fall in flight; protein and transcript changes are
+uncorrelated overall, with glucosinolate proteins following their transcripts down and
+amino-acid pathway proteins moving the other way. Caveats (transcript direction ≠ metabolite
+pool direction; lit hardware, so flight ≠ darkness; developmental-stage differences; 3 vs 3
+proteomics) are in each results README.
+
+### Pipeline
+
+| Script | Does | Writes |
+|---|---|---|
+| `07_fetch_darkness_metabolome.py`, `08_…` | Zhu 2024 Figshare BLUPs | `data/processed/metabolome/darkness_*` |
+| `09_integrate_naake_seed_metabolome.py` | Naake 2024 loci, annotated QTL, TAIR9 genes | `data/processed/metabolome/naake_*`, `tair9_*` |
+| `10_integrate_wu_environmental_metabolome.py` | Wu 2018 levels and loci | `data/processed/metabolome/wu_*` |
+| `11_cross_tissue_gwas_analysis.py` | cross-tissue comparison | `results/metabolome_meta_analysis/` |
+| `12_link_osd522.py` | OSD-522 DESeq2 + pathway tests + metabolite bridge | `data/processed/OSD-522_deseq2.csv`, `results/osd522_metabolome_link/` |
+| `13_osd522_proteome.py` | OSD-522 shoot proteome | `data/processed/OSD-522_proteome_shoot.csv`, `PROTEOME.md` |
+| `14_export_metabolome_twin.py` | atlas panel data | `app/src/data/metabolome_spaceflight.json` |
+| `15_build_showcase.py` | showcase page | `app/public/metabolome.html` |
+
+Third-party supplements are git-ignored; `fetch` commands and checksums are in
+[`data/raw/SUPPLEMENTARY_SOURCES.md`](data/raw/SUPPLEMENTARY_SOURCES.md). Column definitions for
+every processed table: [`data/processed/DATA_DICTIONARY.md`](data/processed/DATA_DICTIONARY.md).
+Python needs `pandas`, `numpy`, `scipy`, `matplotlib`, `openpyxl`, `xlrd` and `pydeseq2`.
+
 ## Status
 
 This repository is under active construction. Rather than claim a finished product before
@@ -84,6 +136,9 @@ it exists, here's exactly where it stands:
       `data/processed/` and `app/src/organs.ts`, never hand-typed
 - [x] ABAI review gate (`.abai/attest.json`) — clear verdict on file, re-checked after
       the manuscript was added
+- [x] Metabolome × spaceflight layer (scripts 07–15): three natural-variation metabolome
+      panels, OSD-522 transcriptome + proteome link, rosette-leaf panel, CoSE-themed showcase
+      page; each push cleared by the ABAI gate
 - [ ] Zenodo deposit (manual step, done last)
 
 ## Running it locally

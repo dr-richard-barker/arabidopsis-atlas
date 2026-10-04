@@ -1,0 +1,354 @@
+{
+ "generated_by": "scripts/14_export_metabolome_twin.py",
+ "osd": "OSD-522",
+ "classes": [
+  "Glucosinolate",
+  "Flavonoid",
+  "Phenylpropanoid",
+  "Amino acid",
+  "Amine"
+ ],
+ "n_wu_control_accessions": 301,
+ "n_zhu_accessions": 259,
+ "transcript_protein_spearman": {
+  "MEM": 0.038,
+  "SOL": -0.033
+ },
+ "flight": {
+  "Glucosinolate": {
+   "rna_median_log2fc": -0.219,
+   "rna_q_permutation": 0.0469,
+   "rna_n": 144,
+   "rna_up": 1,
+   "rna_down": 18,
+   "protein": {
+    "MEM": {
+     "median_log2fc": -0.145,
+     "n": 76,
+     "up": 19,
+     "down": 28
+    },
+    "SOL": {
+     "median_log2fc": -0.16,
+     "n": 86,
+     "up": 7,
+     "down": 25
+    }
+   }
+  },
+  "Flavonoid": {
+   "rna_median_log2fc": -0.142,
+   "rna_q_permutation": 0.0469,
+   "rna_n": 85,
+   "rna_up": 2,
+   "rna_down": 8,
+   "protein": {
+    "MEM": {
+     "median_log2fc": 0.0,
+     "n": 21,
+     "up": 5,
+     "down": 3
+    },
+    "SOL": {
+     "median_log2fc": -0.045,
+     "n": 26,
+     "up": 1,
+     "down": 1
+    }
+   }
+  },
+  "Phenylpropanoid": {
+   "rna_median_log2fc": -0.092,
+   "rna_q_permutation": 0.0216,
+   "rna_n": 71,
+   "rna_up": 0,
+   "rna_down": 8,
+   "protein": {
+    "MEM": {
+     "median_log2fc": 0.32,
+     "n": 17,
+     "up": 7,
+     "down": 3
+    },
+    "SOL": {
+     "median_log2fc": -0.1,
+     "n": 24,
+     "up": 0,
+     "down": 2
+    }
+   }
+  },
+  "Amino acid": {
+   "rna_median_log2fc": -0.064,
+   "rna_q_permutation": 0.0216,
+   "rna_n": 533,
+   "rna_up": 4,
+   "rna_down": 44,
+   "protein": {
+    "MEM": {
+     "median_log2fc": 0.12,
+     "n": 278,
+     "up": 67,
+     "down": 41
+    },
+    "SOL": {
+     "median_log2fc": 0.055,
+     "n": 346,
+     "up": 26,
+     "down": 31
+    }
+   }
+  },
+  "Amine": {
+   "rna_median_log2fc": -0.053,
+   "rna_q_permutation": 0.0731,
+   "rna_n": 195,
+   "rna_up": 3,
+   "rna_down": 7,
+   "protein": {
+    "MEM": {
+     "median_log2fc": -0.1,
+     "n": 69,
+     "up": 10,
+     "down": 18
+    },
+    "SOL": {
+     "median_log2fc": -0.06,
+     "n": 89,
+     "up": 1,
+     "down": 10
+    }
+   }
+  }
+ },
+ "ecotypes": {
+  "col0": {
+   "wu_accession_name": "Col-0",
+   "accession_id": "ecotype.6909",
+   "in_wu_control": true,
+   "in_zhu": false,
+   "classes": {
+    "Glucosinolate": {
+     "wu_control_pct_median": 36.5,
+     "wu_n_metabolites": 27,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Flavonoid": {
+     "wu_control_pct_median": 73.1,
+     "wu_n_metabolites": 11,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Phenylpropanoid": {
+     "wu_control_pct_median": 57.0,
+     "wu_n_metabolites": 6,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Amino acid": {
+     "wu_control_pct_median": 17.6,
+     "wu_n_metabolites": 17,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Amine": {
+     "wu_control_pct_median": 52.2,
+     "wu_n_metabolites": 5,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    }
+   }
+  },
+  "ler": {
+   "wu_accession_name": "Ler-1",
+   "accession_id": "ecotype.6932",
+   "in_wu_control": true,
+   "in_zhu": true,
+   "classes": {
+    "Glucosinolate": {
+     "wu_control_pct_median": 43.0,
+     "wu_n_metabolites": 24,
+     "zhu_dark_response_pct_median": 9.8,
+     "zhu_n_metabolites": 2
+    },
+    "Flavonoid": {
+     "wu_control_pct_median": 57.5,
+     "wu_n_metabolites": 11,
+     "zhu_dark_response_pct_median": 42.5,
+     "zhu_n_metabolites": 5
+    },
+    "Phenylpropanoid": {
+     "wu_control_pct_median": 74.3,
+     "wu_n_metabolites": 6,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Amino acid": {
+     "wu_control_pct_median": 57.5,
+     "wu_n_metabolites": 17,
+     "zhu_dark_response_pct_median": 17.6,
+     "zhu_n_metabolites": 4
+    },
+    "Amine": {
+     "wu_control_pct_median": 79.0,
+     "wu_n_metabolites": 5,
+     "zhu_dark_response_pct_median": 64.9,
+     "zhu_n_metabolites": 1
+    }
+   }
+  },
+  "ws": {
+   "wu_accession_name": "Ws-0",
+   "accession_id": "ecotype.6980",
+   "in_wu_control": true,
+   "in_zhu": true,
+   "classes": {
+    "Glucosinolate": {
+     "wu_control_pct_median": 37.5,
+     "wu_n_metabolites": 23,
+     "zhu_dark_response_pct_median": 34.6,
+     "zhu_n_metabolites": 2
+    },
+    "Flavonoid": {
+     "wu_control_pct_median": 30.9,
+     "wu_n_metabolites": 11,
+     "zhu_dark_response_pct_median": 83.0,
+     "zhu_n_metabolites": 5
+    },
+    "Phenylpropanoid": {
+     "wu_control_pct_median": 51.1,
+     "wu_n_metabolites": 6,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Amino acid": {
+     "wu_control_pct_median": 57.5,
+     "wu_n_metabolites": 17,
+     "zhu_dark_response_pct_median": 89.2,
+     "zhu_n_metabolites": 4
+    },
+    "Amine": {
+     "wu_control_pct_median": 36.0,
+     "wu_n_metabolites": 5,
+     "zhu_dark_response_pct_median": 56.8,
+     "zhu_n_metabolites": 1
+    }
+   }
+  },
+  "cvi0": {
+   "wu_accession_name": "Cvi-0",
+   "accession_id": "ecotype.6911",
+   "in_wu_control": true,
+   "in_zhu": true,
+   "classes": {
+    "Glucosinolate": {
+     "wu_control_pct_median": 78.1,
+     "wu_n_metabolites": 26,
+     "zhu_dark_response_pct_median": 66.0,
+     "zhu_n_metabolites": 2
+    },
+    "Flavonoid": {
+     "wu_control_pct_median": 33.6,
+     "wu_n_metabolites": 9,
+     "zhu_dark_response_pct_median": 51.0,
+     "zhu_n_metabolites": 5
+    },
+    "Phenylpropanoid": {
+     "wu_control_pct_median": 20.1,
+     "wu_n_metabolites": 6,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Amino acid": {
+     "wu_control_pct_median": 38.2,
+     "wu_n_metabolites": 17,
+     "zhu_dark_response_pct_median": 98.5,
+     "zhu_n_metabolites": 4
+    },
+    "Amine": {
+     "wu_control_pct_median": 21.6,
+     "wu_n_metabolites": 5,
+     "zhu_dark_response_pct_median": 90.7,
+     "zhu_n_metabolites": 1
+    }
+   }
+  },
+  "tsu0": {
+   "wu_accession_name": "Tsu-0",
+   "accession_id": "ecotype.7373",
+   "in_wu_control": true,
+   "in_zhu": true,
+   "classes": {
+    "Glucosinolate": {
+     "wu_control_pct_median": 17.3,
+     "wu_n_metabolites": 23,
+     "zhu_dark_response_pct_median": 36.3,
+     "zhu_n_metabolites": 2
+    },
+    "Flavonoid": {
+     "wu_control_pct_median": 12.0,
+     "wu_n_metabolites": 11,
+     "zhu_dark_response_pct_median": 84.6,
+     "zhu_n_metabolites": 5
+    },
+    "Phenylpropanoid": {
+     "wu_control_pct_median": 24.8,
+     "wu_n_metabolites": 6,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Amino acid": {
+     "wu_control_pct_median": 10.3,
+     "wu_n_metabolites": 17,
+     "zhu_dark_response_pct_median": 18.5,
+     "zhu_n_metabolites": 4
+    },
+    "Amine": {
+     "wu_control_pct_median": 6.3,
+     "wu_n_metabolites": 5,
+     "zhu_dark_response_pct_median": 35.1,
+     "zhu_n_metabolites": 1
+    }
+   }
+  },
+  "edi0": {
+   "wu_accession_name": "Edi-0",
+   "accession_id": "ecotype.6914",
+   "in_wu_control": true,
+   "in_zhu": true,
+   "classes": {
+    "Glucosinolate": {
+     "wu_control_pct_median": 66.2,
+     "wu_n_metabolites": 24,
+     "zhu_dark_response_pct_median": 25.3,
+     "zhu_n_metabolites": 2
+    },
+    "Flavonoid": {
+     "wu_control_pct_median": 79.4,
+     "wu_n_metabolites": 11,
+     "zhu_dark_response_pct_median": 46.7,
+     "zhu_n_metabolites": 5
+    },
+    "Phenylpropanoid": {
+     "wu_control_pct_median": 70.2,
+     "wu_n_metabolites": 6,
+     "zhu_dark_response_pct_median": null,
+     "zhu_n_metabolites": 0
+    },
+    "Amino acid": {
+     "wu_control_pct_median": 78.4,
+     "wu_n_metabolites": 17,
+     "zhu_dark_response_pct_median": 50.6,
+     "zhu_n_metabolites": 4
+    },
+    "Amine": {
+     "wu_control_pct_median": 72.4,
+     "wu_n_metabolites": 5,
+     "zhu_dark_response_pct_median": 6.2,
+     "zhu_n_metabolites": 1
+    }
+   }
+  }
+ }
+}

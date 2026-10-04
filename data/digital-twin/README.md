@@ -135,28 +135,32 @@ this) uses `GC-`/`FT-` instead -- different studies really do name their sample 
 differently, so `compare` requires the real substrings as explicit input rather than
 guessing a pattern that happens to work for one study and silently mis-groups another.
 
-## Zhu et al. 2024 darkness-induced metabolome -- a terrestrial baseline for metabolic stress
+## Natural-variation metabolome x OSD-522 (rosette-leaf panel)
 
-**Zhu, F., Wijesingha Ahchige, M., ... Fernie, A.R. (2024). "The natural variance of
-Arabidopsis secondary metabolism on extended darkness." *Nat. Sci. Data* 11, 841.**
-https://doi.org/10.1038/s41597-024-03694-2
+Selecting the **rosette leaf** shows a "Metabolome x spaceflight (OSD-522)" section
+(`app/src/MetabolomeSpaceflightPanel.tsx`). For each of five metabolite classes defined by
+Wu et al. 2018's reference gene lists it shows: the OSD-522 flight shift of those genes'
+transcripts (DESeq2; permutation-tested set q) and proteins (provider TMT statistics,
+descriptive); the selected ecotype's median percentile among Wu et al.'s control-leaf
+accessions; and its darkness-response percentile among Zhu et al. 2024's accessions where it is
+in that panel (Col-0 is not). Atlas Ler uses Ler-0 morphology, but Wu's panel has only Ler-1;
+the panel says so.
 
-Real, processed data fetched via `scripts/07_fetch_darkness_metabolome.py`:
-- 259 Arabidopsis HapMap accessions × 95 secondary metabolites × 2 timepoints (0d baseline, 6d extended darkness)
-- Metabolite BLUP-normalized intensities (batch-corrected, QC-validated)
-- Metabolite identities: names, classes (amino acids, phenylpropanoids, flavonoids, steroids, terpenoids), retention times
-- Exported as: `data/processed/metabolome/darkness_metabolome_digital_twin.csv` (format: gene_or_label, day, value, condition)
+All values are baked at build time into `app/src/data/metabolome_spaceflight.json` by
+`scripts/14_export_metabolome_twin.py` from the outputs of scripts 07-13. Methods, caveats and
+numbers: `results/metabolome_meta_analysis/README.md` and
+`results/osd522_metabolome_link/README.md`; showcase page: `metabolome.html` on the Pages site.
 
-**Honest scope:** This is a visualization/integration layer, not a re-analysis of the Zhu et al. GWAS or a
-reimplementation of their metabolite annotation pipeline. The data is linked as-published; the atlas's
-digital-twin panel lets a viewer browse metabolite shifts across the 259 accessions at the slider's chosen timepoint.
+Sources (DOIs checked against CrossRef/DataCite): Zhu F, Ahchige MW, et al. 2024, *Sci Data*
+11:841, doi:10.1038/s41597-024-03694-2 (darkness BLUPs, fetched by
+`scripts/07_fetch_darkness_metabolome.py`); Wu S, Tohge T, et al. 2018, *Mol Plant* 11:118-134,
+doi:10.1016/j.molp.2017.08.012; Naake T, Zhu F, et al., *Plant Physiol* 194:1705-1721,
+doi:10.1093/plphys/kiad511; OSD-522, doi:10.26030/6z0a-kg61.
 
-**Why it matters for this atlas:** OSD-522 (spaceflight transcriptomics) showed **illumination perfectly
-separates all six Arabidopsis spaceflight studies** — lit conditions positive (flight shows photosynthesis↑),
-dark conditions negative (flight shows carbon starvation effects). The Zhu et al. dataset is a complementary
-terrestrial baseline for darkness-induced secondary-metabolite shifts, measured across natural genetic variation
-in the same species. Together with OSD-522, this allows testing "What does the darkness-induced *metabolome*
-look like, and how does genetic variation shape it?" — a "pre-flight" prediction task before expensive ISS experiments.
+The darkness BLUPs can also still be loaded through the upload box as
+`data/processed/metabolome/darkness_metabolome_digital_twin.csv`. Zhu et al. report 0 d and 6 d
+BLUPs for different metabolite subsets (63 and 74 metabolites), so not every metabolite has both
+timepoints.
 
 ## Rule
 

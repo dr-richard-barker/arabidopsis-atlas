@@ -10,6 +10,7 @@ import {
   nearestPoints,
   type OverlayDataset,
 } from "./digitalTwin";
+import { MetabolomeSpaceflightPanel } from "./MetabolomeSpaceflightPanel";
 import "./app.css";
 
 const TRAVA_URL = "https://travadb.org";
@@ -140,7 +141,7 @@ function DigitalTwinPanel({ organId }: { organId: string }) {
   );
 }
 
-function OrganInfo({ organ }: { organ: Organ }) {
+function OrganInfo({ organ, ecotype }: { organ: Organ; ecotype: EcotypeParams }) {
   return (
     <div className="organ-info">
       <h2>{organ.label}</h2>
@@ -177,6 +178,7 @@ function OrganInfo({ organ }: { organ: Organ }) {
       )}
 
       <DigitalTwinPanel organId={organ.id} />
+      {organ.id === "rosette_leaf" && <MetabolomeSpaceflightPanel ecotype={ecotype} />}
     </div>
   );
 }
@@ -255,6 +257,7 @@ export default function App() {
           <a href="https://github.com/dr-richard-barker/rice-atlas" target="_blank" rel="noreferrer">rice-atlas</a>
           {" "}— see the <a href="https://github.com/dr-richard-barker/arabidopsis-atlas#readme" target="_blank" rel="noreferrer">README</a> for what's actually real data here vs. simplified geometry.
           {" "}Also see the <a href="growth.html">seed-to-flowering growth animation →</a>
+          {" "}and the <a href="metabolome.html">metabolome × spaceflight showcase →</a>
         </p>
         <EcotypePicker value={ecotype} onChange={handleEcotypeChange} />
       </header>
@@ -263,7 +266,7 @@ export default function App() {
         <aside className="sidebar">
           <EcotypeInfo ecotype={ecotype} />
           {selected ? (
-            <OrganInfo organ={selected} />
+            <OrganInfo organ={selected} ecotype={ecotype} />
           ) : (
             <div className="welcome">
               <p>No organ selected. Click any part of the plant.</p>

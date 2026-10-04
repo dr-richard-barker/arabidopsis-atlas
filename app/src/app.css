@@ -89,3 +89,21 @@ html, body, #root { height: 100%; margin: 0; }
 .overlay-points li { padding: 0.15rem 0; border-bottom: 1px solid #1c241d; }
 .day-gap-ok { color: #7fd4a0; }
 .day-gap-warning { color: #e0c07d; }
+
+.metabolome-panel { margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid #263028; }
+.metabolome-panel h3 { font-size: 0.95rem; margin-bottom: 0.25rem; }
+.metabolome-panel .met-intro, .metabolome-panel .met-note, .metabolome-panel .met-foot { font-size: 0.75rem; color: #8b9a85; line-height: 1.45; }
+.metabolome-panel .met-note { color: #c3cfbd; }
+.metabolome-panel .met-foot a { color: #7fd4a0; }
+.met-classes { list-style: none; margin: 0.5rem 0; padding: 0; }
+.met-class { padding: 0.5rem 0; border-top: 1px solid #1f2820; }
+.met-class h4 { margin: 0 0 0.25rem; font-size: 0.82rem; color: #e8ede5; }
+.met-line { margin: 0.15rem 0; font-size: 0.74rem; color: #c3cfbd; line-height: 1.4; }
+.met-key { display: block; color: #8b9a85; font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.03em; margin-top: 0.3rem; }
+.met-line .up { color: #7fd4a0; font-family: ui-monospace, monospace; }
+.met-line .down { color: #e08a7d; font-family: ui-monospace, monospace; }
+.met-line .muted, .met-line.muted { color: #6f7d6a; }
+.pct-bar { position: relative; height: 10px; margin: 0.15rem 0 0.35rem; }
+.pct-track { position: absolute; inset: 4px 0; height: 2px; background: #263028; border-radius: 1px; }
+.pct-mid { position: absolute; left: 50%; top: 1px; width: 1px; height: 8px; background: #3a463b; }
+.pct-marker { position: absolute; top: 0; width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: #7fd4a0; border: 2px solid #131a14; }

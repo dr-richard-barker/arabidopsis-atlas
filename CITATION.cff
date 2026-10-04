@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this software or data, please cite it as below."
-title: "Arabidopsis Atlas: a FAIR, literature-grounded interactive structural and expression atlas of Arabidopsis thaliana"
+title: "Arabidopsis Atlas: a FAIR, literature-grounded interactive structural, expression and metabolome atlas of Arabidopsis thaliana"
 type: software
 authors:
   - given-names: Richard
@@ -16,7 +16,57 @@ keywords:
   - NASA GeneLab
   - OSDR
   - 3D visualization
+  - metabolomics
+  - GWAS
+  - natural variation
+  - proteomics
 license: MIT
 repository-code: "https://github.com/dr-richard-barker/arabidopsis-atlas"
-version: "0.1.0"
-date-released: "2026-09-18"
+version: "0.2.0"
+date-released: "2026-10-04"
+url: "https://dr-richard-barker.github.io/arabidopsis-atlas/"
+references:
+  - type: article
+    title: "Genome-wide association studies identify loci controlling specialized seed metabolites in Arabidopsis"
+    authors:
+      - family-names: Naake
+        given-names: Thomas
+      - name: "et al."
+    journal: "Plant Physiology"
+    year: 2024
+    volume: 194
+    issue: 3
+    start: 1705
+    end: 1721
+    doi: "10.1093/plphys/kiad511"
+  - type: article
+    title: "Mapping the Arabidopsis Metabolic Landscape by Untargeted Metabolomics at Different Environmental Conditions"
+    authors:
+      - family-names: Wu
+        given-names: Si
+      - name: "et al."
+    journal: "Molecular Plant"
+    year: 2018
+    volume: 11
+    issue: 1
+    start: 118
+    end: 134
+    doi: "10.1016/j.molp.2017.08.012"
+  - type: article
+    title: "The natural variance of Arabidopsis secondary metabolism on extended darkness"
+    authors:
+      - family-names: Zhu
+        given-names: Feng
+      - name: "et al."
+    journal: "Scientific Data"
+    year: 2024
+    volume: 11
+    start: 841
+    doi: "10.1038/s41597-024-03694-2"
+  - type: dataset
+    title: "OSD-522: Integrative Transcriptomics and Proteomics Profiling of Arabidopsis thaliana Elucidates Novel Mechanisms Underlying Spaceflight Adaptation"
+    authors:
+      - name: "NASA GeneLab"
+    year: 2024
+    doi: "10.26030/6z0a-kg61"
+    url: "https://osdr.nasa.gov/bio/repo/data/studies/OSD-522"
