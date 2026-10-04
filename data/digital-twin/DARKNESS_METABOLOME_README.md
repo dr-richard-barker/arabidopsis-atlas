@@ -69,8 +69,10 @@ No metabolite biosynthetic modeling runs in this viewer; results are visualized,
 Both NASA OSDR flight studies below grew Col-0 seedlings in sealed Biological Research in
 Canisters (BRIC) hardware; they differ in light. Light and hardware details are read from the
 OSDR study records (`osdr.nasa.gov/osdr/data/osd/meta/<n>`, checked 2026-10-04). The OSD-38
-record describes its PDFUs as individually sealed; the OSD-522 record does not use the word, and
-its sealed classification comes from the sibling study's hardware table (`T12_ladder_contrasts.tsv`).
+record describes its PDFUs as individually sealed. For OSD-522, the study's own paper says the
+BRIC hardware "is a closed system, hence no gas exchange between the plant and the external
+environment" (Olanrewaju GO, Haveman NJ, Naldrett MJ, Paul A-L, Ferl RJ, Wyatt SE 2023,
+*Front. Plant Sci.* 14:1260429, doi:10.3389/fpls.2023.1260429).
 
 - **OSD-522 (BRIC-LED-001), lit.** 10 days on the ISS under LEDs at 60 µmol m⁻² s⁻¹ (85 % red,
   15 % blue) on a 4 h light / 2 h dark cycle; the record says lighting "could not be maintained
