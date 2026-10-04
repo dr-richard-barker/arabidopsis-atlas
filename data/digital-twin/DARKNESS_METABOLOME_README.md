@@ -64,13 +64,36 @@ Real existing work this complements (not duplicates):
 
 No metabolite biosynthetic modeling runs in this viewer; results are visualized, not recomputed.
 
-## Cross-reference to OSD-522
+## Cross-reference to OSD-522 and OSD-38
 
-OSD-522 (BRIC-LED-001) transcriptomics was run under **lit conditions** (constant light, ISS/spaceflight). The Zhu et al. dataset is all under **darkness** (0d baseline, 6d extended darkness). The two datasets complement each other:
+Both NASA OSDR flight studies below grew Col-0 seedlings in sealed Biological Research in
+Canisters (BRIC) hardware; they differ in light. Light and hardware details are read from the
+OSDR study records (`osdr.nasa.gov/osdr/data/osd/meta/<n>`, checked 2026-10-04). The OSD-38
+record describes its PDFUs as individually sealed; the OSD-522 record does not use the word, and
+its sealed classification comes from the sibling study's hardware table (`T12_ladder_contrasts.tsv`).
 
-- OSD-522 light: Flight shows photosynthesis ↑, photorespiration ↓ (log2FC = -0.096 to -0.116)
-- Zhu et al. dark: 6d darkness induces secondary metabolite shifts matching carbon starvation/senescence
-- Together: "What does the darkness-induced metabolome look like, and how does it map to spaceflight (where gravity loss + closed-canister CO₂ starvation both reduce photosynthesis)?"
+- **OSD-522 (BRIC-LED-001), lit.** 10 days on the ISS under LEDs at 60 µmol m⁻² s⁻¹ (85 % red,
+  15 % blue) on a 4 h light / 2 h dark cycle; the record says lighting "could not be maintained
+  longer than 4 hours at a time". Ground controls were grown on Earth. This is the study scripts
+  12-13 link to the metabolome (`results/osd522_metabolome_link/`).
+- **OSD-38 (BRIC-20), dark.** BRIC-PDFU hardware with individually sealed Petri Dish Fixation
+  Units and no electrical power; OSDR annotates the growth condition as "continuous dark (no
+  light) regimen". This atlas cites OSD-38 but has not processed it.
+
+Zhu et al. sampled leaves at 0 d and after 6 d of extended darkness, which they describe as
+causing "the cessation of photosynthesis and nutrient starvation"; their related GWAS covers
+dark-induced senescence (Zhu et al. 2021, *Plant Cell* 34:557-578, doi:10.1093/plcell/koab251).
+So OSD-38, not OSD-522, is the flight study whose plants were in darkness. OSD-522 compares
+flight with ground under the same lit, sealed hardware, and the link in
+`results/osd522_metabolome_link/` asks whether its flight transcript shifts resemble the
+terrestrial darkness or stress responses, not whether flight was dark.
+
+For OSD-522 the sealed canister also matters. The sibling hardware-atmosphere study
+([Photorespiration_multiomics_microgravity](https://github.com/dr-richard-barker/Photorespiration_multiomics_microgravity))
+models a lit sealed canister drawing CO₂ down in flight and ground arms alike, so the drawdown
+largely cancels out of flight versus ground, leaving a modelled 5-9 % assimilation deficit in
+flight. Those are model outputs, not measurements in OSD-522, and the model is for a lit canister,
+so it makes no prediction for dark OSD-38.
 
 ## MANIFEST entry
 
