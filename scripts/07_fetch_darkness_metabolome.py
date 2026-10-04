@@ -16,14 +16,17 @@ Both files are downloadable Excel workbooks. This script:
 1. Downloads both from Figshare (via direct download URLs from the API)
 2. Parses metabolite identities (Met.X → putative name, class, RT)
 3. Parses BLUP-normalized intensities (259 accessions at 0d and 6d darkness)
-4. Exports to CSV format compatible with arabidopsis-atlas's digital-twin data overlay:
-   - One row per metabolite per accession per timepoint (accession as "day" → maps to growth-stage slider in UI)
-   - Columns: metabolite_id, metabolite_name, accession, timepoint, intensity, metabolite_class
+4. Exports one row per metabolite per accession per timepoint:
+   - darkness_metabolome.csv: metabolite_id, metabolite_name, accession, accession_idx,
+     timepoint, intensity, metabolite_class
+   - darkness_metabolome_digital_twin.csv: the upload format of the digital-twin panel
+     (gene_or_label, day, value, condition)
 5. Generates a provenance ledger (data/digital-twin/DARKNESS_METABOLOME_README.md)
 
-The digital-twin panel expects: gene_or_label, day, value, condition (optional).
-We map: metabolite_name="gene_or_label", accession_index="day", intensity="value", timepoint="condition".
-This lets the UI slider (normally for growth stage) sweep across accessions instead.
+Upload-format mapping: metabolite_name -> gene_or_label, intensity -> value,
+"<accession> / <timepoint>" -> condition, and day = the plants' age at harvest as Zhu et al.
+state it (PLANT_AGE_DAYS below), not the accession index. `export-twin` rewrites only the
+upload file from darkness_metabolome.csv, without downloading anything.
 """
 
 import sys
@@ -45,6 +48,14 @@ ARTICLE_IDENTITIES = 24407812
 # Output paths (relative to repo root)
 OUTPUT_DIR = Path(__file__).parent.parent / "data" / "processed" / "metabolome"
 MANIFEST_FILE = Path(__file__).parent.parent / "MANIFEST.tsv"
+
+# Plant age at harvest, in days after germination. Zhu et al. 2024 Methods ("Plant material
+# and sample preparation", read from PMC11297995): plants grew on soil under short days in a
+# greenhouse for 5 weeks; "At 35-days after germination, one plant of each accession was
+# harvested (0 days)" and another plant of each accession 6 d later. The atlas slider counts
+# days after stratification for long-day Col-0 (Boyes 2001), so these ages place the rows on
+# the slider by calendar age only, not by matched developmental stage.
+PLANT_AGE_DAYS = {"0d darkness": 35, "6d darkness": 41}
 
 
 def _get_json(url: str) -> dict:
@@ -186,7 +197,10 @@ def export_to_csv(data_points: list[dict], out_path: Path) -> Path:
 
 
 def export_digital_twin_csv(data_points: list[dict], out_path: Path) -> Path:
-    """Export in digital-twin CSV format: gene_or_label, day, value, condition."""
+    """Export in digital-twin CSV format: gene_or_label, day, value, condition.
+
+    day is the plant age at harvest (PLANT_AGE_DAYS); the accession goes in condition.
+    """
     out_path.parent.mkdir(parents=True, exist_ok=True)
 
     import csv
@@ -199,9 +213,9 @@ def export_digital_twin_csv(data_points: list[dict], out_path: Path) -> Path:
         for p in data_points:
             writer.writerow({
                 "gene_or_label": p["metabolite_name"],
-                "day": p["accession_idx"],
+                "day": PLANT_AGE_DAYS[p["timepoint"]],
                 "value": p["intensity"],
-                "condition": p["timepoint"],
+                "condition": f'{p["accession"]} / {p["timepoint"]}',
             })
 
     print(f"  Exported {len(data_points)} rows to digital-twin format at {out_path}", file=sys.stderr)
@@ -238,10 +252,14 @@ def update_digital_twin_readme(data_points_count: int) -> None:
 The `arabidopsis-atlas` digital-twin panel (`app/src/digitalTwin.ts`) accepts CSV data in a standard format:
 ```
 gene_or_label,day,value,condition
-<metabolite_name>,<accession_index>,<BLUP_intensity>,<timepoint>
+<metabolite_name>,<plant age at harvest: 35 or 41>,<BLUP_intensity>,<accession> / <timepoint>
 ```
 
-The UI slider (normally for growth stage 0-45 days) sweeps across accession indices instead, showing which accessions have the largest metabolite shifts between 0d and 6d darkness.
+`day` is the plants' age at harvest in days after germination as Zhu et al. state it (35 d for the
+0 d darkness sample, 41 d for the 6 d sample). The atlas slider counts days after stratification for
+long-day Col-0 (Boyes 2001), while these plants grew under short days, so a slider position matches
+calendar age only, not developmental stage. Per-accession comparisons are in the rosette-leaf
+"Metabolome x spaceflight" panel.
 
 ## Honest scope statement
 
@@ -282,8 +300,15 @@ def main():
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     sub.add_parser("fetch", help="Download Figshare files and process darkness metabolome data")
+    sub.add_parser("export-twin", help="Rewrite the digital-twin upload CSV from darkness_metabolome.csv (offline)")
 
     args = parser.parse_args()
+
+    if args.cmd == "export-twin":
+        import csv
+        with open(OUTPUT_DIR / "darkness_metabolome.csv", newline="") as f:
+            rows = list(csv.DictReader(f))
+        export_digital_twin_csv(rows, OUTPUT_DIR / "darkness_metabolome_digital_twin.csv")
 
     if args.cmd == "fetch":
         print("Fetching darkness metabolome data from Figshare...", file=sys.stderr)

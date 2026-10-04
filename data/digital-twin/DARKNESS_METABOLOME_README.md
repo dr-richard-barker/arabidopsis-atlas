@@ -26,26 +26,30 @@
    - Scroll to the "Digital twin data overlay" panel
    - Click "Upload your own data (CSV: gene_or_label, day, value, condition)"
    - Select `data/processed/metabolome/darkness_metabolome_digital_twin.csv`
-   - The UI slider (0-45 normally for growth stage) now sweeps across accession indices (1-259)
-   - For each accession, you'll see all 95 metabolites and their intensities
-   - The condition filter shows "0d darkness" (baseline) or "6d darkness" (stress response)
+   - Every row sits at day 35 or 41 on the slider (see below); the list shows the 8 rows
+     nearest the slider, so it is a sample of the ~17,000 rows at that age, not a ranking
+   - For per-accession comparisons use the rosette leaf's "Metabolome x spaceflight (OSD-522)"
+     panel, which is built from these BLUPs by scripts 08-14
 
-2. **Data format understood by the panel:**
+2. **Data format understood by the panel** (rewrite it offline with
+   `python3 scripts/07_fetch_darkness_metabolome.py export-twin`):
 ```
 gene_or_label,day,value,condition
-<metabolite_name>,<accession_index>,<BLUP_intensity>,<timepoint>
-Ornithine,1,-0.238,0d darkness
-alpha-D-Galacturonic acid 1-phosphate,1,-1.017,0d darkness
-(D-Glycero-alpha-D-Manno-Heptopyranosyl)-Dihydrogenphosphate,1,-0.238,0d darkness
+<metabolite_name>,<plant age at harvest: 35 or 41>,<BLUP_intensity>,<accession> / <timepoint>
+(D-Glycero-alpha-D-Manno-Heptopyranosyl)-Dihydrogenphosphate,35,-0.238167999,ecotype.173 / 0d darkness
+"Glutamic acid, N-acetyl-",35,-0.368642303,ecotype.173 / 0d darkness
 ...
 ```
+   Names containing commas are double-quoted (RFC 4180); the panel's parser handles this.
 
 3. **Interpreting the results:**
-   - Slider "day" = HapMap accession index (1-259, NOT a growth day)
-   - Each accession has metabolite data at two timepoints (0d, 6d)
-   - Positive value = metabolite MORE abundant at 6d darkness (upregulated)
-   - Negative value = metabolite LESS abundant at 6d darkness (downregulated)
-   - Large shifts indicate metabolites most responsive to darkness stress
+   - `day` = plant age at harvest in days after germination, as Zhu et al. state it (Methods,
+     read from PMC11297995): 35 d for the 0 d darkness sample, 41 d for the 6 d sample
+   - These plants grew under short days in a greenhouse; the slider counts days after
+     stratification for long-day Col-0 (Boyes 2001). The slider position matches calendar age
+     only, not developmental stage
+   - `value` is the BLUP at that timepoint for that accession, not a 6 d - 0 d shift; a darkness
+     response is the difference between an accession's 41-day and 35-day rows
 
 ## Honest scope statement
 

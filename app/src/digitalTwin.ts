@@ -88,17 +88,72 @@ const MAX_DAY = GROWTH_STAGES[GROWTH_STAGES.length - 1].day;
 export const GROWTH_STAGES_DAY_RANGE = { min: MIN_DAY, max: MAX_DAY } as const;
 
 /**
+ * RFC 4180 record splitter: fields may be wrapped in double quotes, a quoted field may
+ * contain commas, CR/LF and doubled quotes ("" -> "), and records end at CRLF or LF.
+ * Python's csv module (which writes scripts/07's export) quotes exactly these cases, so a
+ * plain split(",") mis-parses names like "Glutamic acid, N-acetyl-". Returns each record
+ * with the 1-based physical line it starts on, so error messages point at the file.
+ * Blank lines are dropped. A leading UTF-8 BOM (Excel's CSV export) is ignored.
+ */
+export function splitCsvRecords(text: string): { fields: string[]; line: number }[] {
+  const records: { fields: string[]; line: number }[] = [];
+  let fields: string[] = [];
+  let field = "";
+  let inQuotes = false;
+  let line = 1;
+  let recordLine = 1;
+  const endRecord = () => {
+    fields.push(field);
+    if (fields.length > 1 || fields[0].trim().length > 0) records.push({ fields, line: recordLine });
+    fields = [];
+    field = "";
+  };
+  const start = text.charCodeAt(0) === 0xfeff ? 1 : 0;
+  for (let i = start; i < text.length; i++) {
+    const c = text[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (text[i + 1] === '"') {
+          field += '"';
+          i++;
+        } else {
+          inQuotes = false;
+        }
+      } else {
+        if (c === "\n") line++;
+        field += c;
+      }
+    } else if (c === '"') {
+      inQuotes = true;
+    } else if (c === ",") {
+      fields.push(field);
+      field = "";
+    } else if (c === "\r" || c === "\n") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      endRecord();
+      line++;
+      recordLine = line;
+    } else {
+      field += c;
+    }
+  }
+  if (field.length > 0 || fields.length > 0) endRecord();
+  return records;
+}
+
+/**
  * Parses a user-supplied CSV entirely client-side (no upload to any server, consistent
  * with this repo's static-Pages architecture): required columns gene_or_label, day, value;
- * optional condition. Malformed rows are REPORTED, not silently coerced or dropped without
- * a trace -- an empty dataset from a bad file should never look identical to "no data."
+ * optional condition. Quoted fields follow RFC 4180 (see splitCsvRecords). Malformed rows
+ * are REPORTED, not silently coerced or dropped without a trace -- an empty dataset from a
+ * bad file should never look identical to "no data."
  */
 export function parseOverlayCsv(text: string, datasetName: string): CsvParseResult {
-  const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);
-  if (lines.length < 2) {
+  const records = splitCsvRecords(text);
+  if (records.length < 2) {
     return { dataset: null, errors: ["File has no data rows (need a header plus at least one row)."], rowsAccepted: 0, rowsRejected: 0 };
   }
-  const header = lines[0].split(",").map((h) => h.trim().toLowerCase());
+  const header = records[0].fields.map((h) => h.trim().toLowerCase());
   const idxLabel = header.indexOf("gene_or_label");
   const idxDay = header.indexOf("day");
   const idxValue = header.indexOf("value");
@@ -115,9 +170,9 @@ export function parseOverlayCsv(text: string, datasetName: string): CsvParseResu
   const points: OverlayDataPoint[] = [];
   const errors: string[] = [];
   let rejected = 0;
-  for (let i = 1; i < lines.length; i++) {
-    const cols = lines[i].split(",");
-    const rowNum = i + 1;
+  for (let i = 1; i < records.length; i++) {
+    const cols = records[i].fields;
+    const rowNum = records[i].line;
     const label = cols[idxLabel]?.trim();
     const day = Number(cols[idxDay]);
     const value = Number(cols[idxValue]);
