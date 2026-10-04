@@ -1,0 +1,3 @@
+fraction	genes_matched	spearman_rho_all	proteins_adj_p05	rna_same_sign	sign_binom_p	both_significant	both_same_sign
+MEM	3587	0.038	1662	893	0.002542	182	103
+SOL	3153	-0.033	407	251	2.875e-06	40	20

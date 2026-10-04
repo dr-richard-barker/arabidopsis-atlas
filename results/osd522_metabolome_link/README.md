@@ -1,19 +1,22 @@
-# OSD-522 spaceflight transcriptome × terrestrial metabolome baselines
+# OSD-522 spaceflight transcriptome and proteome × terrestrial metabolome baselines
 
 Links the natural-variation metabolome studies in
 [`../metabolome_meta_analysis/`](../metabolome_meta_analysis/README.md) to NASA OSDR
 [OSD-522](https://osdr.nasa.gov/bio/repo/data/studies/OSD-522) (BRIC-LED-001): *A. thaliana*
 Col-0 seedlings grown 10 days on the ISS in BRIC-LED hardware, shoots, 6 flight vs 6 ground
-controls. Numbers for the current run are in [RESULTS.md](RESULTS.md).
+controls. Numbers for the current run are in [RESULTS.md](RESULTS.md) (transcriptome) and
+[PROTEOME.md](PROTEOME.md) (proteome).
 
 **Scope.** No metabolite was measured in flight; OSDR holds no plant metabolomics. Every link
-here is at the transcript level: do the genes behind each metabolite class, as defined by
-Wu et al. 2018, shift in the flight transcriptome? The terrestrial studies then say what
+here is at the gene level: do the genes behind each metabolite class, as defined by
+Wu et al. 2018, shift in the flight transcriptome and proteome? The terrestrial studies then say what
 those metabolites do in the flown genotype (Col-0) and under darkness or stress.
 
 ```bash
 python3 scripts/12_link_osd522.py fetch     # GeneLab RSEM counts + runsheet from OSDR
 python3 scripts/12_link_osd522.py analyze   # needs scripts 07, 09, 10, 11 outputs
+python3 scripts/13_osd522_proteome.py fetch     # shoot protein reports (SOL, MEM) from OSDR
+python3 scripts/13_osd522_proteome.py analyze   # needs script 12 outputs
 ```
 
 ## Methods
@@ -38,13 +41,28 @@ python3 scripts/12_link_osd522.py analyze   # needs scripts 07, 09, 10, 11 outpu
   and of Zhu (6 d − 0 d darkness), for metabolites matched in script 11; and the flight fold
   change of that metabolite's own GWAS-locus genes and its class's pathway genes.
 
+- **Proteome** (script 13). OSDR's shoot protein reports are two TMT 6-plex experiments —
+  soluble (SOL) and membrane (MEM) fractions — each 3 flight vs 3 ground "in triplicates", with
+  the provider's flight/ground log2 ratio and ANOVA p-values (OSD-522 ISA protocol text). We use
+  the provider's statistics; the script checks they agree with log2(mean flight / mean ground) of
+  the normalized channel abundances and reports the Spearman in PROTEOME.md. UniProt accessions
+  are mapped to AGI through UniProt's Araport cross-references, cached in
+  `data/processed/OSD-522_uniprot_agi.csv` with the UniProt release; proteins mapping to more than
+  one AGI are left out of gene-level comparisons. With 3 vs 3 there are only 20 relabellings, so
+  no permutation test is possible; protein set results are descriptive, with an
+  anti-conservative Mann-Whitney for reference.
+
 ## Files
 
 | File | Content |
 |---|---|
 | `pathway_flight_shift.tsv` / `.png` | set tests per class. In the plot, x is the median Wald statistic and a filled marker means permutation BH q < 0.05; the permutation test uses the mean, so a set near zero can still be filled. |
 | `metabolite_flight_bridge.tsv` | one row per Wu identified metabolite |
-| `RESULTS.md` | run summary with all numbers |
+| `RESULTS.md` | transcriptome run summary with all numbers |
+| `proteome_transcript_concordance.tsv` | per fraction: transcript–protein Spearman, and sign agreement for significant proteins |
+| `proteome_pathway_shift.tsv` | per fraction × class: protein median log2 ratio, significant up/down counts, transcript median for the same genes |
+| `proteome_vs_transcript.png` | dumbbell of the previous table: transcript vs protein median for the same detected genes |
+| `PROTEOME.md` | proteome run summary with all numbers |
 
 ## Caveats
 
@@ -52,6 +70,8 @@ python3 scripts/12_link_osd522.py analyze   # needs scripts 07, 09, 10, 11 outpu
   transcript shifts resemble a terrestrial stress response, not whether flight is dark.
 - Transcript change in a biosynthetic pathway does not fix the direction of metabolite pool
   size; for example, free amino acids can rise from protein breakdown while synthesis genes fall.
+- Proteomics is 3 vs 3 per fraction and relies on the provider's ANOVA; treat protein-level
+  set results as descriptive.
 - Wu's stress condition is not specified in the abstract we could access. Class-level Zhu
   darkness values rest on 0–5 metabolites per class.
 - Developmental stage differs: the flight plants were 10-day seedlings (OSDR protocol), while

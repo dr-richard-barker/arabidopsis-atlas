@@ -1,0 +1,11 @@
+fraction	metabolite_class	proteins_detected	median_protein_log2fc	n_up_adj_p05	n_down_adj_p05	median_rna_log2fc_same_genes	p_mannwhitney	q_mannwhitney
+MEM	Glucosinolate	76	-0.145	19	28	-0.267	0.1501	0.3753
+MEM	Flavonoid	21	0	5	3	-0.244	0.3503	0.5838
+MEM	Phenylpropanoid	17	0.32	7	3	-0.352	0.2619	0.5238
+MEM	Amino acid	278	0.12	67	41	-0.115	3.445e-07	3.445e-06
+MEM	Amine	69	-0.1	10	18	-0.083	0.5925	0.8464
+SOL	Glucosinolate	86	-0.16	7	25	-0.246	0.01723	0.05742
+SOL	Flavonoid	26	-0.045	1	1	-0.352	0.7541	0.859
+SOL	Phenylpropanoid	24	-0.1	0	2	-0.27	0.7731	0.859
+SOL	Amino acid	346	0.055	26	31	-0.108	4.908e-06	2.454e-05
+SOL	Amine	89	-0.06	1	10	-0.082	0.9218	0.9218
