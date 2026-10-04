@@ -72,7 +72,13 @@ OSDR study records (`osdr.nasa.gov/osdr/data/osd/meta/<n>`, checked 2026-10-04).
 record describes its PDFUs as individually sealed. For OSD-522, the study's own paper says the
 BRIC hardware "is a closed system, hence no gas exchange between the plant and the external
 environment" (Olanrewaju GO, Haveman NJ, Naldrett MJ, Paul A-L, Ferl RJ, Wyatt SE 2023,
-*Front. Plant Sci.* 14:1260429, doi:10.3389/fpls.2023.1260429).
+*Front. Plant Sci.* 14:1260429, doi:10.3389/fpls.2023.1260429). Nicholson et al., who designed
+an insert for both BRIC-PDFU and BRIC-LED sample compartments, note that apart from the air space
+trapped inside, the PDFUs "are otherwise hermetically sealed" (Nicholson WL, Fajardo-Cavazos P,
+Turner C, Currie TM, Gregory G, Jurca T, Weislogel M 2021, *Front. Space Technol.* 2:797518,
+doi:10.3389/frspt.2021.797518). For ISS biology hardware more broadly see the review by
+Kanapskyte A, Hawkins EM, Liddell LC, Bhardwaj SR, Gentry D, Santa Maria SR 2021, *Biosensors*
+11:38, doi:10.3390/bios11020038; it does not discuss BRIC.
 
 - **OSD-522 (BRIC-LED-001), lit.** 10 days on the ISS under LEDs at 60 µmol m⁻² s⁻¹ (85 % red,
   15 % blue) on a 4 h light / 2 h dark cycle; the record says lighting "could not be maintained
