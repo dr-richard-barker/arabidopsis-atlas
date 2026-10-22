@@ -56,7 +56,11 @@ within a chromosome — an approximation of physical overlap.
 `zhu_wu_metabolite_matches.tsv`, `plots/leaf_accession_replication.png`. Zhu and Wu metabolites
 matched one-to-one (formula, then name, then retention time); Spearman across shared
 accessions, BH-adjusted. Zhu reports 0 d and 6 d BLUPs for different metabolite subsets and Wu
-detects some metabolites in one condition only, so each comparison has its own n.
+detects some metabolites in one condition only, so each comparison has its own n. Wu values use one
+ion mode per metabolite (`scripts/wu_modes.py`): the two modes sit on different intensity levels, so
+mixing them within a column or across stress − control is not like for like. The stress-response
+comparison skips metabolites with no ion mode shared by both conditions and names that Wu Table 2
+lists on two rows (D-Galactonic acid, Guanosine 2':3'-cyclic monophosphate).
 
 **E. Accession overlap** — `accession_overlap.tsv`, `atlas_ecotype_coverage.tsv`, including the
 six arabidopsis-atlas ecotypes. Seed peak tables use anonymous sample IDs, so seed data cannot

@@ -8,7 +8,8 @@ Run scripts 07, 09 and 10 first. Analyses:
   C  Same-metabolite locus concordance: Naake annotated seed/leaf QTL vs Wu leaf QTL for the metabolite
      matched by formula + retention time.
   D  Leaf accession replication: Zhu darkness vs Wu leaf levels for metabolites matched across studies,
-     Spearman across shared accessions (BH-adjusted).
+     Spearman across shared accessions (BH-adjusted). Wu values use one ion mode per metabolite and
+     stress responses skip metabolites that cannot be paired like for like (scripts/wu_modes.py).
   E  Accession overlap, including the six arabidopsis-atlas ecotypes.
 
 Naake seed/leafWu loci are wide (see naake_locus_span_coverage.tsv), so a genome-wide gene-overlap
@@ -27,6 +28,7 @@ from scipy.stats import spearmanr
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from gwas_loci import parse_agi_span, spans_overlap  # noqa: E402
+from wu_modes import stress_minus_control  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 PROC = ROOT / "data" / "processed" / "metabolome"
@@ -235,13 +237,10 @@ def match_zhu_wu(zi, wu_ident):
     return pd.DataFrame(keep)[["metabolite_id", "name", "metabolite_name", "formula", "drt", "name_match", "metabolite_class"]]
 
 
-def leaf_replication(zhu, wu_long, pairs, out):
+def leaf_replication(zhu, wu_long, wu_ident, pairs, out):
     zw = zhu.pivot_table(index=["metabolite_id", "accession"], columns="timepoint", values="intensity")
     zw.columns = ["d0" if c.startswith("0") else "d6" for c in zw.columns]
-    wl = wu_long.copy()
-    wl["pref"] = (wl["mode"] == "negative").astype(int)
-    wl = wl.sort_values("pref").drop_duplicates(["metabolite_name", "accession", "condition"], keep="last")
-    ww = wl.pivot_table(index=["metabolite_name", "accession"], columns="condition", values="intensity")
+    ww = stress_minus_control(wu_long, wu_ident)
     rows = []
     for p in pairs.itertuples():
         try:
@@ -251,12 +250,12 @@ def leaf_replication(zhu, wu_long, pairs, out):
             continue
         # Zhu reports BLUPs per timepoint for different metabolite subsets, and Wu detects some
         # metabolites in one condition only, so each comparison uses whatever pairs exist.
-        j = a.join(b, how="inner").reindex(columns=["d0", "d6", "control", "stress"])
+        j = a.join(b, how="inner").reindex(columns=["d0", "d6", "control", "stress", "delta"])
         rec = {"zhu_id": p.metabolite_id, "zhu_name": p.name, "wu_name": p.metabolite_name,
                "class": p.metabolite_class, "formula": p.formula, "abs_drt_min": round(p.drt, 2),
                "name_match": p.name_match}
         for lab, x, y in [("d0_vs_control", j.d0, j.control), ("d6_vs_control", j.d6, j.control),
-                          ("d6_vs_stress", j.d6, j.stress), ("dark_resp_vs_stress_resp", j.d6 - j.d0, j.stress - j.control)]:
+                          ("d6_vs_stress", j.d6, j.stress), ("dark_resp_vs_stress_resp", j.d6 - j.d0, j.delta)]:
             ok = x.notna() & y.notna()
             rec[f"n_{lab}"] = int(ok.sum())
             if ok.sum() >= MIN_ACC:
@@ -450,7 +449,7 @@ def main():
     print("D  Leaf accession replication")
     pairs = match_zhu_wu(zhu_identities(), wu_ident)
     pairs.to_csv(RES / "zhu_wu_metabolite_matches.tsv", sep="\t", index=False)
-    rep = leaf_replication(zhu, wu_long, pairs, RES)
+    rep = leaf_replication(zhu, wu_long, wu_ident, pairs, RES)
     print("E  Accession overlap"); acc, eco = accession_overlap(zhu, wu_long, wu_acc, RES)
 
     plot_combinations(combos, PLOTS / "naake_set_combinations.png")

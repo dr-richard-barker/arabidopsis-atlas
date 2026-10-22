@@ -17,7 +17,7 @@ the `ecotype.N` form shared by Zhu, Wu and Naake (1001 Genomes / HapMap ecotype 
 | `tair9_protein_coding.csv` | 09 | protein-coding gene (Naake Table S13, TAIR9) | `agi` |
 | `wu_accessions.csv` | 10 | accession (Wu Supp. Table 1) | `no`, `accession`, `abrc` (stock ID), `accession_name` |
 | `wu_identified_metabolites.csv` | 10 | identified metabolite (Wu Supp. Table 2) | peak IDs per condition × mode (`PC_`, `NC_`, `PS_`, `NS_`), `mz_pos`, `mz_neg`, `rt` (min), `formula`, `metabolite_class`, `metabolite_name`, `alias`, `id_level` (A–D) |
-| `wu_leaf_identified_long.csv` | 10 | identified metabolite × accession × condition × mode (Wu Supp. Table 3) | `metabolite_name`, `accession`, `intensity` (normalized, as published), `condition` (`control`/`stress`), `mode` |
+| `wu_leaf_identified_long.csv` | 10 | identified metabolite × accession × condition × mode (Wu Supp. Table 3) | `metabolite_name`, `accession`, `intensity` (normalized, as published), `condition` (`control`/`stress`), `mode`. Some metabolites appear in both ion modes, on different intensity levels; analyses take one mode per metabolite through `scripts/wu_modes.py` |
 | `wu2016_primary_metabolites.csv` | 16 | GC-MS metabolite (Wu 2016 S2 Table) | `metabolite_id` (`met01`…), `metabolite_name`, `metabolite_class` (as published, capitalised), `quant_mass` |
 | `wu2016_primary_long.csv` | 16 | metabolite × accession (Wu 2016 S1 Dataset) | `metabolite_id`, `metabolite_name`, `metabolite_class`, `accession`, `value` (normalized as published, centred near 0); ecotype.6046 left out (listed twice with different values) |
 | `wu2016_accessions.csv` | 16 | accession (Wu 2016 S1 Table) | `no`, `accession`, `abrc`, `accession_name`, `duplicated_in_source` |

@@ -14,7 +14,8 @@ Links (no metabolite was measured in flight; OSDR has no plant metabolomics):
   2. Metabolite bridge table: for each Wu identified metabolite, Col-0's percentile in Wu's
      panel (Col-0 is the flown ecotype), the Wu stress response, the Zhu darkness response
      (metabolites matched in script 11), and the flight shift of that metabolite's own GWAS-locus
-     genes and of its class's pathway genes.
+     genes and of its class's pathway genes. Wu values use one ion mode per metabolite, and the
+     stress response is left blank where it cannot be paired like for like (scripts/wu_modes.py).
 
 Outputs: data/processed/OSD-522_deseq2.csv, results/osd522_metabolome_link/*
 """
@@ -28,6 +29,9 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 from scipy.stats import binomtest, mannwhitneyu
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from wu_modes import stress_minus_control  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw"
@@ -199,9 +203,7 @@ def pathway_tests(res, ref, gw, perm, out):
 # ---------- 3. metabolite bridge ----------
 
 def bridge(res, ident, wu_long, zhu, matches, per_met, ref, out):
-    wl = wu_long.assign(pref=(wu_long["mode"] == "negative").astype(int)).sort_values("pref")
-    wl = wl.drop_duplicates(["metabolite_name", "accession", "condition"], keep="last")
-    ww = wl.pivot_table(index=["metabolite_name", "accession"], columns="condition", values="intensity")
+    ww = stress_minus_control(wu_long, ident)
     zw = zhu.pivot_table(index=["metabolite_id", "accession"], columns="timepoint", values="intensity")
     zw.columns = ["d0" if c.startswith("0") else "d6" for c in zw.columns]
     zid = dict(zip(matches.metabolite_name, matches.metabolite_id))
@@ -216,8 +218,8 @@ def bridge(res, ident, wu_long, zhu, matches, per_met, ref, out):
                 if cond in w and COL0 in w.index and pd.notna(w.loc[COL0, cond]):
                     col = w[cond].dropna()
                     rec[f"col0_percentile_{cond}"] = round(float((col < w.loc[COL0, cond]).mean() * 100), 1)
-            if {"control", "stress"} <= set(w.columns):
-                d = (w.stress - w.control).dropna()
+            if w.delta.notna().any():
+                d = w.delta.dropna()
                 if len(d) >= 20:
                     rec.update(wu_stress_median_delta=round(float(d.median()), 3),
                                wu_stress_frac_up=round(float((d > 0).mean()), 3), wu_paired_n=len(d))

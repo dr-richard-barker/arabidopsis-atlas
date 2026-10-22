@@ -39,7 +39,10 @@ python3 scripts/13_osd522_proteome.py analyze   # needs script 12 outputs
 - **Metabolite bridge** (`metabolite_flight_bridge.tsv`). For each Wu identified metabolite:
   Col-0's percentile among Wu accessions; the median across accessions of Wu (stress − control)
   and of Zhu (6 d − 0 d darkness), for metabolites matched in script 11; and the flight fold
-  change of that metabolite's own GWAS-locus genes and its class's pathway genes.
+  change of that metabolite's own GWAS-locus genes and its class's pathway genes. Wu values use
+  one ion mode per metabolite (`scripts/wu_modes.py`); the stress response is blank where control
+  and stress share no ion mode or where Wu Table 2 lists the name on two rows. Those duplicated
+  names also give the table two rows each.
 
 - **Proteome** (script 13). OSDR's shoot protein reports are two TMT 6-plex experiments —
   soluble (SOL) and membrane (MEM) fractions — each 3 flight vs 3 ground "in triplicates", with

@@ -22,6 +22,8 @@ LINK = ROOT / "results" / "osd522_metabolome_link"
 META = ROOT / "results" / "metabolome_meta_analysis"
 OUT = ROOT / "app" / "src" / "data" / "metabolome_spaceflight.json"
 
+from wu_modes import one_mode  # noqa: E402  (scripts/ is on sys.path when this file runs)
+
 spec = importlib.util.spec_from_file_location("link12", Path(__file__).with_name("12_link_osd522.py"))
 link12 = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(link12)
@@ -59,8 +61,8 @@ def main():
                        "rna_n": int(r.n_tested), "rna_up": int(r.n_up_fdr05), "rna_down": int(r.n_down_fdr05),
                        "protein": prot}
 
-    wl = wl.assign(pref=(wl["mode"] == "negative").astype(int)).sort_values("pref")
-    ctrl = wl[wl.condition == "control"].drop_duplicates(["metabolite_name", "accession"], keep="last")
+    wl = one_mode(wl)
+    ctrl = wl[wl.condition == "control"]
     ctrl = ctrl.pivot_table(index="accession", columns="metabolite_name", values="intensity")
     cls_of = {m: link12.CLASS_MAP.get(c) for m, c in zip(ident.metabolite_name, ident.metabolite_class)}
 

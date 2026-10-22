@@ -129,8 +129,8 @@
    "in_zhu": false,
    "classes": {
     "Glucosinolate": {
-     "wu_control_pct_median": 36.5,
-     "wu_n_metabolites": 27,
+     "wu_control_pct_median": 36.7,
+     "wu_n_metabolites": 26,
      "zhu_dark_response_pct_median": null,
      "zhu_n_metabolites": 0
     },
@@ -167,7 +167,7 @@
    "in_zhu": true,
    "classes": {
     "Glucosinolate": {
-     "wu_control_pct_median": 43.0,
+     "wu_control_pct_median": 41.8,
      "wu_n_metabolites": 24,
      "zhu_dark_response_pct_median": 9.8,
      "zhu_n_metabolites": 2
@@ -205,8 +205,8 @@
    "in_zhu": true,
    "classes": {
     "Glucosinolate": {
-     "wu_control_pct_median": 37.5,
-     "wu_n_metabolites": 23,
+     "wu_control_pct_median": 36.7,
+     "wu_n_metabolites": 22,
      "zhu_dark_response_pct_median": 34.6,
      "zhu_n_metabolites": 2
     },
@@ -223,7 +223,7 @@
      "zhu_n_metabolites": 0
     },
     "Amino acid": {
-     "wu_control_pct_median": 57.5,
+     "wu_control_pct_median": 54.2,
      "wu_n_metabolites": 17,
      "zhu_dark_response_pct_median": 89.2,
      "zhu_n_metabolites": 4
@@ -243,8 +243,8 @@
    "in_zhu": true,
    "classes": {
     "Glucosinolate": {
-     "wu_control_pct_median": 78.1,
-     "wu_n_metabolites": 26,
+     "wu_control_pct_median": 78.3,
+     "wu_n_metabolites": 25,
      "zhu_dark_response_pct_median": 66.0,
      "zhu_n_metabolites": 2
     },
@@ -299,7 +299,7 @@
      "zhu_n_metabolites": 0
     },
     "Amino acid": {
-     "wu_control_pct_median": 10.3,
+     "wu_control_pct_median": 9.6,
      "wu_n_metabolites": 17,
      "zhu_dark_response_pct_median": 18.5,
      "zhu_n_metabolites": 4
@@ -319,8 +319,8 @@
    "in_zhu": true,
    "classes": {
     "Glucosinolate": {
-     "wu_control_pct_median": 66.2,
-     "wu_n_metabolites": 24,
+     "wu_control_pct_median": 65.4,
+     "wu_n_metabolites": 23,
      "zhu_dark_response_pct_median": 25.3,
      "zhu_n_metabolites": 2
     },

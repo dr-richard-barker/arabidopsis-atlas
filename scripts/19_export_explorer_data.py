@@ -19,12 +19,9 @@ Classes are as published, with two Wu 2018 typos fixed ("Glocoside", "Amino acid
 a class for three metabolites only; the rest take the class of a linked Wu 2018 or Wu 2016 feature,
 else "Unclassified".
 
-Wu 2018 reports some metabolites in both ion modes, and intensities from the two modes are on different
-scales (7-methylthioheptyl glucosinolate: control positive-mode median 16.7, stress negative-mode 26.0).
-So one mode is chosen per metabolite, never per accession: a mode measured in both conditions (negative
-first), else each condition's own mode with `modeSplit` set, and the page leaves those out of stress deltas.
-Scripts 11 and 12 instead prefer negative mode per accession and condition, which mixes modes for about
-20 metabolites; their stress deltas differ from the ones the page computes.
+Wu 2018 values use one ion mode per metabolite (scripts/wu_modes.py, shared with scripts 11, 12 and
+14). Features with no mode shared by both conditions carry `modeSplit`, and the page leaves them and
+`splitRows` features out of stress deltas, matching `wu_modes.stress_unpaired`.
 Wu 2018 Table 2 lists two names on two rows each (D-Galactonic acid with formulas C6H10O7 and C6H12O7;
 Guanosine 2':3'-cyclic monophosphate at two retention times), so their control and stress values can
 come from different peaks. Those features carry `splitRows` and the page leaves them out of stress deltas.
@@ -40,6 +37,8 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+
+from wu_modes import mode_split, one_mode  # noqa: E402  (scripts/ is on sys.path when this file runs)
 
 ROOT = Path(__file__).resolve().parent.parent
 PROC = ROOT / "data" / "processed" / "metabolome"
@@ -170,26 +169,14 @@ def accessions():
     return recs
 
 
-def wu_mode_choice(wu):
-    """(metabolite, condition) -> ion mode, one mode per metabolite where both conditions share one."""
-    avail = wu.groupby(["metabolite_name", "condition"])["mode"].agg(set).to_dict()
-    choice = {}
-    for name in wu.metabolite_name.unique():
-        c, s = avail.get((name, "control"), set()), avail.get((name, "stress"), set())
-        shared = [m for m in ("negative", "positive") if m in c & s]
-        for cond, have in (("control", c), ("stress", s)):
-            if have:
-                choice[(name, cond)] = shared[0] if shared else ("negative" if "negative" in have else "positive")
-    return choice
-
-
 def load_panels():
     zhu = pd.read_csv(PROC / "darkness_metabolome.csv")
     zid = xtissue11.zhu_identities()
     wu_ident = pd.read_csv(PROC / "wu_identified_metabolites.csv")
     wu = pd.read_csv(PROC / "wu_leaf_identified_long.csv")
-    choice = wu_mode_choice(wu)
-    wu = wu[[choice.get((n, c)) == m for n, c, m in zip(wu.metabolite_name, wu.condition, wu["mode"])]]
+    split = mode_split(wu)
+    wu = one_mode(wu)
+    wu.attrs["mode_split"] = split
     w16 = pd.read_csv(PROC / "wu2016_primary_long.csv")
     w16m = pd.read_csv(PROC / "wu2016_primary_metabolites.csv")
     return zhu, zid, wu_ident, wu, w16, w16m
@@ -219,7 +206,7 @@ def features(zhu, zid, wu_ident, wu, w16m):
                       "plat": "LC-MS", "formula": r.formula if pd.notna(r.formula) and r.formula != "nan" else None,
                       "alias": alias, "idLevel": r.id_level if pd.notna(r.id_level) else None,
                       "modes": {c: modes.loc[name, c] for c in modes.columns if pd.notna(modes.loc[name, c])},
-                      "modeSplit": modes.loc[name].dropna().nunique() > 1,
+                      "modeSplit": name in wu.attrs["mode_split"],
                       "names": [name] + ([alias] if alias else [])})
         if name in split:
             feats[-1]["splitRows"] = split[name]
@@ -314,9 +301,9 @@ def metabolights_index(grps):
 
 
 def annotate(feats):
-    """Attach script 12's transcript-side flight shifts. Its per-metabolite Wu value statistics (Col-0
-    percentiles, stress deltas) and script 11's replication rho are left out: both pick ion modes per
-    accession, so the page computes those from its own one-mode-per-metabolite values instead."""
+    """Attach script 12's transcript-side flight shifts. Per-metabolite Wu statistics (Col-0
+    percentiles, stress deltas, script 11's replication rho) are not copied: the page computes them
+    from the same one-mode values for whatever accessions the reader has filtered to."""
     bridge = pd.read_csv(LINK / "metabolite_flight_bridge.tsv", sep="\t").drop_duplicates("metabolite").set_index("metabolite")
     bcols = ["pathway_class", "pathway_genes_flight_median_log2fc", "gwas_locus_genes_flight_median_log2fc",
              "gwas_locus_genes_tested"]
