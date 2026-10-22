@@ -18,6 +18,11 @@ the `ecotype.N` form shared by Zhu, Wu and Naake (1001 Genomes / HapMap ecotype 
 | `wu_accessions.csv` | 10 | accession (Wu Supp. Table 1) | `no`, `accession`, `abrc` (stock ID), `accession_name` |
 | `wu_identified_metabolites.csv` | 10 | identified metabolite (Wu Supp. Table 2) | peak IDs per condition × mode (`PC_`, `NC_`, `PS_`, `NS_`), `mz_pos`, `mz_neg`, `rt` (min), `formula`, `metabolite_class`, `metabolite_name`, `alias`, `id_level` (A–D) |
 | `wu_leaf_identified_long.csv` | 10 | identified metabolite × accession × condition × mode (Wu Supp. Table 3) | `metabolite_name`, `accession`, `intensity` (normalized, as published), `condition` (`control`/`stress`), `mode` |
+| `wu2016_primary_metabolites.csv` | 16 | GC-MS metabolite (Wu 2016 S2 Table) | `metabolite_id` (`met01`…), `metabolite_name`, `metabolite_class` (as published, capitalised), `quant_mass` |
+| `wu2016_primary_long.csv` | 16 | metabolite × accession (Wu 2016 S1 Dataset) | `metabolite_id`, `metabolite_name`, `metabolite_class`, `accession`, `value` (normalized as published, centred near 0); ecotype.6046 left out (listed twice with different values) |
+| `wu2016_accessions.csv` | 16 | accession (Wu 2016 S1 Table) | `no`, `accession`, `abrc`, `accession_name`, `duplicated_in_source` |
+| `accessions_unified.csv` | 17 | accession in any panel (343) | `accession`, `ecotype_id`, `name` and `abrc` (Wu 2018, else Wu 2016), `name_conflict`, `duplicate_name`, panel flags `zhu_darkness`, `wu2018_control`, `wu2018_stress`, `wu2016_primary`, `naake_leaf_zhu`, `wu2016_duplicated_in_source`, `atlas_ecotype` |
+| `metabolights_maf_names.csv.gz` | 18 | named row of a MetaboLights *A. thaliana* result table | `study`, `maf`, `database_identifier`, `metabolite_identification` (no abundance values) |
 | `wu_gwas_loci.csv` | 10 | GWAS locus per condition × mode (Wu Supp. Table 5, p < 1e-8) | `condition`, `mode`, `locus_id`, `chrom`, `bp_start`, `bp_end`, `agi_start`, `agi_end`, `best_lod`, `n_genes`, `n_traits`, `traits` (peak IDs, `;`), `genes` (AGIs, `;`) |
 
 ## OSD-522 (BRIC-LED-001, Col-0 shoots)
@@ -34,4 +39,7 @@ the `ecotype.N` form shared by Zhu, Wu and Naake (1001 Genomes / HapMap ecotype 
 Analysis outputs (TSV + PNG) live in `results/metabolome_meta_analysis/` (script 11) and
 `results/osd522_metabolome_link/` (scripts 12–13); each folder's README describes its files. The
 atlas panel's data, `app/src/data/metabolome_spaceflight.json`, is written by script 14, and the
-showcase page `app/public/metabolome.html` by script 15.
+showcase page `app/public/metabolome.html` by script 15. The explorer page
+`app/public/metabolome-explorer.html` reads `app/public/explorer/`: `metabolights_catalogue.json`
+(script 18) and `accessions.json`, `metabolites.json`, `values.json` (script 19; field notes in that
+script's docstring).

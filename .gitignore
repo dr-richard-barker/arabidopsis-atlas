@@ -21,3 +21,5 @@ blender/exports/
 # Third-party supplementary data (hundreds of MB); re-fetch per data/raw/*/SOURCE.md
 data/raw/naake_2024_supplementary/
 data/raw/wu_2017_supplementary/
+data/raw/wu_2016_supplementary/
+data/raw/metabolights_maf_cache/

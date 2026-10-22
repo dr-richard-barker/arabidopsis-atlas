@@ -2,6 +2,7 @@
 
 **Live:** [3D atlas](https://dr-richard-barker.github.io/arabidopsis-atlas/) ·
 [Metabolome × spaceflight showcase](https://dr-richard-barker.github.io/arabidopsis-atlas/metabolome.html) ·
+[metabolome explorer](https://dr-richard-barker.github.io/arabidopsis-atlas/metabolome-explorer.html) ·
 [growth animation](https://dr-richard-barker.github.io/arabidopsis-atlas/growth.html)
 
 An interactive, organ-selectable 3D atlas of *Arabidopsis thaliana*, built so that every
@@ -82,6 +83,15 @@ studies know on the ground to what was measured in flight:
   and protein shift, and where the chosen ecotype sits in the terrestrial panels (script 14).
 - **Showcase page.** [`metabolome.html`](https://dr-richard-barker.github.io/arabidopsis-atlas/metabolome.html),
   rendered by script 15 from the results files, so every number on it traces to an output.
+- **Explorer.** [`metabolome-explorer.html`](https://dr-richard-barker.github.io/arabidopsis-atlas/metabolome-explorer.html)
+  puts the per-accession values of three panels on one accession key, with Wu et al. 2016's
+  GC-MS primary metabolism (94 metabolites × 312 accessions) added beside the LC-MS panels.
+  Filter by panel, platform, class, metabolite, accession or admixture group, and see darkness
+  and stress responses, cross-platform scatters, accession heatmaps and correlations. The
+  current selection exports as CSV and its filters are kept in the URL. A MetaboLights tab
+  catalogues the 73 public *A. thaliana* studies and loads any study's sample sheet and result
+  table live from EMBL-EBI. Accession geography is read live from 1001 Genomes, which covers
+  145 of the 343 accessions. Scripts 16–19 build its data.
 
 Headline findings, with numbers in
 [`results/metabolome_meta_analysis/RESULTS.md`](results/metabolome_meta_analysis/RESULTS.md),
@@ -107,6 +117,10 @@ proteomics) are in each results README.
 | `13_osd522_proteome.py` | OSD-522 shoot proteome | `data/processed/OSD-522_proteome_shoot.csv`, `PROTEOME.md` |
 | `14_export_metabolome_twin.py` | atlas panel data | `app/src/data/metabolome_spaceflight.json` |
 | `15_build_showcase.py` | showcase page | `app/public/metabolome.html` |
+| `16_fetch_wu2016_primary.py` | Wu 2016 GC-MS primary metabolites (PLoS Genet, CC BY 4.0) | `data/processed/metabolome/wu2016_*` |
+| `17_accession_metadata.py` | one accession table across panels | `data/processed/metabolome/accessions_unified.csv` |
+| `18_fetch_metabolights_catalogue.py` | MetaboLights *A. thaliana* study catalogue + metabolite names | `app/public/explorer/metabolights_catalogue.json`, `data/processed/metabolome/metabolights_maf_names.csv.gz` |
+| `19_export_explorer_data.py` | explorer data | `app/public/explorer/{accessions,metabolites,values}.json` |
 
 Third-party supplements are git-ignored; `fetch` commands and checksums are in
 [`data/raw/SUPPLEMENTARY_SOURCES.md`](data/raw/SUPPLEMENTARY_SOURCES.md). Column definitions for
@@ -139,6 +153,8 @@ it exists, here's exactly where it stands:
 - [x] Metabolome × spaceflight layer (scripts 07–15): three natural-variation metabolome
       panels, OSD-522 transcriptome + proteome link, rosette-leaf panel, CoSE-themed showcase
       page; each push cleared by the ABAI gate
+- [x] Metabolome explorer (scripts 16–19): filterable dashboard over the Zhu, Wu 2018 and
+      Wu 2016 accession panels plus a live MetaboLights catalogue
 - [ ] Zenodo deposit (manual step, done last)
 
 ## Running it locally

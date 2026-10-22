@@ -133,6 +133,7 @@ export function MetabolomeSpaceflightPanel({ ecotype }: { ecotype: EcotypeParams
         (ρ {data.transcript_protein_spearman.SOL} soluble, {data.transcript_protein_spearman.MEM} membrane).
         Lower pathway transcripts do not tell you which way metabolite pools moved.{" "}
         <a href={`${REPO}/results/osd522_metabolome_link/README.md`} target="_blank" rel="noreferrer">Methods and caveats ↗</a>
+        {" · "}<a href="metabolome-explorer.html">Explore the accession panels →</a>
       </p>
     </div>
   );

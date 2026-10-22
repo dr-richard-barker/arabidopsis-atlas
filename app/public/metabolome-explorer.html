@@ -1,0 +1,1114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Metabolome Explorer</title>
+<meta name="description" content="Filter and compare natural-variation Arabidopsis thaliana metabolome panels (Zhu 2024 darkness, Wu 2018 leaf, Wu 2016 GC-MS primary metabolism) by accession, metabolite class and condition, and browse the public MetaboLights Arabidopsis studies live.">
+<!-- Data: explorer/*.json, written by scripts/18_fetch_metabolights_catalogue.py and
+     scripts/19_export_explorer_data.py. MetaboLights study files and 1001 Genomes accession
+     geography are fetched live in the browser; nothing from them is mirrored here. -->
+<script>
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('barker.theme'); } catch (e) {}
+    if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<link rel="stylesheet" href="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-chrome.css">
+<style>
+  /* Page tokens are --mx-* on purpose: the shared CoSE kit owns generic names like --fg/--bg. */
+  :root {
+    color-scheme: light;
+    --mx-page: #f9f9f7; --mx-surface: #fcfcfb; --mx-raised: #ffffff;
+    --mx-ink: #0b0b0b; --mx-ink2: #52514e; --mx-muted: #6f6d68;
+    --mx-grid: #e1e0d9; --mx-axis: #c3c2b7; --mx-line: rgba(11, 11, 11, .10);
+    --mx-accent: #3b6ea5; --mx-accent-ink: #ffffff; --mx-wash: rgba(59, 110, 165, .08);
+    --mx-note: #fbf4e4; --mx-note-line: #ecd9a8;
+    --mx-s1: #2a78d6; --mx-s2: #eb6834; --mx-s3: #1baf7a; --mx-s4: #eda100; --mx-s5: #e87ba4;
+    --mx-lo: #2a78d6; --mx-mid: #f0efec; --mx-hi: #e34948;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --mx-page: #0d0d0d; --mx-surface: #1a1a19; --mx-raised: #222220;
+    --mx-ink: #f0efec; --mx-ink2: #c3c2b7; --mx-muted: #a3a199;
+    --mx-grid: #2c2c2a; --mx-axis: #383835; --mx-line: rgba(255, 255, 255, .10);
+    --mx-accent: #7aa7d8; --mx-accent-ink: #0d0d0d; --mx-wash: rgba(122, 167, 216, .12);
+    --mx-note: #2a2416; --mx-note-line: #5a4a22;
+    --mx-s1: #3987e5; --mx-s2: #d95926; --mx-s3: #199e70; --mx-s4: #c98500; --mx-s5: #d55181;
+    --mx-lo: #3987e5; --mx-mid: #383835; --mx-hi: #e66767;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html, body { margin: 0; background: var(--mx-page); color: var(--mx-ink);
+    font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  .mx-root .cose-hero { --fg: var(--mx-ink); --muted: var(--mx-ink2); --line: var(--mx-line);
+    --card: var(--mx-raised); --accent: var(--mx-accent); padding-top: 64px; }
+  .mx-root a { color: var(--mx-accent); }
+  .mx-wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px 48px; }
+  .mx-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin: 14px 0 18px; }
+  .mx-tile { background: var(--mx-surface); border: 1px solid var(--mx-line); border-radius: 10px; padding: 10px 14px; }
+  .mx-tile b { display: block; font-size: 1.45rem; font-weight: 650; color: var(--mx-ink); }
+  .mx-tile span { font-size: .8rem; color: var(--mx-ink2); }
+
+  .mx-filters { background: var(--mx-surface); border: 1px solid var(--mx-line); border-radius: 12px; padding: 12px 14px;
+    display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: flex-end; }
+  .mx-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .mx-field > label, .mx-field > .mx-lab { font-size: .72rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase; color: var(--mx-ink2); }
+  .mx-checks { display: flex; flex-wrap: wrap; gap: 4px 10px; }
+  .mx-checks label { display: inline-flex; gap: 5px; align-items: center; font-size: .85rem; color: var(--mx-ink); cursor: pointer; white-space: nowrap; }
+  .mx-swatch { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+  .mx-root select, .mx-root input[type=search], .mx-root input[type=text] {
+    font: inherit; font-size: .88rem; color: var(--mx-ink); background: var(--mx-raised); border: 1px solid var(--mx-axis);
+    border-radius: 7px; padding: 5px 8px; min-width: 0; max-width: 100%; }
+  .mx-root input[type=search] { width: 190px; }
+  .mx-seg { display: inline-flex; border: 1px solid var(--mx-axis); border-radius: 7px; overflow: hidden; }
+  .mx-seg button { font: inherit; font-size: .84rem; border: 0; background: var(--mx-raised); color: var(--mx-ink); padding: 5px 10px; cursor: pointer; }
+  .mx-seg button + button { border-left: 1px solid var(--mx-axis); }
+  .mx-seg button[aria-pressed=true] { background: var(--mx-accent); color: var(--mx-accent-ink); }
+  .mx-btn { font: inherit; font-size: .85rem; font-weight: 600; border: 1px solid var(--mx-axis); background: var(--mx-raised);
+    color: var(--mx-ink); padding: 6px 12px; border-radius: 7px; cursor: pointer; }
+  .mx-btn.primary { background: var(--mx-accent); border-color: var(--mx-accent); color: var(--mx-accent-ink); }
+  .mx-btn:disabled { opacity: .5; cursor: default; }
+  .mx-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-left: auto; }
+  .mx-summary { margin: 8px 2px 0; font-size: .85rem; color: var(--mx-ink2); }
+
+  .mx-tabs { display: flex; gap: 2px; margin: 20px 0 0; border-bottom: 1px solid var(--mx-axis); overflow-x: auto; scrollbar-width: thin; }
+  .mx-tabs button { font: inherit; font-size: .92rem; font-weight: 600; border: 0; background: none; color: var(--mx-ink2);
+    padding: 9px 14px; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; white-space: nowrap; }
+  .mx-tabs button[aria-selected=true] { color: var(--mx-ink); border-bottom-color: var(--mx-accent); }
+  .mx-panel { padding-top: 16px; }
+  .mx-panel[hidden] { display: none; }
+  .mx-grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 14px; }
+  .mx-card { background: var(--mx-surface); border: 1px solid var(--mx-line); border-radius: 12px; padding: 14px 16px; min-width: 0; }
+  .mx-card h3 { margin: 0 0 2px; font-size: 1rem; }
+  .mx-card .mx-sub { margin: 0 0 8px; font-size: .84rem; color: var(--mx-ink2); }
+  .mx-chart { width: 100%; min-height: 120px; }
+  .mx-note { background: var(--mx-note); border: 1px solid var(--mx-note-line); border-radius: 10px; padding: 9px 13px; font-size: .86rem; margin: 10px 0; }
+  .mx-empty { color: var(--mx-ink2); font-size: .9rem; padding: 18px 4px; }
+  .mx-row { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: flex-end; margin-bottom: 10px; }
+  .mx-chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 6px 0; }
+  .mx-chip { display: inline-flex; align-items: center; gap: 6px; font-size: .82rem; background: var(--mx-wash);
+    border: 1px solid var(--mx-line); border-radius: 999px; padding: 2px 6px 2px 10px; color: var(--mx-ink); }
+  .mx-chip button { border: 0; background: none; color: var(--mx-ink2); cursor: pointer; font-size: .95rem; line-height: 1; padding: 0 2px; }
+  .mx-chip.link { cursor: pointer; padding-right: 10px; }
+
+  .mx-scroll { overflow-x: auto; }
+  .mx-table { border-collapse: collapse; width: 100%; font-size: .84rem; }
+  .mx-table th, .mx-table td { text-align: left; padding: 6px 9px; border-bottom: 1px solid var(--mx-grid); vertical-align: top; }
+  .mx-table th { font-size: .72rem; text-transform: uppercase; letter-spacing: .03em; color: var(--mx-ink2); font-weight: 600;
+    position: sticky; top: 0; background: var(--mx-surface); cursor: pointer; white-space: nowrap; }
+  .mx-table td.num, .mx-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  .mx-table tbody tr.mx-click { cursor: pointer; }
+  .mx-table tbody tr.mx-click:hover, .mx-table tbody tr[aria-selected=true] { background: var(--mx-wash); }
+  .mx-tablebox { max-height: 560px; overflow: auto; border: 1px solid var(--mx-line); border-radius: 10px; }
+  .mx-yes { color: var(--mx-ink); }
+  .mx-no { color: var(--mx-muted); }
+  .mx-kv { display: grid; grid-template-columns: max-content 1fr; gap: 3px 14px; font-size: .86rem; margin: 6px 0; }
+  .mx-kv dt { color: var(--mx-ink2); }
+  .mx-kv dd { margin: 0; overflow-wrap: anywhere; }
+  .mx-tag { display: inline-block; font-size: .72rem; font-weight: 600; border: 1px solid var(--mx-axis); border-radius: 5px; padding: 0 5px; margin-right: 4px; color: var(--mx-ink2); }
+  .mx-sources li { margin-bottom: 10px; }
+  .mx-muted { color: var(--mx-ink2); }
+  .mx-small { font-size: .82rem; }
+  .mx-busy { opacity: .55; transition: opacity .15s; }
+  footer.mx-foot { margin-top: 36px; padding-top: 14px; border-top: 1px solid var(--mx-line); font-size: .82rem; color: var(--mx-ink2); }
+  @media (max-width: 640px) {
+    .mx-root input[type=search] { width: 100%; }
+    .mx-field { flex: 1 1 100%; }
+    .mx-actions { margin-left: 0; }
+    .mx-grid2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body class="mx-root" data-site-id="arabidopsis-atlas" data-cose-doc="off"
+      data-brand-logo="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/cose-logo.png">
+
+<header class="cose-hero">
+  <p class="cose-eyebrow">Arabidopsis atlas · metabolome</p>
+  <h1>Metabolome Explorer</h1>
+  <p class="cose-lede">Three natural-variation metabolome panels on one accession key: leaf darkness (Zhu 2024, LC-MS), leaf control and stress (Wu 2018, LC-MS) and primary metabolism (Wu 2016, GC-MS). Filter by accession, metabolite class and condition, compare platforms, export the slice you need, and open any public MetaboLights <i>A. thaliana</i> study live.</p>
+  <div class="cose-btns">
+    <a class="cose-btn primary" href="./">3D atlas</a>
+    <a class="cose-btn" href="metabolome.html">Metabolome × spaceflight</a>
+    <a class="cose-btn" href="https://github.com/dr-richard-barker/arabidopsis-atlas">Code &amp; data</a>
+  </div>
+</header>
+
+<main class="mx-wrap">
+  <div class="mx-tiles" id="tiles" aria-live="polite"></div>
+
+  <section class="mx-filters" id="filters" aria-label="Filters">
+    <div class="mx-field">
+      <span class="mx-lab">Panels</span>
+      <div class="mx-checks" id="f-slices"></div>
+    </div>
+    <div class="mx-field">
+      <span class="mx-lab">Platform</span>
+      <div class="mx-seg" id="f-plat" role="group" aria-label="Platform">
+        <button type="button" data-v="">All</button><button type="button" data-v="GC-MS">GC-MS primary</button><button type="button" data-v="LC-MS">LC-MS</button>
+      </div>
+    </div>
+    <div class="mx-field">
+      <label for="f-cls">Metabolite class</label>
+      <select id="f-cls"></select>
+    </div>
+    <div class="mx-field">
+      <label for="f-q">Metabolite name</label>
+      <input type="search" id="f-q" placeholder="e.g. proline, gluco">
+    </div>
+    <div class="mx-field">
+      <label for="f-aq">Accession</label>
+      <input type="search" id="f-aq" placeholder="name, ecotype ID or CS">
+    </div>
+    <div class="mx-field">
+      <label for="f-rg">Admixture group</label>
+      <select id="f-rg"><option value="">Any (loading…)</option></select>
+    </div>
+    <div class="mx-field">
+      <span class="mx-lab">Accessions</span>
+      <div class="mx-checks">
+        <label><input type="checkbox" id="f-all"> in every chosen panel</label>
+        <label><input type="checkbox" id="f-atlas"> atlas ecotypes only</label>
+      </div>
+    </div>
+    <div class="mx-actions">
+      <button type="button" class="mx-btn" id="b-reset">Reset</button>
+      <button type="button" class="mx-btn" id="b-link">Copy link</button>
+      <button type="button" class="mx-btn primary" id="b-csv">Export CSV</button>
+    </div>
+  </section>
+  <p class="mx-summary" id="summary" aria-live="polite"></p>
+
+  <nav class="mx-tabs" role="tablist" id="tabs">
+    <button role="tab" data-tab="trends">Trends</button>
+    <button role="tab" data-tab="metabolite">Metabolite</button>
+    <button role="tab" data-tab="accessions">Accessions</button>
+    <button role="tab" data-tab="corr">Correlations</button>
+    <button role="tab" data-tab="samples">Samples</button>
+    <button role="tab" data-tab="ml">MetaboLights</button>
+    <button role="tab" data-tab="sources">Sources &amp; limits</button>
+  </nav>
+
+  <section class="mx-panel" id="p-trends" role="tabpanel" hidden>
+    <div class="mx-grid2">
+      <div class="mx-card">
+        <h3>Darkness response</h3>
+        <p class="mx-sub">Median per-accession change, 6 d minus 0 d darkness (Zhu BLUP units). Largest rises and falls among the filtered metabolites.</p>
+        <div class="mx-chart" id="c-dark"></div>
+      </div>
+      <div class="mx-card">
+        <h3>Stress response</h3>
+        <p class="mx-sub">Median per-accession change, stress minus control (Wu 2018, log2-scale intensity).</p>
+        <div class="mx-chart" id="c-stress"></div>
+      </div>
+    </div>
+    <div class="mx-grid2" style="margin-top:14px">
+      <div class="mx-card">
+        <h3>Do darkness and stress move the same metabolites?</h3>
+        <p class="mx-sub" id="c-concord-sub">One point per compound measured in both panels.</p>
+        <div class="mx-chart" id="c-concord"></div>
+      </div>
+      <div class="mx-card">
+        <h3>By metabolite class</h3>
+        <p class="mx-sub">Median of the per-metabolite responses within each class (filtered metabolites and accessions).</p>
+        <div class="mx-scroll" id="t-class"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-panel" id="p-metabolite" role="tabpanel" hidden>
+    <div class="mx-row">
+      <div class="mx-field" style="flex:1 1 320px">
+        <label for="m-pick">Compound</label>
+        <select id="m-pick"></select>
+      </div>
+    </div>
+    <div class="mx-card" id="m-info"></div>
+    <div class="mx-grid2" id="m-dists" style="margin-top:14px"></div>
+    <div class="mx-grid2" style="margin-top:14px">
+      <div class="mx-card">
+        <h3>Same accessions, two panels</h3>
+        <div class="mx-row">
+          <div class="mx-field"><label for="m-x">x</label><select id="m-x"></select></div>
+          <div class="mx-field"><label for="m-y">y</label><select id="m-y"></select></div>
+        </div>
+        <p class="mx-sub" id="m-scatter-sub"></p>
+        <div class="mx-chart" id="c-mscatter"></div>
+      </div>
+      <div class="mx-card">
+        <h3>Atlas ecotypes</h3>
+        <p class="mx-sub">Value and percentile among the filtered accessions in each panel.</p>
+        <div class="mx-scroll" id="t-matlas"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-panel" id="p-accessions" role="tabpanel" hidden>
+    <div class="mx-row">
+      <div class="mx-field" style="flex:1 1 260px">
+        <label for="a-add">Add accession</label>
+        <input type="text" id="a-add" list="a-list" placeholder="type a name, then Enter">
+        <datalist id="a-list"></datalist>
+      </div>
+      <div class="mx-field">
+        <label for="a-slice">Panel</label>
+        <select id="a-slice"></select>
+      </div>
+      <div class="mx-actions" style="margin-left:0">
+        <button type="button" class="mx-btn" id="a-atlas">Atlas ecotypes</button>
+        <button type="button" class="mx-btn" id="a-clear">Clear</button>
+      </div>
+    </div>
+    <div class="mx-chips" id="a-chips"></div>
+    <div class="mx-card">
+      <h3>Metabolite profile</h3>
+      <p class="mx-sub" id="a-sub"></p>
+      <div class="mx-chart" id="c-aheat"></div>
+    </div>
+  </section>
+
+  <section class="mx-panel" id="p-corr" role="tabpanel" hidden>
+    <div class="mx-row">
+      <div class="mx-field"><label for="r-slice">Panel</label><select id="r-slice"></select></div>
+    </div>
+    <div class="mx-card">
+      <h3>Metabolite × metabolite Spearman correlation</h3>
+      <p class="mx-sub" id="r-sub"></p>
+      <div class="mx-chart" id="c-corr"></div>
+    </div>
+    <div class="mx-card" style="margin-top:14px">
+      <h3>Strongest pairs</h3>
+      <div class="mx-scroll" id="t-corr"></div>
+    </div>
+  </section>
+
+  <section class="mx-panel" id="p-samples" role="tabpanel" hidden>
+    <p class="mx-sub" id="s-geo"></p>
+    <div class="mx-tiles" id="s-tiles"></div>
+    <div class="mx-tablebox" id="t-samples"></div>
+  </section>
+
+  <section class="mx-panel" id="p-ml" role="tabpanel" hidden>
+    <p class="mx-sub" id="ml-meta"></p>
+    <div class="mx-filters" style="margin-bottom:12px">
+      <div class="mx-field"><label for="ml-q">Search</label><input type="search" id="ml-q" placeholder="title, ID, genotype…"></div>
+      <div class="mx-field"><span class="mx-lab">Technique</span>
+        <div class="mx-seg" id="ml-tech" role="group" aria-label="Technique">
+          <button type="button" data-v="">All</button><button type="button" data-v="GC-MS">GC-MS</button><button type="button" data-v="LC-MS">LC-MS</button><button type="button" data-v="other">Other MS</button>
+        </div>
+      </div>
+      <div class="mx-field"><label for="ml-part">Tissue</label><select id="ml-part"></select></div>
+      <div class="mx-field"><label for="ml-fac">Factor</label><select id="ml-fac"></select></div>
+      <div class="mx-field"><span class="mx-lab">Results</span>
+        <div class="mx-checks"><label><input type="checkbox" id="ml-maf"> has a result table</label></div>
+      </div>
+    </div>
+    <div class="mx-tablebox" id="t-ml" style="max-height:380px"></div>
+    <div id="ml-detail" style="margin-top:14px"></div>
+  </section>
+
+  <section class="mx-panel" id="p-sources" role="tabpanel" hidden>
+    <div class="mx-card"><ul class="mx-sources" id="src-list"></ul></div>
+  </section>
+
+  <footer class="mx-foot">
+    Built from <code>scripts/16</code>–<code>19</code> of
+    <a href="https://github.com/dr-richard-barker/arabidopsis-atlas">arabidopsis-atlas</a>. Values are as published by each source; see <a href="#tab=sources" data-goto="sources">Sources &amp; limits</a> before comparing panels.
+  </footer>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-cartesian-dist-min@3.7.0/plotly-cartesian.min.js"></script>
+<script src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/sites.js"></script>
+<script src="https://dr-richard-barker.github.io/Plant_response_to_radiation/cose/theme.js"></script>
+<script>
+(function () {
+  'use strict';
+  var BASE = 'explorer/';
+  var FTP = 'https://ftp.ebi.ac.uk/pub/databases/metabolights/studies/public/';
+  var G1001 = 'https://1001genomes.org/json/1135_accessions_table.json';
+  var SLICE_META = {
+    zhu_d0: { label: 'Zhu 2024 · 0 d dark', short: '0 d dark', slot: 1 },
+    zhu_d6: { label: 'Zhu 2024 · 6 d dark', short: '6 d dark', slot: 2 },
+    wu2018_control: { label: 'Wu 2018 · control', short: 'control', slot: 3 },
+    wu2018_stress: { label: 'Wu 2018 · stress', short: 'stress', slot: 4 },
+    wu2016: { label: 'Wu 2016 · GC-MS', short: 'GC-MS', slot: 5 }
+  };
+  var DS_LABEL = { zhu: 'Zhu 2024 darkness (LC-MS)', wu2018: 'Wu 2018 leaf (LC-MS)', wu2016: 'Wu 2016 primary (GC-MS)' };
+  var DS_UNITS = { zhu: 'BLUP', wu2018: 'normalised intensity (log2-scale)', wu2016: 'normalised intensity' };
+  var MAX_HEAT = 150, MAF_WARN = 20 * 1024 * 1024;
+
+  var ACC, MET, SLICES, CAT, GEO = null, GEO_STATUS = 'loading';
+  var accIdx = new Map(), featIdx = new Map(), sliceBy = {};
+  var DEFAULT = { tab: 'trends', sl: Object.keys(SLICE_META), pl: '', cl: '', q: '', aq: '', rg: '', all: false, atlas: false,
+    m: '', mx: '', my: '', acc: null, as: '', rs: '', ml: '', mq: '', mt: '', mp: '', mf: '', mm: false };
+  var S = JSON.parse(JSON.stringify(DEFAULT));
+
+  // ---------- small helpers ----------
+  function $(id) { return document.getElementById(id); }
+  function el(tag, attrs, kids) {
+    var n = document.createElement(tag);
+    if (attrs) Object.keys(attrs).forEach(function (k) {
+      var v = attrs[k];
+      if (v == null || v === false) return;
+      if (k === 'text') n.textContent = v;
+      else if (k === 'class') n.className = v;
+      else if (k.slice(0, 2) === 'on') n.addEventListener(k.slice(2), v);
+      else n.setAttribute(k, v === true ? '' : v);
+    });
+    (kids || []).forEach(function (c) { if (c != null) n.appendChild(typeof c === 'string' ? document.createTextNode(c) : c); });
+    return n;
+  }
+  function clear(n) { while (n.firstChild) n.removeChild(n.firstChild); return n; }
+  function css(name) { return getComputedStyle(document.body).getPropertyValue(name).trim(); }
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function fmt(x, d) { if (x == null || !isFinite(x)) return '–'; d = d == null ? 3 : d; var a = Math.abs(x);
+    return a !== 0 && (a < 0.001 || a >= 1e5) ? x.toExponential(2) : (+x.toFixed(d)).toString(); }
+  // name_key() and clean_ml_name() from scripts/19_export_explorer_data.py; keep the two in step.
+  function nameKey(s) {
+    s = String(s).toLowerCase().trim().replace(/[\u2032\u2019]/g, "'").replace(/^(dl|d|l)-/, '');
+    return s.replace(/[^a-z0-9]/g, '');
+  }
+  function cleanMlName(s) {
+    s = String(s).trim().replace(/^[A-Z]\d{5,6}_/, '').replace(/\s*\(\d*(?:TMS|MEOX|TBDMS)\)/gi, '')
+      .replace(/-\d*TMS$/i, '').replace(/\s+(?:MP|BP)$/, '');
+    var m = s.match(/^(.+?),\s*([A-Za-z0-9,\-]+-)$/);
+    return (m ? m[2] + m[1] : s).trim();
+  }
+  function median(a) { if (!a.length) return null; var b = a.slice().sort(function (x, y) { return x - y; });
+    var m = b.length >> 1; return b.length % 2 ? b[m] : (b[m - 1] + b[m]) / 2; }
+  function mean(a) { var s = 0; for (var i = 0; i < a.length; i++) s += a[i]; return a.length ? s / a.length : null; }
+  function sd(a) { var m = mean(a), s = 0; if (a.length < 2) return null; for (var i = 0; i < a.length; i++) s += (a[i] - m) * (a[i] - m); return Math.sqrt(s / (a.length - 1)); }
+  function ranks(a) {
+    var idx = a.map(function (v, i) { return i; }).sort(function (i, j) { return a[i] - a[j]; });
+    var r = new Array(a.length), i = 0;
+    while (i < idx.length) { var j = i; while (j + 1 < idx.length && a[idx[j + 1]] === a[idx[i]]) j++;
+      var avg = (i + j) / 2 + 1; for (var k = i; k <= j; k++) r[idx[k]] = avg; i = j + 1; }
+    return r;
+  }
+  function pearson(x, y) { var n = x.length; if (n < 3) return null; var mx = mean(x), my = mean(y), sxy = 0, sxx = 0, syy = 0;
+    for (var i = 0; i < n; i++) { var a = x[i] - mx, b = y[i] - my; sxy += a * b; sxx += a * a; syy += b * b; }
+    return sxx && syy ? sxy / Math.sqrt(sxx * syy) : null; }
+  function spearman(x, y) { return pearson(ranks(x), ranks(y)); }
+  function percentile(v, arr) { if (v == null || !arr.length) return null; var below = 0, eq = 0;
+    arr.forEach(function (a) { if (a < v) below++; else if (a === v) eq++; }); return 100 * (below + eq / 2) / arr.length; }
+  function sliceColor(key) { return css('--mx-s' + SLICE_META[key].slot); }
+  function accLabel(a) { return a.name ? a.name + ' (' + a.eid + ')' : a.id; }
+  // Tick labels shrink on narrow screens; the full name is always in the hover text and tables.
+  function short(s, n) { s = String(s); n = Math.round((n || 44) * (window.innerWidth < 640 ? 0.5 : 1));
+    return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+
+  // ---------- state <-> URL hash ----------
+  function writeHash() {
+    var p = new URLSearchParams();
+    Object.keys(DEFAULT).forEach(function (k) {
+      var v = S[k], d = DEFAULT[k];
+      if (k === 'acc') { if (v) p.set(k, v.join(',')); return; }
+      if (Array.isArray(v)) { if (v.join(',') !== d.join(',')) p.set(k, v.join(',')); return; }
+      if (v !== d) p.set(k, v === true ? '1' : String(v));
+    });
+    var h = p.toString();
+    history.replaceState(null, '', h ? '#' + h : location.pathname + location.search);
+  }
+  function readHash() {
+    var p = new URLSearchParams(location.hash.slice(1));
+    Object.keys(DEFAULT).forEach(function (k) {
+      if (!p.has(k)) return;
+      var v = p.get(k), d = DEFAULT[k];
+      if (k === 'acc') S.acc = v ? v.split(',') : [];
+      else if (Array.isArray(d)) S[k] = v ? v.split(',').filter(function (x) { return SLICE_META[x]; }) : [];
+      else if (typeof d === 'boolean') S[k] = v === '1';
+      else S[k] = v;
+    });
+  }
+
+  // ---------- data access ----------
+  function val(sk, fi, ai) {
+    var s = sliceBy[sk], r = s.fRow.get(fi), c = s.aCol.get(ai);
+    if (r == null || c == null) return null;
+    return s.data[r][c];
+  }
+  function selSlices() { return S.sl.filter(function (k) { return sliceBy[k]; }); }
+  function selFeats() {
+    var ds = {}; selSlices().forEach(function (k) { ds[sliceBy[k].ds] = 1; });
+    var q = S.q.trim().toLowerCase();
+    var out = [];
+    MET.features.forEach(function (f, i) {
+      if (!ds[f.ds]) return;
+      if (S.pl && f.plat !== S.pl) return;
+      if (S.cl && f.cls !== S.cl) return;
+      if (q && (f.name + ' ' + (f.alias || '') + ' ' + f.id).toLowerCase().indexOf(q) < 0) return;
+      out.push(i);
+    });
+    return out;
+  }
+  function selAccs() {
+    var sl = selSlices(), q = S.aq.trim().toLowerCase(), out = [];
+    ACC.forEach(function (a, i) {
+      var inAny = false, inAll = true;
+      sl.forEach(function (k) { var has = sliceBy[k].aCol.has(i); inAny = inAny || has; inAll = inAll && has; });
+      if (!inAny || (S.all && !inAll)) return;
+      if (S.atlas && !a.atlas) return;
+      if (q && (String(a.name) + ' ' + a.id + ' ' + a.eid + ' ' + (a.cs || '')).toLowerCase().indexOf(q) < 0) return;
+      if (S.rg) { var g = GEO && GEO.get(a.eid); if (!g || g.group !== S.rg) return; }
+      out.push(i);
+    });
+    return out;
+  }
+
+  // ---------- Plotly theming ----------
+  function baseLayout(extra) {
+    var ink = css('--mx-ink'), ink2 = css('--mx-ink2'), grid = css('--mx-grid'), axis = css('--mx-axis'), surf = css('--mx-surface');
+    function ax() { return { gridcolor: grid, linecolor: axis, zerolinecolor: axis, tickcolor: axis, tickfont: { color: ink2, size: 11 },
+      title: { font: { color: ink2, size: 12 } }, automargin: true }; }
+    var L = { paper_bgcolor: surf, plot_bgcolor: surf, font: { family: 'system-ui, -apple-system, "Segoe UI", sans-serif', color: ink2, size: 12 },
+      margin: { l: 10, r: 14, t: 10, b: 10 }, xaxis: ax(), yaxis: ax(), showlegend: false,
+      hoverlabel: { bgcolor: css('--mx-raised'), bordercolor: axis, font: { color: ink, size: 12 } }, dragmode: 'pan' };
+    return deepMerge(L, extra || {});
+  }
+  function deepMerge(a, b) { Object.keys(b).forEach(function (k) {
+    if (b[k] && typeof b[k] === 'object' && !Array.isArray(b[k]) && a[k] && typeof a[k] === 'object') deepMerge(a[k], b[k]); else a[k] = b[k]; });
+    return a; }
+  var PCONF = { displaylogo: false, responsive: true, modeBarButtonsToRemove: ['lasso2d', 'select2d', 'autoScale2d', 'toggleSpikelines'] };
+  function plot(id, traces, layout) {
+    var n = $(id), L = baseLayout(layout);
+    if (!n.data) clear(n);
+    n.style.height = (L.height || 320) + 'px';  // responsive Plotly fills the div, so the div carries the height
+    Plotly.react(n, traces, L, PCONF);
+  }
+  function empty(id, msg) { var n = $(id); if (n.data) Plotly.purge(n); n.style.height = ''; clear(n).appendChild(el('p', { class: 'mx-empty', text: msg })); }
+  function divScale() { return [[0, css('--mx-lo')], [0.5, css('--mx-mid')], [1, css('--mx-hi')]]; }
+
+  // ---------- tiles, filters, summary ----------
+  function renderTiles() {
+    var accs = selAccs(), feats = selFeats(), sl = selSlices(), n = 0;
+    sl.forEach(function (k) { var s = sliceBy[k]; feats.forEach(function (fi) { var r = s.fRow.get(fi); if (r == null) return;
+      accs.forEach(function (ai) { var c = s.aCol.get(ai); if (c != null && s.data[r][c] != null) n++; }); }); });
+    var t = $('tiles'); clear(t);
+    [[accs.length + ' / ' + ACC.length, 'accessions in selection'], [feats.length + ' / ' + MET.features.length, 'metabolite features'],
+     [sl.length + ' / 5', 'panel slices'], [n.toLocaleString(), 'values in selection'], [CAT ? CAT.studies.length : '…', 'MetaboLights studies']]
+      .forEach(function (x) { t.appendChild(el('div', { class: 'mx-tile' }, [el('b', { text: String(x[0]) }), el('span', { text: x[1] })])); });
+    $('summary').textContent = sl.length ? 'Showing ' + sl.map(function (k) { return SLICE_META[k].label; }).join(', ') +
+      (S.pl ? ' · ' + S.pl : '') + (S.cl ? ' · ' + S.cl : '') + (S.rg ? ' · admixture group ' + S.rg : '') + '.' : 'No panel selected.';
+  }
+  function buildFilters() {
+    var box = $('f-slices');
+    Object.keys(SLICE_META).forEach(function (k) {
+      var cb = el('input', { type: 'checkbox', value: k, onchange: function () {
+        S.sl = Object.keys(SLICE_META).filter(function (x) { return box.querySelector('input[value="' + x + '"]').checked; }); update(); } });
+      box.appendChild(el('label', null, [cb, el('span', { class: 'mx-swatch', 'data-slot': SLICE_META[k].slot }), SLICE_META[k].label]));
+    });
+    var cls = $('f-cls'); cls.appendChild(el('option', { value: '', text: 'All classes' }));
+    MET.classes.forEach(function (c) {
+      var n = MET.features.filter(function (f) { return f.cls === c; }).length;
+      cls.appendChild(el('option', { value: c, text: c + ' (' + n + ')' }));
+    });
+    cls.onchange = function () { S.cl = cls.value; update(); };
+    segment('f-plat', function (v) { S.pl = v; update(); });
+    var t; function deb(fn) { clearTimeout(t); t = setTimeout(fn, 220); }
+    $('f-q').oninput = function () { var v = this.value; deb(function () { S.q = v; update(); }); };
+    $('f-aq').oninput = function () { var v = this.value; deb(function () { S.aq = v; update(); }); };
+    $('f-rg').onchange = function () { S.rg = this.value; update(); };
+    $('f-all').onchange = function () { S.all = this.checked; update(); };
+    $('f-atlas').onchange = function () { S.atlas = this.checked; update(); };
+    $('b-reset').onclick = function () { var tab = S.tab; S = JSON.parse(JSON.stringify(DEFAULT)); S.tab = tab; syncControls(); update(); };
+    $('b-link').onclick = function () { writeHash(); var b = this;
+      (navigator.clipboard ? navigator.clipboard.writeText(location.href) : Promise.reject()).then(function () { b.textContent = 'Copied'; },
+        function () { b.textContent = 'Link in address bar'; }).then(function () { setTimeout(function () { b.textContent = 'Copy link'; }, 1600); }); };
+    $('b-csv').onclick = exportCsv;
+  }
+  function paintSwatches() { document.querySelectorAll('.mx-swatch[data-slot]').forEach(function (s) { s.style.background = css('--mx-s' + s.getAttribute('data-slot')); }); }
+  function segment(id, onpick) {
+    var g = $(id);
+    g.querySelectorAll('button').forEach(function (b) { b.onclick = function () { onpick(b.getAttribute('data-v')); }; });
+  }
+  function setSeg(id, v) { $(id).querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-v') === v)); }); }
+  function syncControls() {
+    Object.keys(SLICE_META).forEach(function (k) { $('f-slices').querySelector('input[value="' + k + '"]').checked = S.sl.indexOf(k) >= 0; });
+    setSeg('f-plat', S.pl); $('f-cls').value = S.cl; $('f-q').value = S.q; $('f-aq').value = S.aq;
+    $('f-all').checked = S.all; $('f-atlas').checked = S.atlas; $('f-rg').value = S.rg;
+    setSeg('ml-tech', S.mt); $('ml-q').value = S.mq; $('ml-maf').checked = S.mm;
+    if ($('ml-part').options.length) $('ml-part').value = S.mp;
+    if ($('ml-fac').options.length) $('ml-fac').value = S.mf;
+  }
+
+  // ---------- tabs ----------
+  var RENDER = {};
+  function showTab(tab) {
+    if (!RENDER[tab]) tab = 'trends';
+    S.tab = tab;
+    document.querySelectorAll('#tabs button').forEach(function (b) { b.setAttribute('aria-selected', String(b.getAttribute('data-tab') === tab)); });
+    document.querySelectorAll('.mx-panel').forEach(function (p) { p.hidden = p.id !== 'p-' + tab; });
+    var global = tab !== 'ml' && tab !== 'sources';
+    $('filters').hidden = !global; $('summary').hidden = !global;
+    RENDER[tab]();
+    writeHash();
+  }
+  function update() { setSeg('f-plat', S.pl); renderTiles(); RENDER[S.tab](); writeHash(); }
+
+  // ---------- Trends ----------
+  function deltas(fromKey, toKey, feats, accs, skipSplit) {
+    var a = sliceBy[fromKey], b = sliceBy[toKey], out = [];
+    if (!a || !b) return out;
+    feats.forEach(function (fi) {
+      var f = MET.features[fi];
+      if (skipSplit && (f.splitRows || f.modeSplit)) return;
+      var ra = a.fRow.get(fi), rb = b.fRow.get(fi); if (ra == null || rb == null) return;
+      var d = [];
+      accs.forEach(function (ai) { var ca = a.aCol.get(ai), cb = b.aCol.get(ai); if (ca == null || cb == null) return;
+        var x = a.data[ra][ca], y = b.data[rb][cb]; if (x != null && y != null) d.push(y - x); });
+      if (d.length >= 5) out.push({ fi: fi, med: median(d), up: d.filter(function (v) { return v > 0; }).length / d.length, n: d.length });
+    });
+    return out;
+  }
+  function deltaBars(id, rows, units) {
+    if (!rows.length) return empty(id, 'No metabolite has paired values under the current filters.');
+    var s = rows.slice().sort(function (x, y) { return x.med - y.med; });
+    var pick = s.length > 24 ? s.slice(0, 12).concat(s.slice(-12)) : s;
+    var lo = css('--mx-lo'), hi = css('--mx-hi');
+    plot(id, [{ type: 'bar', orientation: 'h', x: pick.map(function (r) { return r.med; }),
+      y: pick.map(function (r) { return esc(short(MET.features[r.fi].name)); }),
+      text: pick.map(function (r) { return esc(MET.features[r.fi].name); }), textposition: 'none',
+      marker: { color: pick.map(function (r) { return r.med >= 0 ? hi : lo; }) },
+      customdata: pick.map(function (r) { return [Math.round(100 * r.up), r.n, esc(MET.features[r.fi].cls)]; }),
+      hovertemplate: '<b>%{x:.3f}</b> median change<br>%{text}<br>%{customdata[2]}<br>%{customdata[0]}% of %{customdata[1]} accessions up<extra></extra>' }],
+      { height: Math.max(300, 22 * pick.length + 70), bargap: 0.25, xaxis: { title: { text: 'median change (' + units + ')' }, zeroline: true },
+        yaxis: { automargin: true, tickfont: { size: 10.5 } }, margin: { l: 10 } });
+  }
+  RENDER.trends = function () {
+    var feats = selFeats(), accs = selAccs(), sl = selSlices();
+    var hasZ = sl.indexOf('zhu_d0') >= 0 && sl.indexOf('zhu_d6') >= 0, hasW = sl.indexOf('wu2018_control') >= 0 && sl.indexOf('wu2018_stress') >= 0;
+    var dark = hasZ ? deltas('zhu_d0', 'zhu_d6', feats, accs, false) : [];
+    var stress = hasW ? deltas('wu2018_control', 'wu2018_stress', feats, accs, true) : [];
+    if (hasZ) deltaBars('c-dark', dark, 'BLUP'); else empty('c-dark', 'Tick both Zhu slices (0 d and 6 d dark) to see the darkness response.');
+    if (hasW) deltaBars('c-stress', stress, 'log2'); else empty('c-stress', 'Tick both Wu 2018 slices (control and stress) to see the stress response.');
+    // concordance by compound group
+    var dg = {}, sg = {};
+    dark.forEach(function (r) { dg[MET.features[r.fi].grp] = r; });
+    stress.forEach(function (r) { sg[MET.features[r.fi].grp] = r; });
+    var pts = Object.keys(dg).filter(function (g) { return sg[g]; }).map(function (g) { return { g: +g, x: sg[g].med, y: dg[g].med }; });
+    if (pts.length < 3) empty('c-concord', 'Needs at least three compounds measured in both Zhu and Wu 2018 under the current filters.');
+    else {
+      var agree = pts.filter(function (p) { return (p.x > 0) === (p.y > 0); }).length;
+      var rho = spearman(pts.map(function (p) { return p.x; }), pts.map(function (p) { return p.y; }));
+      $('c-concord-sub').textContent = 'One point per compound measured in both panels: ' + agree + ' of ' + pts.length +
+        ' change in the same direction; Spearman ρ = ' + fmt(rho, 2) + '. Axes are in different units, so read direction, not size.';
+      var ext = pts.slice().sort(function (a, b) { return Math.abs(b.x) + Math.abs(b.y) - Math.abs(a.x) - Math.abs(a.y); }).slice(0, 5);
+      plot('c-concord', [{ type: 'scatter', mode: 'markers', x: pts.map(function (p) { return p.x; }), y: pts.map(function (p) { return p.y; }),
+        text: pts.map(function (p) { return esc(MET.groups[p.g].name); }),
+        marker: { size: 9, color: css('--mx-s1'), line: { color: css('--mx-surface'), width: 2 } },
+        hovertemplate: '%{text}<br>stress Δ <b>%{x:.3f}</b> · dark Δ <b>%{y:.3f}</b><extra></extra>' }],
+        { height: 340, xaxis: { title: { text: 'stress − control (Wu 2018, log2)' }, zeroline: true },
+          yaxis: { title: { text: '6 d − 0 d dark (Zhu, BLUP)' }, zeroline: true },
+          annotations: ext.map(function (p) { return { x: p.x, y: p.y, text: esc(MET.groups[p.g].name), showarrow: false, yshift: 12,
+            font: { size: 10.5, color: css('--mx-ink2') } }; }) });
+    }
+    // class table
+    var byC = {};
+    dark.forEach(function (r) { var c = MET.features[r.fi].cls; (byC[c] = byC[c] || { d: [], s: [] }).d.push(r.med); });
+    stress.forEach(function (r) { var c = MET.features[r.fi].cls; (byC[c] = byC[c] || { d: [], s: [] }).s.push(r.med); });
+    var rows = Object.keys(byC).sort().map(function (c) { var b = byC[c];
+      return [c, b.d.length, median(b.d), b.s.length, median(b.s)]; });
+    table('t-class', ['Class', 'n dark', 'dark Δ', 'n stress', 'stress Δ'], rows, { num: [1, 2, 3, 4], digits: [0, 0, 3, 0, 3] });
+  };
+
+  // ---------- generic table ----------
+  function table(id, head, rows, opt) {
+    opt = opt || {};
+    var host = $(id); clear(host);
+    if (!rows.length) { host.appendChild(el('p', { class: 'mx-empty', text: opt.empty || 'Nothing under the current filters.' })); return; }
+    var sortCol = opt.sortCol, asc = true;
+    var t = el('table', { class: 'mx-table' }), th = el('thead'), tb = el('tbody'), tr = el('tr');
+    head.forEach(function (h, i) {
+      tr.appendChild(el('th', { class: (opt.num || []).indexOf(i) >= 0 ? 'num' : null, scope: 'col', text: h, title: 'Sort',
+        onclick: function () { asc = sortCol === i ? !asc : true; sortCol = i; draw(); } }));
+    });
+    th.appendChild(tr); t.appendChild(th); t.appendChild(tb); host.appendChild(t);
+    function draw() {
+      clear(tb);
+      var r = rows.slice();
+      if (sortCol != null) r.sort(function (a, b) { var x = a[sortCol], y = b[sortCol];
+        if (x && x.sort != null) x = x.sort; if (y && y.sort != null) y = y.sort;
+        if (x == null) return 1; if (y == null) return -1;
+        return (typeof x === 'number' ? x - y : String(x).localeCompare(String(y))) * (asc ? 1 : -1); });
+      r.forEach(function (row) {
+        var trr = el('tr', opt.onrow ? { class: 'mx-click', tabindex: '0', onclick: function () { opt.onrow(row); },
+          onkeydown: function (e) { if (e.key === 'Enter') opt.onrow(row); } } : null);
+        if (opt.selected && opt.selected(row)) trr.setAttribute('aria-selected', 'true');
+        row.forEach(function (c, i) {
+          var td = el('td', { class: (opt.num || []).indexOf(i) >= 0 ? 'num' : null });
+          if (c && c.node) td.appendChild(c.node);
+          else td.textContent = typeof c === 'number' ? fmt(c, Array.isArray(opt.digits) ? opt.digits[i] : opt.digits == null ? 3 : opt.digits) : (c == null ? '–' : c);
+          trr.appendChild(td);
+        });
+        tb.appendChild(trr);
+      });
+    }
+    draw();
+  }
+
+  // ---------- Metabolite ----------
+  function groupOptions() {
+    var feats = selFeats(), seen = {}, out = [];
+    feats.forEach(function (fi) { var g = MET.features[fi].grp; if (seen[g]) return; seen[g] = 1; out.push(g); });
+    out.sort(function (a, b) { return MET.groups[a].name.localeCompare(MET.groups[b].name); });
+    return out;
+  }
+  function groupByKey(key) { var fi = featIdx.get(key); return fi == null ? null : MET.features[fi].grp; }
+  RENDER.metabolite = function () {
+    var opts = groupOptions(), pick = $('m-pick');
+    clear(pick);
+    if (!opts.length) { empty('c-mscatter', 'No metabolite matches the filters.'); clear($('m-info')); clear($('m-dists')); clear($('t-matlas')); return; }
+    var g = groupByKey(S.m);
+    if (g == null || opts.indexOf(g) < 0) {
+      var pref = opts.filter(function (x) { return MET.groups[x].name === 'Proline'; })[0];
+      g = pref != null ? pref : opts[0]; S.m = MET.groups[g].members[0];
+    }
+    opts.forEach(function (x) { var G = MET.groups[x];
+      var ds = G.members.map(function (k) { return k.split(':')[0]; }).filter(function (v, i, a) { return a.indexOf(v) === i; });
+      pick.appendChild(el('option', { value: G.members[0], text: G.name + '  ·  ' + ds.map(function (d) { return { zhu: 'Zhu', wu2018: 'Wu18', wu2016: 'Wu16' }[d]; }).join(', ') }));
+    });
+    pick.value = S.m;
+    pick.onchange = function () { S.m = pick.value; S.mx = ''; S.my = ''; RENDER.metabolite(); writeHash(); };
+    var G = MET.groups[g], accs = selAccs(), sl = selSlices();
+    var members = G.members.map(function (k) { return featIdx.get(k); });
+    // info card
+    var info = clear($('m-info'));
+    info.appendChild(el('h3', { text: G.name }));
+    var kv = el('dl', { class: 'mx-kv' });
+    members.forEach(function (fi) { var f = MET.features[fi];
+      var bits = [f.name, f.cls, f.plat];
+      if (f.formula) bits.push(f.formula);
+      if (f.idLevel) bits.push('ID level ' + f.idLevel);
+      if (f.quantMass) bits.push('quant mass ' + f.quantMass);
+      if (f.clsFrom) bits.push('class from linked feature');
+      if (f.modes) bits.push('ion mode ' + Object.keys(f.modes).map(function (c) { return c + ' ' + f.modes[c]; }).join(', '));
+      kv.appendChild(el('dt', { text: DS_LABEL[f.ds] })); kv.appendChild(el('dd', { text: bits.join(' · ') }));
+      if (f.flight && f.flight.pathway_genes_flight_median_log2fc != null) {
+        kv.appendChild(el('dt', { text: 'OSD-522 spaceflight' }));
+        kv.appendChild(el('dd', { text: f.flight.pathway_class + ' pathway genes, median log2FC ' + fmt(f.flight.pathway_genes_flight_median_log2fc, 2) +
+          ' in OSD-522 flight shoots (script 12)' }));
+      }
+      if (f.modeSplit) {
+        kv.appendChild(el('dt', { text: 'Caution' }));
+        kv.appendChild(el('dd', { text: 'Control and stress were measured in different ion modes, whose intensities are not on one scale, so this metabolite is left out of stress responses.' }));
+      }
+      if (f.splitRows) {
+        kv.appendChild(el('dt', { text: 'Caution' }));
+        kv.appendChild(el('dd', { text: 'Wu 2018 Table 2 lists this name twice: ' + f.splitRows + '. Control and stress values may come from different peaks, so it is left out of stress responses.' }));
+      }
+    });
+    info.appendChild(kv);
+    if (G.mtbls && G.mtbls.length) {
+      var chips = el('div', { class: 'mx-chips' });
+      G.mtbls.forEach(function (sid) { chips.appendChild(el('span', { class: 'mx-chip link', text: sid, role: 'link', tabindex: '0',
+        title: 'Open in the MetaboLights tab', onclick: function () { S.ml = sid; showTab('ml'); } })); });
+      info.appendChild(el('p', { class: 'mx-sub', text: 'Named in ' + G.mtbls.length + ' MetaboLights ' + (G.mtbls.length === 1 ? 'study' : 'studies') + ' (matched by name):' }));
+      info.appendChild(chips);
+    } else info.appendChild(el('p', { class: 'mx-sub', text: 'Not named in any MetaboLights A. thaliana result table (matched by name).' }));
+    // distributions, one small chart per dataset
+    var dists = clear($('m-dists')), atlasRows = [], avail = [];
+    ['zhu', 'wu2018', 'wu2016'].forEach(function (ds) {
+      var fi = members.filter(function (x) { return MET.features[x].ds === ds; })[0];
+      if (fi == null) return;
+      var keys = sl.filter(function (k) { return sliceBy[k].ds === ds && sliceBy[k].fRow.has(fi); });
+      if (!keys.length) return;
+      var id = 'c-mdist-' + ds;
+      dists.appendChild(el('div', { class: 'mx-card' }, [el('h3', { text: DS_LABEL[ds] }),
+        el('p', { class: 'mx-sub', text: MET.features[fi].name + ' · ' + DS_UNITS[ds] }), el('div', { class: 'mx-chart', id: id })]));
+      var traces = [], hx = [], hy = [], ht = [];
+      keys.forEach(function (k) {
+        avail.push({ k: k, fi: fi });
+        var xs = [], ys = [], tx = [], all = [];
+        accs.forEach(function (ai) { var v = val(k, fi, ai); if (v == null) return; all.push(v); xs.push(SLICE_META[k].short); ys.push(v); tx.push(esc(accLabel(ACC[ai]))); });
+        traces.push({ type: 'box', x: xs, y: ys, text: tx, name: SLICE_META[k].short, boxpoints: 'all', jitter: 0.45, pointpos: 0,
+          marker: { size: 5, opacity: 0.55, color: sliceColor(k) }, line: { color: sliceColor(k), width: 1.5 }, fillcolor: 'rgba(0,0,0,0)',
+          hovertemplate: '<b>%{y:.3f}</b><br>%{text}<extra>' + SLICE_META[k].label + '</extra>' });
+        ACC.forEach(function (a, ai) { if (!a.atlas) return; var v = val(k, fi, ai);
+          atlasRows.push([a.atlas, SLICE_META[k].label, v, accs.indexOf(ai) >= 0 ? percentile(v, all) : null]);
+          if (v != null && accs.indexOf(ai) >= 0) { hx.push(SLICE_META[k].short); hy.push(v); ht.push(a.atlas); } });
+      });
+      traces.push({ type: 'scatter', mode: 'markers+text', x: hx, y: hy, text: ht, textposition: 'middle right', textfont: { size: 10.5, color: css('--mx-ink') },
+        marker: { size: 9, color: css('--mx-ink'), line: { color: css('--mx-surface'), width: 2 } }, cliponaxis: false,
+        hovertemplate: '%{text}: <b>%{y:.3f}</b><extra>atlas ecotype</extra>' });
+      setTimeout(function () { plot(id, traces, { height: 330, boxmode: 'overlay', xaxis: { type: 'category' }, yaxis: { title: { text: DS_UNITS[ds] } } }); }, 0);
+    });
+    if (!avail.length) dists.appendChild(el('p', { class: 'mx-empty', text: 'This compound is not in any of the chosen panels.' }));
+    table('t-matlas', ['Ecotype', 'Panel', 'Value', 'Percentile'], atlasRows, { num: [2, 3], digits: [0, 0, 3, 0], empty: 'No atlas ecotype has a value here.' });
+    // cross-panel scatter
+    var xs = $('m-x'), ys = $('m-y'); clear(xs); clear(ys);
+    avail.forEach(function (a) { xs.appendChild(el('option', { value: a.k, text: SLICE_META[a.k].label })); ys.appendChild(el('option', { value: a.k, text: SLICE_META[a.k].label })); });
+    if (avail.length < 2) { $('m-scatter-sub').textContent = ''; return empty('c-mscatter', 'Needs this compound in at least two chosen panels.'); }
+    var keysA = avail.map(function (a) { return a.k; });
+    if (keysA.indexOf(S.mx) < 0) S.mx = keysA[0];
+    if (keysA.indexOf(S.my) < 0 || S.my === S.mx) S.my = keysA.filter(function (k) { return k !== S.mx; }).slice(-1)[0];
+    xs.value = S.mx; ys.value = S.my;
+    xs.onchange = function () { S.mx = xs.value; RENDER.metabolite(); writeHash(); };
+    ys.onchange = function () { S.my = ys.value; RENDER.metabolite(); writeHash(); };
+    var fx = avail.filter(function (a) { return a.k === S.mx; })[0].fi, fy = avail.filter(function (a) { return a.k === S.my; })[0].fi;
+    var P = [];
+    accs.forEach(function (ai) { var a = val(S.mx, fx, ai), b = val(S.my, fy, ai); if (a != null && b != null) P.push({ ai: ai, x: a, y: b }); });
+    if (P.length < 5) { $('m-scatter-sub').textContent = ''; return empty('c-mscatter', 'Fewer than five shared accessions under the current filters.'); }
+    var rho = spearman(P.map(function (p) { return p.x; }), P.map(function (p) { return p.y; }));
+    $('m-scatter-sub').textContent = 'Spearman ρ = ' + fmt(rho, 2) + ' across ' + P.length + ' accessions. Atlas ecotypes are labelled.';
+    var hl = P.filter(function (p) { return ACC[p.ai].atlas; });
+    plot('c-mscatter', [
+      { type: 'scatter', mode: 'markers', x: P.map(function (p) { return p.x; }), y: P.map(function (p) { return p.y; }),
+        text: P.map(function (p) { return esc(accLabel(ACC[p.ai])); }), marker: { size: 8, opacity: 0.7, color: css('--mx-s1'), line: { color: css('--mx-surface'), width: 1 } },
+        hovertemplate: '%{text}<br>x <b>%{x:.3f}</b> · y <b>%{y:.3f}</b><extra></extra>' },
+      { type: 'scatter', mode: 'markers+text', x: hl.map(function (p) { return p.x; }), y: hl.map(function (p) { return p.y; }),
+        text: hl.map(function (p) { return ACC[p.ai].atlas; }), textposition: 'top center', textfont: { size: 10.5, color: css('--mx-ink') },
+        marker: { size: 10, color: css('--mx-ink'), line: { color: css('--mx-surface'), width: 2 } }, hovertemplate: '%{text}<extra>atlas ecotype</extra>' }],
+      { height: 360, xaxis: { title: { text: SLICE_META[S.mx].label + ' (' + DS_UNITS[sliceBy[S.mx].ds] + ')' } },
+        yaxis: { title: { text: SLICE_META[S.my].label + ' (' + DS_UNITS[sliceBy[S.my].ds] + ')' } } });
+  };
+
+  // ---------- Accessions heatmap ----------
+  function sliceSelect(id, key, fallback) {
+    var s = $(id), sl = selSlices(); clear(s);
+    sl.forEach(function (k) { s.appendChild(el('option', { value: k, text: SLICE_META[k].label })); });
+    if (sl.indexOf(S[key]) < 0) S[key] = sl.indexOf(fallback) >= 0 ? fallback : sl[0] || '';
+    s.value = S[key];
+    s.onchange = function () { S[key] = s.value; RENDER[S.tab](); writeHash(); };
+    return S[key];
+  }
+  function featureOrder(feats, sk) {
+    var s = sliceBy[sk];
+    return feats.filter(function (fi) { return s.fRow.has(fi); }).sort(function (a, b) {
+      var A = MET.features[a], B = MET.features[b]; return A.cls.localeCompare(B.cls) || A.name.localeCompare(B.name); });
+  }
+  function zRows(sk, feats, popAccs) {
+    var s = sliceBy[sk], st = {};
+    feats.forEach(function (fi) { var r = s.fRow.get(fi), v = [];
+      popAccs.forEach(function (ai) { var c = s.aCol.get(ai); if (c != null && s.data[r][c] != null) v.push(s.data[r][c]); });
+      st[fi] = { m: mean(v), s: sd(v) }; });
+    return st;
+  }
+  RENDER.accessions = function () {
+    var dl = clear($('a-list'));
+    ACC.forEach(function (a) { dl.appendChild(el('option', { value: accLabel(a) })); });
+    if (S.acc == null) S.acc = ACC.filter(function (a) { return a.atlas; }).map(function (a) { return a.id; });
+    var chips = clear($('a-chips'));
+    S.acc.forEach(function (id) { var ai = accIdx.get(id); if (ai == null) return;
+      chips.appendChild(el('span', { class: 'mx-chip' }, [accLabel(ACC[ai]) + (ACC[ai].atlas && ACC[ai].atlas !== ACC[ai].name ? ' · atlas ' + ACC[ai].atlas : ''),
+        el('button', { type: 'button', 'aria-label': 'Remove ' + accLabel(ACC[ai]), text: '×', onclick: function () {
+          S.acc = S.acc.filter(function (x) { return x !== id; }); RENDER.accessions(); writeHash(); } })])); });
+    var sk = sliceSelect('a-slice', 'as', 'wu2016');
+    if (!sk) return empty('c-aheat', 'Choose at least one panel.');
+    var feats = featureOrder(selFeats(), sk), pop = selAccs();
+    var cols = S.acc.map(function (id) { return accIdx.get(id); }).filter(function (ai) { return ai != null && sliceBy[sk].aCol.has(ai); });
+    var missing = S.acc.filter(function (id) { var ai = accIdx.get(id); return ai == null || !sliceBy[sk].aCol.has(ai); });
+    var capped = feats.length > MAX_HEAT; feats = feats.slice(0, MAX_HEAT);
+    var popIn = pop.filter(function (ai) { return sliceBy[sk].aCol.has(ai); }).length;
+    $('a-sub').textContent = 'z-score of each metabolite relative to the ' + popIn + ' filtered accessions in ' + SLICE_META[sk].label +
+      '; colour clipped at ±3.' + (capped ? ' Showing the first ' + MAX_HEAT + ' metabolites (narrow the class or name filter for the rest).' : '') +
+      (missing.length ? ' Not in this panel: ' + missing.map(function (id) { var ai = accIdx.get(id); return ai == null ? id : accLabel(ACC[ai]); }).join(', ') + '.' : '');
+    if (!cols.length || !feats.length) return empty('c-aheat', cols.length ? 'No metabolite matches the filters in this panel.' : 'Add accessions that are in this panel.');
+    var st = zRows(sk, feats, pop), z = [], tx = [];
+    feats.forEach(function (fi) { var zr = [], tr = [];
+      cols.forEach(function (ai) { var v = val(sk, fi, ai), q = st[fi];
+        var zz = v == null || !q.s ? null : (v - q.m) / q.s; zr.push(zz);
+        tr.push(esc(MET.features[fi].name) + '<br>' + esc(accLabel(ACC[ai])) + '<br>value <b>' + fmt(v) + '</b> · z <b>' + fmt(zz, 2) + '</b>'); });
+      z.push(zr); tx.push(tr); });
+    plot('c-aheat', [{ type: 'heatmap', z: z, x: cols.map(function (ai) { return esc(ACC[ai].atlas || accLabel(ACC[ai])); }),
+      // zero-width suffixes keep truncated labels distinct, so Plotly never merges two rows into one category
+      y: feats.map(function (fi, i) { return esc(short(MET.features[fi].name, 38)) + '\u200b'.repeat(i); }), text: tx, hovertemplate: '%{text}<extra></extra>',
+      colorscale: divScale(), zmin: -3, zmax: 3, zmid: 0, xgap: 2, ygap: 1,
+      colorbar: { title: { text: 'z', font: { color: css('--mx-ink2') } }, thickness: 10, len: 260, lenmode: 'pixels', y: 1, yanchor: 'top', tickfont: { color: css('--mx-ink2') }, outlinewidth: 0 } }],
+      { height: Math.max(320, 15 * feats.length + 120), yaxis: { autorange: 'reversed', tickfont: { size: 10 } }, xaxis: { side: 'top', tickangle: -30 } });
+  };
+  function addAccession(text) {
+    var t = text.trim().toLowerCase(); if (!t) return;
+    var a = ACC.filter(function (x) { return accLabel(x).toLowerCase() === t || String(x.name).toLowerCase() === t || x.id === t || String(x.eid) === t; })[0];
+    if (!a) return;
+    if (S.acc.indexOf(a.id) < 0) S.acc.push(a.id);
+    $('a-add').value = ''; RENDER.accessions(); writeHash();
+  }
+
+  // ---------- Correlations ----------
+  RENDER.corr = function () {
+    var sk = sliceSelect('r-slice', 'rs', 'wu2016');
+    if (!sk) return empty('c-corr', 'Choose at least one panel.');
+    var feats = featureOrder(selFeats(), sk), accs = selAccs(), s = sliceBy[sk];
+    var capped = feats.length > MAX_HEAT; feats = feats.slice(0, MAX_HEAT);
+    if (feats.length < 2) { table('t-corr', [], []); return empty('c-corr', 'Needs at least two metabolites in this panel under the current filters.'); }
+    var cols = accs.map(function (ai) { return s.aCol.get(ai); }).filter(function (c) { return c != null; });
+    var vecs = feats.map(function (fi) { var r = s.data[s.fRow.get(fi)]; return cols.map(function (c) { return r[c]; }); });
+    var complete = vecs.map(function (v) { return v.every(function (x) { return x != null; }); });
+    var rk = vecs.map(function (v, i) { return complete[i] ? ranks(v) : null; });
+    var n = feats.length, M = [], pairs = [];
+    for (var i = 0; i < n; i++) M.push(new Array(n).fill(null));
+    for (i = 0; i < n; i++) { M[i][i] = 1;
+      for (var j = i + 1; j < n; j++) { var rho, m;
+        if (rk[i] && rk[j]) { rho = pearson(rk[i], rk[j]); m = cols.length; }
+        else { var a = [], b = []; for (var k = 0; k < cols.length; k++) if (vecs[i][k] != null && vecs[j][k] != null) { a.push(vecs[i][k]); b.push(vecs[j][k]); }
+          m = a.length; rho = m >= 10 ? spearman(a, b) : null; }
+        M[i][j] = M[j][i] = rho; if (rho != null) pairs.push([i, j, rho, m]); } }
+    $('r-sub').textContent = SLICE_META[sk].label + ': ' + n + ' metabolites (ordered by class) across ' + cols.length + ' filtered accessions; pairwise-complete values.' +
+      (capped ? ' Showing the first ' + MAX_HEAT + '.' : '');
+    var names = feats.map(function (fi) { return esc(MET.features[fi].name); });
+    var ticks = feats.map(function (fi, i) { return esc(short(MET.features[fi].name, 30)) + '\u200b'.repeat(i); });
+    var tx = M.map(function (row, i) { return row.map(function (r, j) { return names[i] + '<br>' + names[j] + '<br>ρ <b>' + fmt(r, 2) + '</b>'; }); });
+    plot('c-corr', [{ type: 'heatmap', z: M, x: ticks, y: ticks, text: tx, hovertemplate: '%{text}<extra></extra>', colorscale: divScale(), zmin: -1, zmax: 1, zmid: 0,
+      colorbar: { title: { text: 'ρ', font: { color: css('--mx-ink2') } }, thickness: 10, len: 260, lenmode: 'pixels', y: 1, yanchor: 'top', tickfont: { color: css('--mx-ink2') }, outlinewidth: 0 } }],
+      { height: Math.min(1100, Math.max(380, 11 * n + 160)), yaxis: { autorange: 'reversed', tickfont: { size: 9 }, showgrid: false },
+        xaxis: { tickfont: { size: 9 }, tickangle: -60, showgrid: false } });
+    pairs.sort(function (a, b) { return Math.abs(b[2]) - Math.abs(a[2]); });
+    table('t-corr', ['Metabolite A', 'Class A', 'Metabolite B', 'Class B', 'ρ', 'n'], pairs.slice(0, 25).map(function (p) {
+      var A = MET.features[feats[p[0]]], B = MET.features[feats[p[1]]]; return [A.name, A.cls, B.name, B.cls, p[2], p[3]]; }), { num: [4, 5], digits: 2 });
+  };
+
+  // ---------- Samples ----------
+  RENDER.samples = function () {
+    var accs = selAccs();
+    $('s-geo').textContent = GEO_STATUS === 'loading' ? 'Loading accession geography from the 1001 Genomes project…' :
+      GEO_STATUS === 'error' ? 'Accession geography could not be loaded from 1001genomes.org; links to each accession still work.' :
+      'Country, coordinates and admixture group are read live from the 1001 Genomes 1135-accession table; ' +
+      ACC.filter(function (a) { return GEO.get(a.eid); }).length + ' of ' + ACC.length + ' accessions are in it (most RegMap-only accessions are not).';
+    var tiles = clear($('s-tiles'));
+    [['zhu', 'Zhu darkness'], ['wu2018c', 'Wu 2018 control'], ['wu2018s', 'Wu 2018 stress'], ['wu2016', 'Wu 2016 GC-MS'], ['naake', 'Naake leaf peak table']]
+      .forEach(function (p) { tiles.appendChild(el('div', { class: 'mx-tile' }, [el('b', { text: String(accs.filter(function (ai) { return ACC[ai][p[0]]; }).length) }), el('span', { text: p[1] })])); });
+    function yes(b) { return { node: el('span', { class: b ? 'mx-yes' : 'mx-no', text: b ? '✓' : '·' }), sort: b ? 0 : 1 }; }
+    var rows = accs.map(function (ai) { var a = ACC[ai], g = GEO && GEO.get(a.eid);
+      var links = el('span', null, [el('a', { href: 'https://arapheno.1001genomes.org/accession/' + a.eid + '/', target: '_blank', rel: 'noopener', text: 'AraPheno' })]);
+      return [a.eid, a.name + (a.dupName ? ' *' : ''), a.cs, a.atlas, yes(a.zhu), yes(a.wu2018c), yes(a.wu2018s), yes(a.wu2016), yes(a.naake),
+        g ? g.country : null, g ? g.lat : null, g ? g.lon : null, g ? g.group : null, { node: links }]; });
+    table('t-samples', ['Ecotype ID', 'Name', 'CS stock', 'Atlas', 'Zhu', 'Wu18 c', 'Wu18 s', 'Wu16', 'Naake', 'Country', 'Lat', 'Lon', 'Admixture group', 'Links'],
+      rows, { num: [0, 10, 11], digits: 3, sortCol: 0 });
+  };
+
+  // ---------- MetaboLights ----------
+  var ML = { study: null, files: null, maf: null, abort: null };
+  function mlFacets() {
+    var parts = {}, facs = {};
+    CAT.studies.forEach(function (s) { s.organism_parts.forEach(function (p) { parts[p] = (parts[p] || 0) + 1; });
+      Object.keys(s.factors).forEach(function (f) { var k = f.toLowerCase(); facs[k] = (facs[k] || 0) + 1; }); });
+    function fill(id, obj, label) { var s = $(id); s.appendChild(el('option', { value: '', text: label }));
+      Object.keys(obj).sort(function (a, b) { return obj[b] - obj[a] || a.localeCompare(b); }).forEach(function (k) { s.appendChild(el('option', { value: k, text: k + ' (' + obj[k] + ')' })); }); }
+    fill('ml-part', parts, 'Any tissue'); fill('ml-fac', facs, 'Any factor');
+    $('ml-part').onchange = function () { S.mp = this.value; RENDER.ml(); writeHash(); };
+    $('ml-fac').onchange = function () { S.mf = this.value; RENDER.ml(); writeHash(); };
+    $('ml-maf').onchange = function () { S.mm = this.checked; RENDER.ml(); writeHash(); };
+    var t; $('ml-q').oninput = function () { var v = this.value; clearTimeout(t); t = setTimeout(function () { S.mq = v; RENDER.ml(); writeHash(); }, 220); };
+    segment('ml-tech', function (v) { S.mt = v; RENDER.ml(); writeHash(); });
+  }
+  function mafs(s) { var out = []; s.assays.forEach(function (a) { a.mafs.forEach(function (m) { if (out.indexOf(m) < 0) out.push(m); }); }); return out; }
+  RENDER.ml = function () {
+    setSeg('ml-tech', S.mt);
+    $('ml-meta').textContent = CAT.studies.length + ' public studies whose organism list includes Arabidopsis thaliana (' + CAT.search_hits +
+      ' hits for "' + CAT.query_text + '" in the MetaboLights study index, ' + CAT.fetched + '). Selecting a study reads its sample sheet and result table live from EMBL-EBI.';
+    var q = S.mq.trim().toLowerCase();
+    var list = CAT.studies.filter(function (s) {
+      if (S.mt === 'GC-MS' && s.techniques.indexOf('GC-MS') < 0) return false;
+      if (S.mt === 'LC-MS' && s.techniques.indexOf('LC-MS') < 0) return false;
+      if (S.mt === 'other' && !s.techniques.some(function (t) { return t !== 'GC-MS' && t !== 'LC-MS'; })) return false;
+      if (S.mp && s.organism_parts.indexOf(S.mp) < 0) return false;
+      if (S.mf && !Object.keys(s.factors).some(function (f) { return f.toLowerCase() === S.mf; })) return false;
+      if (S.mm && !mafs(s).length) return false;
+      if (q) { var hay = [s.id, s.title, s.organism_parts.join(' '), s.variants.join(' ')].concat(Object.keys(s.factors).map(function (f) { return f + ' ' + s.factors[f].join(' '); })).join(' ').toLowerCase();
+        if (hay.indexOf(q) < 0) return false; }
+      return true;
+    });
+    table('t-ml', ['Study', 'Title', 'Released', 'Technique', 'Tissue', 'Factors', 'Samples', 'Named metabolites', 'Licence'],
+      list.map(function (s) { return [{ node: document.createTextNode(s.id), sort: +s.id.slice(5), id: s.id }, s.title, s.released, s.techniques.join(', '),
+        s.organism_parts.join(', '), Object.keys(s.factors).join(', '), s.samples, s.named_metabolites == null ? null : s.named_metabolites, s.licence || 'not stated']; }),
+      { num: [6, 7], digits: 0, sortCol: 2, onrow: function (row) { S.ml = row[0].id; RENDER.ml(); writeHash(); },
+        selected: function (row) { return row[0].id === S.ml; }, empty: 'No study matches.' });
+    var st = CAT.studies.filter(function (s) { return s.id === S.ml; })[0];
+    if (!st) { clear($('ml-detail')).appendChild(el('p', { class: 'mx-empty', text: 'Select a study to see its samples and results.' })); return; }
+    if (!ML.study || ML.study.id !== st.id) mlDetail(st);
+  };
+  function mlDetail(st) {
+    ML.study = st; ML.files = null; ML.maf = null;
+    var box = clear($('ml-detail')), card = el('div', { class: 'mx-card' });
+    box.appendChild(card);
+    card.appendChild(el('h3', null, [el('a', { href: 'https://www.ebi.ac.uk/metabolights/' + st.id, target: '_blank', rel: 'noopener', text: st.id }), ' · ' + st.title]));
+    var kv = el('dl', { class: 'mx-kv' });
+    function row(k, v) { if (v) { kv.appendChild(el('dt', { text: k })); kv.appendChild(typeof v === 'string' ? el('dd', { text: v }) : el('dd', null, [v])); } }
+    row('Released', st.released); row('Technique', st.techniques.join(', ') + (st.gc_ms ? ' (GC-MS: primary metabolites)' : ''));
+    row('Tissue', st.organism_parts.join(', ')); row('Samples', String(st.samples));
+    Object.keys(st.factors).forEach(function (f) { row('Factor: ' + f, st.factors[f].slice(0, 25).join(', ') + (st.factors[f].length > 25 ? ' … (' + st.factors[f].length + ')' : '')); });
+    if (st.variants.length) row('Variants', st.variants.slice(0, 20).join(', ') + (st.variants.length > 20 ? ' …' : ''));
+    st.publications.forEach(function (p) { row('Publication', p.doi ? el('a', { href: 'https://doi.org/' + p.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//, ''), target: '_blank', rel: 'noopener', text: p.title || p.doi }) : (p.title || '')); });
+    row('Licence', st.licence_url ? el('a', { href: st.licence_url, target: '_blank', rel: 'noopener', text: st.licence || st.licence_url }) : 'not stated in the study metadata');
+    row('Files', el('a', { href: FTP + st.id + '/', target: '_blank', rel: 'noopener', text: 'EMBL-EBI FTP folder' }));
+    card.appendChild(kv);
+    var ms = mafs(st);
+    if (!ms.length) { card.appendChild(el('p', { class: 'mx-note', text: 'This study has no metabolite result table (MAF); open it on MetaboLights for raw data.' })); return; }
+    var sel = el('select', { id: 'ml-mafsel' }); ms.forEach(function (m) { sel.appendChild(el('option', { value: m, text: m })); });
+    var go = el('button', { type: 'button', class: 'mx-btn primary', text: 'Load samples and results', onclick: function () { mlLoad(st, sel.value, false); } });
+    card.appendChild(el('div', { class: 'mx-row' }, [el('div', { class: 'mx-field', style: 'flex:1 1 320px' }, [el('label', { for: 'ml-mafsel', text: 'Result table (MAF)' }), sel]), go]));
+    card.appendChild(el('div', { id: 'ml-out' }));
+  }
+  function fetchText(url, signal) { return fetch(url, { signal: signal }).then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + url.split('/').pop()); return r.text(); }); }
+  function parseTsv(text) {
+    var lines = text.replace(/\r/g, '').split('\n').filter(function (l) { return l.length; });
+    return lines.map(function (l) { return l.split('\t').map(function (c) { return c.replace(/^"(.*)"$/, '$1').trim(); }); });
+  }
+  function mlLoad(st, maf, force) {
+    var out = clear($('ml-out'));
+    if (ML.abort) ML.abort.abort();
+    var ctl = new AbortController(); ML.abort = ctl;
+    var status = el('p', { class: 'mx-sub', text: 'Checking file size…' }); out.appendChild(status);
+    fetch(FTP + st.id + '/' + maf, { headers: { Range: 'bytes=0-0' }, signal: ctl.signal }).then(function (r) {
+      var cr = r.headers.get('Content-Range'), size = cr ? +cr.split('/')[1] : +(r.headers.get('Content-Length') || 0);
+      if (size > MAF_WARN && !force) {
+        status.textContent = 'This result table is ' + (size / 1048576).toFixed(0) + ' MB. ';
+        status.appendChild(el('button', { type: 'button', class: 'mx-btn', text: 'Load anyway', onclick: function () { mlLoad(st, maf, true); } }));
+        throw null;
+      }
+      status.textContent = 'Loading sample sheet, assay files and result table from EMBL-EBI…';
+      var assayFiles = st.assays.filter(function (a) { return a.mafs.indexOf(maf) >= 0; }).map(function (a) { return a.assay_file; }).filter(Boolean);
+      // The sample sheet and assay files only add grouping; a missing one should not block the result table.
+      function optional(f) { return f ? fetchText(FTP + st.id + '/' + f, ctl.signal).catch(function (e) { if (e && e.name === 'AbortError') throw e; return null; }) : Promise.resolve(null); }
+      return Promise.all([optional(st.sample_file)].concat(assayFiles.map(optional)).concat([fetchText(FTP + st.id + '/' + maf, ctl.signal)]));
+    }).then(function (texts) {
+      if (!texts) return;
+      var sTab = texts[0] ? parseTsv(texts[0]) : [['Sample Name']], mTab = parseTsv(texts[texts.length - 1]);
+      var aTabs = texts.slice(1, -1).filter(Boolean).map(parseTsv);
+      mlRender(st, maf, sTab, aTabs, mTab, out, !texts[0]);
+    }).catch(function (e) { if (e === null || (e && e.name === 'AbortError')) return;
+      status.textContent = 'Could not load this study live: ' + (e && e.message ? e.message : e) + '. Open it on MetaboLights instead.'; });
+  }
+  function mlRender(st, maf, sTab, aTabs, mTab, out, noSheet) {
+    clear(out);
+    if (noSheet) out.appendChild(el('p', { class: 'mx-note', text: 'The sample sheet could not be read, so values are shown ungrouped.' }));
+    if (st.missing_files && st.missing_files.length) out.appendChild(el('p', { class: 'mx-note',
+      text: 'MetaboLights lists files that are not in the study folder: ' + st.missing_files.join(', ') + '. Sample columns are matched by name only where the assay file is missing.' }));
+    var sh = sTab[0], sRows = sTab.slice(1), sNameCol = sh.indexOf('Sample Name');
+    var groupCols = []; sh.forEach(function (h, i) { if (/^(Factor Value|Characteristics)\[/.test(h)) {
+      var lab = h.replace(/^Factor Value\[(.*)\]$/, 'Factor: $1').replace(/^Characteristics\[(.*)\]$/, '$1');
+      if (!groupCols.some(function (g) { return g.lab === lab; })) groupCols.push({ i: i, lab: lab }); } });
+    var bySample = new Map(); sRows.forEach(function (r) { bySample.set(r[sNameCol], r); });
+    var alias = new Map();
+    sRows.forEach(function (r) { alias.set(r[sNameCol], r[sNameCol]); });
+    aTabs.forEach(function (t) { var h = t[0], si = h.indexOf('Sample Name');
+      t.slice(1).forEach(function (r) { var s = r[si]; h.forEach(function (name, i) {
+        if (/Assay Name$|Spectral Data File$|^Raw Data File$|^Free Induction Decay Data File$/.test(name) && r[i]) {
+          alias.set(r[i], s); alias.set(r[i].split('/').pop().replace(/\.[^.]+$/, ''), s); } }); }); });
+    var mh = mTab[0], nameCol = mh.indexOf('metabolite_identification'), idCol = mh.indexOf('database_identifier');
+    var sampleCols = []; mh.forEach(function (h, i) { if (alias.has(h)) sampleCols.push({ i: i, sample: alias.get(h), col: h }); });
+    var named = mTab.slice(1).map(function (r, k) { return { k: k + 1, name: (r[nameCol] || '').trim(), id: (r[idCol] || '').trim() }; })
+      .filter(function (r) { return r.name && !/^unknown/i.test(r.name); });
+    var groupsIdx = {}; MET.groups.forEach(function (g, gi) { g.members.forEach(function (key) { var f = MET.features[featIdx.get(key)];
+      [f.name, f.alias].forEach(function (n) { if (n) groupsIdx[nameKey(n)] = gi; }); }); });
+    out.appendChild(el('p', { class: 'mx-sub', text: sRows.length + ' samples in the sheet; ' + (mTab.length - 1) + ' rows in ' + maf + ' (' + named.length +
+      ' named); ' + sampleCols.length + ' of its sample columns matched to samples.' }));
+    // sample summary
+    var sum = el('div', { class: 'mx-scroll' }); out.appendChild(sum);
+    var gRows = groupCols.map(function (g) { var cnt = {}; sRows.forEach(function (r) { var v = r[g.i] || '(blank)'; cnt[v] = (cnt[v] || 0) + 1; });
+      var vals = Object.keys(cnt); return [g.lab, vals.length, vals.slice(0, 12).map(function (v) { return v + ' (' + cnt[v] + ')'; }).join(', ') + (vals.length > 12 ? ' …' : '')]; })
+      .filter(function (r) { return r[1] > 1; });
+    sum.id = 'ml-sum'; table('ml-sum', ['Sample attribute', 'Levels', 'Values (samples)'], gRows, { num: [1], digits: 0, empty: 'The sample sheet has no varying factor or characteristic.' });
+    if (!named.length || !sampleCols.length) { out.appendChild(el('p', { class: 'mx-note', text: !named.length ? 'This result table has no named metabolites.' :
+      'The result table\'s columns could not be matched to the sample sheet, so values cannot be grouped by factor.' })); return; }
+    var msel = el('select', { id: 'ml-met' }), gsel = el('select', { id: 'ml-grp' });
+    named.sort(function (a, b) { return a.name.localeCompare(b.name); }).forEach(function (r) {
+      msel.appendChild(el('option', { value: String(r.k), text: r.name + (r.id && !/^unknown$/i.test(r.id) ? ' · ' + r.id : '') + (groupsIdx[nameKey(cleanMlName(r.name))] != null ? '  ◆' : '') })); });
+    var varying = groupCols.filter(function (g) { return gRows.some(function (r) { return r[0] === g.lab; }); });
+    varying.forEach(function (g, i) { gsel.appendChild(el('option', { value: String(i), text: g.lab })); });
+    var link = el('p', { class: 'mx-sub' });
+    var chart = el('div', { class: 'mx-chart', id: 'c-ml' });
+    out.appendChild(el('div', { class: 'mx-row', style: 'margin-top:12px' }, [
+      el('div', { class: 'mx-field', style: 'flex:1 1 300px' }, [el('label', { for: 'ml-met', text: 'Metabolite (◆ = also in the explorer panels)' }), msel]),
+      el('div', { class: 'mx-field' }, [el('label', { for: 'ml-grp', text: 'Group by' }), gsel])]));
+    out.appendChild(link); out.appendChild(chart);
+    function draw() {
+      var r = mTab[+msel.value], name = r[nameCol], g = varying[+gsel.value];
+      var gi = groupsIdx[nameKey(cleanMlName(name))];
+      clear(link);
+      if (gi != null) link.appendChild(el('a', { href: '#', text: 'Open ' + MET.groups[gi].name + ' in the Metabolite tab', onclick: function (e) {
+        e.preventDefault(); S.m = MET.groups[gi].members[0]; showTab('metabolite'); } }));
+      var xs = [], ys = [], tx = [];
+      sampleCols.forEach(function (c) { var v = parseFloat(String(r[c.i]).replace(',', '.')); if (!isFinite(v)) return;
+        var srow = bySample.get(c.sample); xs.push(esc(g && srow ? (srow[g.i] || '(blank)') : 'all')); ys.push(v); tx.push(esc(c.sample)); });
+      if (!ys.length) return empty('c-ml', 'No numeric values for this metabolite.');
+      plot('c-ml', [{ type: 'box', x: xs, y: ys, text: tx, boxpoints: 'all', jitter: 0.45, pointpos: 0, marker: { size: 6, opacity: 0.7, color: css('--mx-s1') },
+        line: { color: css('--mx-s1'), width: 1.5 }, fillcolor: 'rgba(0,0,0,0)', hovertemplate: '<b>%{y:.4g}</b><br>%{text}<br>%{x}<extra></extra>' }],
+        { height: 380, xaxis: { type: 'category', title: { text: g ? g.lab : '' }, tickangle: xs.length > 6 ? -30 : 0 },
+          yaxis: { title: { text: 'abundance as deposited (' + st.id + ')' } } });
+    }
+    msel.onchange = draw; gsel.onchange = draw; draw();
+  }
+
+  // ---------- Sources ----------
+  RENDER.sources = function () {
+    var ul = clear($('src-list'));
+    MET.datasets.forEach(function (d) {
+      ul.appendChild(el('li', null, [el('b', { text: d.label + ' — ' }), d.citation + ' ',
+        el('a', { href: 'https://doi.org/' + d.doi, target: '_blank', rel: 'noopener', text: 'doi:' + d.doi }),
+        d.data_doi ? el('span', null, [' · data ', el('a', { href: 'https://doi.org/' + d.data_doi, target: '_blank', rel: 'noopener', text: 'doi:' + d.data_doi })]) : null,
+        el('br'), el('span', { class: 'mx-small mx-muted', text: d.platform + ', ' + d.tissue + '. Values: ' + d.scale + '. Licence: ' + d.licence + (/\.$/.test(d.licence) ? ' ' : '. ') + d.note })]));
+    });
+    [['MetaboLights', 'Study list from the ws3 public study index (query "' + CAT.query_text + '", organism filter A. thaliana, fetched ' + CAT.fetched +
+      '); licence per study from its mhd.json (' + CAT.studies.filter(function (s) { return /CC0/.test(s.licence || ''); }).length + ' CC0, ' +
+      CAT.studies.filter(function (s) { return /EMBL-EBI/.test(s.licence || ''); }).length + ' EMBL-EBI Terms of Use, ' +
+      CAT.studies.filter(function (s) { return !s.licence; }).length + ' not stated). Sample sheets and result tables load live from ftp.ebi.ac.uk; the explorer only stores metabolite names for its cross-reference.'],
+     ['Accession geography', 'Read live from the 1001 Genomes 1135-accession table (1001genomes.org). It is not copied into this site because the table carries no open licence. AraPheno links are provided for every accession.'],
+     ['Compound groups', 'A feature in one panel is linked to another only by the Zhu↔Wu 2018 formula and retention-time match (script 11) or by an identical name once D-/L- prefixes and punctuation are dropped; two features of one panel are never grouped. Synonyms such as malate and malic acid stay separate. MetaboLights GC-MS names are matched after removing Golm database codes and TMS/MEOX derivatisation tags.'],
+     ['Comparing panels', 'Each panel is on its own published scale (BLUP, log2-scale intensity, normalised intensity). Compare ranks, correlations and directions across panels, not absolute values.'],
+     ['Known gaps', 'Col-0 is not in the Zhu panel. Only Wu 2018\'s identified metabolites are here (see its note above). Naake 2024 seed samples are anonymous in the supplement, so only its leaf peak table\'s accession list is used. Zhu metabolite classes are borrowed from linked Wu features where possible; ' +
+       MET.features.filter(function (f) { return f.ds === 'zhu' && f.cls === 'Unclassified'; }).length + ' of ' +
+       MET.features.filter(function (f) { return f.ds === 'zhu'; }).length + ' Zhu metabolites stay Unclassified.']]
+      .forEach(function (x) { ul.appendChild(el('li', null, [el('b', { text: x[0] + ' — ' }), x[1]])); });
+  };
+
+  // ---------- CSV export ----------
+  function exportCsv() {
+    var accs = selAccs(), feats = selFeats(), sl = selSlices();
+    function q(v) { v = v == null ? '' : String(v); return /[",\n]/.test(v) ? '"' + v.replace(/"/g, '""') + '"' : v; }
+    var lines = ['# Arabidopsis Metabolome Explorer selection, exported ' + new Date().toISOString().slice(0, 10),
+      '# ' + location.href,
+      '# Sources: ' + MET.datasets.map(function (d) { return d.label + ' doi:' + d.doi + ' (' + d.licence.split('. ')[0] + ')'; }).join('; '),
+      '# Values are on each panel\'s published scale; see the Sources tab before comparing panels.',
+      'accession,ecotype_id,accession_name,panel,dataset,condition,platform,metabolite_key,metabolite_name,metabolite_class,value'];
+    sl.forEach(function (k) { var s = sliceBy[k];
+      feats.forEach(function (fi) { var r = s.fRow.get(fi); if (r == null) return; var f = MET.features[fi];
+        accs.forEach(function (ai) { var c = s.aCol.get(ai); if (c == null) return; var v = s.data[r][c]; if (v == null) return; var a = ACC[ai];
+          lines.push([a.id, a.eid, a.name, k, f.ds, s.cond, f.plat, f.key, f.name, f.cls, v].map(q).join(',')); }); }); });
+    var blob = new Blob([lines.join('\n') + '\n'], { type: 'text/csv' }), url = URL.createObjectURL(blob);
+    var a = el('a', { href: url, download: 'metabolome-explorer-selection.csv' }); document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+
+  // ---------- geography (live) ----------
+  function loadGeo() {
+    fetch(G1001).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }).then(function (rows) {
+      GEO = new Map(); var groups = {};
+      rows.forEach(function (r) { var g = String(r.Admixture_Group || '').replace(/_/g, ' ').replace(/\b[a-z]/g, function (c) { return c.toUpperCase(); });
+        GEO.set(+r.Accession_ID, { country: r.Country, lat: r.Latitude, lon: r.Longitude, group: g }); });
+      ACC.forEach(function (a) { var g = GEO.get(a.eid); if (g && g.group) groups[g.group] = (groups[g.group] || 0) + 1; });
+      var s = clear($('f-rg')); s.appendChild(el('option', { value: '', text: 'Any' }));
+      Object.keys(groups).sort().forEach(function (g) { s.appendChild(el('option', { value: g, text: g + ' (' + groups[g] + ')' })); });
+      s.value = S.rg; GEO_STATUS = 'ok';
+    }).catch(function () { GEO_STATUS = 'error'; var s = clear($('f-rg')); s.appendChild(el('option', { value: '', text: 'Unavailable' })); s.disabled = true; S.rg = ''; })
+      .then(function () { renderTiles(); if (S.tab === 'samples' || S.rg) RENDER[S.tab](); });
+  }
+
+  // ---------- boot ----------
+  function j(n) { return fetch(BASE + n).then(function (r) { if (!r.ok) throw new Error(n + ' HTTP ' + r.status); return r.json(); }); }
+  Promise.all([j('accessions.json'), j('metabolites.json'), j('values.json'), j('metabolights_catalogue.json')]).then(function (d) {
+    ACC = d[0]; MET = d[1]; SLICES = d[2].slices; CAT = d[3];
+    ACC.forEach(function (a, i) { accIdx.set(a.id, i); });
+    MET.features.forEach(function (f, i) { featIdx.set(f.key, i); });
+    SLICES.forEach(function (s) { s.fRow = new Map(s.feats.map(function (fi, r) { return [fi, r]; }));
+      s.aCol = new Map(s.accs.map(function (ai, c) { return [ai, c]; })); sliceBy[s.key] = s; });
+    readHash();
+    buildFilters(); mlFacets(); syncControls(); paintSwatches();
+    document.querySelectorAll('#tabs button').forEach(function (b) { b.onclick = function () { showTab(b.getAttribute('data-tab')); }; });
+    document.querySelectorAll('[data-goto]').forEach(function (a) { a.onclick = function (e) { e.preventDefault(); showTab(a.getAttribute('data-goto')); window.scrollTo(0, 0); }; });
+    $('a-add').addEventListener('change', function () { addAccession(this.value); });
+    $('a-add').addEventListener('keydown', function (e) { if (e.key === 'Enter') addAccession(this.value); });
+    $('a-atlas').onclick = function () { S.acc = ACC.filter(function (a) { return a.atlas; }).map(function (a) { return a.id; }); RENDER.accessions(); writeHash(); };
+    $('a-clear').onclick = function () { S.acc = []; RENDER.accessions(); writeHash(); };
+    renderTiles(); showTab(S.tab);
+    loadGeo();
+    new MutationObserver(function () { paintSwatches(); RENDER[S.tab](); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  }).catch(function (e) {
+    clear($('tiles')).appendChild(el('p', { class: 'mx-note', text: 'Could not load the explorer data (' + e.message + ').' }));
+  });
+})();
+</script>
+</body>
+</html>

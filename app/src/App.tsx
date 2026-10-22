@@ -257,7 +257,8 @@ export default function App() {
           <a href="https://github.com/dr-richard-barker/rice-atlas" target="_blank" rel="noreferrer">rice-atlas</a>
           {" "}— see the <a href="https://github.com/dr-richard-barker/arabidopsis-atlas#readme" target="_blank" rel="noreferrer">README</a> for what's actually real data here vs. simplified geometry.
           {" "}Also see the <a href="growth.html">seed-to-flowering growth animation →</a>
-          {" "}and the <a href="metabolome.html">metabolome × spaceflight showcase →</a>
+          {" "}the <a href="metabolome.html">metabolome × spaceflight showcase →</a>
+          {" "}and the <a href="metabolome-explorer.html">metabolome explorer →</a>
         </p>
         <EcotypePicker value={ecotype} onChange={handleEcotypeChange} />
       </header>

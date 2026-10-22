@@ -1,0 +1,6107 @@
+{
+ "source": "MetaboLights public-study-index (ws3) advanced search",
+ "endpoint": "https://www.ebi.ac.uk/metabolights/ws3/public/v2/public-study-index/advanced-search?include_all_ids=true",
+ "query_text": "arabidopsis thaliana",
+ "organism_filter": "Arabidopsis thaliana",
+ "fetched": "2026-10-22",
+ "search_hits": 88,
+ "studies": [
+  {
+   "id": "MTBLS2",
+   "title": "Comparative LC/MS-based profiling of silver nitrate-treated Arabidopsis thaliana leaves of wild-type and cyp79B2 cyp79B3 double knockout plants",
+   "released": "2012-05-22",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Col-0",
+     "cyp79"
+    ],
+    "Replicate": [
+     "Exp1",
+     "Exp2"
+    ]
+   },
+   "design": [
+    "Comparative LC/MS-based profiling",
+    "Pathway Elucidation",
+    "Plant Metabolomics",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 16,
+   "sample_file": "s_MTBLS2.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - - - micrOTOF-Q II ESI TOF (Bruker)",
+     "assay_file": "a_MTBLS2_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS2_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS2_LC-MS_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The multifunctional enzyme CYP71B15 (PHYTOALEXIN DEFICIENT3) converts cysteine-indole-3-acetonitrile to camalexin in the indole-3-acetonitrile metabolic network of Arabidopsis thaliana.",
+     "authors": "Böttcher C, Westphal L, Schmotz C, Prade E, Scheel D, Glawischnig E.",
+     "doi": "10.1105/tpc.109.066670",
+     "pubmed": null
+    },
+    {
+     "title": "Nearline acquisition and processing of liquid chromatography-tandem mass spectrometry data",
+     "authors": "Neumann Steffen, Thum Andrea, Böttcher Christoph",
+     "doi": "10.1007/s11306-012-0401-0",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "11.13GB",
+   "maf_skipped": [],
+   "named_metabolites": 22
+  },
+  {
+   "id": "MTBLS7",
+   "title": "Metabolomic profiles in long day, after bolting, single leaf analysis, Arabidopsis thaliana",
+   "released": "2015-09-14",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "cotyledon",
+    "leaf",
+    "shoot apical meristem"
+   ],
+   "variants": [
+    "Arabidopsis thaliana.Col-0"
+   ],
+   "factors": {
+    "Container after 14d": [
+     "6 cm Pot"
+    ],
+    "Container after initiation": [
+     "Petri dish"
+    ],
+    "Medium after 14d": [
+     "Potting soil"
+    ],
+    "Medium after initiation": [
+     "Agar"
+    ],
+    "Plants/Container quantity after 14d": [
+     "1"
+    ],
+    "Total light 0pc after 07d": [
+     "16 hour"
+    ],
+    "Total light 0pc after 28d": [
+     "8 hour"
+    ],
+    "Total light 0pc after initiation": [
+     "8 hour"
+    ],
+    "Total light 100pc after 07d": [
+     "8 hour"
+    ],
+    "Total light 100pc after 28d": [
+     "16 hour"
+    ],
+    "Total light 100pc after initiation": [
+     "16 hour"
+    ]
+   },
+   "design": [
+    "bolting stage",
+    "gas chromatography-mass spectrometry",
+    "intervention design",
+    "stimulus or stress design",
+    "untargeted metabolites"
+   ],
+   "samples": 113,
+   "sample_file": "s_MTBLS7.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS - positive - low polarity - GC-MS",
+     "assay_file": "a_MTBLS7_Metabolomic_profiles_in_long_day__after_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt",
+     "mafs": [
+      "m_MTBLS7_Metabolomic_profiles_in_long_day__after_bolting__single_leaf_analysis__Arabidopsis_thaliana_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS7_GC-MS_Metabolomic_profiles_in_long_day__after_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "5.06GB",
+   "maf_skipped": [],
+   "named_metabolites": 86
+  },
+  {
+   "id": "MTBLS11",
+   "title": "Metabolomic profiles in long day, before bolting, single leaf analysis, Arabidopsis thaliana",
+   "released": "2015-09-14",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "cotyledon",
+    "leaf",
+    "shoot apical meristem"
+   ],
+   "variants": [
+    "Arabidopsis thaliana.Col-0"
+   ],
+   "factors": {
+    "Container_after_14d": [
+     "6 cm Pot"
+    ],
+    "Container_after_initiation": [
+     "Petri dish"
+    ],
+    "Medium_after_14d": [
+     "Potting soil"
+    ],
+    "Medium_after_initiation": [
+     "Agar"
+    ],
+    "Plants/Container_Quantity_after_14d": [
+     "1"
+    ],
+    "Total Light_0pc_after_07d": [
+     "16 hour"
+    ],
+    "Total Light_0pc_after_28d": [
+     "8 hour"
+    ],
+    "Total Light_0pc_after_initiation": [
+     "8 hour"
+    ],
+    "Total Light_100pc_after_07d": [
+     "8 hour"
+    ],
+    "Total Light_100pc_after_28d": [
+     "16 hour"
+    ],
+    "Total Light_100pc_after_initiation": [
+     "16 hour"
+    ]
+   },
+   "design": [
+    "bolting stage",
+    "gas chromatography-mass spectrometry",
+    "intervention design",
+    "stimulus or stress design",
+    "untargeted metabolites"
+   ],
+   "samples": 107,
+   "sample_file": "s_MTBLS11.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "GC-MS",
+     "assay_file": "a_MTBLS11_Metabolomic_profiles_in_long_day__before_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt",
+     "mafs": [
+      "m_MTBLS11_Metabolomic_profiles_in_long_day__before_bolting__single_leaf_analysis__Arabidopsis_thaliana_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS11_GC-MS_Metabolomic_profiles_in_long_day__before_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "4.79GB",
+   "maf_skipped": [],
+   "named_metabolites": 86
+  },
+  {
+   "id": "MTBLS12",
+   "title": "Metabolomic profiles in short day, after bolting, single leaf analysis, Arabidopsis thaliana",
+   "released": "2015-09-14",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "cotyledon",
+    "leaf",
+    "shoot apical meristem"
+   ],
+   "variants": [
+    "Arabidopsis thaliana.Col-0"
+   ],
+   "factors": {
+    "Container_after_14d": [
+     "6 cm Pot"
+    ],
+    "Container_after_initiation": [
+     "Petri dish"
+    ],
+    "Medium_after_14d": [
+     "Potting soil"
+    ],
+    "Medium_after_initiation": [
+     "Agar"
+    ],
+    "Plants/Container_Quantity_after_14d": [
+     "1"
+    ],
+    "Total Light_0pc_after_07d": [
+     "16 hour"
+    ],
+    "Total Light_0pc_after_initiation": [
+     "8 hour"
+    ],
+    "Total Light_100pc_after_07d": [
+     "8 hour"
+    ],
+    "Total Light_100pc_after_initiation": [
+     "16 hour"
+    ]
+   },
+   "design": [
+    "bolting stage",
+    "gas chromatography-mass spectrometry",
+    "intervention design",
+    "stimulus or stress design",
+    "untargeted metabolites"
+   ],
+   "samples": 69,
+   "sample_file": "s_MTBLS12.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "GC-MS",
+     "assay_file": "a_MTBLS12_Metabolomic_profiles_in_short_day__after_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt",
+     "mafs": [
+      "m_MTBLS12_Metabolomic_profiles_in_short_day__after_bolting__single_leaf_analysis__Arabidopsis_thaliana_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS12_GC-MS_Metabolomic_profiles_in_short_day__after_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "3.09GB",
+   "maf_skipped": [],
+   "named_metabolites": 86
+  },
+  {
+   "id": "MTBLS13",
+   "title": "Metabolomic profiles in short day, before bolting, single leaf analysis, Arabidopsis thaliana",
+   "released": "2015-09-14",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "cotyledon",
+    "leaf",
+    "shoot apical meristem"
+   ],
+   "variants": [
+    "Arabidopsis thaliana.Col-0"
+   ],
+   "factors": {
+    "Container_after_14d": [
+     "6 cm Pot"
+    ],
+    "Container_after_initiation": [
+     "Petri dish"
+    ],
+    "Medium_after_14d": [
+     "Potting soil"
+    ],
+    "Medium_after_initiation": [
+     "Agar"
+    ],
+    "Plants/Container_Quantity_after_14d": [
+     "1"
+    ],
+    "Total Light_0pc_after_07d": [
+     "16 hour"
+    ],
+    "Total Light_0pc_after_initiation": [
+     "8 hour"
+    ],
+    "Total Light_100pc_after_07d": [
+     "8 hour"
+    ],
+    "Total Light_100pc_after_initiation": [
+     "16 hour"
+    ]
+   },
+   "design": [
+    "bolting stage",
+    "gas chromatography-mass spectrometry",
+    "intervention design",
+    "stimulus or stress design",
+    "untargeted metabolites"
+   ],
+   "samples": 83,
+   "sample_file": "s_MTBLS13.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "GC-MS",
+     "assay_file": "a_MTBLS13_Metabolomic_profiles_in_short_day__before_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt",
+     "mafs": [
+      "m_MTBLS13_Metabolomic_profiles_in_short_day__before_bolting__single_leaf_analysis__Arabidopsis_thaliana_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS13_GC-MS_Metabolomic_profiles_in_short_day__before_bolting__single_leaf_analysis__Arabidopsis_thaliana.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "3.71GB",
+   "maf_skipped": [],
+   "named_metabolites": 86
+  },
+  {
+   "id": "MTBLS18",
+   "title": "Metabolic and transcriptional response of Arabidopsis thaliana wildtype and mutants to Phytophtora infestans",
+   "released": "2025-07-04",
+   "techniques": [
+    "LC-MS",
+    "MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "40",
+     "D",
+     "erp1",
+     "erp2",
+     "gl1",
+     "pen2"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3"
+    ],
+    "Sampling time": [
+     "12 hour",
+     "6 hour"
+    ],
+    "Treatment": [
+     "Phytophthora infestans",
+     "water"
+    ]
+   },
+   "design": [
+    "Phytophthora infestans 90128",
+    "chemically induced mutation",
+    "diode array detector",
+    "disease state design",
+    "infection",
+    "time series design",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 72,
+   "sample_file": "s_MTBLS18.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - - - micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS18_NEG_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS18_NEG_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS18_LC-MS_NEG_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - - - micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS18_POS_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS18_POS_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS18_LC-MS_POS_mass_spectrometry-1.txt"
+    },
+    {
+     "technique": "MS",
+     "platform": "Diode array detection MS - - - micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS18_UV.txt",
+     "mafs": [
+      "m_MTBLS18_UV_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS18_LC-DAD_UV.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Impaired sterol ester synthesis alters the response of Arabidopsis thaliana to Phytophthora infestans.",
+     "authors": "Kopischke M, Westphal L, Schneeberger K, Clark R, Ossowski S, Wewer V, Fuchs R, Landtag J, Hause G, Dörmann P, Lipka V, Weigel D, Schulze-Lefert P, Scheel D, Rosahl S.",
+     "doi": "10.1111/tpj.12046",
+     "pubmed": null
+    }
+   ],
+   "licence": null,
+   "licence_url": null,
+   "size": "77.0GB",
+   "maf_skipped": [],
+   "named_metabolites": 14
+  },
+  {
+   "id": "MTBLS22",
+   "title": "Mining for metabolic responses to long-term salt stress: a case study on Arabidopsis thaliana Col-0 (A)",
+   "released": "2015-09-14",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [
+    "Arabidopsis thaliana.Col-0"
+   ],
+   "factors": {
+    "Container_after_initiation": [
+     "Pot"
+    ],
+    "Medium_after_initiation": [
+     "Potting soil"
+    ],
+    "Salt_Quantity_after_04d": [
+     "0 millimolar",
+     "10 millimolar"
+    ],
+    "Salt_Quantity_after_08d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar"
+    ],
+    "Salt_Quantity_after_12d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar",
+     "50 millimolar"
+    ],
+    "Salt_Quantity_after_16d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar",
+     "50 millimolar",
+     "75 millimolar"
+    ],
+    "Salt_Quantity_after_initiation": [
+     "0 millimolar"
+    ],
+    "Watering_after_initiation": [
+     "Half-strength GS-90 plus 1/4 Hoagland solution."
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "intervention design",
+    "response to salt stress",
+    "stimulus or stress design",
+    "untargeted metabolites"
+   ],
+   "samples": 30,
+   "sample_file": "s_MTBLS22.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "GC-MS",
+     "assay_file": "a_MTBLS22_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__A_.txt",
+     "mafs": [
+      "m_MTBLS22_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__A__v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS22_GC-MS_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__A.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Plant metabolomics reveals conserved and divergent metabolic responses to salinity.",
+     "authors": "Sanchez DH, Siahpoosh MR, Roessner U, Udvardi M, Kopka J.",
+     "doi": "10.1111/j.1399-3054.2007.00993.x",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1.32GB",
+   "maf_skipped": [],
+   "named_metabolites": 68
+  },
+  {
+   "id": "MTBLS40",
+   "title": "Unbiased characterization of genotype-dependent metabolic regulations by metabolomic approach in Arabidopsis thaliana",
+   "released": "2014-03-01",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "aerial part",
+    "pure substance"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Col-0",
+     "alkane",
+     "mto1",
+     "tt4"
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "metabolomic profiling",
+    "untargeted metabolites"
+   ],
+   "samples": 51,
+   "sample_file": "s_MTBLS40.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Leco Pegasus III",
+     "assay_file": "a_MTBLS40_gc0001_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS40_gc0001_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS40_GC-MS_gc0001_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Unbiased characterization of genotype-dependent metabolic regulations by metabolomic approach in Arabidopsis thaliana.",
+     "authors": "Kusano M, Fukushima A, Arita M, Jonsson P, Moritz T, Kobayashi M, Hayashi N, Tohge T, Saito K.",
+     "doi": "10.1186/1752-0509-1-53",
+     "pubmed": null
+    },
+    {
+     "title": "Application of a metabolomic method combining one-dimensional and two-dimensional gas chromatography-time-of-flight/mass spectrometry to metabolic phenotyping of natural variants in rice.",
+     "authors": "Kusano M, Fukushima A, Kobayashi M, Hayashi N, Jonsson P, Moritz T, Ebana K, Saito K.",
+     "doi": "10.1016/j.jchromb.2007.05.002",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "6.16GB",
+   "maf_skipped": [],
+   "named_metabolites": 87
+  },
+  {
+   "id": "MTBLS41",
+   "title": "Mining for metabolic responses to long-term salt stress: a case study on Arabidopsis thaliana Col-0 (B)",
+   "released": "2015-09-14",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [
+    "Arabidopsis thaliana.Col-0"
+   ],
+   "factors": {
+    "Container_after_initiation": [
+     "Pot"
+    ],
+    "Medium_after_initiation": [
+     "Potting soil"
+    ],
+    "Salt_Quantity_after_04d": [
+     "0 millimolar",
+     "10 millimolar"
+    ],
+    "Salt_Quantity_after_08d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar"
+    ],
+    "Salt_Quantity_after_12d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar",
+     "50 millimolar"
+    ],
+    "Salt_Quantity_after_initiation": [
+     "0 millimolar"
+    ],
+    "Salt_Quantity_ter_16d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar",
+     "50 millimolar",
+     "75 millimolar"
+    ],
+    "Watering_after_initiation": [
+     "Half-strength GS-90 plus 1/4 Hoagland solution."
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "intervention design",
+    "response to salt stress",
+    "stimulus or stress design",
+    "untargeted metabolites"
+   ],
+   "samples": 28,
+   "sample_file": "s_MTBLS41.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "GC-MS",
+     "assay_file": "a_MTBLS41_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__B_.txt",
+     "mafs": [
+      "m_MTBLS41_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__B__v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS41_GC-MS_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__B.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Plant metabolomics reveals conserved and divergent metabolic responses to salinity.",
+     "authors": "Sanchez DH, Siahpoosh MR, Roessner U, Udvardi M, Kopka J.",
+     "doi": "10.1111/j.1399-3054.2007.00993.x",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1.23GB",
+   "maf_skipped": [],
+   "named_metabolites": 68
+  },
+  {
+   "id": "MTBLS42",
+   "title": "Mining for metabolic responses to long-term salt stress: a case study on Arabidopsis thaliana Col-0 (C)",
+   "released": "2015-09-14",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [
+    "Arabidopsis thaliana.Col-0"
+   ],
+   "factors": {
+    "Container_after_initiation": [
+     "Pot"
+    ],
+    "Medium_after_initiation": [
+     "Potting soil"
+    ],
+    "Salt_Quantity_after_04d": [
+     "0 millimolar",
+     "10 millimolar"
+    ],
+    "Salt_Quantity_after_08d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar"
+    ],
+    "Salt_Quantity_after_12d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar",
+     "50 millimolar"
+    ],
+    "Salt_Quantity_after_16d": [
+     "0 millimolar",
+     "10 millimolar",
+     "25 millimolar",
+     "50 millimolar",
+     "75 millimolar"
+    ],
+    "Salt_Quantity_after_initiation": [
+     "0 millimolar"
+    ],
+    "Watering_after_initiation": [
+     "Half-strength GS-90 plus 1/4 Hoagland solution."
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "intervention design",
+    "response to salt stress",
+    "stimulus or stress design",
+    "untargeted metabolites"
+   ],
+   "samples": 30,
+   "sample_file": "s_MTBLS42.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "GC-MS",
+     "assay_file": "a_MTBLS42_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__C_.txt",
+     "mafs": [
+      "m_MTBLS42_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__C__v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS42_GC-MS_Mining_for_metabolic_responses_to_long-term_salt_stress_a_case_study_on_Arabidopsis_thaliana_Col-0__C.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Plant metabolomics reveals conserved and divergent metabolic responses to salinity.",
+     "authors": "Sanchez DH, Siahpoosh MR, Roessner U, Udvardi M, Kopka J.",
+     "doi": "10.1111/j.1399-3054.2007.00993.x",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1.32GB",
+   "maf_skipped": [],
+   "named_metabolites": 68
+  },
+  {
+   "id": "MTBLS45",
+   "title": "Metabolomic correlation-network modules in Arabidopsis based on a graph-clustering approach",
+   "released": "2014-03-01",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "pure substance",
+    "root"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Col-0",
+     "alkane",
+     "mto1",
+     "tt4"
+    ]
+   },
+   "design": [
+    "Principal Component Analysis",
+    "gas chromatography-mass spectrometry",
+    "metabolomic profiling",
+    "untargeted metabolites"
+   ],
+   "samples": 54,
+   "sample_file": "s_MTBLS45.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Leco Pegasus III",
+     "assay_file": "a_MTBLS45_gc0002_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS45_gc0002_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS45_GC-MS_gc0002_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolomic correlation-network modules in Arabidopsis based on a graph-clustering approach",
+     "authors": "Atsushi Fukushima, Miyako Kusano, Henning Redestig, Masanori Arita, Kazuki Saito",
+     "doi": "10.1186/1752-0509-5-1",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "6.52GB",
+   "maf_skipped": [],
+   "named_metabolites": 89
+  },
+  {
+   "id": "MTBLS47",
+   "title": "Metabolomic Characterization of Knock-Out Mutants in Arabidopsis - Development of a Metabolite Profiling Database for Knock-Out Mutants in Arabidopsis (MeKO)",
+   "released": "2014-03-01",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "aerial part",
+    "pure substance"
+   ],
+   "variants": [],
+   "factors": {
+    "Batch": [
+     "Alkane_2",
+     "MeKO_01_09",
+     "MeKO_02_03_04",
+     "MeKO_05_10",
+     "MeKO_06_07",
+     "MeKO_08_11_12"
+    ],
+    "Genotype": [
+     "CS297",
+     "Col-0",
+     "aat2-2",
+     "aba1-5",
+     "aba1-6",
+     "aba2-1",
+     "aba2-3",
+     "aba3-1",
+     "alkane",
+     "amt1-1",
+     "cim10",
+     "cim11",
+     "cim13",
+     "cim14",
+     "cim6",
+     "cim7",
+     "cim9",
+     "cla-1S",
+     "cob-2",
+     "col-0",
+     "eto1-1",
+     "eto3",
+     "fad5-1",
+     "fad6-1",
+     "fah1-2",
+     "fur1-1",
+     "fus6-1S",
+     "gsr1-1",
+     "ixr1-1",
+     "ixr1-2",
+     "mur1-1",
+     "mur1-2",
+     "mur11-1",
+     "mur2-1",
+     "mur3-2",
+     "mur4-2",
+     "mur5-1",
+     "mur6-1",
+     "mur7-1",
+     "mur8-1",
+     "mur9-1",
+     "pac-1S",
+     "pad2-1",
+     "pad3-1",
+     "pad4-1",
+     "pap1-D",
+     "phyB-9",
+     "rsw1-1",
+     "rsw2-1",
+     "rsw3-1",
+     "sng1-1",
+     "tbr-1",
+     "vtc1-1"
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "metabolomic profiling",
+    "untargeted metabolites"
+   ],
+   "samples": 659,
+   "sample_file": "s_MTBLS47.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Leco Pegasus III",
+     "assay_file": "a_MTBLS47_gc0003_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS47_gc0003_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS47_GC-MS_gc0003_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolomic Characterization of Knock-Out Mutants in Arabidopsis - Development of a Metabolite Profiling Database for Knock-Out Mutants in Arabidopsis (MeKO).",
+     "authors": "Atsushi Fukushima, Miyako Kusano, Mami Iwasa, Makoto Kobayashi, Naomi Hayashi, Akiko Watanabe-Takahashi, Tomoko Narisawa, Takayuki Tohge, Kazuki Saito",
+     "doi": "http://dx.doi.org/10.1104/pp.114.240986",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "77.05GB",
+   "maf_skipped": [],
+   "named_metabolites": 99
+  },
+  {
+   "id": "MTBLS57",
+   "title": "Enhancement of oxidative and drought tolerance in Arabidopsis by overaccumulation of antioxidant flavonoids",
+   "released": "2013-12-06",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "aerial part",
+    "rosette leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "genotype": [
+     "Col0",
+     "MYB12OX",
+     "MYB12OXtt4",
+     "WOX1_1",
+     "WOX1_2",
+     "pap1D",
+     "pap1Dtt4",
+     "tt4"
+    ],
+    "replicate": [
+     "1",
+     "2",
+     "3"
+    ],
+    "stress": [
+     "drought",
+     "unstressed"
+    ]
+   },
+   "design": [
+    "Stress tolerance",
+    "Transcriptomics",
+    "anthocyanin",
+    "flavonol",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 48,
+   "sample_file": "s_MTBLS57.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Xevo G2 QTOF (Waters)",
+     "assay_file": null,
+     "mafs": []
+    }
+   ],
+   "missing_files": [
+    "a_MTBLS57_LC-MS_LC_mass_spectrometry.txt"
+   ],
+   "publications": [
+    {
+     "title": "Enhancement of oxidative and drought tolerance in Arabidopsis by overaccumulation of antioxidant flavonoids.",
+     "authors": "Nakabayashi R, Yonekura-Sakakibara K, Urano K, Suzuki M, Yamada Y, Nishizawa T, Matsuda F, Kojima M, Sakakibara H, Shinozaki K, Michael AJ, Tohge T, Yamazaki M, Saito K.",
+     "doi": "10.1111/tpj.12388",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "4.16GB",
+   "maf_skipped": [],
+   "named_metabolites": 0
+  },
+  {
+   "id": "MTBLS74",
+   "title": "Experiment design beyond gut feeling: statistical tests and power to detect differential metabolites in mass spectrometry data",
+   "released": "2014-11-06",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [],
+   "factors": {},
+   "design": [
+    "replicate design",
+    "time-of-flight mass spectrometry",
+    "ultra-performance liquid chromatography-mass spectrometry"
+   ],
+   "samples": 108,
+   "sample_file": "s_MTBLS74.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS74_scse305_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS74_scse305_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS74_LC-MS_scse305_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Experiment design beyond gut feeling: statistical tests and power to detect differential metabolites in mass spectrometry data",
+     "authors": "Diana Trutschel, Stephan Schmidt, Ivo Grosse and Steffen Neumann",
+     "doi": "10.1007/s11306-014-0742-y",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "29.55GB",
+   "maf_skipped": [],
+   "named_metabolites": 642
+  },
+  {
+   "id": "MTBLS94",
+   "title": "PROMIS, global analysis of PROtein-Metabolite Interactions using Size separation in Arabidopsis thaliana",
+   "released": "2018-07-19",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Replicate": [
+     "Rep1",
+     "Rep2",
+     "Rep3",
+     "Rep4"
+    ]
+   },
+   "design": [
+    "Protein-Protein Interaction",
+    "Proteomics",
+    "Systems biology",
+    "ligand-binding protein",
+    "protein-small molecule interaction",
+    "size exclusion chromatography",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 456,
+   "sample_file": "s_MTBLS94.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Positive (LC-MS (Positive))",
+     "assay_file": "a_MTBLS94_POS_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS94_POS_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS94_LC-MS_POS_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Negative (LC-MS (Negative))",
+     "assay_file": "a_MTBLS94_NEG_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS94_NEG_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS94_LC-MS_NEG_mass_spectrometry-1.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "PROMIS, global analysis of PROtein-Metabolite Interactions using Size separation in Arabidopsis thaliana.",
+     "authors": "Veyel D, Sokolowska EM, Moreno JC, Kierszniowska S, Cichon J, Wojciechowska I, Luzarowski M, Kosmacz M, Szlachetko J, Gorka M, Méret M, Graf A, Meyer EH, Willmitzer L, Skirycz A.",
+     "doi": "10.1074/jbc.RA118.003351",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "141.27GB",
+   "maf_skipped": [],
+   "named_metabolites": 4599
+  },
+  {
+   "id": "MTBLS95",
+   "title": "Decreased abundance of type III secretion systeminducing signals in Arabidopsis mkp1 enhances resistance against Pseudomonas syringae",
+   "released": "2014-06-24",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "exometabolome"
+   ],
+   "variants": [
+    "Wassilewskija ecotype"
+   ],
+   "factors": {
+    "Genotype": [
+     "MPK1 Mutant",
+     "MPK1/MPK6 Mutant",
+     "wild type"
+    ],
+    "Replicate": [
+     "1_1",
+     "1_2",
+     "2_1",
+     "2_2",
+     "3_1",
+     "3_2"
+    ]
+   },
+   "design": [
+    "MAPK phosphatase export from nucleus",
+    "Pseudomonas syringae pv. tomato str. DC3000",
+    "avrPto protein, Pseudomonas syringae",
+    "gas chromatography-mass spectrometry",
+    "type III protein secretion system complex",
+    "untargeted metabolites"
+   ],
+   "samples": 18,
+   "sample_file": "s_MTBLS95.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "5975C Series GC/MSD (Agilent)",
+     "assay_file": "a_MTBLS95_dc3000_t3ss_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS95_dc3000_t3ss_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS95_GC-MS_dc3000_t3ss_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Decreased abundance of type III secretion system-inducing signals in Arabidopsis mkp1 enhances resistance against Pseudomonas syringae.",
+     "authors": "Anderson JC, Wan Y, Kim YM, Pasa-Tolic L, Metz TO, Peck SC.",
+     "doi": "10.1073/pnas.1403248111",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "621.81MB",
+   "maf_skipped": [],
+   "named_metabolites": 69
+  },
+  {
+   "id": "MTBLS129",
+   "title": "Coordinate Regulation of Metabolite Glycosylation and Stress Hormone Biosynthesis by TT8 in Arabidopsis",
+   "released": "2016-10-03",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "seedling"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Ws-2",
+     "tt8-3"
+    ],
+    "Time": [
+     "6 day"
+    ]
+   },
+   "design": [
+    "Secondary Metabolism",
+    "Transcriptomics",
+    "flavonoids",
+    "glycosylation",
+    "jasmonic acid",
+    "response to stress",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 24,
+   "sample_file": "s_MTBLS129.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "6540 Q-TOF LC/MS (Agilent)",
+     "assay_file": null,
+     "mafs": [
+      "m_MTBLS129_tt8_metabolomics_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "LTQ Orbitrap Velos (Thermo Scientific)",
+     "assay_file": null,
+     "mafs": [
+      "m_MTBLS129_tt8_metabolomics_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [
+    "a_MTBLS129_LC-MS_tt8_metabolomics_metabolite_profiling_mass_spectrometry.txt",
+    "a_MTBLS129_LC-MS_tt8_metabolomics_metabolite_profiling_mass_spectrometry-1.txt"
+   ],
+   "publications": [
+    {
+     "title": "Coordinate Regulation of Metabolite Glycosylation and Stress Hormone Biosynthesis by TT8 in Arabidopsis.",
+     "authors": "Rai A, Umashankar S, Rai M, Kiat LB, Bing JA, Swarup S.",
+     "doi": "10.1104/pp.16.00421",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "6.52GB",
+   "maf_skipped": [],
+   "named_metabolites": 134
+  },
+  {
+   "id": "MTBLS160",
+   "title": "Natural variation of root exudates in Arabidopsis thaliana-linking metabolomic and genomic data",
+   "released": "2017-02-03",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "exometabolome",
+    "hydroponic plant culture media"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Bur",
+     "Can",
+     "Col",
+     "Ct",
+     "Edi",
+     "Hi",
+     "Kn",
+     "Ler",
+     "Mt",
+     "No",
+     "Oy",
+     "Po",
+     "Rsch",
+     "Sf",
+     "Tsu",
+     "Wil",
+     "Ws",
+     "Wu",
+     "Zu"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "design": [
+    "genotype",
+    "hydroponic plant culture media",
+    "targeted metabolites",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 225,
+   "sample_file": "s_MTBLS160.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q I ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS160_NEG_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS160_NEG_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS160_LC-MS_NEG_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q I ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS160_POS_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS160_POS_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS160_LC-MS_POS_mass_spectrometry-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q I ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS160_TAR_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS160_TAR_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS160_LC-MS_TAR_mass_spectrometry-2.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Natural variation of root exudates in Arabidopsis thaliana-linking metabolomic and genomic data.",
+     "authors": "Strehmel N, Böttcher C, Schmidt S, Scheel D.",
+     "doi": "10.1038/srep29033",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "37.29GB",
+   "maf_skipped": [],
+   "named_metabolites": 97
+  },
+  {
+   "id": "MTBLS169",
+   "title": "Metabolite Profiling of wildtype and overexpression Arabidopsis thaliana",
+   "released": "2015-09-15",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Col-0",
+     "gene overexpression"
+    ]
+   },
+   "design": [
+    "comparative phenotypic assessment",
+    "time-of-flight mass spectrometry",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 14,
+   "sample_file": "s_MTBLS169.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS169_scse305_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS169_scse305_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS169_LC-MS_scse305_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Joint Analysis of Dependent Features within Compound Spectra Can Improve Detection of Differential Features.",
+     "authors": "Trutschel D, Schmidt S, Grosse I, Neumann S.",
+     "doi": "10.3389/fbioe.2015.00129",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "4.06GB",
+   "maf_skipped": [],
+   "named_metabolites": 642
+  },
+  {
+   "id": "MTBLS188",
+   "title": "Supplemental data for CAMERA, an integrated strategy for compound spectra extraction and annotation of liquid chromatography/mass spectrometry data sets",
+   "released": "2015-05-10",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "mixture",
+    "rosette leaf",
+    "solvent"
+   ],
+   "variants": [],
+   "factors": {
+    "matrix": [
+     "leaf",
+     "solvent"
+    ],
+    "spike-in concentration": [
+     "0 micromolar",
+     "0.2 micromolar",
+     "1 micromolar",
+     "20 micromolar",
+     "5 micromolar"
+    ]
+   },
+   "design": [
+    "spike-in quality control role",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 7,
+   "sample_file": "s_MTBLS188.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": null,
+     "mafs": []
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": null,
+     "mafs": []
+    }
+   ],
+   "missing_files": [
+    "a_MTBLS188_LC-MS_metabolite_profiling_mass_spectrometry_positive.txt",
+    "a_MTBLS188_LC-MS_metabolite_profiling_mass_spectrometry_negative-1.txt"
+   ],
+   "publications": [
+    {
+     "title": "CAMERA: an integrated strategy for compound spectra extraction and annotation of liquid chromatography/mass spectrometry data sets.",
+     "authors": "Kuhl C, Tautenhahn R, Böttcher C, Larson TR, Neumann S.",
+     "doi": "10.1021/ac202450g",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "2.44GB",
+   "maf_skipped": [],
+   "named_metabolites": 0
+  },
+  {
+   "id": "MTBLS272",
+   "title": "The Lipopolysaccharide-Induced Metabolome Signature in Arabidopsis thaliana Reveals Dynamic Reprogramming of Phytoalexin and Phytoanticipin Pathways",
+   "released": "2017-05-03",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "callus",
+    "leaf"
+   ],
+   "variants": [
+    "Arabidopsis thaliana str. Col-0"
+   ],
+   "factors": {
+    "Experimental groups": [
+     "0 microgram per milliliter",
+     "80 microgram per milliliter"
+    ],
+    "Time": [
+     "12 hour",
+     "24 hour",
+     "8 hour",
+     "hour"
+    ],
+    "Treatment": [
+     "LPS-treated",
+     "Non-treated"
+    ]
+   },
+   "design": [
+    "Multivariate data analysis",
+    "camalexin",
+    "glucosinolate",
+    "lipopolysaccharide",
+    "metabolomic profiling",
+    "tandem mass spectrometry",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 219,
+   "sample_file": "s_MTBLS272.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "SYNAPT HDMS (Waters)",
+     "assay_file": "a_MTBLS272_POS_LC_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS272_POS_LC_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS272_LC-MS_POS_LC_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "SYNAPT HDMS (Waters)",
+     "assay_file": "a_MTBLS272_NEG_LC_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS272_NEG_LC_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS272_LC-MS_NEG_LC_mass_spectrometry-1.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The Lipopolysaccharide-Induced Metabolome Signature in Arabidopsis thaliana Reveals Dynamic Reprogramming of Phytoalexin and Phytoanticipin Pathways.",
+     "authors": "Finnegan T, Steenkamp PA, Piater LA, Dubery IA.",
+     "doi": "10.1371/journal.pone.0163572",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "25.74GB",
+   "maf_skipped": [],
+   "named_metabolites": 110
+  },
+  {
+   "id": "MTBLS311",
+   "title": "Metabolomic Responses of Arabidopsis Suspension Cells to Bicarbonate under Light and Dark Conditions",
+   "released": "2017-04-25",
+   "techniques": [
+    "GC-MS",
+    "LC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "cell suspension culture"
+   ],
+   "variants": [
+    "Arabidopsis thaliana var. Landsberg Erecta"
+   ],
+   "factors": {
+    "Bicarbonate concentration": [
+     "1 millimolar",
+     "10 millimolar",
+     "3 millimolar"
+    ],
+    "Bicarbonate treatment": [
+     "C",
+     "T"
+    ],
+    "Incubation": [
+     "0 minute",
+     "120 minute",
+     "15 minute",
+     "30 minute",
+     "5 minute",
+     "60 minute"
+    ],
+    "Light condition": [
+     "D",
+     "L"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "high-performance liquid chromatography-mass spectrometry",
+    "hydrogencarbonate",
+    "tandem mass spectrometry",
+    "targeted metabolites"
+   ],
+   "samples": 288,
+   "sample_file": "s_MTBLS311.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "API 4000 QTRAP (AB Sciex)",
+     "assay_file": "a_MTBLS311_LC_MS_MS_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS311_LC_MS_MS_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS311_LC-MS_LC_MS_MS_mass_spectrometry.txt"
+    },
+    {
+     "technique": "GC-MS",
+     "platform": "TSQ Quantum XLS (Thermo Scientific)",
+     "assay_file": "a_MTBLS311_GC_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS311_GC_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS311_GC-MS_GC_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolomic Responses of Arabidopsis Suspension Cells to Bicarbonate under Light and Dark Conditions.",
+     "authors": "Misra BB, Yin Z, Geng S, de Armas E, Chen S.",
+     "doi": "10.1038/srep35778",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "27.12GB",
+   "maf_skipped": [],
+   "named_metabolites": 267
+  },
+  {
+   "id": "MTBLS330",
+   "title": "The WEIZMASS spectral library for high-confidence metabolite identification",
+   "released": "2018-03-05",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "bud",
+    "exocarp",
+    "flower",
+    "flower bud",
+    "juvenile leaf",
+    "leaf",
+    "rhizome",
+    "root",
+    "silique",
+    "stem",
+    "stem leaf",
+    "whole plant"
+   ],
+   "variants": [
+    "Arabidopsis thaliana str. Col-0",
+    "Lemna gibba (Lg)",
+    "Solanum lycopersicum cv. Micro-Tom",
+    "Spirodela oligorhizza (Spo)",
+    "Spirodela polyrhiza (Spp)",
+    "Wolffia (Wo)"
+   ],
+   "factors": {
+    "Life cycle stage": [
+     "closed",
+     "early whole plant fruit ripening stage",
+     "late whole plant fruit ripening stage",
+     "mature",
+     "mid whole plant fruit ripening stage",
+     "open",
+     "young"
+    ],
+    "Tissue": [
+     "buds",
+     "flower buds",
+     "flowers",
+     "fruit peel",
+     "leaves",
+     "root",
+     "silique",
+     "stem",
+     "stem leaves",
+     "whole plant"
+    ]
+   },
+   "design": [
+    "MatchWeiz",
+    "WEIZMASS",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 39,
+   "sample_file": "s_MTBLS330.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Positive (LC-MS (Positive))",
+     "assay_file": "a_MTBLS330_POS_Lemna_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS330_POS_Lemna_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS330_LC-MS_POS_Lemna_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Negative (LC-MS (Negative))",
+     "assay_file": "a_MTBLS330_NEG_Lemna_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS330_NEG_Lemna_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS330_LC-MS_NEG_Lemna_mass_spectrometry-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Positive (LC-MS (Positive))",
+     "assay_file": "a_MTBLS330_POS_Tomato_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS330_POS_Tomato_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS330_LC-MS_POS_Tomato_mass_spectrometry-2.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Negative (LC-MS (Negative))",
+     "assay_file": "a_MTBLS330_NEG_Tomato_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS330_NEG_Tomato_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS330_LC-MS_NEG_Tomato_mass_spectrometry-3.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Positive (LC-MS (Positive))",
+     "assay_file": "a_MTBLS330_POS_Arab_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS330_POS_Arab_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS330_LC-MS_POS_Arab_mass_spectrometry-4.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Negative (LC-MS (Negative))",
+     "assay_file": "a_MTBLS330_NEG_Arab_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS330_NEG_Arab_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS330_LC-MS_NEG_Arab_mass_spectrometry-5.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The WEIZMASS spectral library for high-confidence metabolite identification.",
+     "authors": "Shahaf N, Rogachev I, Heinig U, Meir S, Malitsky S, Battat M, Wyner H, Zheng S, Wehrens R, Aharoni A.",
+     "doi": "10.1038/ncomms12423",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "2.11GB",
+   "maf_skipped": [],
+   "named_metabolites": 89
+  },
+  {
+   "id": "MTBLS338",
+   "title": "Plant-to-plant variability in root metabolite profiles of 19 Arabidopsis thaliana accessions is substance-class dependent",
+   "released": "2022-11-18",
+   "techniques": [
+    "GC-MS",
+    "LC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "root"
+   ],
+   "variants": [
+    "Arabidopsis thaliana str. Bur-0",
+    "Arabidopsis thaliana str. Can-0",
+    "Arabidopsis thaliana str. Col-0",
+    "Arabidopsis thaliana str. Ct-1",
+    "Arabidopsis thaliana str. Edi-0",
+    "Arabidopsis thaliana str. Hi-0",
+    "Arabidopsis thaliana str. Kn-0",
+    "Arabidopsis thaliana str. Ler-0",
+    "Arabidopsis thaliana str. Mt-0",
+    "Arabidopsis thaliana str. No-0",
+    "Arabidopsis thaliana str. Oy-0",
+    "Arabidopsis thaliana str. Po-0",
+    "Arabidopsis thaliana str. Rsch-4",
+    "Arabidopsis thaliana str. Sf-2",
+    "Arabidopsis thaliana str. Tsu-0",
+    "Arabidopsis thaliana str. Wil-2",
+    "Arabidopsis thaliana str. Ws-0",
+    "Arabidopsis thaliana str. Wu-0",
+    "Arabidopsis thaliana str. Zu-0"
+   ],
+   "factors": {
+    "Genotype": [
+     "Bur",
+     "Can",
+     "Col",
+     "Ct",
+     "Edi",
+     "Hi",
+     "Kn",
+     "Ler",
+     "Mt",
+     "No",
+     "Oy",
+     "Po",
+     "Rsch",
+     "Sf",
+     "Tsu",
+     "Wil",
+     "Ws",
+     "Wu",
+     "Zu"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "design": [
+    "genotype",
+    "hydroponic plant culture media",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 222,
+   "sample_file": "s_MTBLS338.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "5975C Series GC/MSD (Agilent)",
+     "assay_file": "a_MTBLS338_GCMS_Root_met.txt",
+     "mafs": [
+      "m_MTBLS338_GCMS_Root_met_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS338_GC-MS_GCMS_Root_met.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q I ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS338_negative_Root_met_ms.txt",
+     "mafs": [
+      "m_MTBLS338_negative_Root_met_ms_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS338_LC-MS_negative_Root_met_ms.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q I ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS338_positive_Root_met_ms.txt",
+     "mafs": [
+      "m_MTBLS338_positive_Root_met_ms_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS338_LC-MS_positive_Root_met_ms-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q I ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS338_Root_metabolite_profiling_mass_spectrometry_targeted.txt",
+     "mafs": [
+      "m_MTBLS338_Root_metabolite_profiling_mass_spectrometry_targeted_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS338_LC-MS_Root_metabolite_profiling_mass_spectrometry_targeted-2.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Plant-to-Plant Variability in Root Metabolite Profiles of 19 Arabidopsis thaliana Accessions Is Substance-Class-Dependent.",
+     "authors": "Mönchgesang S, Strehmel N, Trutschel D, Westphal L, Neumann S, Scheel D.",
+     "doi": "10.3390/ijms17091565",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "147.56GB",
+   "maf_skipped": [],
+   "named_metabolites": 215
+  },
+  {
+   "id": "MTBLS341",
+   "title": "Piriformospora indica stimulates root metabolism of Arabidopsis thaliana",
+   "released": "2016-07-15",
+   "techniques": [
+    "GC-MS",
+    "LC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "Exudate",
+    "root",
+    "rosette leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Replicate": [
+     "Exp1",
+     "Exp2"
+    ],
+    "Treatment": [
+     "+P.indica",
+     "control"
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "genotype",
+    "hydroponic plant culture media",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 55,
+   "sample_file": "s_MTBLS341.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "5975C Series GC/MSD (Agilent)",
+     "assay_file": "a_MTBLS341_root_GCMS.txt",
+     "mafs": [
+      "m_MTBLS341_root_GCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_GC-MS_root_GCMS.txt"
+    },
+    {
+     "technique": "GC-MS",
+     "platform": "5975C Series GC/MSD (Agilent)",
+     "assay_file": "a_MTBLS341_leaf_GCMS.txt",
+     "mafs": [
+      "m_MTBLS341_leaf_GCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_GC-MS_leaf_GCMS-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS341_root_POS_LCMS.txt",
+     "mafs": [
+      "m_MTBLS341_root_POS_LCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_LC-MS_root_POS_LCMS.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS341_root_NEG_LCMS.txt",
+     "mafs": [
+      "m_MTBLS341_root_NEG_LCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_LC-MS_root_NEG_LCMS-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS341_leaf_POS_LCMS.txt",
+     "mafs": [
+      "m_MTBLS341_leaf_POS_LCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_LC-MS_leaf_POS_LCMS-2.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS341_leaf_NEG_LCMS.txt",
+     "mafs": [
+      "m_MTBLS341_leaf_NEG_LCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_LC-MS_leaf_NEG_LCMS-3.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS341_exudate_POS_LCMS.txt",
+     "mafs": [
+      "m_MTBLS341_exudate_POS_LCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_LC-MS_exudate_POS_LCMS-4.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q II ESI-Qq-TOF (Bruker)",
+     "assay_file": "a_MTBLS341_exudate_NEG_LCMS.txt",
+     "mafs": [
+      "m_MTBLS341_exudate_NEG_LCMS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS341_LC-MS_exudate_NEG_LCMS-5.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Piriformospora indica Stimulates Root Metabolism of Arabidopsis thaliana.",
+     "authors": "Strehmel N, Mönchgesang S, Herklotz S, Krüger S, Ziegler J, Scheel D.",
+     "doi": "10.3390/ijms17071091",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "11.02GB",
+   "maf_skipped": [],
+   "named_metabolites": 0
+  },
+  {
+   "id": "MTBLS355",
+   "title": "Nontargeted and targeted metabolomics measurements of abiotic stress responses in three-week-old Arabidopsis thaliana plants' rosette leaf tissue",
+   "released": "2017-07-17",
+   "techniques": [
+    "GC-MS",
+    "MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [
+    "Arabidopsis thaliana str. Col-0"
+   ],
+   "factors": {
+    "Genotype": [
+     "Col-0 wild type (WT)",
+     "pip2;1 pip2;2 double mutant (DM)",
+     "pip2;1 pip2;2 pip2;4 triple mutant (TM)"
+    ],
+    "Stimulus": [
+     "Control",
+     "Drought stress (D)",
+     "Drought stress plus heat stress with high relative air humidity (DH_HrH)",
+     "Drought stress plus heat stress with low relative air humidity (DH_LrH)",
+     "Heat stress with high relative air humidity (H_HrH)",
+     "Heat stress with low relative air humidity (H_LrH)"
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "genotype design",
+    "stimulus or stress design",
+    "targeted metabolites",
+    "untargeted metabolites"
+   ],
+   "samples": 123,
+   "sample_file": "s_MTBLS355.txt",
+   "assays": [
+    {
+     "technique": "MS",
+     "platform": "Direct infusion MS -",
+     "assay_file": "a_MTBLS355_FT_ICR_MS.txt",
+     "mafs": [
+      "m_MTBLS355_FT_ICR_MS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS355_DI-MS_FT_ICR_MS.txt"
+    },
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS -",
+     "assay_file": null,
+     "mafs": [
+      "m_MTBLS355_GC_MS_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS -",
+     "assay_file": null,
+     "mafs": [
+      "m_MTBLS355_GC_MS_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [
+    "a_MTBLS355_GC-MS_GC_MS-SPLIT.txt",
+    "a_MTBLS355_GC-MS_GC_MS-SL-1.txt"
+   ],
+   "publications": [
+    {
+     "title": "Relationships between drought, heat and air humidity responses revealed by transcriptome-metabolome co-analysis.",
+     "authors": "Georgii E, Jin M, Zhao J, Kanawati B, Schmitt-Kopplin P, Albert A, Winkler JB, Schäffner AR.",
+     "doi": "10.1186/s12870-017-1062-y",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "6.19GB",
+   "maf_skipped": [],
+   "named_metabolites": 116
+  },
+  {
+   "id": "MTBLS363",
+   "title": "Transcript, protein and metabolite temporal dynamics in the CAM plant Agave",
+   "released": "2017-10-13",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "leaf",
+    "rosette leaf"
+   ],
+   "variants": [
+    "Agave americana var. marginata",
+    "Arabidopsis thaliana str. Col-0"
+   ],
+   "factors": {
+    "Elapsed time": [
+     "12 hour",
+     "15 hour",
+     "18 hour",
+     "21 hour",
+     "24 hour",
+     "3 hour",
+     "6 hour",
+     "9 hour"
+    ],
+    "Replicate": [
+     "R1",
+     "R2",
+     "R3"
+    ]
+   },
+   "design": [
+    "crassulacean acid metabolism",
+    "gas chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 96,
+   "sample_file": "s_MTBLS363.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "5975C Series GC/MSD (Agilent)",
+     "assay_file": "a_MTBLS363_agave_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS363_agave_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS363_GC-MS_agave_mass_spectrometry.txt"
+    },
+    {
+     "technique": "GC-MS",
+     "platform": "5975C Series GC/MSD (Agilent)",
+     "assay_file": "a_MTBLS363_arabidopsis_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS363_arabidopsis_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS363_GC-MS_arabidopsis_mass_spectrometry-1.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Transcript, protein and metabolite temporal dynamics in the CAM plant Agave.",
+     "authors": "Abraham PE, Yin H, Borland AM, Weighill D, Lim SD, De Paoli HC, Engle N, Jones PC, Agh R, Weston DJ, Wullschleger SD, Tschaplinski T, Jacobson D, Cushman JC, Hettich RL, Tuskan GA, Yang X.",
+     "doi": "10.1038/nplants.2016.178",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1018.12MB",
+   "maf_skipped": [],
+   "named_metabolites": 113
+  },
+  {
+   "id": "MTBLS375",
+   "title": "Effects of MeJA on Arabidopsis metabolome under endogenous JA deficiency",
+   "released": "2017-10-23",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [
+    "Wassilewskija ecotype"
+   ],
+   "factors": {
+    "Time after treatment": [
+     "0 hour",
+     "1 hour",
+     "4 hour",
+     "8 hour",
+     "no treatment hour"
+    ],
+    "genotype": [
+     "opr3",
+     "wild type"
+    ],
+    "replicate": [
+     "Exp1",
+     "Exp2",
+     "Exp3",
+     "Exp4",
+     "Exp5"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "jasmonic acid",
+    "reverse transcription polymerase chain reaction",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 50,
+   "sample_file": "s_MTBLS375.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Exactive (Thermo Scientific)",
+     "assay_file": "a_MTBLS375_arabidopsis_metabolomics_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS375_arabidopsis_metabolomics_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS375_LC-MS_arabidopsis_metabolomics_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Effects of MeJA on Arabidopsis metabolome under endogenous JA deficiency.",
+     "authors": "Cao J, Li M, Chen J, Liu P, Li Z.",
+     "doi": "10.1038/srep37674",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "3.27GB",
+   "maf_skipped": [],
+   "named_metabolites": 109
+  },
+  {
+   "id": "MTBLS389",
+   "title": "Accumulation of the coumarin scopolin under abiotic stress conditions is mediated by the Arabidopsis thaliana THO/TREX complex",
+   "released": "2018-02-05",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "root",
+    "rosette"
+   ],
+   "variants": [
+    "Arabidopsis thaliana str. Col-0",
+    "FLAG191_B10",
+    "GK_052D02",
+    "GK_160_G05",
+    "GK_304_H04.09",
+    "SAIL_1209_F10",
+    "SALK_014624",
+    "SALK_021789C",
+    "SALK_022212C",
+    "SALK_051591",
+    "SALK_052697",
+    "SALK_059869",
+    "SALK_069840C",
+    "SALK_078514C",
+    "SALK_099008",
+    "SALK_100556",
+    "SALK_122387C",
+    "Wassilewskija ecotype",
+    "ago1-46",
+    "ago6",
+    "rdr6-11",
+    "sgs3-12"
+   ],
+   "factors": {
+    "Genotype": [
+     "At1g43590",
+     "At3g05770",
+     "ago1",
+     "ago6",
+     "cesa5",
+     "dcl4",
+     "hei10",
+     "myb40",
+     "rdr6",
+     "sgs3",
+     "tho1",
+     "tho2",
+     "tho3",
+     "tho5a",
+     "tho5b",
+     "tho6",
+     "tho7a",
+     "tho7b",
+     "wild type"
+    ],
+    "Medium additive": [
+     "sucrose 3% w/v"
+    ],
+    "Stress": [
+     "10 degree Celsius"
+    ],
+    "Stress duration": [
+     "0 hour",
+     "168 hour"
+    ]
+   },
+   "design": [
+    "Plant metabolomics",
+    "genotype design",
+    "secondary metabolites",
+    "targeted metabolites",
+    "ultra-performance liquid chromatography-mass spectrometry"
+   ],
+   "samples": 565,
+   "sample_file": "s_MTBLS389.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "maXis (Bruker)",
+     "assay_file": "a_MTBLS389_Col-0_hydroponic_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS389_Col-0_hydroponic_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS389_LC-MS_Col-0_hydroponic_metabolite_profiling_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "maXis (Bruker)",
+     "assay_file": "a_MTBLS389_Ws_hydroponic_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS389_Ws_hydroponic_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS389_LC-MS_Ws_hydroponic_metabolite_profiling_mass_spectrometry-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "maXis (Bruker)",
+     "assay_file": "a_MTBLS389_RNAsilencing2_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS389_RNAsilencing2_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS389_LC-MS_RNAsilencing2_metabolite_profiling_mass_spectrometry-2.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "maXis (Bruker)",
+     "assay_file": "a_MTBLS389_RNAsilencing1_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS389_RNAsilencing1_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS389_LC-MS_RNAsilencing1_metabolite_profiling_mass_spectrometry-3.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "maXis (Bruker)",
+     "assay_file": "a_MTBLS389_Cold_stress_WiCNov2014_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS389_Cold_stress_WiCNov2014_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS389_LC-MS_Cold_stress_WiCNov2014_metabolite_profiling_mass_spectrometry-4.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "maXis (Bruker)",
+     "assay_file": "a_MTBLS389_Cold_stress_light_intensities_WiC_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS389_Cold_stress_light_intensities_WiC_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS389_LC-MS_Cold_stress_light_intensities_WiC_metabolite_profiling_mass_spectrometry-5.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Accumulation of the coumarin scopolin under abiotic stress conditions is mediated by the Arabidopsis thaliana THO/TREX complex.",
+     "authors": "Döll S, Kuhlmann M, Rutten T, Mette MF, Scharfenberg S, Petridis A, Berreth DC, Mock HP.",
+     "doi": "10.1111/tpj.13797",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "129.03GB",
+   "maf_skipped": [],
+   "named_metabolites": 16
+  },
+  {
+   "id": "MTBLS441",
+   "title": "Stress-related mitogen-activated protein kinases stimulate the accumulation of small molecules and proteins in Arabidopsis thaliana root exudates",
+   "released": "2017-08-25",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "Exudate",
+    "root"
+   ],
+   "variants": [
+    "Arabidopsis thaliana str. Col-0"
+   ],
+   "factors": {
+    "Genotype": [
+     "DD",
+     "KR"
+    ],
+    "Time after Inoculation": [
+     "24 hour",
+     "6 hour"
+    ]
+   },
+   "design": [
+    "plant defence",
+    "root exudate",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 160,
+   "sample_file": "s_MTBLS441.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q",
+     "assay_file": "a_MTBLS441_root_POS_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS441_root_POS_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS441_LC-MS_root_POS_metabolite_profiling_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q",
+     "assay_file": "a_MTBLS441_root_NEG_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS441_root_NEG_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS441_LC-MS_root_NEG_metabolite_profiling_mass_spectrometry-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q",
+     "assay_file": "a_MTBLS441_exudate_POS_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS441_exudate_POS_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS441_LC-MS_exudate_POS_metabolite_profiling_mass_spectrometry-2.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q",
+     "assay_file": "a_MTBLS441_exudate_NEG_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS441_exudate_NEG_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS441_LC-MS_exudate_NEG_metabolite_profiling_mass_spectrometry-3.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Stress-Related Mitogen-Activated Protein Kinases Stimulate the Accumulation of Small Molecules and Proteins in Arabidopsis thaliana Root Exudates.",
+     "authors": "Strehmel N, Hoehenwarter W, Mönchgesang S, Majovsky P, Krüger S, Scheel D, Lee J.",
+     "doi": "10.3389/fpls.2017.01292",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "15.8GB",
+   "maf_skipped": [],
+   "named_metabolites": 0
+  },
+  {
+   "id": "MTBLS450",
+   "title": "Functional metabolomics as a tool to analyze Mediator function and structure in plants",
+   "released": "2018-01-30",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [
+    "Arabidopsis thaliana str. Col-0"
+   ],
+   "factors": {
+    "Mediator Arabidopsis complex": [
+     "col",
+     "dreb2a",
+     "med 32",
+     "med 33a",
+     "med17",
+     "med18",
+     "med19a",
+     "med22a",
+     "med22b",
+     "med23",
+     "med25",
+     "med27",
+     "med28",
+     "med34"
+    ]
+   },
+   "design": [
+    "Mediator Complex",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 82,
+   "sample_file": "s_MTBLS450.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "LCT Premier XE (Waters)",
+     "assay_file": "a_MTBLS450_mediator_arabidopsis_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS450_mediator_arabidopsis_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS450_LC-MS_mediator_arabidopsis_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Functional metabolomics as a tool to analyze Mediator function and structure in plants.",
+     "authors": "Davoine C, Abreu IN, Khajeh K, Blomberg J, Kidd BN, Kazan K, Schenk PM, Gerber L, Nilsson O, Moritz T, Björklund S.",
+     "doi": "10.1371/journal.pone.0179640",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "322.53MB",
+   "maf_skipped": [],
+   "named_metabolites": 39
+  },
+  {
+   "id": "MTBLS528",
+   "title": "The natural variance of the Arabidopsis floral secondary metabolites",
+   "released": "2018-04-03",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "flower"
+   ],
+   "variants": [],
+   "factors": {
+    "genotype": [
+     "3gt",
+     "3rt",
+     "3xt-1",
+     "7rt-3",
+     "An-2",
+     "Ang-0",
+     "Bd-0",
+     "Be-0",
+     "Bla-11",
+     "Blh-1",
+     "Bsch-2",
+     "Bu-2",
+     "Bur-0",
+     "C24",
+     "Can-0",
+     "Cha-0",
+     "Co-3",
+     "Col-0",
+     "Cvi-0",
+     "Da-0",
+     "Dijon-M",
+     "Edi-0",
+     "El-0",
+     "Est-1",
+     "Gol-1",
+     "Gr-1",
+     "HI-3",
+     "HOG",
+     "Hs-0",
+     "JEA",
+     "Je-54",
+     "Kas-1",
+     "Kl-0",
+     "Kn-0",
+     "Ler-0",
+     "Lip-0",
+     "Lov-5",
+     "Lovel-1",
+     "Lu",
+     "Mh-1",
+     "Mt-0",
+     "NFA-8",
+     "Nd",
+     "No-0",
+     "Nok-1",
+     "Nok-2",
+     "Nw-3",
+     "Old-1",
+     "Oy-0",
+     "Petergof",
+     "Po-0",
+     "Pyl-1",
+     "RLD-1",
+     "Ra-0",
+     "Rsch-0",
+     "Rubezhno-1",
+     "Sap-0",
+     "Sav-0",
+     "Shakdara",
+     "St-0",
+     "Stw-0",
+     "Ta-0",
+     "Te-0",
+     "Ty-0",
+     "Wei-1",
+     "Will",
+     "Ws-0",
+     "Zue-1",
+     "f3´h",
+     "omt",
+     "pap-1",
+     "tt4"
+    ],
+    "replicate": [
+     "Exp1",
+     "Exp2",
+     "Exp3"
+    ]
+   },
+   "design": [
+    "Secondary Metabolism",
+    "high-performance liquid chromatography-mass spectrometry",
+    "plant",
+    "untargeted metabolites"
+   ],
+   "samples": 216,
+   "sample_file": "s_MTBLS528.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "LTQ XL (Thermo Scientific)",
+     "assay_file": "a_MTBLS528_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS528_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS528_LC-MS_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The natural variance of the Arabidopsis floral secondary metabolites",
+     "authors": "Takayuki Tohge, Monica Borghi, Alisdair R. Fernie.",
+     "doi": "10.1038/sdata.2018.51",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "41.43GB",
+   "maf_skipped": [],
+   "named_metabolites": 67
+  },
+  {
+   "id": "MTBLS553",
+   "title": "Nonspecific activities of the major herbicide-resistance gene BAR",
+   "released": "2017-12-05",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "Recombinant Protein",
+    "mixture",
+    "pure substance",
+    "rosette leaf",
+    "seed"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "A2704-12_283_Morril_MC-116_Credenz_CZ_3841_LL",
+     "Chiba_Green_non-isogenic-wild-type",
+     "Columbia-0",
+     "Columbia-0_transformed_with_BAR-N35S_T2",
+     "Columbia-0_transformed_with_BAR-N35T_T2",
+     "Columbia-0_transformed_with_BAR-T90A_T2",
+     "Columbia-0_transformed_with_BAR-V125I_T2",
+     "Columbia-0_transformed_with_BAR-V125L_T2",
+     "Columbia-0_transformed_with_BAR-V125T_T2",
+     "Columbia-0_transformed_with_BAR-Y73F_T2",
+     "Columbia-0_transformed_with_BAR-Y92F_T2",
+     "Columbia-0_transformed_with_BAR_WT_T2",
+     "Columbia-0_transformed_with_PAT_T2",
+     "FLAG_076H05",
+     "FLAG_271B02",
+     "FLAG_271B12",
+     "FLAG_495A09",
+     "GABI_453A08",
+     "GABI_453E01",
+     "GABI_833F02",
+     "Liberty_Link_trait_L252",
+     "Line_17_see_Methods_for_reference",
+     "Line_5_see_Methods_for_reference",
+     "Line_A13_see_Methods_for_reference",
+     "N/A-In_vitro-assay",
+     "N/A-Std",
+     "NDC-E12027_non-isogenic-wild-type",
+     "NDC-E12131_non-isogenic-wild-type",
+     "NDC-E13285_non-isogenic-wild-type",
+     "SAIL_1165_B02",
+     "SAIL_1235_D10",
+     "SAIL_503_C03",
+     "SALK_051823C",
+     "SALK_110649",
+     "SALK_130606",
+     "Wassilewskija",
+     "isogenic-wild-type"
+    ],
+    "Replicates": [
+     "Rep-1",
+     "Rep-2",
+     "Rep-3",
+     "Rep-4",
+     "Rep-5",
+     "Rep-6",
+     "Std"
+    ]
+   },
+   "design": [
+    "Genetically modified crops",
+    "Herbicide Resistance",
+    "bialaphos resistance gene",
+    "phosphinothricin acetyltransferase gene",
+    "targeted metabolites",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 589,
+   "sample_file": "s_MTBLS553.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "QqTOF Compact (Bruker)",
+     "assay_file": "a_MTBLS553_LC_RP_QTOF_MS.txt",
+     "mafs": [
+      "m_MTBLS553_LC_RP_QTOF_MS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS553_LC-MS_LC_RP_QTOF_MS.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "TSQ Quantum Access MAX (Thermo Scientific)",
+     "assay_file": "a_MTBLS553_LC_HILIC_TQ_MS.txt",
+     "mafs": [
+      "m_MTBLS553_LC_HILIC_TQ_MS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS553_LC-MS_LC_HILIC_TQ_MS-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "TSQ Quantum Access MAX (Thermo Scientific)",
+     "assay_file": "a_MTBLS553_LC_RP_TQ_MS.txt",
+     "mafs": [
+      "m_MTBLS553_LC_RP_TQ_MS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS553_LC-MS_LC_RP_TQ_MS-2.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Exactive (Thermo Scientific)",
+     "assay_file": "a_MTBLS553_LC_RP_LTQ_MS.txt",
+     "mafs": [
+      "m_MTBLS553_LC_RP_LTQ_MS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS553_LC-MS_LC_RP_LTQ_MS-3.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Nonspecific activities of the major herbicide-resistance gene BAR",
+     "authors": "Christ B, Ramon Hochstrasser, Luzia Guyer, Rita Francisco, Sylvain Aubry, Stefan Hörtensteiner and Jing-Ke Weng",
+     "doi": "10.1038/s41477-017-0061-1",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "39.6GB",
+   "maf_skipped": [],
+   "named_metabolites": 26
+  },
+  {
+   "id": "MTBLS555",
+   "title": "Exometabolomic profiling of bacterial strains cultivated using Arabidopsis root extract as the sole carbon source",
+   "released": "2018-10-16",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "root"
+   ],
+   "variants": [
+    "Arabidopsis thaliana;CCONT:Escherichia coli str. K-12 substr. MG1655",
+    "Arabidopsis thaliana;NCBITAXON:Pseudomonas sp. Root9",
+    "Arabidopsis thaliana;NCBITAXON:Rhizobium sp. Root491",
+    "n/a (Sterile MgCl2 control)"
+   ],
+   "factors": {
+    "Plant genotype": [
+     "Col-0",
+     "tt4"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3"
+    ]
+   },
+   "design": [
+    "Exometabolomic profiling",
+    "high-performance liquid chromatography-mass spectrometry",
+    "rhizospheric",
+    "untargeted metabolites"
+   ],
+   "samples": 36,
+   "sample_file": "s_MTBLS555.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "maXis G4 (Bruker)",
+     "assay_file": "a_MTBLS555_test_131017_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS555_test_131017_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS555_LC-MS_test_131017_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Exometabolomic Profiling of Bacterial Strains as Cultivated Using Arabidopsis Root Extract as the Sole Carbon Source.",
+     "authors": "Jacoby RP, Martyn A, Kopriva S.",
+     "doi": "10.1094/mpmi-10-17-0253-r",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "853.0MB",
+   "maf_skipped": [],
+   "named_metabolites": 0
+  },
+  {
+   "id": "MTBLS636",
+   "title": "Molecular structural diversity of mitochondrial cardiolipins",
+   "released": "2021-01-11",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "A-431 cell",
+    "A-549 cell",
+    "CACO-2 cell",
+    "CHO-K1 cell",
+    "DLD-1 cell",
+    "HEK-293 cell",
+    "HL-60 cell",
+    "HeLa cell",
+    "JURKAT cell",
+    "K-562 cell",
+    "MCF-7 cell",
+    "MOLT-4 cell",
+    "RAW-264.7 cell",
+    "SH-SY5Y cell",
+    "SK-HEP-1 cell",
+    "SK-N-SH cell",
+    "T-24 cell",
+    "THP-1 cell",
+    "U-937 cell",
+    "Whole Organism",
+    "Whole body",
+    "brain",
+    "embryo",
+    "head",
+    "heart",
+    "leaf",
+    "liver",
+    "mycelium",
+    "seed",
+    "skin fibroblast cell line",
+    "tail",
+    "telencephalon"
+   ],
+   "variants": [
+    "C57BL/6J"
+   ],
+   "factors": {
+    "Replicate": [
+     "1",
+     "10",
+     "11",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9"
+    ]
+   },
+   "design": [
+    "Disorder of phospholipids, sphingolipids and fatty acids biosynthesis",
+    "Lipidomics",
+    "Membrane lipid",
+    "cardiolipin",
+    "high-performance liquid chromatography-electrospray ionisation tandem mass spectrometry",
+    "targeted metabolites"
+   ],
+   "samples": 249,
+   "sample_file": "s_MTBLS636.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "LTQ Velos (Thermo Scientific)",
+     "assay_file": "a_MTBLS636_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS636_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS636_LC-MS_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Molecular structural diversity of mitochondrial cardiolipins.",
+     "authors": "Oemer G, Lackner K, Muigg K, Krumschnabel G, Watschinger K, Sailer S, Lindner H, Gnaiger E, Wortmann SB, Werner ER, Zschocke J, Keller MA.",
+     "doi": "10.1073/pnas.1719407115",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "28.55GB",
+   "maf_skipped": [],
+   "named_metabolites": 197
+  },
+  {
+   "id": "MTBLS662",
+   "title": "Regulatory actors and alternative routes for Arabidopsis seed germination are revealed using a pathway‐based analysis of transcriptomic datasets",
+   "released": "2019-05-21",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "seed"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "COL-ND",
+     "Cvi-ND"
+    ],
+    "Incubation time": [
+     "15 hour",
+     "27 hour"
+    ]
+   },
+   "design": [
+    "gas chromatography-mass spectrometry",
+    "seed dormancy",
+    "seed germination",
+    "untargeted metabolites"
+   ],
+   "samples": 12,
+   "sample_file": "s_MTBLS662.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS - Positive (GC-MS (Positive))",
+     "assay_file": "a_MTBLS662_metabolite_profiling_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS662_metabolite_profiling_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS662_GC-MS_metabolite_profiling_mass_spectrometry.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Regulatory actors and alternative routes for Arabidopsis seed germination are revealed using a pathway-based analysis of transcriptomic datasets.",
+     "authors": "Ponnaiah M, Gilard F, Gakière B, El-Maarouf-Bouteau H, Bailly C.",
+     "doi": "10.1111/tpj.14311",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "318.34MB",
+   "maf_skipped": [],
+   "named_metabolites": 125
+  },
+  {
+   "id": "MTBLS692",
+   "title": "COSY catalyzes trans-cis isomerization and lactonization in the biosynthesis of coumarins",
+   "released": "2019-08-08",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "root",
+    "stem"
+   ],
+   "variants": [
+    "No-0"
+   ],
+   "factors": {
+    "Gene knockout": [
+     "WT",
+     "cosy-1",
+     "cosy-2"
+    ],
+    "Plant part": [
+     "root",
+     "stem"
+    ]
+   },
+   "design": [
+    "coumarin synthase",
+    "coumarins",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 53,
+   "sample_file": "s_MTBLS692.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Negative (LC-MS (Negative))",
+     "assay_file": "a_MTBLS692_root_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS692_root_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS692_LC-MS_root_mass_spectrometry.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - Negative (LC-MS (Negative))",
+     "assay_file": "a_MTBLS692_stem_mass_spectrometry.txt",
+     "mafs": [
+      "m_MTBLS692_stem_mass_spectrometry_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS692_LC-MS_stem_mass_spectrometry-1.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "COSY catalyzes trans-cis isomerization and lactonization in the biosynthesis of coumarins.",
+     "authors": "Ruben Vanholme, Lisa Sundin, Keletso Carol Seetso1, Hoon Kim, Xinyu Liu, Jin Li1, Barbara De Meester, Lennart Hoengenaert, Geert Goeminne, Kris Morreel, Jurgen Haustraete, Huei-Hsuan Tsai, Wolfgang Schmidt, Bartel Vanholme, John Ralph and Wout Boerjan.",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "13.35GB",
+   "maf_skipped": [],
+   "named_metabolites": 65
+  },
+  {
+   "id": "MTBLS1326",
+   "title": "Metabolomics of red-light-induced stomatal opening in Arabidopsis thaliana: Coupling with abscisic acid and jasmonic acid metabolism",
+   "released": "2022-01-21",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "guard cell"
+   ],
+   "variants": [],
+   "factors": {
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "Solution": [
+     "Potassium",
+     "control"
+    ],
+    "Timepoint": [
+     "0 minute",
+     "30 minute",
+     "60 minute"
+    ],
+    "Treatment": [
+     "continuous dark (no light) regimen",
+     "control",
+     "red light regimen"
+    ]
+   },
+   "design": [
+    "abscisic acid",
+    "jasmonic acid",
+    "red light exposure",
+    "tandem mass spectrometry",
+    "targeted metabolites",
+    "ultra-performance liquid chromatography-mass spectrometry"
+   ],
+   "samples": 50,
+   "sample_file": "s_MTBLS1326.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS1326_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS1326_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv",
+      "m_MTBLS1326_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS1326_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS1326_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolomics of red-light-induced stomatal opening in Arabidopsis thaliana: Coupling with abscisic acid and jasmonic acid metabolism.",
+     "authors": "Zhu M, Geng S, Chakravorty D, Guan Q, Chen S, Assmann SM.",
+     "doi": "10.1111/tpj.14594",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "366.8MB",
+   "maf_skipped": [],
+   "named_metabolites": 351
+  },
+  {
+   "id": "MTBLS1383",
+   "title": "Endoplasmic reticulum-derived bodies enable a single-cell chemical defense in Brassicaceae plants",
+   "released": "2020-02-04",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "seedling"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Genotype": [
+     "WT",
+     "bglu23-1 bglu21-1"
+    ],
+    "Time point": [
+     "0 minute",
+     "30 minute",
+     "minute"
+    ]
+   },
+   "design": [
+    "Glucosinolate",
+    "beta-Glucosidase",
+    "liquid chromatography-mass spectrometry",
+    "plant chemical defense",
+    "untargeted metabolites"
+   ],
+   "samples": 15,
+   "sample_file": "s_MTBLS1383.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS1383_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS1383_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Endoplasmic reticulum-derived bodies enable a single-cell chemical defense in Brassicaceae plants.",
+     "authors": "Yamada K, Goto-Yamada S, Nakazaki A, Kunieda T, Kuwata K, Nagano AJ, Nishimura M, Hara-Nishimura I.",
+     "doi": "10.1038/s42003-019-0739-1",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "420.4MB",
+   "maf_skipped": [],
+   "named_metabolites": 13
+  },
+  {
+   "id": "MTBLS1430",
+   "title": "Highly sensitive feature detection for high resolution LC/MS",
+   "released": "2020-01-15",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "mixture",
+    "rosette leaf;BTO:seed"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Leaf Concentration": [
+     "0 percent",
+     "100 percent",
+     "25 percent",
+     "50 percent",
+     "75 percent",
+     "percent"
+    ],
+    "Seed Concentration": [
+     "0 percent",
+     "100 percent",
+     "25 percent",
+     "50 percent",
+     "75 percent",
+     "percent"
+    ],
+    "Solvent Concentration": [
+     "0 percent",
+     "25 percent",
+     "50 percent",
+     "75 percent",
+     "percent"
+    ]
+   },
+   "design": [
+    "spike-in quality control role",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 11,
+   "sample_file": "s_MTBLS1430.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q ESI TOF (Bruker)",
+     "assay_file": null,
+     "mafs": []
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q ESI-Qq-TOF (Bruker)",
+     "assay_file": null,
+     "mafs": []
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "micrOTOF-Q ESI-Qq-TOF (Bruker)",
+     "assay_file": null,
+     "mafs": []
+    }
+   ],
+   "missing_files": [
+    "a_MTBLS1430_LC-MS_sampleSet-1_metabolite_profiling_mass_spectrometry.txt",
+    "a_MTBLS1430_LC-MS_sampleSet-2_metabolite_profiling_mass_spectrometry-1.txt",
+    "a_MTBLS1430_LC-MS_sampleSet-3_metabolite_profiling_mass_spectrometry-2.txt"
+   ],
+   "publications": [
+    {
+     "title": "Highly sensitive feature detection for high resolution LC/MS",
+     "authors": "Tautenhahn R,Bottcher C,Neumann S",
+     "doi": "10.1186/1471-2105-9-504",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "5.87GB",
+   "maf_skipped": [],
+   "named_metabolites": 0
+  },
+  {
+   "id": "MTBLS1550",
+   "title": "Metabolomics analysis identifies metabolites associated with systemic acquired resistance in Arabidopsis",
+   "released": "2020-05-14",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf",
+    "solvent"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Leaf location": [
+     "distal",
+     "local"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "Treatment": [
+     "Avr (streptomycin and tetracycline)",
+     "CK (mock-control)",
+     "Vir (streptomycin)"
+    ]
+   },
+   "design": [
+    "Amino acid",
+    "Phenols",
+    "Systemic acquired resistance",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 43,
+   "sample_file": "s_MTBLS1550.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - alternating - reverse phase",
+     "assay_file": "a_MTBLS1550_LC-MS.txt",
+     "mafs": [
+      "m_MTBLS1550_LC-MS_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS1550_LC-MS_LC-MS.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolomic analysis identifies metabolites associated with systemic acquired resistance in Arabidopsis",
+     "authors": "Hang Gao, Ziqin Xu, Qian Zhou, Yeye Ma",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "8.92GB",
+   "maf_skipped": [],
+   "named_metabolites": 643
+  },
+  {
+   "id": "MTBLS1965",
+   "title": "Metabolic fingerprinting reveals roles of Arabidopsis thaliana BGLU1, BGLU3, and BGLU4 in glycosylation of various flavonoids",
+   "released": "2025-02-25",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette",
+    "seed"
+   ],
+   "variants": [],
+   "factors": {
+    "BGLU experiment": [
+     "BGLU1",
+     "BGLU3",
+     "BGLU4"
+    ],
+    "Expression variant": [
+     "loss-of-function mutant (bglu3-2)",
+     "overexpression line (2×35S::BGLU1)",
+     "overexpression line (2×35S::BGLU3)",
+     "overexpression line (2×35S::BGLU4)",
+     "wild type (Col-0)"
+    ],
+    "Treatment": [
+     "Dry",
+     "untreated",
+     "water-soaked"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "BGLU",
+    "Brassicaceae",
+    "Glycosylation",
+    "Glycosyltransferase",
+    "Metabolic fingerprinting",
+    "flavonoids"
+   ],
+   "samples": 8,
+   "sample_file": "s_MTBLS1965.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS1965_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS1965_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS1965_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS1965_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolic fingerprinting reveals roles of Arabidopsis thaliana BGLU1, BGLU3, and BGLU4 in glycosylation of various flavonoids",
+     "authors": "Frommann JF, Pucker B, Sielmann LM, Müller C, Weisshaar B, Stracke R, Schweiger R.",
+     "doi": "10.1016/j.phytochem.2024.114338",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1.48GB",
+   "maf_skipped": [],
+   "named_metabolites": 3
+  },
+  {
+   "id": "MTBLS2096",
+   "title": "Differential alteration of plant functions by homologous fungal candidate effectors",
+   "released": "2020-12-03",
+   "techniques": [
+    "DI-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "aerial part"
+   ],
+   "variants": [
+    "Col-0-eGFP",
+    "Mlp102036-eGFP",
+    "Mlp106078-eGFP",
+    "Mlp123218-eGFP",
+    "Mlp123227-eGFP",
+    "Mlp123531-eGFP",
+    "Mlp124256-eGFP",
+    "Mlp124266-eGFP",
+    "Mlp124357-eGFP",
+    "Mlp124466-eGFP",
+    "Mlp124497-eGFP",
+    "Mlp124499-eGFP",
+    "Mlp124518-eGFP",
+    "Mlp37347-eGFP",
+    "Mlp72983-eGFP"
+   ],
+   "factors": {
+    "Candidate effector": [
+     "Mlp102036",
+     "Mlp106078",
+     "Mlp123218",
+     "Mlp123227",
+     "Mlp123531",
+     "Mlp124256",
+     "Mlp124266",
+     "Mlp124357",
+     "Mlp124466",
+     "Mlp124497",
+     "Mlp124499",
+     "Mlp124518",
+     "Mlp37347",
+     "Mlp72983",
+     "None"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "Fourier transform ion cyclotron resonance mass spectrometry",
+    "LTQ-Orbitrap Velos (Thermo Scientific)",
+    "Metabolomics",
+    "transcriptome"
+   ],
+   "samples": 29,
+   "sample_file": "s_MTBLS2096.txt",
+   "assays": [
+    {
+     "technique": "DI-MS",
+     "platform": "Direct infusion MS - negative",
+     "assay_file": "a_MTBLS2096_DI-MS_negative__metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2096_DI-MS_negative__metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Differential alteration of plant functions by homologous fungal candidate effectors",
+     "authors": "Karen C Goncalves dos Santos, Gervais Pelletier, Armand Séguin, François Guillemette, Jeffrey Hawkes, Isabel Desgagné-Penix, Hugo Germain",
+     "doi": "10.1101/2020.10.30.363010",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1.86GB",
+   "maf_skipped": [],
+   "named_metabolites": 3039
+  },
+  {
+   "id": "MTBLS2289",
+   "title": "Overexpression of the vascular brassinosteroid receptor BRL3 confers drought resistance without penalizing plant growth",
+   "released": "2021-05-17",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "blank",
+    "leaf",
+    "root",
+    "shoot"
+   ],
+   "variants": [
+    "BRI1 protein, Arabidopsis",
+    "BRL3 (Arabidopsis thaliana)",
+    "Col-0"
+   ],
+   "factors": {
+    "Drought stress": [
+     "drought",
+     "water"
+    ],
+    "Genotype": [
+     "35S:BRL3-GFP",
+     "Arabidopsis leaf control",
+     "Col-0 WT",
+     "blank",
+     "bri1-301bak1brl1brl3"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ],
+    "Timepoint": [
+     "0 day",
+     "1 day",
+     "2 day",
+     "3 day",
+     "4 day",
+     "5 day",
+     "6 day"
+    ]
+   },
+   "design": [
+    "BRL3 (Arabidopsis thaliana)",
+    "Genetic",
+    "Growth",
+    "brassinosteroid",
+    "drought tolerance",
+    "gas chromatography time-of-flight mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 391,
+   "sample_file": "s_MTBLS2289.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS -",
+     "assay_file": "a_MTBLS2289_GC-MS___metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2289_GC-MS___metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Overexpression of the vascular brassinosteroid receptor BRL3 confers drought resistance without penalizing plant growth.",
+     "authors": "Fàbregas N, Lozano-Elena F, Blasco-Escámez D, Tohge T, Martínez-Andújar C, Albacete A, Osorio S, Bustamante M, Riechmann JL, Nomura T, Yokota T, Conesa A, Alfocea FP, Fernie AR, Caño-Delgado AI.",
+     "doi": "10.1038/s41467-018-06861-3",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "38.45GB",
+   "maf_skipped": [],
+   "named_metabolites": 75
+  },
+  {
+   "id": "MTBLS2334",
+   "title": "The glycosyltransferase UGT76B1 modulates N-hydroxy-pipecolic acid homeostasis and plant immunity",
+   "released": "2022-02-28",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [
+    "Col-0",
+    "UGT76B1 (Arabidopsis thaliana)"
+   ],
+   "factors": {
+    "Infection": [
+     "Pseudomonas syringae",
+     "control"
+    ]
+   },
+   "design": [
+    "Glycosylation",
+    "Immunity",
+    "N-hydroxypipecolic acid",
+    "Pseudomonas syringae pv. maculicola str. ES4326",
+    "UDP-glycosyltransferase 76B1 (Arabidopsis thaliana)",
+    "salicylic acid",
+    "untargeted metabolites"
+   ],
+   "samples": 12,
+   "sample_file": "s_MTBLS2334.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative",
+     "assay_file": "a_MTBLS2334_LC-MS_negative_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2334_LC-MS_negative_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive",
+     "assay_file": "a_MTBLS2334_LC-MS_positive_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2334_LC-MS_positive_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The glycosyltransferase UGT76B1 modulates N-hydroxy-pipecolic acid homeostasis and plant immunity.",
+     "authors": "Mohnike L, Rekhter D, Huang W, Feussner K, Tian H, Herrfurth C, Zhang Y, Feussner I.",
+     "doi": "10.1093/plcell/koaa045",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "450.62MB",
+   "maf_skipped": [],
+   "named_metabolites": 7
+  },
+  {
+   "id": "MTBLS2522",
+   "title": "A general non-self response as part of plant immunity",
+   "released": "2021-09-13",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "blank",
+    "phyllosphere"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Dry Weight concentration": [
+     "- milligram per milliliter",
+     "0 milligram per milliliter",
+     "0.2 milligram per milliliter",
+     "0.375 milligram per milliliter",
+     "1.75 milligram per milliliter",
+     "10 milligram per milliliter",
+     "10.125 milligram per milliliter",
+     "10.5 milligram per milliliter",
+     "10.625 milligram per milliliter",
+     "10.75 milligram per milliliter",
+     "11 milligram per milliliter",
+     "11.25 milligram per milliliter",
+     "11.625 milligram per milliliter",
+     "12.25 milligram per milliliter",
+     "12.375 milligram per milliliter",
+     "12.5 milligram per milliliter",
+     "12.625 milligram per milliliter",
+     "12.875 milligram per milliliter",
+     "13 milligram per milliliter",
+     "13.375 milligram per milliliter",
+     "14.25 milligram per milliliter",
+     "19.5 milligram per milliliter",
+     "19.875 milligram per milliliter",
+     "2 milligram per milliliter",
+     "2.625 milligram per milliliter",
+     "2.75 milligram per milliliter",
+     "3.125 milligram per milliliter",
+     "3.25 milligram per milliliter",
+     "3.375 milligram per milliliter",
+     "3.5 milligram per milliliter",
+     "3.625 milligram per milliliter",
+     "3.75 milligram per milliliter",
+     "3.875 milligram per milliliter",
+     "4 milligram per milliliter",
+     "4.125 milligram per milliliter",
+     "4.25 milligram per milliliter",
+     "4.375 milligram per milliliter",
+     "4.5 milligram per milliliter",
+     "4.625 milligram per milliliter",
+     "4.75 milligram per milliliter",
+     "4.875 milligram per milliliter",
+     "5 milligram per milliliter",
+     "5.125 milligram per milliliter",
+     "5.25 milligram per milliliter",
+     "5.375 milligram per milliliter",
+     "5.5 milligram per milliliter",
+     "5.625 milligram per milliliter",
+     "5.75 milligram per milliliter",
+     "5.875 milligram per milliliter",
+     "6 milligram per milliliter",
+     "6.125 milligram per milliliter",
+     "6.25 milligram per milliliter",
+     "6.375 milligram per milliliter",
+     "6.5 milligram per milliliter",
+     "6.625 milligram per milliliter",
+     "6.75 milligram per milliliter",
+     "6.875 milligram per milliliter",
+     "7 milligram per milliliter",
+     "7.125 milligram per milliliter",
+     "7.25 milligram per milliliter",
+     "7.375 milligram per milliliter",
+     "7.5 milligram per milliliter",
+     "7.625 milligram per milliliter",
+     "7.75 milligram per milliliter",
+     "7.875 milligram per milliliter",
+     "8 milligram per milliliter",
+     "8.125 milligram per milliliter",
+     "8.25 milligram per milliliter",
+     "8.375 milligram per milliliter",
+     "8.5 milligram per milliliter",
+     "8.75 milligram per milliliter",
+     "8.875 milligram per milliliter",
+     "9 milligram per milliliter",
+     "9.125 milligram per milliliter",
+     "9.25 milligram per milliliter",
+     "9.375 milligram per milliliter",
+     "9.5 milligram per milliliter",
+     "9.625 milligram per milliliter",
+     "9.875 milligram per milliliter"
+    ],
+    "Genotype": [
+     "Wild Type",
+     "bbe6",
+     "chx16",
+     "cyp71a12",
+     "fox1",
+     "gstf6",
+     "igmt3",
+     "prx71"
+    ],
+    "Infection": [
+     "Fr1",
+     "Leaf117",
+     "Leaf122",
+     "Leaf130",
+     "Leaf131",
+     "Leaf137",
+     "Leaf15",
+     "Leaf154",
+     "Leaf177",
+     "Leaf186",
+     "Leaf203",
+     "Leaf21",
+     "Leaf220",
+     "Leaf230",
+     "Leaf257",
+     "Leaf261",
+     "Leaf28",
+     "Leaf288",
+     "Leaf289",
+     "Leaf311",
+     "Leaf32",
+     "Leaf357",
+     "Leaf384",
+     "Leaf386",
+     "Leaf405",
+     "Leaf41",
+     "Leaf416",
+     "Leaf434",
+     "Leaf48",
+     "Leaf49",
+     "Leaf51",
+     "Leaf53",
+     "Leaf61",
+     "Leaf68",
+     "Leaf69",
+     "Leaf70",
+     "Leaf76",
+     "Leaf82",
+     "Leaf85",
+     "axenic",
+     "community"
+    ],
+    "Replicate": [
+     "R1",
+     "R1-5",
+     "R10",
+     "R2",
+     "R3",
+     "R4",
+     "R5",
+     "R6",
+     "R7",
+     "R8",
+     "R9"
+    ]
+   },
+   "design": [
+    "Bacteria",
+    "Plant Immunity",
+    "general non-self response",
+    "pathogen",
+    "tandem mass spectrometry",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 367,
+   "sample_file": "s_MTBLS2522.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - hilic",
+     "assay_file": "a_MTBLS2522_LC-MS_positive_hilic_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2522_LC-MS_positive_hilic_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - hilic",
+     "assay_file": "a_MTBLS2522_LC-MS_negative_hilic_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2522_LC-MS_negative_hilic_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS2522_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2522_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "A general non-self response as part of plant immunity",
+     "authors": "Maier Benjamin A., Kiefer Patrick, Field Christopher M., Hemmerle Lucas, Bortfeld-Miller Miriam, Emmenegger Barbara, Schäfer Martin, Pfeilmeier Sebastian, Sunagawa Shinichi, Vogel Christine M., Vorholt Julia A.",
+     "doi": "10.1038/s41477-021-00913-1",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "42.97GB",
+   "maf_skipped": [],
+   "named_metabolites": 5
+  },
+  {
+   "id": "MTBLS2532",
+   "title": "Defective cytokinin signaling reprograms lipid and flavonoid gene-to-metabolite networks to mitigate high salinity in Arabidopsis",
+   "released": "2021-11-25",
+   "techniques": [
+    "GC-MS",
+    "LC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "pure substance",
+    "seedling"
+   ],
+   "variants": [
+    "AHP2; AHP3; AHP5 (Arabidopsis thaliana)",
+    "ARR1; ARR10; ARR12 (Arabidopsis thaliana)",
+    "Col-0"
+   ],
+   "factors": {
+    "Genotype": [
+     "Col-0",
+     "ahp2,3,5",
+     "arr1,10,12"
+    ],
+    "Sodium Chloride Regimen": [
+     "0 millimolar",
+     "200 millimolar"
+    ]
+   },
+   "design": [
+    "Lipidomics",
+    "Untargeted Metabolites",
+    "flavonoid",
+    "gas chromatography-mass spectrometry",
+    "high-performance liquid chromatography-mass spectrometry",
+    "saline"
+   ],
+   "samples": 49,
+   "sample_file": "s_MTBLS2532.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS - positive",
+     "assay_file": "a_MTBLS2532_GC-MS_positive__metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2532_GC-MS_positive__metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS2532_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2532_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS2532_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2532_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS2532_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt",
+     "mafs": [
+      "m_MTBLS2532_LC-MS_positive_reverse-phase_metabolite_profiling-1_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Defective cytokinin signaling reprograms lipid and flavonoid gene-to-metabolite networks to mitigate high salinity in Arabidopsis",
+     "authors": "Abdelrahman Mostafa, Nishiyama Rie, Tran Cuong Duy, Kusano Miyako, Nakabayashi Ryo, Okazaki Yozo, Matsuda Fumio, Chávez Montes Ricardo A., Mostofa Mohammad Golam, Li Weiqiang, Watanabe Yasuko, Fukushima Atsushi, Tanaka Maho, Seki Motoaki, Saito Kazuki, Herrera-Estrella Luis, Tran Lam-Son Phan",
+     "doi": "10.1073/pnas.2105021118",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "7.01GB",
+   "maf_skipped": [],
+   "named_metabolites": 303
+  },
+  {
+   "id": "MTBLS2980",
+   "title": "Characterization of the heat-stable proteome during seed germination in Arabidopsis with special focus on LEA proteins",
+   "released": "2021-07-29",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "mixture",
+    "seed",
+    "solvent"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Dry-weight": [
+     "0 milligram",
+     "10.49998194 milligram",
+     "10.51708289 milligram",
+     "10.63678952 milligram",
+     "10.73939521 milligram",
+     "10.84200089 milligram",
+     "11.8635059 milligram",
+     "12.33646959 milligram",
+     "12.47441733 milligram",
+     "12.59265826 milligram",
+     "12.78972646 milligram",
+     "3.712844884 milligram",
+     "3.762849529 milligram",
+     "3.88161056 milligram",
+     "3.97536927 milligram",
+     "3.98161985 milligram",
+     "4.038215267 milligram",
+     "4.084784471 milligram",
+     "4.251103057 milligram",
+     "4.284366774 milligram",
+     "4.310977748 milligram",
+     "57.5 milligram",
+     "59.1 milligram",
+     "60.6 milligram",
+     "61.7 milligram",
+     "62.3 milligram",
+     "7.074006075 milligram",
+     "7.259250096 milligram",
+     "7.317138853 milligram",
+     "7.340294356 milligram",
+     "7.479227372 milligram"
+    ],
+    "Fresh-weight": [
+     "0 milligram",
+     "57.5 milligram",
+     "59.1 milligram",
+     "59.4 milligram",
+     "60.2 milligram",
+     "60.6 milligram",
+     "60.7 milligram",
+     "61.1 milligram",
+     "61.4 milligram",
+     "61.5 milligram",
+     "61.7 milligram",
+     "62.1 milligram",
+     "62.2 milligram",
+     "62.3 milligram",
+     "62.6 milligram",
+     "62.7 milligram",
+     "62.8 milligram",
+     "63.2 milligram",
+     "63.3 milligram",
+     "63.4 milligram",
+     "63.6 milligram",
+     "63.7 milligram",
+     "63.9 milligram",
+     "64.4 milligram",
+     "64.6 milligram",
+     "64.8 milligram",
+     "64.9 milligram"
+    ],
+    "Injection": [
+     "split 1/30",
+     "splitless"
+    ],
+    "Material": [
+     "biological sample",
+     "control"
+    ],
+    "Time after imbibition": [
+     "0 hour",
+     "24 hour",
+     "36 hour",
+     "48 hour",
+     "60 hour",
+     "72 hour",
+     "hour"
+    ]
+   },
+   "design": [
+    "0 seed germination stage",
+    "LEA transcript",
+    "dehydrin",
+    "gas chromatography-mass spectrometry",
+    "heat-stable proteome",
+    "intrinsically disordered protein",
+    "late embryogenesis abundant",
+    "untargeted metabolites"
+   ],
+   "samples": 66,
+   "sample_file": "s_MTBLS2980.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS -",
+     "assay_file": "a_MTBLS2980_GC-MS___metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS2980_GC-MS___metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Characterization of the heat-stable proteome during seed germination in Arabidopsis with special focus on LEA proteins",
+     "authors": "Orarat Ginsawaeng, Michal Gorka, Alexander Erban, Carolin Heise, Franziska Brueckner, Rainer Hoefgen, Joachim Kopka, Aleksandra Skirycz, Dirk K. Hincha, Ellen Zuther",
+     "doi": "10.3390/ijms22158172",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "7.97GB",
+   "maf_skipped": [],
+   "named_metabolites": 100
+  },
+  {
+   "id": "MTBLS3109",
+   "title": "The Arabidopsis Concert of Metabolic Acclimation to High Light Stress",
+   "released": "2024-08-16",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette"
+   ],
+   "variants": [
+    "Columbia"
+   ],
+   "factors": {
+    "Biological replicate": [
+     "A",
+     "B",
+     "C"
+    ],
+    "Light exposure": [
+     "130 microeinstein per square meter per second",
+     "1330 microeinstein per square meter per second"
+    ],
+    "Timepoint": [
+     "0.033 (2 mins) hour",
+     "0.166 (10 mins) hour",
+     "0.5 hour",
+     "1 hour",
+     "24 hour",
+     "3 hour",
+     "48 hour",
+     "72 hour",
+     "96 hour"
+    ]
+   },
+   "design": [
+    "abiotic plant stress",
+    "tandem mass spectrometry",
+    "time series design",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 54,
+   "sample_file": "s_MTBLS3109.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS3109_NEG_RP_Polar_LC-MS_Method2A.txt",
+     "mafs": [
+      "m_MTBLS3109_NEG_RP_Polar_LC-MS_Method2A_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS3109_LC-MS_NEG_RP_Polar_LC-MS_Method2A.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS3109_POS_RP_Polar_LC-MS_Method2B.txt",
+     "mafs": [
+      "m_MTBLS3109_POS_RP_Polar_LC-MS_Method2B_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS3109_LC-MS_POS_RP_Polar_LC-MS_Method2B-1.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS3109_NEG_RP_Semipolar_LC-MS_Method3A.txt",
+     "mafs": [
+      "m_MTBLS3109_NEG_RP_Semipolar_LC-MS_Method3A_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS3109_LC-MS_NEG_RP_Semipolar_LC-MS_Method3A-2.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS3109_POS_RP_Semipolar_LC-MS_Method3B.txt",
+     "mafs": [
+      "m_MTBLS3109_POS_RP_Semipolar_LC-MS_Method3B_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS3109_LC-MS_POS_RP_Semipolar_LC-MS_Method3B-3.txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS3109_POS_RP_Apolar_LC-MS_Method4.txt",
+     "mafs": [
+      "m_MTBLS3109_POS_RP_Apolar_LC-MS_Method4_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS3109_LC-MS_POS_RP_Apolar_LC-MS_Method4-4.txt"
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The Arabidopsis Concert of Metabolic Acclimation to High Light Stress",
+     "authors": "Gerd Ulrich Balcke, Khabat Vahabi, Jonas Giese, Iris Finkemeier and Alain Tissier",
+     "doi": "10.1101/2023.02.14.528433",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "92.91GB",
+   "maf_skipped": [],
+   "named_metabolites": 4905
+  },
+  {
+   "id": "MTBLS3672",
+   "title": "Metabolic signatures of Arabidopsis thaliana abiotic stress responses elucidate patterns in stress priming, acclimation, and recovery",
+   "released": "2022-05-30",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "seedling"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Replicate": [
+     "1",
+     "2",
+     "3"
+    ],
+    "Status": [
+     "Recovery",
+     "Stress"
+    ],
+    "Treatment": [
+     "Basal cold",
+     "Basal cold recovery",
+     "Basal heat",
+     "Basal heat recovery",
+     "Cold pretreatment",
+     "Cold pretreatment recovery",
+     "Control",
+     "Control recovery",
+     "Drought",
+     "Drought recovery",
+     "Heat pretreatment",
+     "Heat pretreatment recovery",
+     "High light",
+     "High light recovery"
+    ]
+   },
+   "design": [
+    "Abiotic stress",
+    "Plant Metabolomics",
+    "tandem mass spectrometry",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 42,
+   "sample_file": "s_MTBLS3672.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - alternating - hilic",
+     "assay_file": "a_MTBLS3672_LC-MS_alternating_hilic_metabolite_profiling-1.txt",
+     "mafs": [
+      "m_MTBLS3672_LC-MS_alternating_hilic_metabolite_profiling-1_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolic signatures of Arabidopsis thaliana abiotic stress responses elucidate patterns in stress priming, acclimation, and recovery",
+     "authors": "Xu Yuan, Freund Dana M., Hegeman Adrian D., Cohen Jerry D.",
+     "doi": "10.1007/s44154-022-00034-5",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "6.27GB",
+   "maf_skipped": [],
+   "named_metabolites": 47
+  },
+  {
+   "id": "MTBLS3997",
+   "title": "Cell type-specific proteomics uncovers a RAF15-SnRK2.6/OST1 kinase cascade in guard cells",
+   "released": "2024-09-03",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Cell Type": [
+     "guard cell",
+     "mesophyll cell"
+    ]
+   },
+   "design": [
+    "(+)-abscisic acid",
+    "Proteomics",
+    "Single-Cell Analysis",
+    "phosphorylation",
+    "tandem mass spectrometry",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 27,
+   "sample_file": "s_MTBLS3997.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS3997_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS3997_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS3997_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS3997_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Cell type-specific proteomics uncovers a RAF15-SnRK2.6/OST1 kinase cascade in guard cells.",
+     "authors": "Wang H, Wang Y, Sang T, Lin Z, Li R, Ren W, Shen X, Zhao B, Wang X, Zhang X, Zhou S, Dai S, Hu H, Song CP, Wang P.",
+     "doi": "10.1111/jipb.13536",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "6.65GB",
+   "maf_skipped": [],
+   "named_metabolites": 569
+  },
+  {
+   "id": "MTBLS4066",
+   "title": "Metabolite profiling of Arabidopsis mutants of enzymes of lower glycolysis",
+   "released": "2022-10-10",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "leaf",
+    "mixture",
+    "solvent"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Fresh weight": [
+     "34.1 milligram",
+     "40 milligram",
+     "41.6 milligram",
+     "42.2 milligram",
+     "44.8 milligram",
+     "45.9 milligram",
+     "46 milligram",
+     "46.7 milligram",
+     "47.2 milligram",
+     "47.4 milligram",
+     "47.5 milligram",
+     "47.6 milligram",
+     "47.7 milligram",
+     "47.8 milligram",
+     "47.9 milligram",
+     "48.1 milligram",
+     "48.3 milligram",
+     "48.4 milligram",
+     "48.5 milligram",
+     "48.9 milligram",
+     "49 milligram",
+     "49.1 milligram",
+     "49.2 milligram",
+     "49.3 milligram",
+     "49.4 milligram",
+     "49.5 milligram",
+     "49.6 milligram",
+     "49.8 milligram",
+     "50 milligram",
+     "50.2 milligram",
+     "50.5 milligram",
+     "50.6 milligram",
+     "50.7 milligram",
+     "50.8 milligram",
+     "51 milligram",
+     "51.3 milligram",
+     "51.4 milligram",
+     "51.9 milligram",
+     "52 milligram",
+     "52.1 milligram",
+     "52.3 milligram",
+     "52.4 milligram",
+     "52.6 milligram",
+     "53.2 milligram",
+     "53.3 milligram",
+     "53.4 milligram",
+     "53.9 milligram",
+     "54 milligram",
+     "55.3 milligram",
+     "55.4 milligram",
+     "55.7 milligram",
+     "55.8 milligram",
+     "56 milligram",
+     "56.1 milligram",
+     "56.6 milligram",
+     "56.7 milligram",
+     "58.5 milligram",
+     "58.8 milligram",
+     "59.8 milligram",
+     "72.8 milligram",
+     "74.2 milligram"
+    ],
+    "Genotype": [
+     "3PGAmix-1250",
+     "3PGAmix-156.25",
+     "3PGAmix-2500",
+     "3PGAmix-312.5",
+     "3PGAmix-5000",
+     "3PGAmix-625",
+     "E.ipgam",
+     "E.ipgam/IpgamM1",
+     "E.ipgam/IpgamM2",
+     "Fcompletelin",
+     "IPGAM1-1",
+     "IPGAM1-2",
+     "IPGAM1-OE1",
+     "IPGAM1-OE2",
+     "IPGAM1-OE3",
+     "IPGAM2-2",
+     "IPGAMNES",
+     "Ipgam1/2",
+     "IpgamM",
+     "Wild Type (WT)",
+     "enolase (Los2)",
+     "phosphoglycerate kinase (PGK)",
+     "pyruvate kinase-3 (PKc3)",
+     "pyruvate kinase-4 (PKc4)"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "Sample group": [
+     "primary_control",
+     "primary_mixture",
+     "primary_sample_glycolytic_mutant",
+     "primary_sample_overexpression_line",
+     "primary_sample_wildtype",
+     "secondary_sample_labeling",
+     "secondary_sample_unlabeling"
+    ]
+   },
+   "design": [
+    "Glycolysis",
+    "gas chromatography time-of-flight mass spectrometry",
+    "tandem mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 107,
+   "sample_file": "s_MTBLS4066.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS -",
+     "assay_file": "a_MTBLS4066_GC-MS___metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS4066_GC-MS___metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolite profiling of Arabidopsis mutants of lower glycolysis.",
+     "authors": "Zhang Y, Fernie AR.",
+     "doi": "10.1038/s41597-022-01673-z",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "6.8GB",
+   "maf_skipped": [],
+   "named_metabolites": 50
+  },
+  {
+   "id": "MTBLS5383",
+   "title": "Apoplastic metabolomics reveals sugars as mesophyll messengers regulating guard cell ion transport under red light",
+   "released": "2025-06-23",
+   "techniques": [
+    "LC-MS",
+    "MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "Apoplastic fluid"
+   ],
+   "variants": [],
+   "factors": {
+    "Treatment": [
+     "0 microeinstein per square meter per second",
+     "125 microeinstein per square meter per second"
+    ]
+   },
+   "design": [
+    "Messenger",
+    "Metabolomics",
+    "Red light",
+    "mesophyll"
+   ],
+   "samples": 20,
+   "sample_file": "s_MTBLS5383.txt",
+   "assays": [
+    {
+     "technique": "MS",
+     "platform": "Gas Chromatography MS - positive",
+     "assay_file": "a_MTBLS5383_GC-MS_positive__metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS5383_GC-MS_positive_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS5383_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS5383_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS5383_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS5383_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "MS",
+     "platform": "Gas Chromatography MS - positive",
+     "assay_file": "a_MTBLS5383_GC-MS_positive__metabolite_profiling-1.txt",
+     "mafs": [
+      "m_MTBLS5383_GC-MS_positive_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Apoplastic metabolomics reveals sugars as mesophyll messengers regulating guard cell ion transport under red light",
+     "authors": "Yotam Zait, Mengmeng Zhu, Eigo Ando, Yunqing Zhou, Adi Yaaran, Sunheng Yon, Mami Okamoto, Yuki Hayashi, Masami Y. Hirai, Timothy Jegla, Toshinori Kinoshita, Sixue Chen, Sarah M. Assmann",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1.12GB",
+   "maf_skipped": [],
+   "named_metabolites": 405
+  },
+  {
+   "id": "MTBLS7365",
+   "title": "A multi-omics approach to unravel the interaction between heat and drought stress in the Arabidopsis thaliana holobiont",
+   "released": "2024-12-16",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "root"
+   ],
+   "variants": [
+    "Arabidopsis thaliana"
+   ],
+   "factors": {
+    "Treatment": [
+     "control",
+     "drought",
+     "heat",
+     "heat-drought"
+    ]
+   },
+   "design": [
+    "Multiomics",
+    "drought",
+    "heat",
+    "liquid chromatography-tandem mass spectrometry"
+   ],
+   "samples": 20,
+   "sample_file": "s_MTBLS7365.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS7365_LC-MS_positive_reverse-phase_metabolite_profiling-1.txt",
+     "mafs": [
+      "m_MTBLS7365_LC-MS_positive_reverse-phase_metabolite_profiling-1_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "A multi-omics approach to unravel the interaction between heat and drought stress in the Arabidopsis thaliana holobiont",
+     "authors": "Biancamaria Senizza, Fabrizio Araniti, Simon Lewin, Sonja Wende, Steffen Kolb, Luigi Lucini",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "800.73MB",
+   "maf_skipped": [],
+   "named_metabolites": 1372
+  },
+  {
+   "id": "MTBLS8105",
+   "title": "Pseudomonas syringae infectivity correlates to altered transcript and metabolite levels of Arabidopsis Mediator mutants",
+   "released": "2024-02-19",
+   "techniques": [
+    "GC-MS",
+    "LC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [
+    "Col-0",
+    "cdk8",
+    "med16",
+    "med18",
+    "med25"
+   ],
+   "factors": {
+    "Mutant": [
+     "Col-0",
+     "cdk8",
+     "med16",
+     "med18",
+     "med25"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "Timepoint": [
+     "24 hour",
+     "72 hour",
+     "hour"
+    ],
+    "Treatment": [
+     "Buffer",
+     "Pseudomonas"
+    ]
+   },
+   "design": [
+    "Mediator Complex",
+    "Pseudomonas syringae",
+    "gas chromatography-mass spectrometry",
+    "tandem mass spectrometry",
+    "targeted metabolites",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 85,
+   "sample_file": "s_MTBLS8105.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS8105_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS8105_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS - positive",
+     "assay_file": "a_MTBLS8105_GC-MS_positive__metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS8105_GC-MS_positive__metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS8105_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS8105_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "<i>Pseudomonas syringae</i>infectivity correlates to altered transcript and metabolite levels of<i>Arabidopsis</i>Mediator mutants",
+     "authors": "Blomberg Jeanette, Tasselius Viktor, Vergara Alexander, Karamat Fazeelat, Imran Qari Muhammad, Strand Åsa, Rosvall Martin, Björklund Stefan",
+     "doi": "10.1101/2023.11.03.565469",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "36.21GB",
+   "maf_skipped": [],
+   "named_metabolites": 145
+  },
+  {
+   "id": "MTBLS9552",
+   "title": "The circadian clock of Populus affects physiological, transcriptional and metabolomic responses to osmotic and ionic components of salt stress",
+   "released": "2025-10-02",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "root"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Gi",
+     "LHY",
+     "PR",
+     "PRR",
+     "QC",
+     "WT"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "Time point": [
+     "0 hour",
+     "144 hour",
+     "80 hour",
+     "98.71 hour"
+    ],
+    "Treatment": [
+     "Mannitol",
+     "Salt",
+     "Water",
+     "pooled sample"
+    ]
+   },
+   "design": [
+    "Populus tremula x Populus tremuloides",
+    "gas chromatography-mass spectrometry",
+    "tandem mass spectrometry",
+    "targeted metabolites",
+    "untargeted metabolites"
+   ],
+   "samples": 127,
+   "sample_file": "s_MTBLS9552.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS - positive",
+     "assay_file": "a_MTBLS9552_GC-MS_positive__metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS9552_GC-MS_positive__metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The circadian clock of Populus affects physiological, transcriptional and metabolomic responses to osmotic and ionic components of salt stress",
+     "authors": "Cristian Ibáñez, Alexander Vergara, David Castro, Luisa Bascunan-Godoy, Johan Sjölander, Manuela Jurca, Pierre A. Pin, Ove Nilsson & Maria E. Eriksson",
+     "doi": "10.1038/s44323-025-00052-2",
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "13.74GB",
+   "maf_skipped": [],
+   "named_metabolites": 71
+  },
+  {
+   "id": "MTBLS9884",
+   "title": "Salmonella enterica and Pseudomonas syringe uniquely alter the exometabolomic profile of the Arabidopsis leaf surface",
+   "released": "2025-06-17",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [
+    "Leaf wash"
+   ],
+   "factors": {
+    "Bacteria": [
+     "Human pathogen (Salmonella enterica subsp. enterica serovar Typhimurium str. 14028s Wu)",
+     "Mock solution (10 mM MgCl2)",
+     "Plant pathogen (Pseudomonas syringae pv. tomato str. DC3000)"
+    ],
+    "Biological replicate": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "Bacterial Colonization",
+    "Pathogen",
+    "Plant Metabolomics",
+    "untargeted metabolites"
+   ],
+   "samples": 24,
+   "sample_file": "s_MTBLS9884.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS -",
+     "assay_file": "a_MTBLS9884_GC-MS___metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS9884_GC-MS___metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Salmonella enterica and Pseudomonas syringe uniquely alter the exometabolomic profile of the Arabidopsis leaf surface",
+     "authors": "Jirachaya Yeemin, Brianna Fochs, Maeli Melotto",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "993.3MB",
+   "maf_skipped": [],
+   "named_metabolites": 439
+  },
+  {
+   "id": "MTBLS10096",
+   "title": "Metabolomics study for investigating chronic endoplasmic reticulum stress in Arabidopsis thaliana",
+   "released": "2024-12-02",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "root",
+    "shoot",
+    "solvent"
+   ],
+   "variants": [],
+   "factors": {
+    "Dose": [
+     "%",
+     "0.003 %",
+     "0.01 %",
+     "100 ng/ml",
+     "30 ng/ml"
+    ],
+    "Genotype": [
+     "Wild type",
+     "bzip60-3",
+     "ire1dmH",
+     "ire1dmK"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ],
+    "Treatment": [
+     "dimethyl sulfoxide",
+     "tunicamycin"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "Endoplasmic Reticulum Stress",
+    "IRE1B (Arabidopsis thaliana)",
+    "Lipidomics",
+    "endoplasmic reticulum stress - the unfolded protein response pathway",
+    "liquid chromatography-tandem mass spectrometry",
+    "serine/threonine-protein kinase/endoribonuclease IRE1a (Arabidopsis thaliana)",
+    "tunicamycin",
+    "untargeted metabolite profiling"
+   ],
+   "samples": 160,
+   "sample_file": "s_MTBLS10096.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS10096_LC-MS_shoot_positive_reverse-phase_metabolite_profiling%20.txt",
+     "mafs": [
+      "m_MTBLS10096_LC-MS_shoot_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ],
+     "assay_file_indexed": "a_MTBLS10096_LC-MS_shoot_positive_reverse-phase_metabolite_profiling .txt"
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS10096_LC-MS_root_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10096_LC-MS_root_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS10096_LC-MS_root_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10096_LC-MS_root_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "A metabolomic dataset for investigating unfolded protein response role under chronic, chemically-induced endoplasmic reticulum stress in Arabidopsis thaliana",
+     "authors": "Amélie Ducloy, Jean-Chrisologue Totozafy, Marianne Azzopardi, Delphine Charif, François Perreau, Jean-Luc Cacas",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "359.57GB",
+   "maf_skipped": [],
+   "named_metabolites": 588
+  },
+  {
+   "id": "MTBLS10597",
+   "title": "Lipidomics study for investigating the role of the Unfolded Protein Response In Arabidopsis seed filling",
+   "released": "2024-12-02",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "seed",
+    "solvent"
+   ],
+   "variants": [],
+   "factors": {
+    "Biological replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8"
+    ],
+    "Genotype": [
+     "Wild type",
+     "bzip60-3",
+     "ire1a",
+     "ire1b",
+     "ire1dmH",
+     "ire1dmK"
+    ],
+    "Technical replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7"
+    ]
+   },
+   "design": [
+    "BZIP60 (Arabidopsis thaliana)",
+    "IRE1A (Arabidopsis thaliana)",
+    "IRE1B (Arabidopsis thaliana)",
+    "Lipidomics",
+    "endoplasmic reticulum unfolded protein response",
+    "ultra-performance liquid chromatography-mass spectrometry",
+    "untargeted metabolites"
+   ],
+   "samples": 56,
+   "sample_file": "s_MTBLS10597.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS10597_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10597_LC-MS_negative_reverse-phase_seed-metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS10597_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10597_LC-MS_positive_reverse-phase_seed-metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Role of the Unfolded Protein Response in Arabidopsis seed filling",
+     "authors": "Amélie Ducloy, Azzopardi Marianne, Jean-Chrisologue Totozafy, Delphine Charif, Jean-Luc Cacas",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "87.67GB",
+   "maf_skipped": [],
+   "named_metabolites": 325
+  },
+  {
+   "id": "MTBLS10609",
+   "title": "Metabolomics study for investigating the specific role of INOSITOL-REQUIRING ENZYME 1A and INOSITOL-REQUIRING ENZYME 1B under chronic endoplasmic reticulum stress in Arabidopsis thaliana",
+   "released": "2024-12-02",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "root",
+    "shoot",
+    "solvent"
+   ],
+   "variants": [],
+   "factors": {
+    "Dose": [
+     "%",
+     "0.01 %",
+     "100 ng/ml"
+    ],
+    "Genotype": [
+     "Ire1A",
+     "Ire1B",
+     "Wild type",
+     "ire1dm2"
+    ],
+    "Replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "Treatment": [
+     "dimethyl sulfoxide",
+     "tunicamycin"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "Endoplasmic Reticulum Stress",
+    "IRE1A (Arabidopsis thaliana)",
+    "IRE1B (Arabidopsis thaliana)",
+    "Lipidomics",
+    "endoplasmic reticulum stress - the unfolded protein response pathway",
+    "liquid chromatography-tandem mass spectrometry",
+    "tunicamycin",
+    "untargeted metabolite profiling"
+   ],
+   "samples": 108,
+   "sample_file": "s_MTBLS10609.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS10609_LC-MS_shoot_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10609_LC-MS_shoot_positive_reverse-phase-metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS10609_LC-MS_root_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10609_LC-MS_root_positive_reverse-phase-metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS10609_LC-MS_shoot_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10609_LC-MS_shoot_negative_reverse-phase-metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS10609_LC-MS_root_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10609_LC-MS_root_negative_reverse-phase-metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Role of INOSITOL-REQUIRING ENZYME-1 in lipid metabolism revealed by metabolomics",
+     "authors": "Ducloy Amélie, Azzopardi Marianne, Totozafi Jean-Chrisologue, Charif Delphine, Jean-Luc Cacas",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "146.59GB",
+   "maf_skipped": [],
+   "named_metabolites": 622
+  },
+  {
+   "id": "MTBLS10976",
+   "title": "Pathogen-induced phenolic acids biosynthesis is associated with deleterious microbiome changes during Plasmodiophora brassicae-induced clubroot in Pakchoi",
+   "released": "2025-03-31",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "Rhizosphere soil"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "QC",
+     "SK",
+     "XG",
+     "XK"
+    ]
+   },
+   "design": [
+    "Plant Metabolomics",
+    "Plasmodiophora brassicae",
+    "clubroot"
+   ],
+   "samples": 12,
+   "sample_file": "s_MTBLS10976.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS10976_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10976_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS10976_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS10976_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "The soil bacterial community regulates Pakchoi to infection of clubroot disease caused by Plasmodiophora Brassicae",
+     "authors": "Haibo Hao, Zhenghong Wang, Zitong Meng, Xiaofeng Li, Hui Chen, Pengfei Meng, Liming Miao, Lu Gao, Xinman Wang1, Benke Kuai3, Yi Song4, Hongfang Zhu and Dingyu Zhang",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "1.16GB",
+   "maf_skipped": [],
+   "named_metabolites": 2269
+  },
+  {
+   "id": "MTBLS11360",
+   "title": "Root hair developmental regulators orchestrate drought induced microbiome changes and affect the interactions with stress alleviating Rhizobiaceae",
+   "released": "2024-10-28",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "root"
+   ],
+   "variants": [],
+   "factors": {
+    "Genotype": [
+     "Col-0",
+     "gl2",
+     "pooled_sample-QC1",
+     "pooled_sample-QC2",
+     "pooled_sample-QC3",
+     "rsl2rsl4"
+    ]
+   },
+   "design": [
+    "Root",
+    "drought",
+    "microbiome",
+    "untargeted metabolites"
+   ],
+   "samples": 24,
+   "sample_file": "s_MTBLS11360.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS11360_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS11360_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS11360_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS11360_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Root hair developmental regulators orchestrate drought induced microbiome changes and affect the interactions with stress alleviating Rhizobiaceae",
+     "authors": "Zhenghong Wang, Zewen Li, Yujie Zhang, Jingye Liao, Kaixiang Guan, Jingxuan Zhai, Pengfei Meng, Xianli Tang, Tao Dong, Yi Song",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "3.79GB",
+   "maf_skipped": [],
+   "named_metabolites": 6136
+  },
+  {
+   "id": "MTBLS12456",
+   "title": "Metabolite control of enzyme activity links stress to biosynthetic regulation",
+   "released": "2026-02-04",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "pure substance",
+    "rosette leaves"
+   ],
+   "variants": [],
+   "factors": {
+    "Biological replicate": [
+     "1",
+     "10",
+     "11",
+     "12",
+     "13",
+     "14",
+     "15",
+     "16",
+     "17",
+     "18",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9"
+    ],
+    "Concentration": [
+     "0 micromolar",
+     "100 micromolar",
+     "150 micromolar",
+     "200 micromolar",
+     "50 micromolar",
+     "micromolar"
+    ],
+    "Genotype": [
+     "Col",
+     "DXSi",
+     "HDRi",
+     "HDSi",
+     "MCTi",
+     "asDXS",
+     "asDXS_Col",
+     "asHDR",
+     "asHDR_Col",
+     "asMCT",
+     "asMCT_Col",
+     "ceh1"
+    ],
+    "Treatment": [
+     "HMBPP",
+     "MEcPP",
+     "high light",
+     "high light + DEX",
+     "normal light",
+     "normal light + DEX",
+     "normal light +DEX"
+    ]
+   },
+   "design": [
+    "High Light",
+    "Isoprenoid Biosynthesis",
+    "MCT",
+    "MEP",
+    "MEP Pathway",
+    "MEcPP",
+    "Multi-omics study",
+    "Stree",
+    "dexamethasone",
+    "enzymes",
+    "intermediate",
+    "targeted metabolites"
+   ],
+   "samples": 391,
+   "sample_file": "s_MTBLS12456.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - hilic",
+     "assay_file": "a_MTBLS12456_LC-MS_negative_hilic_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12456_LC-MS_negative_hilic_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - hilic",
+     "assay_file": "a_MTBLS12456_LC-MS_negative_hilic_metabolite_profiling-2.txt",
+     "mafs": [
+      "m_MTBLS12456_LC-MS_negative_hilic_metabolite_profiling-2_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Metabolite control of enzyme activity links stress to biosynthetic regulation",
+     "authors": "Wilhelmina van de Vena, Manhoi Hur, María Fernanda Gómez-Méndez, Jingzhe Guo, Haiyan Ke, Raisul Awal Mahmood, Sunghwan Kim, Thomas D. Sharkey, Katayoon Dehesh",
+     "doi": "10.1073/pnas.2529243123",
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "57.89GB",
+   "maf_skipped": [],
+   "named_metabolites": 6
+  },
+  {
+   "id": "MTBLS12459",
+   "title": "Single-cell Transcriptomics and Time-series Metabolite Profiling Reveal the Spatiotemporal Regulation of Flavonoid Biosynthesis Genes and Phytohormone Homeostasis by PAP1 in Arabidopsis",
+   "released": "2025-05-27",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [
+    "Col-0",
+    "MYB75 (Arabidopsis thaliana)"
+   ],
+   "factors": {
+    "Timepoint": [
+     "2 week",
+     "3 week",
+     "4 week",
+     "5 week",
+     "week"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "Flavonoid",
+    "plant hormone",
+    "untargeted metabolites"
+   ],
+   "samples": 30,
+   "sample_file": "s_MTBLS12459.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS12459_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12459_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS12459_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12459_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Single-cell Transcriptomics and Time-series Metabolite Profiling Reveal the Spatiotemporal Regulation of Flavonoid Biosynthesis Genes and Phytohormone Homeostasis by PAP1 in Arabidopsis",
+     "authors": "Bingxu ZHANG, Thomas Ka Yam LAM, Linheng CHEN, Chen ZHANG, Liping ZHU, Hailei ZHANG, Pengxi WANG, Jianing WANG, Zongwei CAI, Yiji XIA",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "86.32GB",
+   "maf_skipped": [],
+   "named_metabolites": 307
+  },
+  {
+   "id": "MTBLS12467",
+   "title": "Multi-omics analysis of Arabidopsis leaves upon infection by necrotrophic pathogen Botrytis cinerea",
+   "released": "2026-03-09",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [
+    "WT",
+    "ino80"
+   ],
+   "factors": {
+    "Biological replicate": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6"
+    ],
+    "Timepoint": [
+     "0h",
+     "12h",
+     "6h"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "Botrytis cinerea",
+    "biotic response",
+    "plant hormone",
+    "untargeted metabolomics"
+   ],
+   "samples": 39,
+   "sample_file": "s_MTBLS12467.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS12467_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12467_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS12467_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12467_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Spatial transcription response of Arabidopsis leaves upon infection by necrotrophic pathogen Botrytis cinerea",
+     "authors": "Ran Sui, Huijia Kang, Chang Liu, Xinyu Zhu, Tianyi Fan, Jiaqi Zhang, Ya Ma, Yumin Lv, Yan Zhu, and Ji Qi",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "8.04GB",
+   "maf_skipped": [],
+   "named_metabolites": 1308
+  },
+  {
+   "id": "MTBLS12683",
+   "title": "Nano-silicon dioxide declined organic pollutant contents in plant samples",
+   "released": "2025-11-24",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "plant pedicel"
+   ],
+   "variants": [],
+   "factors": {
+    "Treatment": [
+     "Control",
+     "Quality Control",
+     "TreatedA",
+     "TreatedB",
+     "TreatedC"
+    ]
+   },
+   "design": [
+    "plant",
+    "plant metabolite",
+    "untargeted metabolites"
+   ],
+   "samples": 27,
+   "sample_file": "s_MTBLS12683.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS12683_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12683_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS12683_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12683_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Nano-silicon dioxide declined organic pollutant contents in plant samples",
+     "authors": "manyun zhang",
+     "doi": "10.1111/162111",
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "7.04GB",
+   "maf_skipped": [],
+   "named_metabolites": 2528
+  },
+  {
+   "id": "MTBLS12780",
+   "title": "Integrated transcriptomics and metabolomics analysis of gasa1 and gasa4 mutants in response to P.syringae infection in Arabidopsis",
+   "released": "2025-07-27",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "rosette leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Treatment": [
+     "Colck0h",
+     "Colv12h",
+     "g1v12h",
+     "g4v12h"
+    ]
+   },
+   "design": [
+    "Arabidopsis",
+    "Plant Immunity",
+    "transcriptomic data",
+    "untargeted metabolites"
+   ],
+   "samples": 24,
+   "sample_file": "s_MTBLS12780.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse phase",
+     "assay_file": "a_MTBLS12780_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12780_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    },
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - negative - reverse phase",
+     "assay_file": "a_MTBLS12780_LC-MS_negative_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12780_LC-MS_negative_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Integrated transcriptomics and metabolomics analysis of gasa1 and gasa4 mutants in response to P.syringae infection in Arabidopsis",
+     "authors": "Song Jian-Bo, Chen Yu-Fan, Huang Min, Song Wen-Qian, Liu Shu-Fan, Li Ya-Ru, Zhao Zi-Xin, Song Man-Ru, Liu Ye, Zuo Xian-Zhi, Wang Cai-Feng, Huang Xuan",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "5.96GB",
+   "maf_skipped": [],
+   "named_metabolites": 1924
+  },
+  {
+   "id": "MTBLS12792",
+   "title": "Flavonoid pathway intermediates implicate UVR8 in functions beyond canonical UV-B signaling",
+   "released": "2025-07-30",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Arabidopsis phenotypes": [
+     "Growth",
+     "colorless"
+    ]
+   },
+   "design": [
+    "tandem mass spectrometry",
+    "targeted metabolites",
+    "untargeted metabolites"
+   ],
+   "samples": 12,
+   "sample_file": "s_MTBLS12792.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive",
+     "assay_file": "a_MTBLS12792_LC-MS_positive__metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS12792_LC-MS_positive__metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Flavonoid pathway intermediates implicate UVR8 in functions beyond canonical UV-B signaling",
+     "authors": "Nan Jiang, Tatiana García Navarrete, Yun Sun Lee, Emily G. Pawlowski, Sunyoung Park, Erich Grotewold",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "76.18GB",
+   "maf_skipped": [],
+   "named_metabolites": 2
+  },
+  {
+   "id": "MTBLS13444",
+   "title": "Photorespiration is linked to DNA methylation by formate as one-carbon source.",
+   "released": "2026-01-06",
+   "techniques": [
+    "GC-MS"
+   ],
+   "gc_ms": true,
+   "organism_parts": [
+    "50 ng amino acid standard mix",
+    "50 ng nucleobase standard mix",
+    "Rosette without roots",
+    "blank"
+   ],
+   "variants": [
+    "WT",
+    "mthfd1-1",
+    "mthfd1-1 thfs",
+    "thfs"
+   ],
+   "factors": {
+    "Biological replicate": [
+     "1",
+     "2",
+     "3"
+    ],
+    "Labelling substrate": [
+     "[13C]formate",
+     "[2-13C]glycine",
+     "unlabelled formate",
+     "unlabelled glycine"
+    ],
+    "Photoperiod": [
+     "Long day",
+     "Short day"
+    ],
+    "Target metabolites": [
+     "free amino acids",
+     "nucleobase"
+    ],
+    "Timepoint/Hours after dawn": [
+     "16",
+     "24",
+     "4",
+     "8"
+    ],
+    "Timepoint/Hours after dusk": [
+     "16",
+     "4",
+     "8"
+    ]
+   },
+   "design": [
+    "Arabidopsis thaliana",
+    "Isotope Labeling, Stable",
+    "gas chromatography-mass spectrometry",
+    "targeted metabolites"
+   ],
+   "samples": 176,
+   "sample_file": "s_MTBLS13444.txt",
+   "assays": [
+    {
+     "technique": "GC-MS",
+     "platform": "Gas Chromatography MS -",
+     "assay_file": "a_MTBLS13444_GC-MS___metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS13444_GC-MS___metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Photorespiration is linked to DNA methylation by formate as a one-carbon source",
+     "authors": "Valentin Hankofer, Andrea Ghirardo, Lisa Obermaier, Gernot Poschet, Jisha Suresh Kumar, Inonge Gross, Jörg Durner, Michael Rychlik, Markus Wirtz, Rüdiger Hell, Jörg-Peter Schnitzler, Martin Groth",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "EMBL-EBI Terms of Use",
+   "licence_url": "https://www.ebi.ac.uk/about/terms-of-use/",
+   "size": "5.21GB",
+   "maf_skipped": [],
+   "named_metabolites": 6
+  },
+  {
+   "id": "MTBLS14092",
+   "title": "Trichoderma-based fertilizer enhances quality of Elymus breviaristatus silage via microbial and metabolic modulation",
+   "released": "2026-03-20",
+   "techniques": [
+    "MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "CHEBI"
+   ],
+   "variants": [
+    "NCBITaxon"
+   ],
+   "factors": {
+    "Fertilizer": [
+     "EFO",
+     "ENVO"
+    ]
+   },
+   "design": [
+    "Multi-omics study",
+    "microbiome",
+    "ultra-performance liquid chromatography-mass spectrometry"
+   ],
+   "samples": 24,
+   "sample_file": "s_MTBLS14092.txt",
+   "assays": [
+    {
+     "technique": "MS",
+     "platform": "Liquid Chromatography MS -",
+     "assay_file": "a_MTBLS14092_LC-MS___metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS14092_LC-MS___metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Trichoderma harzianum fertilizer enhances quality of Elymus breviaristatus silage via microbial community structure impovement and metabolic modulation",
+     "authors": "Wenqian Xu, Xuefeng Yuan, Zunji Shi",
+     "doi": null,
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "27.9MB",
+   "maf_skipped": [],
+   "named_metabolites": 189
+  },
+  {
+   "id": "MTBLS14117",
+   "title": "Inhibition of jasmonic acid-isoleucine conjugating enzyme JAR1 shifts the local and systemic leaf signals and metabolic profiles in Arabidopsis",
+   "released": "2026-03-31",
+   "techniques": [
+    "LC-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "Quality Control",
+    "Standard",
+    "acetonitrile",
+    "blank",
+    "leaf"
+   ],
+   "variants": [],
+   "factors": {
+    "Chemical treatment": [
+     "DMSO",
+     "Jarin-1",
+     "Quality Control",
+     "Standard",
+     "blank role"
+    ],
+    "Leaf number": [
+     "Eight",
+     "Eleven",
+     "Nine",
+     "Quality Control",
+     "Standard",
+     "Thirteen",
+     "blank role"
+    ],
+    "Study type": [
+     "Local",
+     "Quality Control",
+     "Standard",
+     "Systemic",
+     "blank role",
+     "control"
+    ]
+   },
+   "design": [
+    "Arabidopsis",
+    "Arabidopsis thaliana",
+    "Bruker maXis impact UHR-QTOF",
+    "Plant Metabolomics",
+    "Quality Control",
+    "Standard",
+    "Thermo Scientific Dionex Ultimate 3000 UHPLC system",
+    "acetonitrile",
+    "blank",
+    "leaf",
+    "local signals",
+    "systemic signals",
+    "untargeted analysis",
+    "untargeted metabolites",
+    "wounding"
+   ],
+   "samples": 139,
+   "sample_file": "s_MTBLS14117.txt",
+   "assays": [
+    {
+     "technique": "LC-MS",
+     "platform": "Liquid Chromatography MS - positive - reverse-phase",
+     "assay_file": "a_MTBLS14117_LC-MS_positive_reverse-phase_metabolite_profiling.txt",
+     "mafs": [
+      "m_MTBLS14117_LC-MS_positive_reverse-phase_metabolite_profiling_v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Inhibition of Jasmonic Acid-Isoleucine Conjugating Enzyme JAR1 Shifts the Local and Systemic Leaf Metabolic Profiles in &lt;em&gt;Arabidopsis&lt;/em&gt;",
+     "authors": "Zeng Ming, Mithöfer Axel",
+     "doi": "10.20944/preprints202511.1275.v1",
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "16.55GB",
+   "maf_skipped": [],
+   "named_metabolites": 145
+  },
+  {
+   "id": "MTBLS14524",
+   "title": "Clay vs Glass: Root exudate recovery from two distinct microcosm systems",
+   "released": "2026-09-16",
+   "techniques": [
+    "FIA-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "blank",
+    "root exudate",
+    "standard"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "ExudateCollection": [
+     "ex situ",
+     "in situ"
+    ],
+    "Microcosm": [
+     "Clay",
+     "Glass",
+     "washed Clay"
+    ]
+   },
+   "design": [
+    "Agilent",
+    "Agilent 6550 iFunnel Q-TOF",
+    "Arabidopsis thaliana",
+    "Flow Injection Analysis",
+    "Metabolomics",
+    "Plant Exudates",
+    "blank",
+    "experimental blank",
+    "plant",
+    "root",
+    "root exudate",
+    "standard",
+    "untargeted analysis",
+    "untargeted metabolite profiling"
+   ],
+   "samples": 42,
+   "sample_file": "s_MTBLS14524.txt",
+   "assays": [
+    {
+     "technique": "FIA-MS",
+     "platform": "Flow injection analysis MS - negative",
+     "assay_file": "a_MTBLS14524_FIA-MS_negative_.txt",
+     "mafs": [
+      "m_MTBLS14524_FIA-MS_negative__v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Paralleled Dynamics of Arabidopsis Root Exudation and SynCom Assembly in a Controlled Environment",
+     "authors": "Joller Charlotte, Waelchli Jan, Schlaepfer Joelle, Schlaeppi Klaus",
+     "doi": "10.64898/2026.01.29.702624",
+     "pubmed": null
+    },
+    {
+     "title": "Glass bead-based microcosms enable simultaneous profiling of root exudate and microbiome dynamics",
+     "authors": "Joller Charlotte, Waelchli Jan, Zamboni Nicola, Sasse Joelle, Schlaeppi Klaus",
+     "doi": "10.1016/j.rhisph.2026.101363",
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "723.01MB",
+   "maf_skipped": [],
+   "named_metabolites": 2829
+  },
+  {
+   "id": "MTBLS14526",
+   "title": "Glass vs Clay: dynamic responses of the root exudate, root and shoot tissue metabolome upon SynCom colonisation",
+   "released": "2026-09-16",
+   "techniques": [
+    "FIA-MS"
+   ],
+   "gc_ms": false,
+   "organism_parts": [
+    "blank",
+    "root",
+    "root exudate",
+    "shoot",
+    "standard"
+   ],
+   "variants": [
+    "Col-0"
+   ],
+   "factors": {
+    "Timepoint": [
+     "0",
+     "1",
+     "12",
+     "2",
+     "4"
+    ],
+    "Treatment": [
+     "SynCom9",
+     "axenic"
+    ]
+   },
+   "design": [
+    "Agilent",
+    "Agilent 6550 iFunnel Q-TOF",
+    "Arabidopsis thaliana",
+    "Flow Injection Analysis",
+    "Metabolomics",
+    "Plant Exudates",
+    "Time Series",
+    "bacteria",
+    "blank",
+    "experimental blank",
+    "microbiome",
+    "plant",
+    "root",
+    "root exudate",
+    "shoot",
+    "standard",
+    "synthetic microbial community",
+    "untargeted analysis",
+    "untargeted metabolite profiling"
+   ],
+   "samples": 340,
+   "sample_file": "s_MTBLS14526.txt",
+   "assays": [
+    {
+     "technique": "FIA-MS",
+     "platform": "Flow injection analysis MS - negative",
+     "assay_file": "a_MTBLS14526_FIA-MS_negative_.txt",
+     "mafs": [
+      "m_MTBLS14526_FIA-MS_negative__v2_maf.tsv"
+     ]
+    }
+   ],
+   "missing_files": [],
+   "publications": [
+    {
+     "title": "Paralleled Dynamics of Arabidopsis Root Exudation and SynCom Assembly in a Controlled Environment",
+     "authors": "Joller Charlotte, Waelchli Jan, Schlaepfer Joelle, Schlaeppi Klaus",
+     "doi": "10.64898/2026.01.29.702624",
+     "pubmed": null
+    },
+    {
+     "title": "Glass bead-based microcosms enable simultaneous profiling of root exudate and microbiome dynamics",
+     "authors": "Joller Charlotte, Waelchli Jan, Zamboni Nicola, Sasse Joelle, Schlaeppi Klaus",
+     "doi": "10.1016/j.rhisph.2026.101363",
+     "pubmed": null
+    }
+   ],
+   "licence": "CC0 1.0 Universal",
+   "licence_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "size": "5.92GB",
+   "maf_skipped": [],
+   "named_metabolites": 1327
+  }
+ ]
+}
