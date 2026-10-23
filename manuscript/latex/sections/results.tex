@@ -147,7 +147,8 @@ inflorescence axis and each individual flower/silique also previously appeared a
 the instant a threshold was crossed rather than growing in; both now use the same
 emergence-ramp treatment rosette leaves already had. The camera itself was a single framing
 computed once from the mature plant and reused for all 576 frames: inspecting actual output
-frames showed the day-0 seedling occupying roughly 1-2\% of frame, and the mature plant's
+frames showed the day-0 seedling as a speck under 1\% of the frame (its bounding box covered
+\DayZeroFrameBoxPercent{}\%), and the mature plant's
 inflorescence exiting the top of frame before any flower or silique was visible. The camera
 now re-frames on each frame's own actual above-ground extent, eased across keyframes
 anchored to real Boyes stage boundaries, with physical depth of field added -- the camera
@@ -155,8 +156,10 @@ parameter \emph{values} at each keyframe are a disclosed directorial choice, the
 "real data drives \emph{when}, technique choice drives \emph{how}" split already used for
 organ emergence timing. The full v2 sequence rendered in \RenderTotalMinutes{} minutes,
 averaging \RenderAvgSecondsPerFrame{}s/frame across all \NumAnimationFrames{} frames --
-measured from the actual render log, not estimated; the richer materials and depth of field
-added roughly 18\% to the v1 pipeline's \NumAnimationFrames{}-frame baseline time.
+measured from the actual render log, not estimated (the logged figures, with a check against the
+frames' own timestamps, are kept in \texttt{blender/render\_provenance.json}); the richer materials
+and depth of field added about \RenderOverheadPercent{}\% per frame to the v1 pipeline's
+\NumAnimationFrames{}-frame baseline.
 
 \subsection{A digital-twin data-overlay layer}
 

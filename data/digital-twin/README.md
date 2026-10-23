@@ -113,6 +113,10 @@ whole-study, not organ-matched. Unlike OSD-120 (confirmed root-specific) and OSD
 (confirmed whole-seedling), OSD-522 is not wired into any specific organ's info panel in
 `organs.ts` for exactly this reason -- resolving the real tissue (e.g. from the study's ISA
 metadata ZIP rather than this API slice) is a real open follow-up, not done here.
+*Update (2026-10-04, script 12):* GeneLab's RNA-seq runsheet for OSD-522 annotates all 12 samples
+as Plant Shoots (6 flight, 6 ground), so scripts 12-14 and the manuscript treat its RNA-seq as
+shoot data; the mean-ratio file above keeps its tissue-free name. Roots appear in OSD-522 only
+in the proteomics.
 
 **A real, load-bearing constraint that shapes this whole connector's architecture**: OSDR's
 API sends `Access-Control-Allow-Origin: osdr.nasa.gov` on every one of the three endpoints

@@ -1,0 +1,34 @@
+{
+  "about": "Measured render facts quoted in the manuscript. scripts/03_manuscript_numbers.py reads this file when no render log is on disk, rewrites the 'v2' entry whenever a complete log is present, and rewrites 'v2.frame_mtimes' and 'day0_frame_v1' with --measure-frames. The frames themselves are git-ignored (blender/exports/).",
+  "v1": {
+    "total_minutes": 75,
+    "avg_seconds_per_frame": 7.9,
+    "frames": 576,
+    "source": "Written by scripts/03_manuscript_numbers.py from the last FRAME_DONE line of /tmp/growth_animation_render.log; committed in generated_numbers.tex at 569a186 (2026-09-19). The log itself was not kept."
+  },
+  "v2": {
+    "total_minutes": 88,
+    "avg_seconds_per_frame": 9.3,
+    "frames": 576,
+    "source": "Written by scripts/03_manuscript_numbers.py from the last FRAME_DONE line of /tmp/growth_animation_v2_render.log; committed in generated_numbers.tex at 3a898aa (2026-09-21). The log itself was not kept.",
+    "frame_mtimes": {
+      "frames_dir": "blender/exports/animation_frames",
+      "frames": 576,
+      "first_frame_written": "2026-09-21T12:21:42",
+      "last_frame_written": "2026-09-21T13:51:39",
+      "span_minutes": 90.0,
+      "seconds_per_frame_interval": 9.39,
+      "measured": "2026-10-23",
+      "note": "Independent check of the logged figures: file modification times of frame_0000 to frame_0575."
+    }
+  },
+  "day0_frame_v1": {
+    "file": "blender/exports/animation_frames_v1_backup/frame_0000.png",
+    "width": 1920,
+    "height": 1080,
+    "plant_pixel_percent": 0.11,
+    "bounding_box_percent": 0.58,
+    "method": "Pixels with mean RGB above 110 inside x 700-1300, y 200-700 (soil background is about 50-75, the seedling about 150-200); bounding box of those pixels as a share of the full frame.",
+    "measured": "2026-10-23"
+  }
+}

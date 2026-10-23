@@ -298,7 +298,7 @@ doi:10.3389/frspt.2021.797518).
 
 Zhu et al. sampled leaves at 0 d and after 6 d of extended darkness, which they describe as
 causing "the cessation of photosynthesis and nutrient starvation"; their related GWAS covers
-dark-induced senescence (Zhu et al. 2021, *Plant Cell* 34:557-578, doi:10.1093/plcell/koab251).
+dark-induced senescence (Zhu et al. 2022, *Plant Cell* 34(1):557-578, online 2021, doi:10.1093/plcell/koab251).
 So OSD-38, not OSD-522, is the flight study whose plants were in darkness. OSD-522 compares
 flight with ground under the same lit, sealed hardware, and the link in
 `results/osd522_metabolome_link/` asks whether its flight transcript shifts resemble the

@@ -4,7 +4,14 @@ Every \\newcommand here is derived from a file this repo's pipeline actually
 produced (data/raw, data/processed) or from the actual application source
 (app/src/organs.ts) -- never hand-typed. Run this before every manuscript
 compile (see manuscript/Makefile's `numbers` target).
+
+Render timings and the day-0 framing measurement come from blender/render_provenance.json,
+a tracked record, because the render logs live in /tmp and the frames are git-ignored. When a
+complete v2 log is on disk its figures are recomputed and written back to that file;
+`--measure-frames` re-measures frame timestamps and the v1 day-0 frame from local frames.
 """
+import argparse
+from datetime import datetime
 import json
 import re
 from pathlib import Path
@@ -16,6 +23,9 @@ ORGANS_TS = ROOT / "app" / "src" / "organs.ts"
 ECOTYPES_TS = ROOT / "app" / "src" / "ecotypes.ts"
 GROWTH_STAGES_TS = ROOT / "app" / "src" / "growthStages.ts"
 RENDER_LOG = Path("/tmp/growth_animation_v2_render.log")
+PROVENANCE = ROOT / "blender" / "render_provenance.json"
+FRAMES_DIR = ROOT / "blender" / "exports" / "animation_frames"
+V1_DAY0_FRAME = ROOT / "blender" / "exports" / "animation_frames_v1_backup" / "frame_0000.png"
 OUT = ROOT / "manuscript" / "latex" / "generated_numbers.tex"
 
 
@@ -128,27 +138,74 @@ def main():
     # an earlier version only checked for "ALL_FRAMES_COMPLETE", a string a now-retired
     # wrapper script added; the render script's own real, always-present marker is
     # "ANIMATION_RENDER_COMPLETE", printed regardless of how the render was invoked.
-    FRAMES_DIR = ROOT / "blender" / "exports" / "animation_frames"
     frames_on_disk = len(list(FRAMES_DIR.glob("frame_*.png"))) if FRAMES_DIR.exists() else 0
+    prov = json.loads(PROVENANCE.read_text())
     if RENDER_LOG.exists():
         log_text = RENDER_LOG.read_text()
         frame_times = re.findall(r"FRAME_DONE \d+ day=[\d.]+ elapsed=(\d+)s avg=([\d.]+)s/frame", log_text)
         if "ANIMATION_RENDER_COMPLETE" in log_text and frame_times and frames_on_disk == 576:
-            last_elapsed = int(frame_times[-1][0])
-            last_avg = float(frame_times[-1][1])
-            lines += [
-                macro("RenderTotalMinutes", f"{last_elapsed / 60:.0f}"),
-                macro("RenderAvgSecondsPerFrame", f"{last_avg:.1f}"),
-            ]
+            prov["v2"].update(total_minutes=round(int(frame_times[-1][0]) / 60),
+                              avg_seconds_per_frame=round(float(frame_times[-1][1]), 1),
+                              source=f"Written by scripts/03_manuscript_numbers.py from the last FRAME_DONE line of "
+                                     f"{RENDER_LOG} on {datetime.now():%Y-%m-%d}.")
+            PROVENANCE.write_text(json.dumps(prov, indent=2) + "\n")
+            print(f"Render log found: v2 timings recomputed and written to {PROVENANCE.name}")
         else:
-            print("NOTE: render log present but not yet complete -- render-time macros omitted, not guessed.")
+            print("NOTE: render log present but not yet complete -- using the recorded timings in "
+                  f"{PROVENANCE.name}, not the partial log.")
     else:
-        print("NOTE: render log not found -- render-time macros omitted, not guessed.")
+        print(f"NOTE: render log not on disk -- render timings from {PROVENANCE.name} ({prov['v2']['source']})")
+    v1, v2 = prov["v1"], prov["v2"]
+    lines += [
+        macro("RenderTotalMinutes", v2["total_minutes"]),
+        macro("RenderAvgSecondsPerFrame", f"{v2['avg_seconds_per_frame']:.1f}"),
+        macro("RenderOverheadPercent", f"{(v2['avg_seconds_per_frame'] / v1['avg_seconds_per_frame'] - 1) * 100:.0f}"),
+        macro("DayZeroFrameBoxPercent", f"{prov['day0_frame_v1']['bounding_box_percent']:.1f}"),
+    ]
 
     OUT.write_text("".join(lines))
     print(f"Wrote {OUT}")
     print("".join(lines))
 
 
+def measure_frames():
+    """Re-measure the v2 frame timestamps and the v1 day-0 framing from local (git-ignored) frames."""
+    import numpy as np
+    from PIL import Image
+
+    prov = json.loads(PROVENANCE.read_text())
+    frames = sorted(FRAMES_DIR.glob("frame_*.png"))
+    if len(frames) == 576:
+        ts = sorted(f.stat().st_mtime for f in frames)
+        prov["v2"]["frame_mtimes"].update(
+            frames=len(frames),
+            first_frame_written=datetime.fromtimestamp(ts[0]).strftime("%Y-%m-%dT%H:%M:%S"),
+            last_frame_written=datetime.fromtimestamp(ts[-1]).strftime("%Y-%m-%dT%H:%M:%S"),
+            span_minutes=round((ts[-1] - ts[0]) / 60, 1),
+            seconds_per_frame_interval=round((ts[-1] - ts[0]) / (len(ts) - 1), 2),
+            measured=f"{datetime.now():%Y-%m-%d}")
+    else:
+        print(f"NOTE: {len(frames)} v2 frames on disk, not 576 -- frame timestamps left as recorded.")
+    if V1_DAY0_FRAME.exists():
+        im = np.asarray(Image.open(V1_DAY0_FRAME).convert("RGB")).astype(int)
+        h, w = im.shape[:2]
+        plant = im[200:700, 700:1300].mean(axis=2) > 110
+        ys, xs = np.where(plant)
+        prov["day0_frame_v1"].update(
+            width=w, height=h,
+            plant_pixel_percent=round(plant.sum() / (w * h) * 100, 2),
+            bounding_box_percent=round((np.ptp(xs) + 1) * (np.ptp(ys) + 1) / (w * h) * 100, 2),
+            measured=f"{datetime.now():%Y-%m-%d}")
+    else:
+        print(f"NOTE: {V1_DAY0_FRAME.relative_to(ROOT)} not on disk -- day-0 measurement left as recorded.")
+    PROVENANCE.write_text(json.dumps(prov, indent=2) + "\n")
+    print(json.dumps({k: prov[k] for k in ("v2", "day0_frame_v1")}, indent=2))
+
+
 if __name__ == "__main__":
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--measure-frames", action="store_true",
+                    help="re-measure frame timestamps and the v1 day-0 frame into blender/render_provenance.json")
+    if ap.parse_args().measure_frames:
+        measure_frames()
     main()
