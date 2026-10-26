@@ -23,7 +23,7 @@ FIG_DIR = ROOT / "app" / "public" / "metabolome-story"
 FIGURES = ["panel_overlap.png", "replication.png", "dark_vs_stress.png", "class_correlation.png",
            "atlas_ecotypes.png", "metabolights.png"]
 THUMB_SOURCE, THUMB = "dark_vs_stress.png", RES / "hub_thumb.png"
-THUMB_SIZE, SURFACE = (320, 180), (252, 252, 251)
+THUMB_SIZE = (320, 180)
 
 
 def tsv(name):
@@ -35,12 +35,20 @@ def e(text):
 
 
 def hub_thumb():
+    """Centre-crop the lead figure to the hub's 16:9 card shape, then scale it down (no letterboxing)."""
     from PIL import Image
     im = Image.open(RES / "plots" / THUMB_SOURCE).convert("RGB")
-    im.thumbnail(THUMB_SIZE, Image.LANCZOS)
-    canvas = Image.new("RGB", THUMB_SIZE, SURFACE)
-    canvas.paste(im, ((THUMB_SIZE[0] - im.width) // 2, (THUMB_SIZE[1] - im.height) // 2))
-    canvas.save(THUMB, optimize=True)
+    target = THUMB_SIZE[0] / THUMB_SIZE[1]
+    w, h = im.size
+    if w / h < target:
+        crop_h = round(w / target)
+        top = (h - crop_h) // 2
+        im = im.crop((0, top, w, top + crop_h))
+    else:
+        crop_w = round(h * target)
+        left = (w - crop_w) // 2
+        im = im.crop((left, 0, left + crop_w, h))
+    im.resize(THUMB_SIZE, Image.LANCZOS).save(THUMB, optimize=True)
 
 
 def main():
