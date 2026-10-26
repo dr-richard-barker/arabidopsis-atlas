@@ -1,0 +1,19 @@
+metabolite	class	zhu_id	zhu_dark_median_delta	wu_stress_median_delta	same_direction
+5-methylsulfinylpentyl glucosinolate	Glucosinolate	Met.409	-0.711	0.135	False
+8-Methylsulfinyloctyl glucosinolate	Glucosinolate	Met.412	-0.262	-0.097	True
+Kaempferol 3-O-glucoside 7-O-rhamnoside	Flavonoid	Met.564	-0.332	-0.448	True
+Quercetin 3-O-glucoside 7-O-rhamnoside	Flavonoid	Met.821	-0.56	-0.633	True
+Succinoadenosine	Nucleoside derivative	Met.886	-0.002	-0.895	True
+Leucine	Amino acid	Met.545	4.919	4.74	True
+Isoleucine	Amino acid	Met.571	3.15	4.424	True
+alpha-Ketoglutaric acid	Organic acid	Met.205	-1.683	0.115	False
+Uric acid	Amine	Met.985	0.253	0.558	True
+Citric acid	Organic acid	Met.321	-0.123	-0.028	True
+Pantothenic acid (Vitamine B5)	Organic acid	Met.728	1.263	2.022	True
+Guanosine	Nucleoside	Met.486	-1.057	-0.933	True
+Riboflavin	Vitamin	Met.830	-1.114	-0.158	True
+Naringin	Flavonoid	Met.674	1.421	0.365	True
+Rutin	Flavonoid	Met.836	-0.992	-0.633	True
+beta-Nicotinamide adenine dinucleotide	Coenzyme	Met.300	-0.611	-0.003	True
+Flavine adenine dinucleotide	Cofactor	Met.385	-0.796	0.284	False
+Glutathione	Antioxidant	Met.457	-0.465	0.041	False

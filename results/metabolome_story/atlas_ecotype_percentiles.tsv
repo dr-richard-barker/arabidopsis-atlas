@@ -1,0 +1,55 @@
+panel	class	ecotype	accession	metabolites	median_percentile
+Wu 2016 GC-MS (rosette)	Amino acid	Col-0	ecotype.6909	26	31.9
+Wu 2016 GC-MS (rosette)	Amino acid	Cvi-0	ecotype.6911	26	81.4
+Wu 2016 GC-MS (rosette)	Amino acid	Edi-0	ecotype.6914	26	74.5
+Wu 2016 GC-MS (rosette)	Amino acid	Ler-1	ecotype.6932	26	47.9
+Wu 2016 GC-MS (rosette)	Amino acid	Ws-0	ecotype.6980	26	53.4
+Wu 2016 GC-MS (rosette)	Amino acid	Tsu-0	ecotype.7373	26	7.4
+Wu 2016 GC-MS (rosette)	Organic acid	Col-0	ecotype.6909	23	63.5
+Wu 2016 GC-MS (rosette)	Organic acid	Cvi-0	ecotype.6911	23	79.2
+Wu 2016 GC-MS (rosette)	Organic acid	Edi-0	ecotype.6914	23	35.6
+Wu 2016 GC-MS (rosette)	Organic acid	Ler-1	ecotype.6932	23	51.6
+Wu 2016 GC-MS (rosette)	Organic acid	Ws-0	ecotype.6980	23	45.2
+Wu 2016 GC-MS (rosette)	Organic acid	Tsu-0	ecotype.7373	23	25.3
+Wu 2016 GC-MS (rosette)	Sugar	Col-0	ecotype.6909	17	34.9
+Wu 2016 GC-MS (rosette)	Sugar	Cvi-0	ecotype.6911	17	23.4
+Wu 2016 GC-MS (rosette)	Sugar	Edi-0	ecotype.6914	17	20.5
+Wu 2016 GC-MS (rosette)	Sugar	Ler-1	ecotype.6932	17	17.9
+Wu 2016 GC-MS (rosette)	Sugar	Ws-0	ecotype.6980	17	51.6
+Wu 2016 GC-MS (rosette)	Sugar	Tsu-0	ecotype.7373	17	67.0
+Wu 2018 LC-MS control (leaf)	Amine	Col-0	ecotype.6909	5	51.8
+Wu 2018 LC-MS control (leaf)	Amine	Cvi-0	ecotype.6911	5	21.6
+Wu 2018 LC-MS control (leaf)	Amine	Edi-0	ecotype.6914	5	72.4
+Wu 2018 LC-MS control (leaf)	Amine	Ler-1	ecotype.6932	5	78.7
+Wu 2018 LC-MS control (leaf)	Amine	Ws-0	ecotype.6980	5	35.7
+Wu 2018 LC-MS control (leaf)	Amine	Tsu-0	ecotype.7373	5	6.3
+Wu 2018 LC-MS control (leaf)	Amino acid	Col-0	ecotype.6909	15	16.9
+Wu 2018 LC-MS control (leaf)	Amino acid	Cvi-0	ecotype.6911	15	37.2
+Wu 2018 LC-MS control (leaf)	Amino acid	Edi-0	ecotype.6914	15	78.1
+Wu 2018 LC-MS control (leaf)	Amino acid	Ler-1	ecotype.6932	15	57.1
+Wu 2018 LC-MS control (leaf)	Amino acid	Ws-0	ecotype.6980	15	54.2
+Wu 2018 LC-MS control (leaf)	Amino acid	Tsu-0	ecotype.7373	15	5.6
+Wu 2018 LC-MS control (leaf)	Flavonoid	Col-0	ecotype.6909	11	72.8
+Wu 2018 LC-MS control (leaf)	Flavonoid	Cvi-0	ecotype.6911	9	33.6
+Wu 2018 LC-MS control (leaf)	Flavonoid	Edi-0	ecotype.6914	11	79.4
+Wu 2018 LC-MS control (leaf)	Flavonoid	Ler-1	ecotype.6932	11	56.1
+Wu 2018 LC-MS control (leaf)	Flavonoid	Ws-0	ecotype.6980	11	29.6
+Wu 2018 LC-MS control (leaf)	Flavonoid	Tsu-0	ecotype.7373	11	11.3
+Wu 2018 LC-MS control (leaf)	Glucosinolate	Col-0	ecotype.6909	26	36.7
+Wu 2018 LC-MS control (leaf)	Glucosinolate	Cvi-0	ecotype.6911	25	78.3
+Wu 2018 LC-MS control (leaf)	Glucosinolate	Edi-0	ecotype.6914	23	65.0
+Wu 2018 LC-MS control (leaf)	Glucosinolate	Ler-1	ecotype.6932	24	41.8
+Wu 2018 LC-MS control (leaf)	Glucosinolate	Ws-0	ecotype.6980	22	36.0
+Wu 2018 LC-MS control (leaf)	Glucosinolate	Tsu-0	ecotype.7373	23	17.3
+Wu 2018 LC-MS control (leaf)	Organic acid	Col-0	ecotype.6909	10	35.5
+Wu 2018 LC-MS control (leaf)	Organic acid	Cvi-0	ecotype.6911	10	55.7
+Wu 2018 LC-MS control (leaf)	Organic acid	Edi-0	ecotype.6914	11	83.4
+Wu 2018 LC-MS control (leaf)	Organic acid	Ler-1	ecotype.6932	11	68.1
+Wu 2018 LC-MS control (leaf)	Organic acid	Ws-0	ecotype.6980	10	61.1
+Wu 2018 LC-MS control (leaf)	Organic acid	Tsu-0	ecotype.7373	10	30.3
+Wu 2018 LC-MS control (leaf)	Phenylpropanoid	Col-0	ecotype.6909	6	57.0
+Wu 2018 LC-MS control (leaf)	Phenylpropanoid	Cvi-0	ecotype.6911	6	19.8
+Wu 2018 LC-MS control (leaf)	Phenylpropanoid	Edi-0	ecotype.6914	6	70.2
+Wu 2018 LC-MS control (leaf)	Phenylpropanoid	Ler-1	ecotype.6932	6	73.7
+Wu 2018 LC-MS control (leaf)	Phenylpropanoid	Ws-0	ecotype.6980	6	50.9
+Wu 2018 LC-MS control (leaf)	Phenylpropanoid	Tsu-0	ecotype.7373	6	24.8

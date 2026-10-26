@@ -1,0 +1,18 @@
+facet	value	studies
+technique	GC-MS	25
+technique	LC-MS	49
+technique	other MS (FIA, DI, MS)	7
+tissue	leaf	21
+tissue	root	15
+tissue	rosette leaf	14
+tissue	seed	6
+tissue	shoot apical meristem	4
+tissue	cotyledon	4
+tissue	aerial part	4
+tissue	rosette	4
+factor	genotype	30
+factor	treatment	17
+factor	time point	11
+factor	stress	2
+factor	infection	2
+factor	dose	2

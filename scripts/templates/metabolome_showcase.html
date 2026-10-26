@@ -9,7 +9,8 @@
      Edit the template, not app/public/metabolome.html; every number is filled from results/. -->
 <script>
   (function() {
-    let theme = localStorage.getItem('cose_theme');
+    let theme = null;
+    try { theme = localStorage.getItem('barker.theme'); } catch (e) {}
     if (!theme) theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     document.documentElement.setAttribute('data-theme', theme);
   })();
@@ -39,6 +40,7 @@
     <div class="btns">
       <a class="btn primary" href="./">Open the 3D atlas</a>
       <a class="btn" href="metabolome-explorer.html">Interactive explorer</a>
+      <a class="btn" href="metabolome-story.html">Natural-variation story</a>
       <a class="btn" href="https://github.com/dr-richard-barker/arabidopsis-atlas">Code &amp; data (GitHub)</a>
       <a class="btn" href="https://osdr.nasa.gov/bio/repo/data/studies/OSD-522">OSD-522 on NASA OSDR</a>
     </div>

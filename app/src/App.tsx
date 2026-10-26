@@ -258,7 +258,8 @@ export default function App() {
           {" "}— see the <a href="https://github.com/dr-richard-barker/arabidopsis-atlas#readme" target="_blank" rel="noreferrer">README</a> for what's actually real data here vs. simplified geometry.
           {" "}Also see the <a href="growth.html">seed-to-flowering growth animation →</a>
           {" "}the <a href="metabolome.html">metabolome × spaceflight showcase →</a>
-          {" "}and the <a href="metabolome-explorer.html">metabolome explorer →</a>
+          {" "}the <a href="metabolome-explorer.html">metabolome explorer →</a>
+          {" "}and its <a href="metabolome-story.html">natural-variation story →</a>
         </p>
         <EcotypePicker value={ecotype} onChange={handleEcotypeChange} />
       </header>

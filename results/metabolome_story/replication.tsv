@@ -1,0 +1,43 @@
+comparison	compound	class	n	rho	q
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	5-methylsulfinylpentyl glucosinolate	Glucosinolate	250	0.825	6.284e-62
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	3-methylsulfinylpropyl-glucosinolate	Glucosinolate	207	0.797	1.264e-45
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	8-Methylsulfinyloctyl glucosinolate	Glucosinolate	250	0.669	7.525e-33
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Quercetin 3-O-glucoside 7-O-rhamnoside	Flavonoid	250	0.628	4.855e-28
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Kaempferol 3-O-glucoside 7-O-rhamnoside	Flavonoid	250	0.628	4.855e-28
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Guanosine	Nucleoside	250	0.618	5.15e-27
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Uric acid	Amine	250	0.549	1.916e-20
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Pantothenic acid (Vitamine B5)	Organic acid	250	0.501	9.959e-17
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Kaempferol 3-O-[2''-O-(rhamnosyl) glucoside] 7-O-rhamnoside	Flavonoid	250	0.481	2.348e-15
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Adenine	Nucleobase	250	0.375	2.539e-09
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Succinoadenosine	Nucleoside derivative	250	0.357	1.577e-08
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	N-acetyl-glutamic acid	Amino acid	250	0.327	2.846e-07
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Citric acid	Organic acid	250	0.322	3.998e-07
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Glutathione	Antioxidant	250	0.298	3.142e-06
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Adenosine	Nucleoside	250	0.294	4.086e-06
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	beta-Nicotinamide adenine dinucleotide	Coenzyme	250	0.291	4.994e-06
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Isoleucine	Amino acid	250	0.276	1.554e-05
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Riboflavin	Vitamin	250	0.266	3.066e-05
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	D-Galactonic acid	Organic acid	250	0.25	9.729e-05
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Flavine adenine dinucleotide	Cofactor	250	0.245	0.0001237
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	D-Aspartic acid	Organic acid	250	0.229	0.0003509
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Uridine	Nucleoside	250	0.122	0.0653
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	S-Adenosyl-L-Homocysteine	Amino acid and derivative	250	0.107	0.103
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Leucine	Amino acid	250	0.096	0.1404
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Nicotinamide adenine dinucleotide phosphate	Nucleoside derivative	245	0.02	0.76
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Rutin	Flavonoid	250	-0.033	0.6246
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	alpha-Ketoglutaric acid	Organic acid	250	-0.112	0.0911
+Zhu 0 d vs Wu 2018 control (LC-MS / LC-MS)	Naringin	Flavonoid	248	-0.129	0.05312
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Adenine	Others	270	-0.029	0.8265
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Citric acid	Organic acid	270	0.284	1.515e-05
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Gluconic acid	Sugar	270	0.019	0.8265
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Leucine	Amino acid	270	-0.018	0.8265
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Isoleucine	Amino acid	270	0.053	0.7645
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Methionine	Amino acid	270	0.158	0.02567
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Tryptophan	Amino acid	270	0.19	0.006064
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Ascorbic acid	Organic acid	255	-0.001	0.9825
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Homoserine	Amino acid	270	0.136	0.06038
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Glutamine	Amino acid	270	0.237	0.0004008
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Nicotinic acid	Organic acid	149	-0.05	0.8265
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Proline	Amino acid	270	0.505	1.01e-17
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Spermidine	Amine	270	-0.034	0.8265
+Wu 2016 GC-MS vs Wu 2018 LC-MS control	Valine	Amino acid	270	-0.024	0.8265

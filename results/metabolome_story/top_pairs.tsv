@@ -1,0 +1,11 @@
+a	b	rho	class_a	class_b	quant_mass_a	quant_mass_b
+Altrose	Glucose	0.971	Sugar	Sugar	160	160
+Octadecanoic acid	Palmitic acid	0.844	Organic acid	Organic acid	117	313
+Isoleucine	Leucine	0.842	Amino acid	Amino acid	158	158
+Glutamine [-H2O]	Octacosanoic acid	0.837	Amino acid	Organic acid	154	117
+Glutamine [-H2O]	4-hydroxy-benzoic acid	0.819	Amino acid	Organic acid	154	223
+Glucose	Mannose	0.814	Sugar	Sugar	160	160
+Palmitic acid	Eicosanoic acid methyl ester	0.809	Organic acid	Others	313	326
+Proline	Hydroxyproline	0.802	Amino acid	Amino acid	142	230
+Maleic acid	Fumaric acid	0.8	Organic acid	Organic acid	147	245
+4-hydroxy-benzoic acid	Octacosanoic acid	0.799	Organic acid	Organic acid	223	117

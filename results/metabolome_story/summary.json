@@ -1,0 +1,55 @@
+{
+  "accessions": 343,
+  "in_all_four": 227,
+  "features": 306,
+  "features_by_panel": {
+    "zhu": 95,
+    "wu2018": 117,
+    "wu2016": 94
+  },
+  "replication_lc_lc": {
+    "n": 28,
+    "median_rho": 0.3,
+    "n_sig_pos": 21,
+    "n_acc": 250,
+    "best": [
+      "5-methylsulfinylpentyl glucosinolate",
+      0.825
+    ]
+  },
+  "replication_gc_lc": {
+    "n": 14,
+    "median_rho": 0.04,
+    "n_sig_pos": 5,
+    "n_acc": 270,
+    "best": [
+      "Proline",
+      0.505
+    ]
+  },
+  "dark_stress": {
+    "n": 18,
+    "agree": 14,
+    "p": 0.0308837890625
+  },
+  "gc_correlation": {
+    "named_metabolites": 73,
+    "accessions": 312,
+    "within_class_median_rho": 0.156,
+    "between_class_median_rho": 0.055,
+    "top_pair": [
+      "Altrose",
+      "Glucose",
+      0.97
+    ]
+  },
+  "metabolights": {
+    "studies": 73,
+    "search_hits": 88,
+    "with_maf": 70,
+    "samples": 8417,
+    "groups": 244,
+    "groups_named": 171,
+    "fetched": "2026-10-22"
+  }
+}
